@@ -1,20 +1,76 @@
 {
-  "updated": "2026-09-26T08:00:00.000Z",
-  "count": 2,
+  "updated": "2026-09-26T20:23:00.660Z",
+  "count": 10,
   "items": [
     {
       "source": "Engadget Reviews",
-      "title": "Sample review — run npm run fetch:reviews to pull live posts",
-      "link": "https://www.engadget.com",
-      "published": "2026-09-26T00:00:00Z",
-      "summary": "Placeholder content standing in for a real device review excerpt."
+      "title": "This external GPU uses Wi-Fi to transform any device into a gaming rig",
+      "link": "https://www.engadget.com/2269877/this-external-gpu-uses-wi-fi-to-transform-any-device-into-a-gaming-rig/",
+      "published": "Sat, 26 Sep 2026 19:45:00 +0000",
+      "summary": "The WiCi One is available for preorders starting at $1,999."
     },
     {
-      "source": "The Verge Reviews",
-      "title": "Placeholder review two",
-      "link": "https://www.theverge.com/reviews",
-      "published": "2026-09-25T00:00:00Z",
-      "summary": "Swap the FEEDS array in scripts/fetch-reviews.js to change sources."
+      "source": "Engadget Reviews",
+      "title": "Minecraft is getting a new dimension called The Sift in 2027",
+      "link": "https://www.engadget.com/2269867/minecraft-is-getting-a-new-dimension-called-the-sift-in-2027/",
+      "published": "Sat, 26 Sep 2026 19:19:53 +0000",
+      "summary": "The Sift will first be released with Minecraft Dungeons 2 later this month before arriving in the base game."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "What type of power cord does a PS5 use?",
+      "link": "https://www.engadget.com/2265348/playstation-power-cord-what-type/",
+      "published": "Sat, 26 Sep 2026 18:45:00 +0000",
+      "summary": "You probably don't think much about your PlayStation's power cord unless it needs to be replaced. If that time comes, here's what to know."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "You can use your old laptop to make a smart home hub",
+      "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
+      "published": "Sat, 26 Sep 2026 18:30:00 +0000",
+      "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How to properly clean your laptop fan",
+      "link": "https://www.engadget.com/2266513/how-to-clean-laptop-fan/",
+      "published": "Sat, 26 Sep 2026 18:00:00 +0000",
+      "summary": "Start with the vents before you reach for a screwdriver."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Apple hit with a $5.7 billion verdict for alleged patent infringement",
+      "link": "https://www.engadget.com/2269826/apple-hit-with-a-57-billion-verdict-for-alleged-patent-infringement/",
+      "published": "Sat, 26 Sep 2026 17:02:42 +0000",
+      "summary": "Apple is reportedly looking to appeal the jury verdict."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "TikTok will pay Alabama $100 million to settle social media addiction lawsuit",
+      "link": "https://www.engadget.com/2269822/tiktok-will-pay-alabama-100-million-to-settle-social-media-addiction-lawsuit/",
+      "published": "Sat, 26 Sep 2026 16:41:00 +0000",
+      "summary": "TikTok has settled Alabama's social media addiction lawsuit before it was supposed to go to trial."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "The MacBook models that macOS 27 Golden Gate does not support",
+      "link": "https://www.engadget.com/2266414/macbook-models-macos-27-golden-gate-does-not-support/",
+      "published": "Sat, 26 Sep 2026 16:30:00 +0000",
+      "summary": "macOS Golden Gate refines the Mac software experience, but not everyone can upgrade."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Garmin Fenix 9 vs Fenix 8: How much of an upgrade is the new model?",
+      "link": "https://www.engadget.com/2266039/armin-fenix-9-vs-8-how-much-of-upgrade-new-model/",
+      "published": "Sat, 26 Sep 2026 16:00:00 +0000",
+      "summary": "Which sport smartwatch should you get?"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Why NVIDIA's most powerful GPU is so rarely sold to consumers",
+      "link": "https://www.engadget.com/2265946/why-most-powerful-nvidia-gpu-rarely-sold-to-consumers/",
+      "published": "Sat, 26 Sep 2026 15:30:00 +0000",
+      "summary": "NVIDIA's $16,000 RTX PRO 6000 can beat the RTX 5090, but gamers aren't who it's built for."
     }
   ]
 }
