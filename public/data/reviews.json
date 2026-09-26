@@ -1,7 +1,14 @@
 {
-  "updated": "2026-09-26T19:43:57.438Z",
+  "updated": "2026-09-26T19:50:38.988Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "This external GPU uses Wi-Fi to transform any device into a gaming rig",
+      "link": "https://www.engadget.com/2269877/this-external-gpu-uses-wi-fi-to-transform-any-device-into-a-gaming-rig/",
+      "published": "Sat, 26 Sep 2026 19:45:00 +0000",
+      "summary": "The WiCi One is available for preorders starting at $1,999."
+    },
     {
       "source": "Engadget Reviews",
       "title": "Minecraft is getting a new dimension called The Sift in 2027",
@@ -64,13 +71,6 @@
       "link": "https://www.engadget.com/2265946/why-most-powerful-nvidia-gpu-rarely-sold-to-consumers/",
       "published": "Sat, 26 Sep 2026 15:30:00 +0000",
       "summary": "NVIDIA's $16,000 RTX PRO 6000 can beat the RTX 5090, but gamers aren't who it's built for."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Get better audio quality from your vinyl by upgrading this part",
-      "link": "https://www.engadget.com/2265869/vinyl-better-audio-quality-best-upgrade/",
-      "published": "Sat, 26 Sep 2026 15:00:00 +0000",
-      "summary": "Swapping out your turntable's stylus is an easy upgrade."
     }
   ]
 }
