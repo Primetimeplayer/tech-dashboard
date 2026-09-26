@@ -1,20 +1,76 @@
 {
-  "updated": "2026-09-26T08:00:00.000Z",
-  "count": 2,
+  "updated": "2026-09-26T19:13:33.601Z",
+  "count": 10,
   "items": [
     {
       "source": "Engadget Reviews",
-      "title": "Sample review — run npm run fetch:reviews to pull live posts",
-      "link": "https://www.engadget.com",
-      "published": "2026-09-26T00:00:00Z",
-      "summary": "Placeholder content standing in for a real device review excerpt."
+      "title": "You can use your old laptop to make a smart home hub",
+      "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
+      "published": "Sat, 26 Sep 2026 18:30:00 +0000",
+      "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
     },
     {
-      "source": "The Verge Reviews",
-      "title": "Placeholder review two",
-      "link": "https://www.theverge.com/reviews",
-      "published": "2026-09-25T00:00:00Z",
-      "summary": "Swap the FEEDS array in scripts/fetch-reviews.js to change sources."
+      "source": "Engadget Reviews",
+      "title": "How to properly clean your laptop fan",
+      "link": "https://www.engadget.com/2266513/how-to-clean-laptop-fan/",
+      "published": "Sat, 26 Sep 2026 18:00:00 +0000",
+      "summary": "Start with the vents before you reach for a screwdriver."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Apple hit with a $5.7 billion verdict for alleged patent infringement",
+      "link": "https://www.engadget.com/2269826/apple-hit-with-a-57-billion-verdict-for-alleged-patent-infringement/",
+      "published": "Sat, 26 Sep 2026 17:02:42 +0000",
+      "summary": "Apple is reportedly looking to appeal the jury verdict."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "TikTok will pay Alabama $100 million to settle social media addiction lawsuit",
+      "link": "https://www.engadget.com/2269822/tiktok-will-pay-alabama-100-million-to-settle-social-media-addiction-lawsuit/",
+      "published": "Sat, 26 Sep 2026 16:41:00 +0000",
+      "summary": "TikTok has settled Alabama's social media addiction lawsuit before it was supposed to go to trial."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "The MacBook models that macOS 27 Golden Gate does not support",
+      "link": "https://www.engadget.com/2266414/macbook-models-macos-27-golden-gate-does-not-support/",
+      "published": "Sat, 26 Sep 2026 16:30:00 +0000",
+      "summary": "macOS Golden Gate refines the Mac software experience, but not everyone can upgrade."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Garmin Fenix 9 vs Fenix 8: How much of an upgrade is the new model?",
+      "link": "https://www.engadget.com/2266039/armin-fenix-9-vs-8-how-much-of-upgrade-new-model/",
+      "published": "Sat, 26 Sep 2026 16:00:00 +0000",
+      "summary": "Which sport smartwatch should you get?"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Why NVIDIA's most powerful GPU is so rarely sold to consumers",
+      "link": "https://www.engadget.com/2265946/why-most-powerful-nvidia-gpu-rarely-sold-to-consumers/",
+      "published": "Sat, 26 Sep 2026 15:30:00 +0000",
+      "summary": "NVIDIA's $16,000 RTX PRO 6000 can beat the RTX 5090, but gamers aren't who it's built for."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Get better audio quality from your vinyl by upgrading this part",
+      "link": "https://www.engadget.com/2265869/vinyl-better-audio-quality-best-upgrade/",
+      "published": "Sat, 26 Sep 2026 15:00:00 +0000",
+      "summary": "Swapping out your turntable's stylus is an easy upgrade."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Is your Roku TV talking to you? Here's why and how to turn it off",
+      "link": "https://www.engadget.com/2265732/why-roku-tv-talking-to-you-how-turn-off/",
+      "published": "Sat, 26 Sep 2026 14:30:00 +0000",
+      "summary": "Relax, that voice you're hearing from your Roku is pretty easy to turn off."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "This app lets you use an Apple Watch with an Android phone",
+      "link": "https://www.engadget.com/2265684/app-to-use-apple-watch-with-android-phone/",
+      "published": "Sat, 26 Sep 2026 14:00:00 +0000",
+      "summary": "If you switched from iPhone to Android, you don't necessarily need to change watches. There's an app that lets Apple Watch work with Android."
     }
   ]
 }

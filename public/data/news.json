@@ -1,7 +1,15 @@
 {
-  "updated": "2026-09-26T18:25:28.897Z",
+  "updated": "2026-09-26T19:13:33.009Z",
   "count": 58,
   "items": [
+    {
+      "source": "Engadget",
+      "category": "reviews",
+      "title": "You can use your old laptop to make a smart home hub",
+      "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
+      "published": "Sat, 26 Sep 2026 18:30:00 +0000",
+      "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
+    },
     {
       "source": "Engadget",
       "category": "reviews",
@@ -16,7 +24,7 @@
       "title": "Meta and YouTube say they will run ads for ‘Musk’ documentary after all",
       "link": "https://techcrunch.com/2026/09/26/meta-says-it-will-run-ads-for-musk-documentary-after-all/",
       "published": "Sat, 26 Sep 2026 17:44:00 +0000",
-      "summary": "At least one social media company seems to be reversing its stance on whether it will accept advertising for Alex Gibney’s upcoming documentary about Elon Musk."
+      "summary": "Two companies now say they will accept advertising for director Alex Gibney’s upcoming documentary about Elon Musk, following earlier reporting that a number of social media platforms had rejected the ads."
     },
     {
       "source": "The Verge",
@@ -145,14 +153,6 @@
       "link": "https://www.theverge.com/games/1000818/control-resonant-reading-collectibles-documents-logs",
       "published": "2026-09-26T13:00:00.000Z",
       "summary": "In Control Resonant, the entire world is at stake. But that didn't stop the diligent employees of the Federal Bureau of Control from filing reams of paperwork, and it didn't stop me from reading everything I could find, either. Reading is o"
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "One problem with your iPhone's Always-On Display can easily be fixed",
-      "link": "https://www.engadget.com/2265555/iphone-always-on-display-one-problem-simple-fix/",
-      "published": "Sat, 26 Sep 2026 13:00:00 +0000",
-      "summary": "The Always-On Display feature of your iPhone should be straightforward, but it can turn off in several situations. You can control some of those."
     },
     {
       "source": "The Verge",
