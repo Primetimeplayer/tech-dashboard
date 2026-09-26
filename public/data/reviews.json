@@ -1,0 +1,20 @@
+{
+  "updated": "2026-09-26T08:00:00.000Z",
+  "count": 2,
+  "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Sample review — run npm run fetch:reviews to pull live posts",
+      "link": "https://www.engadget.com",
+      "published": "2026-09-26T00:00:00Z",
+      "summary": "Placeholder content standing in for a real device review excerpt."
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "Placeholder review two",
+      "link": "https://www.theverge.com/reviews",
+      "published": "2026-09-25T00:00:00Z",
+      "summary": "Swap the FEEDS array in scripts/fetch-reviews.js to change sources."
+    }
+  ]
+}

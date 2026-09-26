@@ -1,0 +1,22 @@
+{
+  "updated": "2026-09-26T08:00:00.000Z",
+  "count": 2,
+  "items": [
+    {
+      "title": "Sample paper — run npm run fetch:papers to pull live results from arXiv",
+      "summary": "This is placeholder content standing in for a real arXiv abstract. Once the fetch script runs, this file fills with the latest submissions in cs.AI, cs.LG, and cs.CL.",
+      "link": "https://arxiv.org",
+      "published": "2026-09-26T00:00:00Z",
+      "authors": ["A. Researcher", "B. Researcher"],
+      "categories": ["cs.AI", "cs.LG"]
+    },
+    {
+      "title": "Placeholder paper two",
+      "summary": "Edit the CATEGORIES array in scripts/fetch-papers.js to follow different arXiv subject areas.",
+      "link": "https://arxiv.org",
+      "published": "2026-09-25T00:00:00Z",
+      "authors": ["C. Researcher"],
+      "categories": ["cs.CL"]
+    }
+  ]
+}

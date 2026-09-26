@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal — a personal tech dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1B1C;
+    --panel: #14252A;
+    --line: #24393A;
+    --text: #E9E4D6;
+    --text-muted: #839391;
+    --news: #E8A33D;
+    --papers: #6FA8D8;
+    --reviews: #C9836B;
+    --focus: #E9E4D6;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+  }
+
+  ::selection { background: var(--news); color: #14251C; }
+
+  a { color: inherit; }
+
+  .mast {
+    border-bottom: 1px solid var(--line);
+    padding: 2.25rem 1.5rem 1.5rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .mast-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .wordmark span { color: var(--news); }
+
+  .status {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .status .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6FCF97;
+    margin-right: 0.4em;
+  }
+
+  .tagline {
+    margin: 0.6rem 0 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 46ch;
+  }
+
+  .filters {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.1rem 1.5rem 0;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .filter {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .filter:hover { color: var(--text); border-color: #3a5252; }
+
+  .filter[aria-pressed="true"] {
+    color: var(--bg);
+    border-color: transparent;
+  }
+
+  .filter .swatch {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--dot, var(--text-muted));
+  }
+
+  .filter[data-cat="news"][aria-pressed="true"] { background: var(--news); }
+  .filter[data-cat="papers"][aria-pressed="true"] { background: var(--papers); }
+  .filter[data-cat="reviews"][aria-pressed="true"] { background: var(--reviews); }
+  .filter[aria-pressed="true"] .swatch { background: var(--bg); }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem 4rem;
+  }
+
+  .item {
+    border-left: 2px solid var(--dot, var(--line));
+    padding: 0 0 0 1rem;
+    margin: 1.6rem 0;
+  }
+
+  .item-meta {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 0.6em;
+    align-items: baseline;
+    margin-bottom: 0.35rem;
+  }
+
+  .item-meta .cat-label { color: var(--dot); }
+
+  .item h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin: 0 0 0.4rem;
+  }
+
+  .item h2 a { text-decoration: none; }
+  .item h2 a:hover { text-decoration: underline; text-decoration-color: var(--dot); }
+
+  .item p {
+    margin: 0;
+    color: #C9C4B6;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    max-width: 66ch;
+  }
+
+  .item.news { --dot: var(--news); }
+  .item.papers { --dot: var(--papers); }
+  .item.reviews { --dot: var(--reviews); }
+
+  .empty, .error {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-muted);
+    padding: 2rem 0;
+    font-size: 0.9rem;
+  }
+
+  footer {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+    color: var(--text-muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .item { transition: transform 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <div class="mast-row">
+    <h1 class="wordmark">Signal<span>.</span></h1>
+    <div class="status" id="status"><span class="dot"></span>loading feed…</div>
+  </div>
+  <p class="tagline">Tech news, AI papers, and device reviews, pulled from RSS and arXiv on a schedule — no algorithm, no ads, just your sources.</p>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter" data-cat="all" aria-pressed="true">All</button>
+  <button class="filter" data-cat="news" aria-pressed="false"><span class="swatch" style="--dot: var(--news)"></span>News</button>
+  <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
+  <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
+</div>
+
+<main id="feed">
+  <div class="empty">Loading…</div>
+</main>
+
+<footer>
+  Data refreshes on a schedule via GitHub Actions. Sources are configured in <code>scripts/fetch-*.js</code>. Edit freely — this is your dashboard.
+</footer>
+
+<script>
+  const feedEl = document.getElementById('feed');
+  const statusEl = document.getElementById('status');
+  const filtersEl = document.getElementById('filters');
+
+  let activeFilter = 'all';
+  let allItems = [];
+
+  function timeAgo(iso) {
+    if (!iso) return '';
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    return `${days}d ago`;
+  }
+
+  function catLabel(cat) {
+    return { news: 'News', papers: 'AI paper', reviews: 'Review' }[cat] || cat;
+  }
+
+  function render() {
+    const items = activeFilter === 'all'
+      ? allItems
+      : allItems.filter((i) => i.category === activeFilter);
+
+    if (!items.length) {
+      feedEl.innerHTML = '<div class="empty">Nothing here yet. Run the fetch scripts to pull live data, or pick a different filter.</div>';
+      return;
+    }
+
+    feedEl.innerHTML = items.map((item) => `
+      <article class="item ${item.category}">
+        <div class="item-meta">
+          <span class="cat-label">${catLabel(item.category)}</span>
+          <span>·</span>
+          <span>${item.source}</span>
+          <span>·</span>
+          <span>${timeAgo(item.published)}</span>
+        </div>
+        <h2><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h2>
+        ${item.summary ? `<p>${item.summary}</p>` : ''}
+      </article>
+    `).join('');
+  }
+
+  async function loadJSON(file, category, mapFn) {
+    try {
+      const res = await fetch(`data/${file}?_=${Date.now()}`);
+      if (!res.ok) throw new Error(`${file}: ${res.status}`);
+      const data = await res.json();
+      return (data.items || []).map((raw) => ({ ...mapFn(raw), category }));
+    } catch (err) {
+      console.error('Failed to load', file, err);
+      return [];
+    }
+  }
+
+  async function init() {
+    const [news, papers, reviews] = await Promise.all([
+      loadJSON('news.json', 'news', (i) => i),
+      loadJSON('papers.json', 'papers', (i) => ({
+        ...i,
+        source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ' et al.' : ''),
+      })),
+      loadJSON('reviews.json', 'reviews', (i) => i),
+    ]);
+
+    allItems = [...news, ...papers, ...reviews].sort(
+      (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
+    );
+
+    statusEl.innerHTML = `<span class="dot"></span>${allItems.length} items · updated ${new Date().toLocaleString()}`;
+    render();
+  }
+
+  filtersEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter');
+    if (!btn) return;
+    filtersEl.querySelectorAll('.filter').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    activeFilter = btn.dataset.cat;
+    render();
+  });
+
+  init();
+</script>
+
+</body>
+</html>

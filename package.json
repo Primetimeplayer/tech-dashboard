@@ -1,0 +1,19 @@
+{
+  "name": "tech-dashboard",
+  "version": "1.0.0",
+  "description": "Personal dashboard that pulls tech news, AI paper summaries, and device reviews from RSS/APIs into static JSON files.",
+  "type": "module",
+  "scripts": {
+    "fetch:news": "node scripts/fetch-news.js",
+    "fetch:papers": "node scripts/fetch-papers.js",
+    "fetch:reviews": "node scripts/fetch-reviews.js",
+    "fetch:all": "npm run fetch:news && npm run fetch:papers && npm run fetch:reviews",
+    "serve": "npx http-server public -p 8080 -o"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "node-fetch": "^3.3.2",
+    "xml2js": "^0.6.2"
+  },
+  "license": "MIT"
+}
