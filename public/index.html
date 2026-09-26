@@ -15,10 +15,26 @@
     --line: #24393A;
     --text: #E9E4D6;
     --text-muted: #839391;
+    --input-bg: #0B1516;
     --news: #E8A33D;
     --papers: #6FA8D8;
     --reviews: #C9836B;
+    --reddit: #8FB878;
     --focus: #E9E4D6;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #EFEDE3;
+    --panel: #E4E1D3;
+    --line: #CFCBB8;
+    --text: #1E2624;
+    --text-muted: #62685F;
+    --input-bg: #FBFAF4;
+    --news: #B9741E;
+    --papers: #2A6FA3;
+    --reviews: #A55A3F;
+    --reddit: #4E7A38;
+    --focus: #1E2624;
   }
 
   * { box-sizing: border-box; }
@@ -28,6 +44,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'Source Serif 4', Georgia, serif;
+    transition: background 0.15s ease, color 0.15s ease;
   }
 
   ::selection { background: var(--news); color: #14251C; }
@@ -59,6 +76,12 @@
 
   .wordmark span { color: var(--news); }
 
+  .mast-right {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
   .status {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.8rem;
@@ -76,6 +99,23 @@
     margin-right: 0.4em;
   }
 
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--text);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover { border-color: var(--news); }
+
   .tagline {
     margin: 0.6rem 0 0;
     color: var(--text-muted);
@@ -83,10 +123,16 @@
     max-width: 46ch;
   }
 
-  .filters {
+  .controls {
     max-width: 760px;
     margin: 0 auto;
     padding: 1.1rem 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .filters {
     display: flex;
     gap: 0.6rem;
     flex-wrap: wrap;
@@ -123,7 +169,32 @@
   .filter[data-cat="news"][aria-pressed="true"] { background: var(--news); }
   .filter[data-cat="papers"][aria-pressed="true"] { background: var(--papers); }
   .filter[data-cat="reviews"][aria-pressed="true"] { background: var(--reviews); }
+  .filter[data-cat="reddit"][aria-pressed="true"] { background: var(--reddit); }
   .filter[aria-pressed="true"] .swatch { background: var(--bg); }
+
+  .search-row {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--input-bg);
+    padding: 0.1rem 0.2rem;
+  }
+
+  .search-row svg { margin: 0 0.6rem; flex-shrink: 0; opacity: 0.6; }
+
+  #search {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.6rem 0.2rem;
+    outline: none;
+  }
+
+  #search::placeholder { color: var(--text-muted); }
 
   main {
     max-width: 760px;
@@ -162,7 +233,7 @@
 
   .item p {
     margin: 0;
-    color: #C9C4B6;
+    color: var(--text-muted);
     font-size: 0.98rem;
     line-height: 1.55;
     max-width: 66ch;
@@ -171,6 +242,7 @@
   .item.news { --dot: var(--news); }
   .item.papers { --dot: var(--papers); }
   .item.reviews { --dot: var(--reviews); }
+  .item.reddit { --dot: var(--reddit); }
 
   .empty, .error {
     font-family: 'Space Grotesk', sans-serif;
@@ -190,13 +262,9 @@
     padding-top: 1.25rem;
   }
 
-  a:focus-visible, button:focus-visible {
+  a:focus-visible, button:focus-visible, input:focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .item { transition: transform 0.15s ease; }
   }
 </style>
 </head>
@@ -205,16 +273,26 @@
 <div class="mast">
   <div class="mast-row">
     <h1 class="wordmark">Signal<span>.</span></h1>
-    <div class="status" id="status"><span class="dot"></span>loading feed…</div>
+    <div class="mast-right">
+      <div class="status" id="status"><span class="dot"></span>loading feed…</div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+    </div>
   </div>
-  <p class="tagline">Tech news, AI papers, and device reviews, pulled from RSS and arXiv on a schedule — no algorithm, no ads, just your sources.</p>
+  <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
 </div>
 
-<div class="filters" id="filters">
-  <button class="filter" data-cat="all" aria-pressed="true">All</button>
-  <button class="filter" data-cat="news" aria-pressed="false"><span class="swatch" style="--dot: var(--news)"></span>News</button>
-  <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
-  <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
+<div class="controls">
+  <div class="filters" id="filters">
+    <button class="filter" data-cat="all" aria-pressed="true">All</button>
+    <button class="filter" data-cat="news" aria-pressed="false"><span class="swatch" style="--dot: var(--news)"></span>News</button>
+    <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
+    <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
+    <button class="filter" data-cat="reddit" aria-pressed="false"><span class="swatch" style="--dot: var(--reddit)"></span>Reddit</button>
+  </div>
+  <div class="search-row">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="search" type="search" placeholder="Search headlines and summaries…" autocomplete="off">
+  </div>
 </div>
 
 <main id="feed">
@@ -222,17 +300,43 @@
 </main>
 
 <footer>
-  Data refreshes on a schedule via GitHub Actions. Sources are configured in <code>scripts/fetch-*.js</code>. Edit freely — this is your dashboard.
+  Data refreshes on a schedule via GitHub Actions. Sources are configured in <code>scripts/fetch-*.js</code>; summaries are optionally rewritten by an LLM in <code>scripts/summarize.js</code>. Edit freely — this is your dashboard.
 </footer>
 
 <script>
   const feedEl = document.getElementById('feed');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
+  const searchEl = document.getElementById('search');
+  const themeToggleEl = document.getElementById('themeToggle');
 
   let activeFilter = 'all';
+  let searchTerm = '';
   let allItems = [];
 
+  // --- Theme ---
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    themeToggleEl.textContent = theme === 'light' ? '◑' : '◐';
+  }
+
+  function initTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem('signal-theme'); } catch (e) { /* storage unavailable */ }
+    const preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(preferred);
+  }
+
+  themeToggleEl.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem('signal-theme', next); } catch (e) { /* storage unavailable */ }
+  });
+
+  initTheme();
+
+  // --- Data helpers ---
   function timeAgo(iso) {
     if (!iso) return '';
     const diffMs = Date.now() - new Date(iso).getTime();
@@ -245,16 +349,24 @@
   }
 
   function catLabel(cat) {
-    return { news: 'News', papers: 'AI paper', reviews: 'Review' }[cat] || cat;
+    return { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' }[cat] || cat;
   }
 
+  function escapeHtml(str = '') {
+    return str.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  // --- Rendering ---
   function render() {
-    const items = activeFilter === 'all'
-      ? allItems
-      : allItems.filter((i) => i.category === activeFilter);
+    const term = searchTerm.trim().toLowerCase();
+    const items = allItems.filter((i) => {
+      const matchesCat = activeFilter === 'all' || i.category === activeFilter;
+      const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
+      return matchesCat && matchesTerm;
+    });
 
     if (!items.length) {
-      feedEl.innerHTML = '<div class="empty">Nothing here yet. Run the fetch scripts to pull live data, or pick a different filter.</div>';
+      feedEl.innerHTML = '<div class="empty">Nothing matches. Try a different filter or search term.</div>';
       return;
     }
 
@@ -263,12 +375,12 @@
         <div class="item-meta">
           <span class="cat-label">${catLabel(item.category)}</span>
           <span>·</span>
-          <span>${item.source}</span>
+          <span>${escapeHtml(item.source || '')}</span>
           <span>·</span>
           <span>${timeAgo(item.published)}</span>
         </div>
-        <h2><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h2>
-        ${item.summary ? `<p>${item.summary}</p>` : ''}
+        <h2><a href="${item.link}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a></h2>
+        ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
       </article>
     `).join('');
   }
@@ -286,16 +398,17 @@
   }
 
   async function init() {
-    const [news, papers, reviews] = await Promise.all([
+    const [news, papers, reviews, reddit] = await Promise.all([
       loadJSON('news.json', 'news', (i) => i),
       loadJSON('papers.json', 'papers', (i) => ({
         ...i,
         source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ' et al.' : ''),
       })),
       loadJSON('reviews.json', 'reviews', (i) => i),
+      loadJSON('reddit.json', 'reddit', (i) => i),
     ]);
 
-    allItems = [...news, ...papers, ...reviews].sort(
+    allItems = [...news, ...papers, ...reviews, ...reddit].sort(
       (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
     );
 
@@ -309,6 +422,11 @@
     filtersEl.querySelectorAll('.filter').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     btn.setAttribute('aria-pressed', 'true');
     activeFilter = btn.dataset.cat;
+    render();
+  });
+
+  searchEl.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
     render();
   });
 

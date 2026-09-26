@@ -6,14 +6,23 @@ no database — scheduled scripts write JSON, a static page reads it.
 
 ```
 tech-dashboard/
-├── scripts/              fetch-news.js, fetch-papers.js, fetch-reviews.js
+├── scripts/
+│   ├── fetch-news.js       RSS: tech news
+│   ├── fetch-papers.js     arXiv API: AI/ML papers
+│   ├── fetch-reviews.js    RSS: device reviews
+│   ├── fetch-reddit.js     Reddit's public .json endpoints
+│   └── summarize.js        optional: rewrites summaries with an LLM
 ├── public/
-│   ├── index.html         the dashboard itself
-│   └── data/               news.json, papers.json, reviews.json (generated)
+│   ├── index.html          the dashboard itself (search + theme toggle built in)
+│   └── data/                news.json, papers.json, reviews.json, reddit.json (generated)
 └── .github/workflows/
     ├── update-data.yml     refetches data every 6h and commits it
     └── deploy-pages.yml    deploys public/ to GitHub Pages on push
 ```
+
+The dashboard itself now has a **search box** (filters by title/summary as you
+type) and a **☐ theme toggle** in the top right (remembers your choice via
+`localStorage`).
 
 Sample placeholder data ships in `public/data/` so the page renders
 immediately — run the fetch scripts (below) to replace it with live data.
@@ -36,8 +45,33 @@ npm run serve          # serves public/ at http://localhost:8080
 - **AI papers**: edit the `CATEGORIES` array in `scripts/fetch-papers.js`.
   See the [arXiv category taxonomy](https://arxiv.org/category_taxonomy) for
   the full list (e.g. `cs.CV` for computer vision, `stat.ML` for stats/ML).
+- **Reddit**: edit the `SUBREDDITS` array in `scripts/fetch-reddit.js`. Also
+  change the `USER_AGENT` string to include your actual Reddit username —
+  Reddit rate-limits generic/default user agents more aggressively.
 - **Look and feel**: all styling is in the `<style>` block of
-  `public/index.html` — colors are defined once as CSS variables at the top.
+  `public/index.html` — colors are defined once as CSS variables at the top
+  (a second set under `:root[data-theme="light"]` covers light mode).
+
+## LLM-written summaries (optional)
+
+By default, summaries are the raw excerpt from each RSS feed or API. To have
+an LLM rewrite each one as a single clean sentence instead:
+
+1. Get an API key from the [Anthropic Console](https://console.anthropic.com/settings/keys)
+   (this uses paid API credits, separate from a claude.ai subscription — it's
+   usually a fraction of a cent per article with the small model this script
+   uses).
+2. **Locally**: run `export ANTHROPIC_API_KEY=sk-ant-...` in your terminal
+   before `npm run fetch:all` (or `npm run summarize` on its own to
+   re-summarize existing data).
+3. **On GitHub Actions**: go to your repo → **Settings → Secrets and
+   variables → Actions → New repository secret**. Name it
+   `ANTHROPIC_API_KEY` and paste your key as the value. The
+   `update-data.yml` workflow already passes it through — no other changes
+   needed.
+
+If no key is set anywhere, `scripts/summarize.js` detects that and skips
+itself automatically — everything else keeps working with the raw excerpts.
 
 ## 3. Deploy for free
 
