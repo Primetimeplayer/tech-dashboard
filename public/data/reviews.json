@@ -1,7 +1,21 @@
 {
-  "updated": "2026-09-26T19:13:33.601Z",
+  "updated": "2026-09-26T19:43:57.438Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Minecraft is getting a new dimension called The Sift in 2027",
+      "link": "https://www.engadget.com/2269867/minecraft-is-getting-a-new-dimension-called-the-sift-in-2027/",
+      "published": "Sat, 26 Sep 2026 19:19:53 +0000",
+      "summary": "The Sift will first be released with Minecraft Dungeons 2 later this month before arriving in the base game."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "What type of power cord does a PS5 use?",
+      "link": "https://www.engadget.com/2265348/playstation-power-cord-what-type/",
+      "published": "Sat, 26 Sep 2026 18:45:00 +0000",
+      "summary": "You probably don't think much about your PlayStation's power cord unless it needs to be replaced. If that time comes, here's what to know."
+    },
     {
       "source": "Engadget Reviews",
       "title": "You can use your old laptop to make a smart home hub",
@@ -57,20 +71,6 @@
       "link": "https://www.engadget.com/2265869/vinyl-better-audio-quality-best-upgrade/",
       "published": "Sat, 26 Sep 2026 15:00:00 +0000",
       "summary": "Swapping out your turntable's stylus is an easy upgrade."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Is your Roku TV talking to you? Here's why and how to turn it off",
-      "link": "https://www.engadget.com/2265732/why-roku-tv-talking-to-you-how-turn-off/",
-      "published": "Sat, 26 Sep 2026 14:30:00 +0000",
-      "summary": "Relax, that voice you're hearing from your Roku is pretty easy to turn off."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "This app lets you use an Apple Watch with an Android phone",
-      "link": "https://www.engadget.com/2265684/app-to-use-apple-watch-with-android-phone/",
-      "published": "Sat, 26 Sep 2026 14:00:00 +0000",
-      "summary": "If you switched from iPhone to Android, you don't necessarily need to change watches. There's an app that lets Apple Watch work with Android."
     }
   ]
 }

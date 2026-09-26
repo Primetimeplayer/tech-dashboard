@@ -1,22 +1,14 @@
 {
-  "updated": "2026-09-26T19:13:33.009Z",
-  "count": 58,
+  "updated": "2026-09-26T19:43:56.679Z",
+  "count": 46,
   "items": [
     {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "You can use your old laptop to make a smart home hub",
-      "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
-      "published": "Sat, 26 Sep 2026 18:30:00 +0000",
-      "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "How to properly clean your laptop fan",
-      "link": "https://www.engadget.com/2266513/how-to-clean-laptop-fan/",
-      "published": "Sat, 26 Sep 2026 18:00:00 +0000",
-      "summary": "Start with the vents before you reach for a screwdriver."
+      "source": "The Verge",
+      "category": "news",
+      "title": "Decap is the man behind the drums behind your favorite song",
+      "link": "https://www.theverge.com/report/1000994/decap-drums-that-knock-interview",
+      "published": "2026-09-26T19:30:00.000Z",
+      "summary": "Drums on film. | Image: Decap I don't think I'm going to hurt anyone's feelings by pointing out that Decap doesn't have the name recognition of Kendrick Lamar, Olivia Rodrigo, or Charli XCX. But his fingerprints are all over tracks from the"
     },
     {
       "source": "TechCrunch",
@@ -35,14 +27,6 @@
       "summary": "Middle schoolers, likely blocked from other apps and social networks, apparently turned the Spotify comment section under an episode of NPR's Wild Card into an impromptu group chat. In a new episode of This American Life, host Ira Glass dig"
     },
     {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Apple hit with a $5.7 billion verdict for alleged patent infringement",
-      "link": "https://www.engadget.com/2269826/apple-hit-with-a-57-billion-verdict-for-alleged-patent-infringement/",
-      "published": "Sat, 26 Sep 2026 17:02:42 +0000",
-      "summary": "Apple is reportedly looking to appeal the jury verdict."
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Levoit’s new air purifier is for the pet odors that have taken over your apartment",
@@ -51,60 +35,12 @@
       "summary": "This $189.99 air purifier is specifically designed to tackle pet odors, removing up to 70% in one hour."
     },
     {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "TikTok will pay Alabama $100 million to settle social media addiction lawsuit",
-      "link": "https://www.engadget.com/2269822/tiktok-will-pay-alabama-100-million-to-settle-social-media-addiction-lawsuit/",
-      "published": "Sat, 26 Sep 2026 16:41:00 +0000",
-      "summary": "TikTok has settled Alabama's social media addiction lawsuit before it was supposed to go to trial."
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "OpenAI pauses training of its ‘most capable models’",
       "link": "https://www.theverge.com/ai-artificial-intelligence/1001049/openai-training-pause",
       "published": "2026-09-26T16:34:59.000Z",
       "summary": "As reports of OpenAI's models breaking containment, hacking sites, and generally getting out of control pile up, the company has made the decision to pause training of its most powerful models. The decision was made after a model being test"
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "The MacBook models that macOS 27 Golden Gate does not support",
-      "link": "https://www.engadget.com/2266414/macbook-models-macos-27-golden-gate-does-not-support/",
-      "published": "Sat, 26 Sep 2026 16:30:00 +0000",
-      "summary": "macOS Golden Gate refines the Mac software experience, but not everyone can upgrade."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Garmin Fenix 9 vs Fenix 8: How much of an upgrade is the new model?",
-      "link": "https://www.engadget.com/2266039/armin-fenix-9-vs-8-how-much-of-upgrade-new-model/",
-      "published": "Sat, 26 Sep 2026 16:00:00 +0000",
-      "summary": "Which sport smartwatch should you get?"
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Why NVIDIA's most powerful GPU is so rarely sold to consumers",
-      "link": "https://www.engadget.com/2265946/why-most-powerful-nvidia-gpu-rarely-sold-to-consumers/",
-      "published": "Sat, 26 Sep 2026 15:30:00 +0000",
-      "summary": "NVIDIA's $16,000 RTX PRO 6000 can beat the RTX 5090, but gamers aren't who it's built for."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Get better audio quality from your vinyl by upgrading this part",
-      "link": "https://www.engadget.com/2265869/vinyl-better-audio-quality-best-upgrade/",
-      "published": "Sat, 26 Sep 2026 15:00:00 +0000",
-      "summary": "Swapping out your turntable's stylus is an easy upgrade."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Is your Roku TV talking to you? Here's why and how to turn it off",
-      "link": "https://www.engadget.com/2265732/why-roku-tv-talking-to-you-how-turn-off/",
-      "published": "Sat, 26 Sep 2026 14:30:00 +0000",
-      "summary": "Relax, that voice you're hearing from your Roku is pretty easy to turn off."
     },
     {
       "source": "The Verge",
@@ -121,30 +57,6 @@
       "link": "https://techcrunch.com/2026/09/26/i-created-an-interactive-digital-avatar-of-myself-and-you-can-talk-to-it/",
       "published": "Sat, 26 Sep 2026 14:00:00 +0000",
       "summary": "After obtaining an interactive avatar and training it to discuss venture fraud, I have mixed feelings about making AI clones of ourselves."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "This app lets you use an Apple Watch with an Android phone",
-      "link": "https://www.engadget.com/2265684/app-to-use-apple-watch-with-android-phone/",
-      "published": "Sat, 26 Sep 2026 14:00:00 +0000",
-      "summary": "If you switched from iPhone to Android, you don't necessarily need to change watches. There's an app that lets Apple Watch work with Android."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "You can check your Samsung Galaxy's health with a built-in test",
-      "link": "https://www.engadget.com/2265327/how-to-check-samsung-galaxy-phone-health-diagnostics-test/",
-      "published": "Sat, 26 Sep 2026 13:45:00 +0000",
-      "summary": "If your Samsung phone is acting strangely, you can test just about any element of the phone's hardware using this test."
-    },
-    {
-      "source": "Engadget",
-      "category": "reviews",
-      "title": "Vertical or horizontal: Does it really matter how you set up your gaming console?",
-      "link": "https://www.engadget.com/2265682/does-gaming-console-orientation-matter-vertical-vs-horizontal/",
-      "published": "Sat, 26 Sep 2026 13:30:00 +0000",
-      "summary": "Your PS5 or Xbox Series console can use either setup, but you should consider what's best for your space first."
     },
     {
       "source": "The Verge",
@@ -417,14 +329,6 @@
       "link": "https://www.theverge.com/tech/1000729/moment-pro-blackmagic-camera-ii-ios-app-iphone-18-pro-max-aperature-camera",
       "published": "2026-09-25T17:23:30.000Z",
       "summary": "One of the questionable limitations of the iPhone 18 Pro's new main camera with a variable aperture is that you're limited to just four settings in the native iOS' camera app in manual mode: f/1.48, f/1.8, f/2.8, and f/4. Those same limitat"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Tesla&#8217;s Optimus robot is going through growing pains",
-      "link": "https://www.theverge.com/tech/1000794/tesla-optimus-production-issues-hands",
-      "published": "2026-09-25T17:01:36.000Z",
-      "summary": "Hitting its goal of making 20,000 Optimus robots per week is reportedly proving tricky for Tesla. The Information reports that Tesla produced \"several hundred robots a week\" last month, after it repurposed its Model S and Model X production"
     },
     {
       "source": "Wired",
