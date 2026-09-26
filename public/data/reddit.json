@@ -1,5 +1,13 @@
 {
-  "updated": "2026-09-26T19:50:39.239Z",
-  "count": 0,
-  "items": []
+  "updated": "2026-09-26T08:00:00.000Z",
+  "count": 1,
+  "items": [
+    {
+      "source": "r/technology",
+      "title": "Sample post — run npm run fetch:reddit to pull live discussions",
+      "link": "https://reddit.com",
+      "published": "2026-09-26T00:00:00.000Z",
+      "summary": "Placeholder content standing in for a real Reddit post."
+    }
+  ]
 }

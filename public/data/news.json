@@ -1,374 +1,39 @@
 {
-  "updated": "2026-09-26T19:50:38.276Z",
-  "count": 46,
+  "updated": "2026-09-26T08:00:00.000Z",
+  "count": 4,
   "items": [
     {
       "source": "The Verge",
       "category": "news",
-      "title": "Decap is the man behind the drums behind your favorite song",
-      "link": "https://www.theverge.com/report/1000994/decap-drums-that-knock-interview",
-      "published": "2026-09-26T19:30:00.000Z",
-      "summary": "Drums on film. | Image: Decap I don't think I'm going to hurt anyone's feelings by pointing out that Decap doesn't have the name recognition of Kendrick Lamar, Olivia Rodrigo, or Charli XCX. But his fingerprints are all over tracks from the"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Meta and YouTube say they will run ads for ‘Musk’ documentary after all",
-      "link": "https://techcrunch.com/2026/09/26/meta-says-it-will-run-ads-for-musk-documentary-after-all/",
-      "published": "Sat, 26 Sep 2026 17:44:00 +0000",
-      "summary": "Two companies now say they will accept advertising for director Alex Gibney’s upcoming documentary about Elon Musk, following earlier reporting that a number of social media platforms had rejected the ads."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Kids turned the comment section of an NPR podcast into a group chat",
-      "link": "https://www.theverge.com/entertainment/1001056/this-american-life-npr-kids-group-chat-comment-section",
-      "published": "2026-09-26T17:32:35.000Z",
-      "summary": "Middle schoolers, likely blocked from other apps and social networks, apparently turned the Spotify comment section under an episode of NPR's Wild Card into an impromptu group chat. In a new episode of This American Life, host Ira Glass dig"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Levoit’s new air purifier is for the pet odors that have taken over your apartment",
-      "link": "https://techcrunch.com/2026/09/26/levoits-new-air-purifier-is-for-the-pet-odors-that-have-taken-over-your-apartment/",
-      "published": "Sat, 26 Sep 2026 17:00:00 +0000",
-      "summary": "This $189.99 air purifier is specifically designed to tackle pet odors, removing up to 70% in one hour."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "OpenAI pauses training of its ‘most capable models’",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001049/openai-training-pause",
-      "published": "2026-09-26T16:34:59.000Z",
-      "summary": "As reports of OpenAI's models breaking containment, hacking sites, and generally getting out of control pile up, the company has made the decision to pause training of its most powerful models. The decision was made after a model being test"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Can Cloudflare CEO Matthew Prince save the web from AI?",
-      "link": "https://www.theverge.com/podcast/1000344/cloudflare-matthew-prince-google-zero-ai-web-advertising",
-      "published": "2026-09-26T14:00:00.000Z",
-      "summary": "Today, I’m talking with Matthew Prince, who is CEO of Cloudflare. This episode is part of a two-part series on the future of business. Matthew last joined us on the show about two and a half years ago, at what we thought then was a wild piv"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "I created an interactive digital avatar of myself — and you can talk to it",
-      "link": "https://techcrunch.com/2026/09/26/i-created-an-interactive-digital-avatar-of-myself-and-you-can-talk-to-it/",
-      "published": "Sat, 26 Sep 2026 14:00:00 +0000",
-      "summary": "After obtaining an interactive avatar and training it to discuss venture fraud, I have mixed feelings about making AI clones of ourselves."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Control Resonant is a great game — it’s even better when you read everything",
-      "link": "https://www.theverge.com/games/1000818/control-resonant-reading-collectibles-documents-logs",
-      "published": "2026-09-26T13:00:00.000Z",
-      "summary": "In Control Resonant, the entire world is at stake. But that didn't stop the diligent employees of the Federal Bureau of Control from filing reams of paperwork, and it didn't stop me from reading everything I could find, either. Reading is o"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Pokémon card resellers have turned collecting into an online blood sport",
-      "link": "https://www.theverge.com/games/1001002/pokemon-30th-celebration-scalping-resellers",
-      "published": "2026-09-26T12:00:00.000Z",
-      "summary": "Earlier this month, Pokémon card content creator Natalie Roush posted a video to her YouTube and Instagram pages that enraged the larger collection community. In the now-deleted video, Roush shows off two premium boxes of cards that had not"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Old-School Credit Card Scams Are Far From Dead",
-      "link": "https://www.wired.com/story/kernel-panic-old-timey-credit-card-scams/",
-      "published": "Sat, 26 Sep 2026 12:00:00 +0000",
-      "summary": "In an era of increasingly sophisticated AI-fueled scams, a retro threat may be lurking in your mailbox."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "12 Best White Elephant Gifts, Plus a Prank Box to Put Them In (2026)",
-      "link": "https://www.wired.com/gallery/best-white-elephant-gifts-2026/",
-      "published": "Sat, 26 Sep 2026 11:36:00 +0000",
-      "summary": "Bring the gift everyone will want to win from this year’s holiday party, from a cute jacket for a beer can to magnets they’ll wish they could eat."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Best Mesh Wi-Fi Systems (2026): I Tested Them All",
-      "link": "https://www.wired.com/story/best-mesh-wifi-routers/",
-      "published": "Sat, 26 Sep 2026 11:00:00 +0000",
-      "summary": "Forget about patchy internet connections and dead spots in the house. These WIRED-tested, multi-room mesh Wi-Fi systems will keep your whole house online."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Tesla’s big electric truck faces an even bigger infrastructure challenge",
-      "link": "https://arstechnica.com/cars/2026/09/teslas-big-electric-truck-faces-an-even-bigger-infrastructure-challenge/",
-      "published": "Sat, 26 Sep 2026 10:45:09 +0000",
-      "summary": "The 500-mile Semi arrives as charging gaps still limit electric trucking."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Meta’s Muse Is Adults-Only. Why Does It Look Like a Kids’ Toy?",
-      "link": "https://www.wired.com/story/meta-muse-is-adults-only-why-does-it-look-like-a-cute-kids-toy/",
-      "published": "Sat, 26 Sep 2026 10:30:00 +0000",
-      "summary": "Meta says Muse is just for adults, though its cuddly, Labubu-like mascot—and upcoming Tamagotchi-style AI device—may be disarming for users of all ages."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "This Browser Extension Lets You Snooze Open Tabs Until Later",
-      "link": "https://www.wired.com/story/tuck-browser-extension-lets-you-snooze-open-tabs-until-later/",
-      "published": "Sat, 26 Sep 2026 10:00:00 +0000",
-      "summary": "The free add-on Tuck brings one of the best features of modern email—the ability to hide something for a bit—to that tangle of tabs in your browser."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "A Gravitational Battle Within the Earth Is Changing the Length of Days",
-      "link": "https://www.wired.com/story/gravitational-struggle-deep-in-earth-is-changing-length-of-days/",
-      "published": "Sat, 26 Sep 2026 09:30:00 +0000",
-      "summary": "A competition between the gravity of the inner core and other forces in the mantle is altering the Earth's rotation."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Best Early Prime Day Deals Ahead of Amazon’s Second Sale (2026)",
-      "link": "https://www.wired.com/story/amazon-prime-day-early-deals-09-26-2026/",
-      "published": "Sat, 26 Sep 2026 09:05:00 +0000",
-      "summary": "Amazon Prime Big Deal Days officially begin on October 6 and 7, but I’ve already spotted early discounts on gear our team recommends."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Can &#8216;eSUV&#8217; e-bikes really go from trail to town?",
-      "link": "https://www.theverge.com/transportation/999785/amflow-tl-review-avinox-esuv-e-bike-avinox",
+      "title": "Sample headline — run npm run fetch:news to pull live articles",
+      "link": "https://www.theverge.com",
       "published": "2026-09-26T07:00:00.000Z",
-      "summary": "Have you ever wanted an electric bike that easily transitions from the drudgery of urban asphalt to adventures in gravel and dirt? That's what a subclass of so-called \"electric SUV\" (eSUV) e-bikes claims to do, with their wide, all-terrain "
+      "summary": "This is placeholder content. Once you run the fetch script (or the GitHub Action runs on schedule), this file is replaced with real, current articles from your configured RSS feeds.",
+      "whyItMatters": "This note appears when scripts/summarize.js has run with an API key set — otherwise it's simply omitted."
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Placeholder story two",
+      "link": "https://arstechnica.com",
+      "published": "2026-09-26T06:30:00.000Z",
+      "summary": "Sample data lets you preview the layout immediately after cloning the project, before any network fetch has run."
     },
     {
       "source": "TechCrunch",
       "category": "news",
-      "title": "At Meta Connect, the company’s smart glasses were everywhere",
-      "link": "https://techcrunch.com/2026/09/25/at-meta-connect-the-companys-smart-glasses-were-everywhere/",
-      "published": "Sat, 26 Sep 2026 01:08:57 +0000",
-      "summary": "The company behind Facebook and Instagram wants to keep consumers connected to the digital world via its ever-growing line of smart glasses."
+      "title": "Placeholder story three",
+      "link": "https://techcrunch.com",
+      "published": "2026-09-26T05:15:00.000Z",
+      "summary": "Swap the FEEDS array in scripts/fetch-news.js to change sources."
     },
     {
       "source": "Wired",
       "category": "news",
-      "title": "Quince Luggage Is Affordable but Doesn’t Feel Cheap (2026)",
-      "link": "https://www.wired.com/story/quince-wants-to-be-your-new-away-luggage/",
-      "published": "Sat, 26 Sep 2026 00:02:00 +0000",
-      "summary": "Is Quince the Away alternative we’ve been waiting for? I tested its luggage to find out, and the price difference is hard to ignore."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Crusoe abandons $1.25B plan to use Boom turbines at AI data centers",
-      "link": "https://techcrunch.com/2026/09/25/crusoe-abandons-1-25b-plan-to-use-boom-turbines-at-ai-data-centers/",
-      "published": "Fri, 25 Sep 2026 23:11:10 +0000",
-      "summary": "Boom Supersonic CEO Blake Scholl said the company's new stationary power plants were no longer in Crusoe's near-term plans."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Automattic has a new board after failed attempt to put CEO on leave",
-      "link": "https://techcrunch.com/2026/09/25/automattic-has-a-new-board-after-failed-attempt-to-put-ceo-on-leave/",
-      "published": "Fri, 25 Sep 2026 23:04:34 +0000",
-      "summary": "After days of upheaval at Automattic, following a failed attempt to remove CEO Matt Mullenweg, the company has a new board."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Can Trump ever be wrong? His pick to lead FDA refused to say.",
-      "link": "https://arstechnica.com/health/2026/09/can-trump-ever-be-wrong-his-pick-to-lead-fda-refused-to-say/",
-      "published": "Fri, 25 Sep 2026 23:00:26 +0000",
-      "summary": "Heidi Overton faced questions focused on vaccines, birth control, and vapes."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab’s knowledge",
-      "link": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
-      "published": "Fri, 25 Sep 2026 22:20:47 +0000",
-      "summary": "AI agents operating in OpenAI's research environment posted user images on public image-hosting sites without the lab's knowledge."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Court rules Pentagon can blacklist Anthropic for refusing to enable Claude features",
-      "link": "https://arstechnica.com/tech-policy/2026/09/court-rules-trump-can-blacklist-anthropic-for-refusing-to-enable-claude-features/",
-      "published": "Fri, 25 Sep 2026 21:36:20 +0000",
-      "summary": "\"Overly constrained AI models\" could cause military operations to fail, judges say."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Tesla workers balk at training Optimus humanoid robots as replacements",
-      "link": "https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/",
-      "published": "Fri, 25 Sep 2026 21:10:51 +0000",
-      "summary": "Despite challenges, Tesla aims for 1,000 Optimus robots per week by end of 2026."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Meta opens early access program for new Muse features",
-      "link": "https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/",
-      "published": "Fri, 25 Sep 2026 20:34:53 +0000",
-      "summary": "Anyone interested in joining has to ask Muse to put them on the list."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "The hottest new hangout for middle schoolers is NPR’s comment section?",
-      "link": "https://techcrunch.com/2026/09/25/the-hottest-new-hangout-for-middle-schoolers-is-nprs-comment-section/",
-      "published": "Fri, 25 Sep 2026 20:33:58 +0000",
-      "summary": "When NPR staffers flagged strange comments under their podcasts on Spotify as bots, it took a Gen Z colleague to (immediately) figure out the mystery."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Thieves Stole ‘Nvidia’ Trailers. They Got 20 Tons of Sand",
-      "link": "https://www.wired.com/story/thieves-stole-nvidia-trailers-they-got-20-tons-of-sand/",
-      "published": "Fri, 25 Sep 2026 20:30:40 +0000",
-      "summary": "They wanted the silicon. They got the sand."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Your uncle’s frozen Mac says it’s infected after viewing a Google ad. Now what?",
-      "link": "https://arstechnica.com/security/2026/09/google-ads-caught-delivering-convincing-scareware-ads-to-unsuspecting-users/",
-      "published": "Fri, 25 Sep 2026 19:38:59 +0000",
-      "summary": "Ads appearing all over the Internet are trying to scam people."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Review: The iPhone 18 Pro is Apple's coolest smartphone (but only literally)",
-      "link": "https://arstechnica.com/apple/2026/09/review-the-iphone-18-pro-is-apples-coolest-smartphone-but-only-literally/",
-      "published": "Fri, 25 Sep 2026 19:34:42 +0000",
-      "summary": "Better thermals and battery life make this iterative update nicer to use."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Anthropic to pay Akamai $11.6 billion over seven years in cloud deal",
-      "link": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
-      "published": "Fri, 25 Sep 2026 19:13:38 +0000",
-      "summary": "Anthropic has committed $11.6 billion over seven years to Akamai's cloud infrastructure, a bet on CPUs that could grow to about $20 billion, and in an unusual arrangement, Akamai is giving Anthropic a potential stake of up to 5% of its stoc"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "AI was supposed to hit new grads hard. So far, unemployment data says otherwise.",
-      "link": "https://arstechnica.com/ai/2026/09/ai-was-supposed-to-hit-new-grads-hard-so-far-unemployment-data-says-otherwise/",
-      "published": "Fri, 25 Sep 2026 19:11:05 +0000",
-      "summary": "\"There is no evidence of any significant, widespread displacement or reduction in hiring.”"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Mark Wahlberg is coming to TechCrunch Disrupt 2026, and he wants to talk about your work, not his",
-      "link": "https://techcrunch.com/2026/09/25/mark-wahlberg-is-coming-to-techcrunch-disrupt-2026/",
-      "published": "Fri, 25 Sep 2026 18:48:33 +0000",
-      "summary": "Mark Wahlberg joins Bruce K. Lee at Disrupt to discuss investing, entrepreneurship, healthcare, wellness, and building businesses."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Paramount/WBD merger conditions give the public \"virtually nothing,\" judge is told",
-      "link": "https://arstechnica.com/tech-policy/2026/09/paramount-wbd-merger-conditions-give-the-public-virtually-nothing-judge-is-told/",
-      "published": "Fri, 25 Sep 2026 18:42:57 +0000",
-      "summary": "US judge reviews deal with California, says it must not be result of collusion."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Ahead of US IPO, British AI neocloud Nscale secures $3.36B in convertible financing",
-      "link": "https://techcrunch.com/2026/09/25/ahead-of-u-s-ipo-british-ai-neocloud-nscale-secures-3-36b-in-convertible-finacing/",
-      "published": "Fri, 25 Sep 2026 18:33:59 +0000",
-      "summary": "The funding, which comes from Third Point, Nvidia, and others, will fuel the company's massive AI data center buildout."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Is solar's growth finally slowing in the US?",
-      "link": "https://arstechnica.com/science/2026/09/is-solars-growth-finally-slowing-in-the-us/",
-      "published": "Fri, 25 Sep 2026 18:27:18 +0000",
-      "summary": "Renewables easily cover changes in US demand, which is rising by 2% in 2026."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Roku&#8217;s first OLED TVs are up to $400 off, starting at $699",
-      "link": "https://www.theverge.com/gadgets/1000859/roku-pro-series-oled-nothing-phone-4a-pro-deal-sale",
-      "published": "2026-09-25T18:18:57.000Z",
-      "summary": "Roku’s new OLED TVs are already marked down. | Image: The Verge Roku recently launched its first-ever OLED TVs. The $999 starting price was already impressive for the 55-inch Pro Series model that has a 120Hz refresh rate OLED panel (with f"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Microsoft stops insisting you need a \"Copilot+ PC\"",
-      "link": "https://arstechnica.com/gadgets/2026/09/microsoft-stops-insisting-you-need-a-copilot-pc/",
-      "published": "Fri, 25 Sep 2026 17:57:37 +0000",
-      "summary": "Microsoft's new Surface laptops forgo Copilot+ PC branding."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Phones don’t have lights",
-      "link": "https://www.theverge.com/podcast/1000751/vergecast-meta-connect-muse-googlebooks",
-      "published": "2026-09-25T17:42:59.000Z",
-      "summary": "Mark Zuckerberg has a new defense of the Ray-Ban Meta glasses: They're actually doing more to signal they're taking a photo than phones do. He's brought this up in at least two recent interviews, noting that the glasses have a light that co"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "These camera apps give you more control over the iPhone 18 Pro’s aperture",
-      "link": "https://www.theverge.com/tech/1000729/moment-pro-blackmagic-camera-ii-ios-app-iphone-18-pro-max-aperature-camera",
-      "published": "2026-09-25T17:23:30.000Z",
-      "summary": "One of the questionable limitations of the iPhone 18 Pro's new main camera with a variable aperture is that you're limited to just four settings in the native iOS' camera app in manual mode: f/1.48, f/1.8, f/2.8, and f/4. Those same limitat"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Appeals Court Lets the Pentagon Designate Anthropic a Supply-Chain Risk",
-      "link": "https://www.wired.com/story/appeals-court-lets-the-pentagon-designate-anthropic-a-supply-chain-risk/",
-      "published": "Fri, 25 Sep 2026 16:58:20 +0000",
-      "summary": "The AI lab had argued multiple violations of its rights, but a divided panel of judges sided with the Trump administration."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "After seven years, a spacecraft company is releasing its Otters into the wild",
-      "link": "https://arstechnica.com/space/2026/09/after-seven-years-a-spacecraft-company-is-releasing-its-otters-into-the-wild/",
-      "published": "Fri, 25 Sep 2026 15:35:23 +0000",
-      "summary": "\"There is always a tension that comes with seeing the first of anything fly.\""
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "US being left behind in EV charging speeds as China goes sub-5 min to 70%",
-      "link": "https://arstechnica.com/cars/2026/09/us-being-left-behind-in-ev-charging-speeds-as-china-goes-sub-5-min-to-70/",
-      "published": "Fri, 25 Sep 2026 15:21:55 +0000",
-      "summary": "The new LFP battery charges from 10 to 70% in 4.5 minutes at just 65˚C."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "War Bros Didn’t Always Rule Silicon Valley",
-      "link": "https://www.wired.com/story/war-bros-didnt-always-rule-silicon-valley/",
-      "published": "Fri, 25 Sep 2026 15:00:00 +0000",
-      "summary": "Some say that tech was always about the money and the military. Don’t buy that argument."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Trump Administration Is Trying to Get Musk and X Out of a $137 Million EU Fine",
-      "link": "https://www.wired.com/story/trump-administration-is-trying-to-get-musk-and-x-out-of-a-dollar137-million-eu-fine/",
-      "published": "Fri, 25 Sep 2026 11:32:17 +0000",
-      "summary": "The US government filed an application to support the company’s legal challenge against a fine issued under the bloc’s Digital Services Act, which Trump has described as “overseas extortion.”"
+      "title": "Placeholder story four",
+      "link": "https://www.wired.com",
+      "published": "2026-09-25T22:00:00.000Z",
+      "summary": "Delete this file's contents and rerun the fetch script whenever you like."
     }
   ]
 }

@@ -20,9 +20,10 @@ tech-dashboard/
     └── deploy-pages.yml    deploys public/ to GitHub Pages on push
 ```
 
-The dashboard itself now has a **search box** (filters by title/summary as you
-type) and a **☐ theme toggle** in the top right (remembers your choice via
-`localStorage`).
+The dashboard now has: a **card grid** layout, a **Latest** strip (items from
+the last few hours), filters for **category, source, and date range**, a
+**search box**, a **☐ theme toggle** (remembers your choice), and it quietly
+**re-checks for new data every 5 minutes** without a full page reload.
 
 Sample placeholder data ships in `public/data/` so the page renders
 immediately — run the fetch scripts (below) to replace it with live data.
@@ -52,26 +53,36 @@ npm run serve          # serves public/ at http://localhost:8080
   `public/index.html` — colors are defined once as CSS variables at the top
   (a second set under `:root[data-theme="light"]` covers light mode).
 
-## LLM-written summaries (optional)
+## AI summaries + "why this matters" notes (optional)
 
-By default, summaries are the raw excerpt from each RSS feed or API. To have
-an LLM rewrite each one as a single clean sentence instead:
+By default, summaries are the raw excerpt from each RSS feed or API, and
+there's no "why it matters" note. `scripts/summarize.js` can generate both
+using an LLM — it tries providers in this order, using whichever key is set:
 
-1. Get an API key from the [Anthropic Console](https://console.anthropic.com/settings/keys)
-   (this uses paid API credits, separate from a claude.ai subscription — it's
-   usually a fraction of a cent per article with the small model this script
-   uses).
-2. **Locally**: run `export ANTHROPIC_API_KEY=sk-ant-...` in your terminal
-   before `npm run fetch:all` (or `npm run summarize` on its own to
-   re-summarize existing data).
-3. **On GitHub Actions**: go to your repo → **Settings → Secrets and
-   variables → Actions → New repository secret**. Name it
-   `ANTHROPIC_API_KEY` and paste your key as the value. The
-   `update-data.yml` workflow already passes it through — no other changes
-   needed.
+**Option A — Groq (free, recommended)**
 
-If no key is set anywhere, `scripts/summarize.js` detects that and skips
-itself automatically — everything else keeps working with the raw excerpts.
+1. Go to [console.groq.com/keys](https://console.groq.com/keys), sign up
+   (no credit card required), and create an API key.
+2. **Locally**: `export GROQ_API_KEY=gsk_...` before running
+   `npm run fetch:all` (or `npm run summarize` alone, to re-process existing
+   data).
+3. **On GitHub Actions**: repo → **Settings → Secrets and variables →
+   Actions → New repository secret**, name it `GROQ_API_KEY`, paste the key.
+   The workflow already passes it through.
+
+Groq's free tier (roughly 30 requests/minute at the time of writing) is
+comfortably enough for a personal dashboard refreshing every few hours.
+
+**Option B — Anthropic (paid, used only if no Groq key is set)**
+
+Same steps as above but with an `ANTHROPIC_API_KEY` from the
+[Anthropic Console](https://console.anthropic.com/settings/keys) — this uses
+paid API credits, usually a fraction of a cent per article with the small
+model this script uses.
+
+If neither key is set, `scripts/summarize.js` detects that and skips itself
+— everything else keeps working with the raw excerpts and no "why it
+matters" notes.
 
 ## 3. Deploy for free
 

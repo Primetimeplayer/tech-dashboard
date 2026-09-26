@@ -12,6 +12,7 @@
   :root {
     --bg: #0F1B1C;
     --panel: #14252A;
+    --panel-raised: #182B30;
     --line: #24393A;
     --text: #E9E4D6;
     --text-muted: #839391;
@@ -21,11 +22,13 @@
     --reviews: #C9836B;
     --reddit: #8FB878;
     --focus: #E9E4D6;
+    --live: #6FCF97;
   }
 
   :root[data-theme="light"] {
     --bg: #EFEDE3;
     --panel: #E4E1D3;
+    --panel-raised: #DAD6C5;
     --line: #CFCBB8;
     --text: #1E2624;
     --text-muted: #62685F;
@@ -35,6 +38,7 @@
     --reviews: #A55A3F;
     --reddit: #4E7A38;
     --focus: #1E2624;
+    --live: #2F8F5B;
   }
 
   * { box-sizing: border-box; }
@@ -48,23 +52,14 @@
   }
 
   ::selection { background: var(--news); color: #14251C; }
-
   a { color: inherit; }
 
-  .mast {
-    border-bottom: 1px solid var(--line);
-    padding: 2.25rem 1.5rem 1.5rem;
-    max-width: 760px;
-    margin: 0 auto;
-  }
+  .wrap { max-width: 980px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
 
-  .mast-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .mast { border-bottom: 1px solid var(--line); padding: 2.25rem 0 1.5rem; }
+  .mast .wrap { max-width: 980px; }
+
+  .mast-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
 
   .wordmark {
     font-family: 'Space Grotesk', sans-serif;
@@ -73,14 +68,9 @@
     letter-spacing: -0.02em;
     margin: 0;
   }
-
   .wordmark span { color: var(--news); }
 
-  .mast-right {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
+  .mast-right { display: flex; align-items: center; gap: 0.9rem; }
 
   .status {
     font-family: 'Space Grotesk', sans-serif;
@@ -88,56 +78,92 @@
     color: var(--text-muted);
     text-align: right;
     line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
   }
 
-  .status .dot {
+  .live-dot {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     border-radius: 50%;
-    background: #6FCF97;
-    margin-right: 0.4em;
+    background: var(--live);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
   }
 
   .theme-toggle {
     background: transparent;
     border: 1px solid var(--line);
     color: var(--text);
-    width: 34px;
-    height: 34px;
+    width: 34px; height: 34px;
     border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 1rem;
     flex-shrink: 0;
   }
-
   .theme-toggle:hover { border-color: var(--news); }
 
-  .tagline {
-    margin: 0.6rem 0 0;
+  .tagline { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 1rem; max-width: 52ch; }
+
+  /* --- Latest strip --- */
+  .latest {
+    padding: 1.1rem 0 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .latest-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
     color: var(--text-muted);
-    font-size: 1rem;
-    max-width: 46ch;
+    margin: 0 0 0.6rem;
+  }
+  .latest-row {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 1.1rem;
+    scrollbar-width: thin;
+  }
+  .latest-card {
+    flex: 0 0 auto;
+    width: 230px;
+    background: var(--panel-raised);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--dot, var(--line));
+    padding: 0.7rem 0.8rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .latest-card .cat {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.7rem;
+    color: var(--dot);
+    margin-bottom: 0.3rem;
+  }
+  .latest-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
   }
 
+  /* --- Controls --- */
   .controls {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 1.1rem 1.5rem 0;
+    padding: 1.1rem 0 0;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
   }
 
-  .filters {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    font-family: 'Space Grotesk', sans-serif;
-  }
+  .filters { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: 'Space Grotesk', sans-serif; align-items: center; }
 
   .filter {
     background: transparent;
@@ -148,103 +174,100 @@
     font-size: 0.85rem;
     font-family: inherit;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
+    display: flex; align-items: center; gap: 0.5em;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
-
   .filter:hover { color: var(--text); border-color: #3a5252; }
-
-  .filter[aria-pressed="true"] {
-    color: var(--bg);
-    border-color: transparent;
-  }
-
-  .filter .swatch {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--dot, var(--text-muted));
-  }
-
+  .filter[aria-pressed="true"] { color: var(--bg); border-color: transparent; }
+  .filter .swatch { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--text-muted)); }
   .filter[data-cat="news"][aria-pressed="true"] { background: var(--news); }
   .filter[data-cat="papers"][aria-pressed="true"] { background: var(--papers); }
   .filter[data-cat="reviews"][aria-pressed="true"] { background: var(--reviews); }
   .filter[data-cat="reddit"][aria-pressed="true"] { background: var(--reddit); }
   .filter[aria-pressed="true"] .swatch { background: var(--bg); }
 
-  .search-row {
-    display: flex;
-    align-items: center;
+  .row2 { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+
+  select, .search-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    background: var(--input-bg);
+    color: var(--text);
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: var(--input-bg);
-    padding: 0.1rem 0.2rem;
   }
 
+  select { padding: 0.5rem 0.7rem; cursor: pointer; }
+
+  .search-row { flex: 1; min-width: 220px; display: flex; align-items: center; padding: 0.1rem 0.2rem; }
   .search-row svg { margin: 0 0.6rem; flex-shrink: 0; opacity: 0.6; }
-
-  #search {
-    flex: 1;
-    border: none;
-    background: transparent;
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9rem;
-    padding: 0.6rem 0.2rem;
-    outline: none;
-  }
-
+  #search { flex: 1; border: none; background: transparent; color: var(--text); font: inherit; padding: 0.5rem 0.2rem; outline: none; }
   #search::placeholder { color: var(--text-muted); }
 
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 1.25rem 1.5rem 4rem;
-  }
-
-  .item {
-    border-left: 2px solid var(--dot, var(--line));
-    padding: 0 0 0 1rem;
-    margin: 1.6rem 0;
-  }
-
-  .item-meta {
+  .result-count {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.78rem;
     color: var(--text-muted);
-    display: flex;
-    gap: 0.6em;
-    align-items: baseline;
-    margin-bottom: 0.35rem;
+    margin: 1rem 0 0;
   }
 
-  .item-meta .cat-label { color: var(--dot); }
+  /* --- Card grid --- */
+  main { padding: 0.75rem 0 4rem; }
 
-  .item h2 {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--dot, var(--line));
+    border-radius: 6px;
+    padding: 1rem 1.1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card.news { --dot: var(--news); }
+  .card.papers { --dot: var(--papers); }
+  .card.reviews { --dot: var(--reviews); }
+  .card.reddit { --dot: var(--reddit); }
+
+  .card-meta {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    display: flex; gap: 0.5em; align-items: baseline; flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .card-meta .cat-label { color: var(--dot); }
+
+  .card h2 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     line-height: 1.35;
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.5rem;
   }
+  .card h2 a { text-decoration: none; }
+  .card h2 a:hover { text-decoration: underline; text-decoration-color: var(--dot); }
 
-  .item h2 a { text-decoration: none; }
-  .item h2 a:hover { text-decoration: underline; text-decoration-color: var(--dot); }
+  .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
 
-  .item p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.98rem;
-    line-height: 1.55;
-    max-width: 66ch;
+  .why {
+    margin-top: 0.7rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed var(--line);
+    font-size: 0.86rem;
+    font-style: italic;
+    color: var(--text);
   }
+  .why b { font-style: normal; color: var(--dot); font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; display: block; margin-bottom: 0.2rem; }
 
-  .item.news { --dot: var(--news); }
-  .item.papers { --dot: var(--papers); }
-  .item.reviews { --dot: var(--reviews); }
-  .item.reddit { --dot: var(--reddit); }
-
-  .empty, .error {
+  .empty {
     font-family: 'Space Grotesk', sans-serif;
     color: var(--text-muted);
     padding: 2rem 0;
@@ -252,17 +275,14 @@
   }
 
   footer {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 1.5rem 3rem;
+    border-top: 1px solid var(--line);
+    padding: 1.25rem 0 3rem;
     color: var(--text-muted);
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.78rem;
-    border-top: 1px solid var(--line);
-    padding-top: 1.25rem;
   }
 
-  a:focus-visible, button:focus-visible, input:focus-visible {
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
   }
@@ -271,46 +291,76 @@
 <body>
 
 <div class="mast">
-  <div class="mast-row">
-    <h1 class="wordmark">Signal<span>.</span></h1>
-    <div class="mast-right">
-      <div class="status" id="status"><span class="dot"></span>loading feed…</div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+  <div class="wrap">
+    <div class="mast-row">
+      <h1 class="wordmark">Signal<span>.</span></h1>
+      <div class="mast-right">
+        <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+      </div>
+    </div>
+    <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+  </div>
+</div>
+
+<div class="latest" id="latestSection" hidden>
+  <div class="wrap">
+    <p class="latest-label">Latest — published in the last few hours</p>
+    <div class="latest-row" id="latestRow"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="controls">
+    <div class="filters" id="filters">
+      <button class="filter" data-cat="all" aria-pressed="true">All</button>
+      <button class="filter" data-cat="news" aria-pressed="false"><span class="swatch" style="--dot: var(--news)"></span>News</button>
+      <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
+      <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
+      <button class="filter" data-cat="reddit" aria-pressed="false"><span class="swatch" style="--dot: var(--reddit)"></span>Reddit</button>
+    </div>
+    <div class="row2">
+      <select id="sourceFilter"><option value="all">All sources</option></select>
+      <select id="dateFilter">
+        <option value="all">Any time</option>
+        <option value="today">Today</option>
+        <option value="week">This week</option>
+      </select>
+      <div class="search-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search" type="search" placeholder="Search headlines and summaries…" autocomplete="off">
+      </div>
     </div>
   </div>
-  <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+  <p class="result-count" id="resultCount"></p>
+
+  <main>
+    <div class="grid" id="feed"></div>
+  </main>
+
+  <footer>
+    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Edit freely — this is your dashboard.
+  </footer>
 </div>
-
-<div class="controls">
-  <div class="filters" id="filters">
-    <button class="filter" data-cat="all" aria-pressed="true">All</button>
-    <button class="filter" data-cat="news" aria-pressed="false"><span class="swatch" style="--dot: var(--news)"></span>News</button>
-    <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
-    <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
-    <button class="filter" data-cat="reddit" aria-pressed="false"><span class="swatch" style="--dot: var(--reddit)"></span>Reddit</button>
-  </div>
-  <div class="search-row">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="search" type="search" placeholder="Search headlines and summaries…" autocomplete="off">
-  </div>
-</div>
-
-<main id="feed">
-  <div class="empty">Loading…</div>
-</main>
-
-<footer>
-  Data refreshes on a schedule via GitHub Actions. Sources are configured in <code>scripts/fetch-*.js</code>; summaries are optionally rewritten by an LLM in <code>scripts/summarize.js</code>. Edit freely — this is your dashboard.
-</footer>
 
 <script>
   const feedEl = document.getElementById('feed');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
   const searchEl = document.getElementById('search');
+  const sourceFilterEl = document.getElementById('sourceFilter');
+  const dateFilterEl = document.getElementById('dateFilter');
   const themeToggleEl = document.getElementById('themeToggle');
+  const resultCountEl = document.getElementById('resultCount');
+  const latestSectionEl = document.getElementById('latestSection');
+  const latestRowEl = document.getElementById('latestRow');
+
+  const AUTO_REFRESH_MS = 5 * 60 * 1000; // 5 minutes
+  const LATEST_WINDOW_MS = 3 * 60 * 60 * 1000; // 3 hours
 
   let activeFilter = 'all';
+  let activeSource = 'all';
+  let activeDate = 'all';
   let searchTerm = '';
   let allItems = [];
 
@@ -319,60 +369,86 @@
     document.documentElement.setAttribute('data-theme', theme);
     themeToggleEl.textContent = theme === 'light' ? '◑' : '◐';
   }
-
   function initTheme() {
     let saved = null;
-    try { saved = localStorage.getItem('signal-theme'); } catch (e) { /* storage unavailable */ }
-    const preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    applyTheme(preferred);
+    try { saved = localStorage.getItem('signal-theme'); } catch (e) {}
+    applyTheme(saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
   }
-
   themeToggleEl.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = current === 'light' ? 'dark' : 'light';
+    const next = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'dark' : 'light';
     applyTheme(next);
-    try { localStorage.setItem('signal-theme', next); } catch (e) { /* storage unavailable */ }
+    try { localStorage.setItem('signal-theme', next); } catch (e) {}
   });
-
   initTheme();
 
-  // --- Data helpers ---
+  // --- Helpers ---
   function timeAgo(iso) {
     if (!iso) return '';
     const diffMs = Date.now() - new Date(iso).getTime();
     const mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return 'just now';
     if (mins < 60) return `${mins}m ago`;
     const hrs = Math.floor(mins / 60);
     if (hrs < 24) return `${hrs}h ago`;
-    const days = Math.floor(hrs / 24);
-    return `${days}d ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
   }
-
   function catLabel(cat) {
     return { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' }[cat] || cat;
   }
-
   function escapeHtml(str = '') {
     return str.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
+  function withinDateFilter(iso, filter) {
+    if (filter === 'all' || !iso) return true;
+    const ageMs = Date.now() - new Date(iso).getTime();
+    if (filter === 'today') return ageMs <= 24 * 60 * 60 * 1000;
+    if (filter === 'week') return ageMs <= 7 * 24 * 60 * 60 * 1000;
+    return true;
+  }
 
-  // --- Rendering ---
+  // --- Populate source dropdown from loaded data ---
+  function populateSources() {
+    const sources = [...new Set(allItems.map((i) => i.source).filter(Boolean))].sort();
+    sourceFilterEl.innerHTML = '<option value="all">All sources</option>' +
+      sources.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+  }
+
+  // --- Latest strip ---
+  function renderLatest() {
+    const latest = allItems
+      .filter((i) => i.published && Date.now() - new Date(i.published).getTime() <= LATEST_WINDOW_MS)
+      .slice(0, 10);
+    if (!latest.length) { latestSectionEl.hidden = true; return; }
+    latestSectionEl.hidden = false;
+    latestRowEl.innerHTML = latest.map((item) => `
+      <a class="latest-card ${item.category}" href="${item.link}" target="_blank" rel="noopener">
+        <div class="cat">${catLabel(item.category)} · ${timeAgo(item.published)}</div>
+        <h3>${escapeHtml(item.title)}</h3>
+      </a>
+    `).join('');
+  }
+
+  // --- Main grid ---
   function render() {
     const term = searchTerm.trim().toLowerCase();
     const items = allItems.filter((i) => {
       const matchesCat = activeFilter === 'all' || i.category === activeFilter;
+      const matchesSource = activeSource === 'all' || i.source === activeSource;
+      const matchesDate = withinDateFilter(i.published, activeDate);
       const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
-      return matchesCat && matchesTerm;
+      return matchesCat && matchesSource && matchesDate && matchesTerm;
     });
 
+    resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
+
     if (!items.length) {
-      feedEl.innerHTML = '<div class="empty">Nothing matches. Try a different filter or search term.</div>';
+      feedEl.innerHTML = '<div class="empty">Nothing matches. Try a different filter, source, date range, or search term.</div>';
       return;
     }
 
     feedEl.innerHTML = items.map((item) => `
-      <article class="item ${item.category}">
-        <div class="item-meta">
+      <article class="card ${item.category}">
+        <div class="card-meta">
           <span class="cat-label">${catLabel(item.category)}</span>
           <span>·</span>
           <span>${escapeHtml(item.source || '')}</span>
@@ -381,10 +457,17 @@
         </div>
         <h2><a href="${item.link}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a></h2>
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
+        ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
       </article>
     `).join('');
   }
 
+  function renderAll() {
+    renderLatest();
+    render();
+  }
+
+  // --- Data loading ---
   async function loadJSON(file, category, mapFn) {
     try {
       const res = await fetch(`data/${file}?_=${Date.now()}`);
@@ -397,7 +480,7 @@
     }
   }
 
-  async function init() {
+  async function refresh(isBackground) {
     const [news, papers, reviews, reddit] = await Promise.all([
       loadJSON('news.json', 'news', (i) => i),
       loadJSON('papers.json', 'papers', (i) => ({
@@ -412,10 +495,17 @@
       (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
     );
 
-    statusEl.innerHTML = `<span class="dot"></span>${allItems.length} items · updated ${new Date().toLocaleString()}`;
-    render();
+    const currentSource = sourceFilterEl.value;
+    populateSources();
+    if ([...sourceFilterEl.options].some((o) => o.value === currentSource)) {
+      sourceFilterEl.value = currentSource;
+    }
+
+    statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
+    renderAll();
   }
 
+  // --- Controls ---
   filtersEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.filter');
     if (!btn) return;
@@ -424,13 +514,17 @@
     activeFilter = btn.dataset.cat;
     render();
   });
+  sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; render(); });
+  dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; render(); });
+  searchEl.addEventListener('input', (e) => { searchTerm = e.target.value; render(); });
 
-  searchEl.addEventListener('input', (e) => {
-    searchTerm = e.target.value;
-    render();
-  });
+  // Keep relative timestamps ("3m ago") feeling alive without a full refetch
+  setInterval(renderAll, 60 * 1000);
 
-  init();
+  // Quietly check for new data periodically
+  setInterval(() => refresh(true), AUTO_REFRESH_MS);
+
+  refresh(false);
 </script>
 
 </body>

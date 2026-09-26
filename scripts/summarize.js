@@ -1,14 +1,17 @@
 // scripts/summarize.js
-// Rewrites the `summary` field of each item in public/data/*.json into a
-// tighter, clearer one-sentence summary using the Anthropic API.
+// For each item in public/data/*.json, generates:
+//   - summary:        one clear plain-English sentence
+//   - whyItMatters:   one short sentence on why it's worth caring about
 //
-// Requires an ANTHROPIC_API_KEY environment variable. If it isn't set,
-// this script does nothing and exits cleanly -- the dashboard falls back
-// to the raw RSS/API excerpts, so this step is entirely optional.
+// Provider priority (first one with a key set wins):
+//   1. Groq       -- FREE tier, no credit card required. Get a key at
+//                    https://console.groq.com/keys (model: llama-3.1-8b-instant)
+//   2. Anthropic  -- paid, small per-article cost. Get a key at
+//                    https://console.anthropic.com/settings/keys
 //
-// Get a key at https://console.anthropic.com/settings/keys
-// Locally:  export ANTHROPIC_API_KEY=sk-ant-...   (or put it in a .env file you load yourself)
-// On GitHub Actions: add it as a repo secret named ANTHROPIC_API_KEY (see README).
+// If neither GROQ_API_KEY nor ANTHROPIC_API_KEY is set, this script does
+// nothing and exits cleanly -- the dashboard falls back to raw excerpts,
+// so this step is entirely optional.
 
 import fetch from 'node-fetch';
 import fs from 'fs';
@@ -19,14 +22,58 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, '..', 'public', 'data');
 const FILES = ['news.json', 'papers.json', 'reviews.json', 'reddit.json'];
 
-// Cheap, fast model -- plenty for a one-sentence rewrite. See
-// https://docs.claude.com/en/docs/about-claude/models/overview for options.
-const MODEL = 'claude-haiku-4-5-20251001';
+// Keep this modest -- it's 1 API call per article, and Groq's free tier is
+// rate-limited (30 requests/min at the time of writing). Increase once you
+// know your quota comfortably covers it.
+const MAX_ITEMS_PER_FILE = 12;
+const DELAY_BETWEEN_CALLS_MS = 2200; // stays safely under ~30 req/min
 
-// Keep this modest: it's one call per article, run every 6 hours.
-const MAX_ITEMS_PER_FILE = 15;
+const PROMPT_INSTRUCTIONS =
+  'You are helping summarize tech/AI articles for a personal dashboard. ' +
+  'Given a title and excerpt, reply with ONLY a JSON object (no markdown, no code fence) ' +
+  'shaped exactly like {"summary": "...", "why_it_matters": "..."}. ' +
+  '"summary" is ONE plain-English sentence (max 25 words) stating what the piece is about. ' +
+  '"why_it_matters" is ONE short sentence (max 20 words) on why a tech-savvy reader might care. ' +
+  'If the excerpt is too thin to say anything specific, make why_it_matters a brief, honest, general note rather than inventing details.';
 
-async function summarizeOne(title, rawSummary) {
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseJsonLoose(text) {
+  if (!text) return null;
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[0]);
+  } catch {
+    return null;
+  }
+}
+
+async function callGroq(title, excerpt) {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-8b-instant',
+      temperature: 0.3,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: PROMPT_INSTRUCTIONS },
+        { role: 'user', content: `Title: ${title}\nExcerpt: ${excerpt || '(none)'}` },
+      ],
+    }),
+  });
+  if (!res.ok) throw new Error(`Groq API returned ${res.status}: ${await res.text()}`);
+  const data = await res.json();
+  return parseJsonLoose(data.choices?.[0]?.message?.content);
+}
+
+async function callAnthropic(title, excerpt) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -35,40 +82,43 @@ async function summarizeOne(title, rawSummary) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 100,
-      system:
-        'Rewrite the given article title and excerpt as ONE clear, plain-English sentence (max 25 words) summarizing what it is about. Reply with only that sentence, no preamble, no quotes.',
-      messages: [
-        { role: 'user', content: `Title: ${title}\nExcerpt: ${rawSummary || '(none)'}` },
-      ],
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 150,
+      system: PROMPT_INSTRUCTIONS,
+      messages: [{ role: 'user', content: `Title: ${title}\nExcerpt: ${excerpt || '(none)'}` }],
     }),
   });
-
-  if (!res.ok) {
-    throw new Error(`API returned ${res.status}: ${await res.text()}`);
-  }
+  if (!res.ok) throw new Error(`Anthropic API returned ${res.status}: ${await res.text()}`);
   const data = await res.json();
-  const text = data.content?.find((b) => b.type === 'text')?.text?.trim();
-  return text || rawSummary;
+  const text = data.content?.find((b) => b.type === 'text')?.text;
+  return parseJsonLoose(text);
 }
 
-async function processFile(filename) {
+function pickProvider() {
+  if (process.env.GROQ_API_KEY) return { name: 'Groq', call: callGroq };
+  if (process.env.ANTHROPIC_API_KEY) return { name: 'Anthropic', call: callAnthropic };
+  return null;
+}
+
+async function processFile(filename, provider) {
   const filePath = path.join(DATA_DIR, filename);
   if (!fs.existsSync(filePath)) return;
 
   const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   const items = data.items ?? [];
+  const n = Math.min(items.length, MAX_ITEMS_PER_FILE);
 
-  console.log(`[summarize] ${filename}: summarizing up to ${MAX_ITEMS_PER_FILE} of ${items.length} items...`);
+  console.log(`[summarize] ${filename}: processing ${n} of ${items.length} items via ${provider.name}...`);
 
-  for (let i = 0; i < Math.min(items.length, MAX_ITEMS_PER_FILE); i++) {
+  for (let i = 0; i < n; i++) {
     try {
-      items[i].summary = await summarizeOne(items[i].title, items[i].summary);
+      const result = await provider.call(items[i].title, items[i].summary);
+      if (result?.summary) items[i].summary = result.summary;
+      if (result?.why_it_matters) items[i].whyItMatters = result.why_it_matters;
     } catch (err) {
-      console.error(`[summarize] Skipping item "${items[i].title}": ${err.message}`);
-      // leave the original summary in place on failure
+      console.error(`[summarize] Skipping "${items[i].title}": ${err.message}`);
     }
+    await sleep(DELAY_BETWEEN_CALLS_MS);
   }
 
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
@@ -76,18 +126,17 @@ async function processFile(filename) {
 }
 
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.log('[summarize] No ANTHROPIC_API_KEY set -- skipping LLM summaries, keeping raw excerpts.');
+  const provider = pickProvider();
+  if (!provider) {
+    console.log('[summarize] No GROQ_API_KEY or ANTHROPIC_API_KEY set -- skipping, keeping raw excerpts.');
     return;
   }
   for (const file of FILES) {
-    await processFile(file);
+    await processFile(file, provider);
   }
 }
 
 main().catch((err) => {
   console.error('[summarize] Failed:', err.message);
-  // Don't fail the whole workflow just because summarization had an issue --
-  // the raw excerpts are still a perfectly good fallback.
-  process.exit(0);
+  process.exit(0); // don't fail the whole workflow over this optional step
 });

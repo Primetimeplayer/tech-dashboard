@@ -21,6 +21,9 @@ jobs:
       - run: npm install
 
       - run: npm run fetch:all
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Commit updated data
         run: |
