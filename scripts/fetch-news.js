@@ -19,7 +19,6 @@ const FEEDS = [
   { name: 'Ars Technica', category: 'news', url: 'https://feeds.arstechnica.com/arstechnica/index' },
   { name: 'TechCrunch', category: 'news', url: 'https://techcrunch.com/feed/' },
   { name: 'Wired', category: 'news', url: 'https://www.wired.com/feed/rss' },
-  { name: 'Engadget', category: 'reviews', url: 'https://www.engadget.com/rss.xml' },
 ];
 
 const ITEMS_PER_FEED = 12;
