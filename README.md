@@ -43,6 +43,33 @@ reload.
   (title, the why-it-matters note if there is one, and the link) to your
   clipboard, ready to drop into a tweet, Slack message, or newsletter.
 
+## Weekly digest (content engine)
+
+`scripts/generate-digest.js` turns the past 7 days of dashboard items into a
+proper digest: an intro, highlights grouped by category with a one-line note
+each, a closing line, and a parallel **thread version** (5-8 short numbered
+posts) for X/Twitter or similar. A separate workflow
+(`.github/workflows/generate-digest.yml`) runs this every **Monday at 14:00
+UTC**, and you can also trigger it manually any time from the Actions tab.
+
+Browse digests at `public/digests.html` on your deployed site (linked from
+the main dashboard's "📰 Digests" button) — pick a week from the list, then
+**Copy as Markdown** to paste straight into Substack, Buttondown, a blog
+post, or a repo file, or **Show thread version** to copy something
+tweet-shaped.
+
+Like the summarizer, this uses Groq (free) by default, falling back to
+Anthropic if that key is set instead, and falls back further to a
+rule-based digest (using existing summaries, no new writing) if neither key
+is set — it never fails to produce *something*, it just gets better prose
+with a key. Same secrets as the summarizer (`GROQ_API_KEY` /
+`ANTHROPIC_API_KEY`) — no extra setup needed if you already added one for
+the "why it matters" notes.
+
+To try it locally: `npm run digest` (writes into `public/digests/`). To
+force a fresh one on GitHub right now: Actions tab → **Generate Weekly
+Digest** → **Run workflow**.
+
 Sample placeholder data ships in `public/data/` so the page renders
 immediately — run the fetch scripts (below) to replace it with live data.
 

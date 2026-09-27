@@ -9,6 +9,7 @@
     "fetch:reviews": "node scripts/fetch-reviews.js",
     "fetch:reddit": "node scripts/fetch-reddit.js",
     "summarize": "node scripts/summarize.js",
+    "digest": "node scripts/generate-digest.js",
     "fetch:all": "npm run fetch:news && npm run fetch:papers && npm run fetch:reviews && npm run fetch:reddit && npm run summarize",
     "serve": "npx http-server public -p 8080 -o"
   },

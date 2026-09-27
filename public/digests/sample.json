@@ -1,0 +1,12 @@
+{
+  "id": "sample",
+  "title": "Signal Weekly — Sample",
+  "dateRange": "Sample digest",
+  "generatedAt": "2026-09-27T00:00:00.000Z",
+  "markdown": "# Signal Weekly — Sample\n\n*This is a placeholder*\n\nThis is a sample digest shown before the weekly workflow has generated a real one. Once `generate-digest.js` runs (on its weekly schedule, or triggered manually from the Actions tab), this will be replaced by an actual digest built from that week's dashboard items.\n\n## Tech news\n\n- **[Example headline](https://example.com)** (Example Source) — a one-line note on why it made the cut.\n\n---\n\nRun the 'Generate Weekly Digest' workflow manually to see a real one right away.",
+  "thread": [
+    "This is a placeholder thread tweet shown before the first real digest has been generated.",
+    "Once the weekly workflow runs, this will be replaced with real highlights from that week's items.",
+    "Read the full digest at the link in bio / below."
+  ]
+}

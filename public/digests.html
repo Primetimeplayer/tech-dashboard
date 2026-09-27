@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digests — Signal</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1B1C; --panel: #14252A; --line: #24393A; --text: #E9E4D6;
+    --text-muted: #839391; --input-bg: #0B1516; --accent: #E8A33D; --live: #6FCF97;
+  }
+  :root[data-theme="light"] {
+    --bg: #EFEDE3; --panel: #E4E1D3; --line: #CFCBB8; --text: #1E2624;
+    --text-muted: #62685F; --input-bg: #FBFAF4; --accent: #B9741E; --live: #2F8F5B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Source Serif 4', Georgia, serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .mast { border-bottom: 1px solid var(--line); padding: 2.25rem 0 1.25rem; }
+  .mast-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.6rem; margin: 0; text-decoration: none; color: var(--text); }
+  .wordmark span { color: var(--accent); }
+  .back-link { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; }
+  .back-link:hover { color: var(--text); }
+  h1.page-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin: 1.25rem 0 0.3rem; }
+  .sub { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 1.5rem; }
+
+  .layout { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; margin-top: 1rem; }
+  @media (max-width: 640px) { .layout { grid-template-columns: 1fr; } }
+
+  .list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .list-item {
+    text-align: left; background: transparent; border: 1px solid var(--line); color: var(--text-muted);
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; padding: 0.6rem 0.75rem;
+    border-radius: 6px; cursor: pointer;
+  }
+  .list-item:hover { color: var(--text); border-color: var(--accent); }
+  .list-item.active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+
+  .digest-body h1, .digest-body h2 { font-family: 'Space Grotesk', sans-serif; }
+  .digest-body h1 { font-size: 1.4rem; margin: 0 0 0.2rem; }
+  .digest-body h2 { font-size: 1.05rem; color: var(--accent); margin: 1.4rem 0 0.6rem; }
+  .digest-body em { color: var(--text-muted); font-style: normal; font-size: 0.85rem; }
+  .digest-body p { line-height: 1.6; }
+  .digest-body ul { padding-left: 1.2rem; line-height: 1.6; }
+  .digest-body hr { border: none; border-top: 1px solid var(--line); margin: 1.5rem 0; }
+
+  .actions { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; background: var(--input-bg);
+    color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 0.45rem 0.8rem; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.copied { color: var(--live); border-color: var(--live); }
+
+  .thread-box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 0.9rem 1rem; margin-top: 0.5rem; display: none;
+  }
+  .thread-box.open { display: block; }
+  .thread-item { font-size: 0.9rem; padding: 0.5rem 0; border-bottom: 1px dashed var(--line); }
+  .thread-item:last-child { border-bottom: none; }
+  .thread-item .n { color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; margin-right: 0.4em; }
+
+  .empty { color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; padding: 2rem 0; }
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <div class="wrap">
+    <div class="mast-row">
+      <a class="wordmark" href="index.html">Signal<span>.</span> Digests</a>
+      <a class="back-link" href="index.html">← Back to dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <h1 class="page-title">Weekly digests</h1>
+  <p class="sub">Auto-generated every week from the dashboard's own data — newsletter-ready markdown and a thread version, both copyable below.</p>
+
+  <div class="layout">
+    <div class="list" id="digestList"><div class="empty">Loading…</div></div>
+    <div>
+      <div id="digestContent"><div class="empty">Select a digest.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const listEl = document.getElementById('digestList');
+  const contentEl = document.getElementById('digestContent');
+
+  function applyTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem('signal-theme'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  }
+  applyTheme();
+
+  // Minimal markdown -> HTML (headers, bold, links, list items, hr, paragraphs).
+  // Intentionally small and dependency-free rather than pulling in a full parser.
+  function renderMarkdown(md) {
+    const lines = md.split('\n');
+    let html = '';
+    let inList = false;
+    for (let line of lines) {
+      if (/^---\s*$/.test(line)) { if (inList) { html += '</ul>'; inList = false; } html += '<hr>'; continue; }
+      if (/^## /.test(line)) { if (inList) { html += '</ul>'; inList = false; } html += `<h2>${inline(line.slice(3))}</h2>`; continue; }
+      if (/^# /.test(line)) { if (inList) { html += '</ul>'; inList = false; } html += `<h1>${inline(line.slice(2))}</h1>`; continue; }
+      if (/^- /.test(line)) { if (!inList) { html += '<ul>'; inList = true; } html += `<li>${inline(line.slice(2))}</li>`; continue; }
+      if (line.trim() === '') { if (inList) { html += '</ul>'; inList = false; } continue; }
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<p>${inline(line)}</p>`;
+    }
+    if (inList) html += '</ul>';
+    return html;
+  }
+  function inline(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  }
+
+  async function copyText(text, btn) {
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e2) {}
+      document.body.removeChild(ta);
+    }
+    const original = btn.textContent;
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+  }
+
+  async function loadDigest(id, entries) {
+    listEl.querySelectorAll('.list-item').forEach((b) => b.classList.toggle('active', b.dataset.id === id));
+    contentEl.innerHTML = '<div class="empty">Loading…</div>';
+    try {
+      const res = await fetch(`digests/${id}.json?_=${Date.now()}`);
+      const data = await res.json();
+      const threadText = (data.thread || []).map((t, i) => `${i + 1}/ ${t}`).join('\n\n');
+
+      contentEl.innerHTML = `
+        <div class="actions">
+          <button class="btn" id="copyMd">📋 Copy as Markdown</button>
+          <button class="btn" id="toggleThread">🧵 Show thread version</button>
+        </div>
+        <div class="thread-box" id="threadBox">
+          ${(data.thread || []).map((t, i) => `<div class="thread-item"><span class="n">${i + 1}/</span>${t}</div>`).join('')}
+          <div class="actions"><button class="btn" id="copyThread">📋 Copy thread</button></div>
+        </div>
+        <div class="digest-body">${renderMarkdown(data.markdown)}</div>
+      `;
+
+      document.getElementById('copyMd').addEventListener('click', (e) => copyText(data.markdown, e.target));
+      document.getElementById('copyThread').addEventListener('click', (e) => copyText(threadText, e.target));
+      document.getElementById('toggleThread').addEventListener('click', () => {
+        document.getElementById('threadBox').classList.toggle('open');
+      });
+    } catch (err) {
+      contentEl.innerHTML = '<div class="empty">Could not load this digest.</div>';
+    }
+  }
+
+  async function init() {
+    try {
+      const res = await fetch(`digests/index.json?_=${Date.now()}`);
+      const entries = await res.json();
+      if (!entries.length) {
+        listEl.innerHTML = '<div class="empty">No digests yet — the weekly workflow generates the first one automatically.</div>';
+        return;
+      }
+      listEl.innerHTML = entries.map((d) => `<button class="list-item" data-id="${d.id}">${d.dateRange}</button>`).join('');
+      listEl.querySelectorAll('.list-item').forEach((btn) => {
+        btn.addEventListener('click', () => loadDigest(btn.dataset.id, entries));
+      });
+      loadDigest(entries[0].id, entries);
+    } catch (err) {
+      listEl.innerHTML = '<div class="empty">No digests yet.</div>';
+    }
+  }
+
+  init();
+</script>
+
+</body>
+</html>
