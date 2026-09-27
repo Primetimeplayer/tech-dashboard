@@ -38,9 +38,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0F1B1C;
+    --bg: #0E151B;
     --panel: #14252A;
-    --panel-raised: #182B30;
+    --panel-raised: #1D3036;
+    --line: #24393A;
+    --text: #E9E4D6;
+    --text-muted: #839391;
+    --input-bg: #0B1516;
+    --news: #E8A33D;
+    --papers: #6FA8D8;
+    --reviews: #C9836B;
+    --reddit: #8FB878;
+    --hardware: #D9C25C;
+    --saved: #E0A5C9;
+    --focus: #E9E4D6;
+    --live: #6FCF97;
+    --skeleton: #1A2C30;
+      :root {
+    --bg: #0E151B;
+    --panel: #14252A;
+    --panel-raised: #1D3036;
     --line: #24393A;
     --text: #E9E4D6;
     --text-muted: #839391;
@@ -55,15 +72,34 @@
     --live: #6FCF97;
     --skeleton: #1A2C30;
   }
+  .card {
+  background: var(--panel-raised);
+}
+  }
+
+  .filter[data-cat="news"],
+.filter[data-cat="papers"],
+.filter[data-cat="reviews"],
+.filter[data-cat="reddit"],
+.filter[data-cat="hardware"],
+.filter[data-cat="saved"] {
+  color: #000000 !important;
+}
+#hwToggle {
+  color: #000000 !important;
+}
+#savedToggle {
+  color: #000000 !important;
+}
 
   :root[data-theme="light"] {
-    --bg: #EFEDE3;
-    --panel: #E4E1D3;
-    --panel-raised: #DAD6C5;
-    --line: #CFCBB8;
-    --text: #1E2624;
-    --text-muted: #62685F;
-    --input-bg: #FBFAF4;
+    --bg: #EEF2F5;
+    --panel: #FFFFFF;
+    --panel-raised: #FCFDFE;
+    --line: #D3D9DF;
+    --text: #17212B;
+    --text-muted: #66727D;
+    --input-bg: #FFFFFF;
     --news: #B9741E;
     --papers: #2A6FA3;
     --reviews: #A55A3F;
@@ -79,21 +115,26 @@
 
   html, body {
     margin: 0;
-    background: var(--bg);
+    background: var(--bg); background-image:
+  radial-gradient(circle at 10% 5%, rgba(42, 111, 163, 0.16), transparent 26rem),
+  radial-gradient(circle at 90% 15%, rgba(169, 74, 125, 0.10), transparent 24rem),
+  radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.025), transparent 34rem),
+  radial-gradient(circle at 20% 95%, rgba(78, 122, 56, 0.08), transparent 26rem);
     color: var(--text);
-    font-family: 'Source Serif 4', Georgia, serif;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     transition: background 0.15s ease, color 0.15s ease;
   }
 
   ::selection { background: var(--news); color: #14251C; }
   a { color: inherit; }
 
-  .wrap { max-width: 980px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-left: 1.75rem; padding-right: 1.75rem; }
 
-  .mast { border-bottom: 1px solid var(--line); padding: 2.25rem 0 1.5rem; }
+  .mast { border-bottom: 1px solid var(--line); padding: 4rem 0 2.5rem; color: #11181F; box-shadow: 0 10px 30px rgba(23, 33, 43, 0.13); background: rgba(255, 255, 255, 0.82);
+backdrop-filter: blur(12px); border-bottom: 1px solid rgba(23, 33, 43, 0.12);}
   .mast-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
 
-  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0; }
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 750; font-size: 2.6rem; letter-spacing: -0.02em; margin: 0; }
   .wordmark span { color: var(--news); }
 
   .mast-right { display: flex; align-items: center; gap: 0.9rem; }
@@ -101,17 +142,27 @@
   .status {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: #303A43;
     text-align: right;
     line-height: 1.5;
     display: flex; align-items: center; gap: 0.4em;
     white-space: nowrap;
   }
 
-  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--live); animation: pulse 2.4s ease-in-out infinite; }
+  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--live); animation: pulse 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
   @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-
+  @keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(47, 143, 91, 0.35);
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px rgba(47, 143, 91, 0);
+  }
+}
   .theme-toggle {
     background: transparent; border: 1px solid var(--line); color: var(--text);
     width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
@@ -120,51 +171,123 @@
   .theme-toggle:hover { border-color: var(--news); }
   .theme-toggle svg { width: 16px; height: 16px; }
 
-  .tagline { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 1rem; max-width: 52ch; }
+  .tagline { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 1.2rem; max-width: 52ch; color: #303A43;}
 
   /* --- Latest strip --- */
-  .latest { padding: 1.1rem 0 0; border-bottom: 1px solid var(--line); }
-  .latest-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: var(--text-muted); margin: 0 0 0.6rem; }
-  .latest-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 1.1rem; scrollbar-width: thin; }
+  .latest { padding: 1.5rem 0 0; border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, 0.45);
+border: 1px solid rgba(211, 217, 223, 0.7);
+border-radius: 20px;
+padding: 1.25rem;
+margin-top: 1rem;
+backdrop-filter: blur(10px); }
+  .latest-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin: 0 0 0.6rem; color: #303A43;}
+  .latest-row { display: flex; gap: 1.25rem;
+padding: 0.5rem 0 1rem;
+overflow-x: auto;
+scroll-snap-type: x mandatory; overflow-x: auto; padding-bottom: 1.1rem; scrollbar-width: thin; }
   .latest-card {
-    flex: 0 0 auto; width: 230px; background: var(--panel-raised);
-    border: 1px solid var(--line); border-top: 3px solid var(--dot, var(--line));
-    padding: 0.7rem 0.8rem; text-decoration: none; color: var(--text);
+    flex: 0 0 auto; width: 300px; background: var(--panel-raised); scroll-snap-align: start;
+    border: 1px solid var(--line); border-top: 3px solid var(--dot, var(--line));border-radius: 16px;box-shadow: 0 8px 24px rgba(23, 33, 43, 0.10);
+    padding: 1.25rem 1.25rem 1.15rem; text-decoration: none; color: var(--text);transition: transform 180ms ease, box-shadow 180ms ease;
   }
+  
+  .latest-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.19);
+}
   .latest-card .cat { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: var(--dot); margin-bottom: 0.3rem; }
-  .latest-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; line-height: 1.3; margin: 0; }
+  .latest-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 650; line-height: 1.4; margin: 0 0 0.35rem; }
 
   /* --- Controls --- */
   .controls { padding: 1.1rem 0 0; display: flex; flex-direction: column; gap: 0.8rem; }
-  .filters { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: 'Space Grotesk', sans-serif; align-items: center; }
+  .filters { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: 'Space Grotesk', sans-serif; align-items: center; padding: 0.55rem 0.8rem;
+border-radius: 18px;
+background: rgba(255, 255, 255, 0.5);
+border: 1px solid rgba(211, 217, 223, 0.65);
+backdrop-filter: blur(10px); justify-content: center; }
 
   .filter {
-    background: transparent; border: 1px solid var(--line); color: var(--text-muted);
-    padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.85rem; font-family: inherit;
+    background: transparent; background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(8px); border: 1px solid var(--line); color: var(--text-muted);
+    padding: 0.65rem 1.1rem;; border-radius: 999px; font-size: 0.85rem; font-family: inherit;
     cursor: pointer; display: flex; align-items: center; gap: 0.5em;
-    transition: border-color 0.15s ease, color 0.15s ease;
+    transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
   }
-  .filter:hover { color: var(--text); border-color: #3a5252; }
-  .filter[aria-pressed="true"] { color: var(--bg); border-color: transparent; }
-  .filter .swatch { width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--text-muted)); }
+  .filter:hover {
+  color: var(--text);
+  border-color: var(--news);
+  transform: translateY(-1px) scale(1.02);;
+  box-shadow: 0 8px 20px rgba(23, 33, 43, 0.15);
+}
+  .filter[aria-pressed="true"] {
+  color: var(--bg);
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(23, 33, 43, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.25); text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+  .filter[aria-pressed="true"] .swatch {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+  .filter .swatch { width: 9px; height: 9px; border-radius: 50%; background: var(--dot, var(--text-muted)); transition: transform 150ms ease, background 150ms ease; transform: scale(1); }
   .filter[data-cat="news"][aria-pressed="true"] { background: var(--news); }
   .filter[data-cat="papers"][aria-pressed="true"] { background: var(--papers); }
   .filter[data-cat="reviews"][aria-pressed="true"] { background: var(--reviews); }
   .filter[data-cat="reddit"][aria-pressed="true"] { background: var(--reddit); }
   .filter.toggle-hw[aria-pressed="true"] { background: var(--hardware); }
   .filter.toggle-saved[aria-pressed="true"] { background: var(--saved); }
+  .filter.toggle-saved:hover {
+  color: var(--saved);
+  border-color: var(--saved);
+}
+.filter.toggle-hw:hover {
+  color: var(--hardware);
+  border-color: var(--hardware);
+}
+.filter[data-cat="news"]:hover {
+  color: var(--news);
+  border-color: var(--news);
+}
+.filter[data-cat="papers"]:hover {
+  color: var(--papers);
+  border-color: var(--papers);
+}
+.filter[data-cat="reviews"]:hover {
+  color: var(--reviews);
+  border-color: var(--reviews);
+}
+.filter[data-cat="reddit"]:hover {
+  color: var(--reddit);
+  border-color: var(--reddit);
+}
   .filter[aria-pressed="true"] .swatch { background: var(--bg); }
   .divider-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--line); margin: 0 0.1rem; }
 
-  .row2 { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+  .row2 { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; align-items: center; padding: 0.5rem;
+border-radius: 16px;
+background: rgba(255, 255, 255, 0.35);
+backdrop-filter: blur(8px); }
   select, .search-row {
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; background: var(--input-bg);
-    color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 1rem; background: var(--input-bg);
+    color: var(--text); border: 1px solid var(--line); border-radius: 14px; min-height: 48px; box-shadow: 0 8px 24px rgba(23, 33, 43, 0.12); transition: border-color 180ms ease, box-shadow 180ms ease;
   }
-  select { padding: 0.5rem 0.7rem; cursor: pointer; }
-  .search-row { flex: 1; min-width: 220px; display: flex; align-items: center; padding: 0.1rem 0.2rem; }
-  .search-row svg { margin: 0 0.6rem; flex-shrink: 0; opacity: 0.6; }
-  #search { flex: 1; border: none; background: transparent; color: var(--text); font: inherit; padding: 0.5rem 0.2rem; outline: none; }
+  
+  .search-row:focus-within {
+  border-color: var(--news);
+  box-shadow: 0 0 0 4px rgba(185, 116, 30, 0.10), 0 10px 28px rgba(23, 33, 43, 0.14);
+}
+
+.search-row:focus-within svg {
+  opacity: 1;
+  transform: scale(1.08) translateX(2px) rotate(-4deg);
+}
+  select { padding: 0.7rem 1rem; cursor: pointer; }
+  .search-row { flex: 1; min-width: 220px; display: flex; align-items: center; padding: 0.15rem 0.35rem; }
+  .search-row svg {
+  margin: 0 0.6rem;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+  #search { flex: 1; border: none; background: transparent; color: var(--text); font: inherit; padding: 0.65rem 0.35rem; outline: none; }
   #search::placeholder { color: var(--text-muted); }
 
   .visually-hidden {
@@ -175,24 +298,48 @@
   .result-count { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: var(--text-muted); margin: 1rem 0 0; }
 
   /* --- Card grid --- */
-  main { padding: 0.75rem 0 4rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+  main { padding: 2.5rem 0 4rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; background: rgba(255, 255, 255, 0.28);
+border-radius: 22px;
+border: 1px solid rgba(211, 217, 223, 0.55);	
+padding: 1.5rem; }
+.card:first-child {
+  grid-column: span 2;
+  min-height: 400px;
+  padding: 2rem;
+}
+.card:first-child {
+  border-top-width: 10px;
+}
+
 
   .card {
     position: relative;
-    background: var(--panel);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--line);
-    border-top: 3px solid var(--dot, var(--line));
-    border-radius: 6px;
-    padding: 1rem 1.1rem 0.9rem;
+    border-top: 5px solid var(--dot, var(--line));
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-radius: 19px;
+    transition: transform 180ms ease, box-shadow 180ms ease; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
     display: flex;
     flex-direction: column;
+    padding: 1.4rem 1.4rem 1.25rem;
+    min-height: 220px;
   }
+  
+  .card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.24);
+}
   .card.news { --dot: var(--news); }
   .card.papers { --dot: var(--papers); }
   .card.reviews { --dot: var(--reviews); }
   .card.reddit { --dot: var(--reddit); }
-  .card.is-hardware { box-shadow: inset 0 0 0 1px var(--hardware); }
+ .card.is-hardware {
+  box-shadow: 0 10px 28px rgba(23, 33, 43, 0.14), inset 0 0 0 1px var(--hardware) !important;
+}
 
   .hw-badge {
     position: absolute; top: 0; right: 12px;
@@ -203,15 +350,48 @@
   }
 
   .card-meta {
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.76rem; color: var(--text-muted);
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-muted);
     display: flex; gap: 0.5em; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;
   }
   .card-meta .cat-label { color: var(--dot); }
 
-  .card h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.05rem; line-height: 1.35; margin: 0 0 0.5rem; }
+  .card h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; line-height: 1.35; margin: 0 0 0.7rem; }
+  .card:first-child h2 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.card:first-child {
+  padding: 1.75rem;
+}
+.card:first-child {
+  box-shadow: 0 22px 50px rgba(23, 33, 43, 0.24);
+}
+.card:first-child p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 760px;
+}
+
+:root:not([data-theme="light"]) .card:first-child {
+  background:
+    linear-gradient(135deg, #22343B, #1A2A30);
+}
+.card:first-child {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 250, 0.88));
+}
+.card:first-child::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
   .card h2 a { text-decoration: none; }
   .card h2 a:hover { text-decoration: underline; text-decoration-color: var(--dot); }
-  .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
+  .card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
 
   .why {
     margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px dashed var(--line);
@@ -281,7 +461,7 @@
   }
   .load-more:hover { color: var(--text); border-color: var(--news); }
 
-  footer { border-top: 1px solid var(--line); padding: 1.25rem 0 3rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; }
+  footer { border-top: 1px solid var(--line); padding: 1.5rem 0 3rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; }
 
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--focus); outline-offset: 2px;
@@ -293,6 +473,18 @@
     border: 1px solid var(--line); border-radius: 4px; padding: 0.1rem 0.35rem;
     margin-right: 0.6rem; white-space: nowrap;
   }
+  @media (max-width: 700px) {
+  .card:first-child {
+    grid-column: span 1; .row2 {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.search-row {
+  width: 100%;
+}
+  }
+}
 </style>
 </head>
 <body>
@@ -301,7 +493,7 @@
   <div class="mast"><div class="wrap">
     <h1 class="wordmark">Signal<span>.</span></h1>
     <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
-    <p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
+    <p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
   </div></div>
 </noscript>
 
@@ -310,7 +502,7 @@
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
       <div class="mast-right">
-        <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a>
+        <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a>
         <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -336,6 +528,7 @@
       <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
       <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
       <button class="filter" data-cat="reddit" aria-pressed="false"><span class="swatch" style="--dot: var(--reddit)"></span>Reddit</button>
+      
       <span class="divider-dot"></span>
       <button class="filter toggle-hw" id="hwToggle" aria-pressed="false">⚡ Hardware</button>
       <button class="filter toggle-saved" id="savedToggle" aria-pressed="false">★ Saved</button>
