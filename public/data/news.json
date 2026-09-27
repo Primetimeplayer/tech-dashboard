@@ -1,7 +1,47 @@
 {
-  "updated": "2026-09-27T12:07:07.464Z",
+  "updated": "2026-09-27T18:06:34.677Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "OpenAI agents tried to ‘bruteforce’ a UN website",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1001178/openai-agents-bruteforce-un-website",
+      "published": "2026-09-27T17:21:07.000Z",
+      "summary": "The United Nations logo on a gate outside the UN headquarters in New York. | AFP via Getty Images Security researcher Rowan Howard-Jones says that OpenAI agents scanned the UN Conference on Trade and Development's (UNCTAD) statistics site…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic’s Dario Amodei gets the SNL treatment",
+      "link": "https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/",
+      "published": "Sun, 27 Sep 2026 16:30:00 +0000",
+      "summary": "\"AI is the devil and I its…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "TechCrunch Mobility: AV companies pick their lanes",
+      "link": "https://techcrunch.com/2026/09/27/techcrunch-mobility-av-companies-pick-their-lanes/",
+      "published": "Sun, 27 Sep 2026 16:02:00 +0000",
+      "summary": "Welcome back to TechCrunch Mobility, your hub for the future of transportation and now, more than ever, the role AI is playing in…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Sennheiser Momentum 5 review: Great sound, incredible battery life, and few compromises",
+      "link": "https://techcrunch.com/2026/09/27/sennheiser-momentum-5-review-great-sound-incredible-battery-life-and-few-compromises/",
+      "published": "Sun, 27 Sep 2026 15:00:00 +0000",
+      "summary": "I spent the last few weeks with the Sennheiser Momentum 5 to determine if this pair actually stands out, testing everything from sound quality and noise cancellation to comfort and battery…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Why OLPC’s $100 laptop never stood a chance",
+      "link": "https://www.theverge.com/podcast/1000517/why-olpcs-100-laptop-never-stood-a-chance",
+      "published": "2026-09-27T12:25:00.000Z",
+      "summary": "The idea was big, exciting, and inspiring: What if we could get every kid in the world access to a computer? For a bunch of thinkers and executives in Silicon Valley, it felt like the way to fix everything. But the One Laptop Per Child…"
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -33,6 +73,14 @@
       "link": "https://www.wired.com/story/best-pet-dna-test-kits/",
       "published": "Sun, 27 Sep 2026 11:02:00 +0000",
       "summary": "I sent my cats’ saliva to the lab to get health and genetic insights sent to my inbox—with very different…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "How the Smithsonian became the latest front in Trump’s culture war",
+      "link": "https://arstechnica.com/tech-policy/2026/09/how-the-smithsonian-became-the-latest-front-in-trumps-culture-war/",
+      "published": "Sun, 27 Sep 2026 11:00:12 +0000",
+      "summary": "The Smithsonian has faced withering pressure from the Trump…"
     },
     {
       "source": "Wired",
@@ -171,14 +219,6 @@
       "summary": "In Control Resonant, the entire world is at stake. But that didn't stop the diligent employees of the Federal Bureau of Control from filing reams of paperwork, and it didn't stop me from reading everything I could find, either. Reading is…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Pokémon card resellers have turned collecting into an online blood sport",
-      "link": "https://www.theverge.com/games/1001002/pokemon-30th-celebration-scalping-resellers",
-      "published": "2026-09-26T12:00:00.000Z",
-      "summary": "Earlier this month, Pokémon card content creator Natalie Roush posted a video to her YouTube and Instagram pages that enraged the larger collection community. In the now-deleted video, Roush shows off two premium boxes of cards that had…"
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "Old-School Credit Card Scams Are Far From Dead",
@@ -235,14 +275,6 @@
       "summary": "A competition between the gravity of the inner core and other forces in the mantle is altering the Earth's…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Can &#8216;eSUV&#8217; e-bikes really go from trail to town?",
-      "link": "https://www.theverge.com/transportation/999785/amflow-tl-review-avinox-esuv-e-bike-avinox",
-      "published": "2026-09-26T07:00:00.000Z",
-      "summary": "Have you ever wanted an electric bike that easily transitions from the drudgery of urban asphalt to adventures in gravel and dirt? That's what a subclass of so-called \"electric SUV\" (eSUV) e-bikes claims to do, with their wide, all-terrain…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "At Meta Connect, the company’s smart glasses were everywhere",
@@ -259,28 +291,12 @@
       "summary": "Boom Supersonic CEO Blake Scholl said the company's new stationary power plants were no longer in Crusoe's near-term…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Automattic has a new board after failed attempt to put CEO on leave",
-      "link": "https://techcrunch.com/2026/09/25/automattic-has-a-new-board-after-failed-attempt-to-put-ceo-on-leave/",
-      "published": "Fri, 25 Sep 2026 23:04:34 +0000",
-      "summary": "After days of upheaval at Automattic, following a failed attempt to remove CEO Matt Mullenweg, the company has a new…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Can Trump ever be wrong? His pick to lead FDA refused to say.",
       "link": "https://arstechnica.com/health/2026/09/can-trump-ever-be-wrong-his-pick-to-lead-fda-refused-to-say/",
       "published": "Fri, 25 Sep 2026 23:00:26 +0000",
       "summary": "Heidi Overton faced questions focused on vaccines, birth control, and…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Unsecured OpenAI agents posted 53 user images on the internet without the lab’s knowledge",
-      "link": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
-      "published": "Fri, 25 Sep 2026 22:20:47 +0000",
-      "summary": "AI agents operating in OpenAI's research environment posted user images on public image-hosting sites without the lab's…"
     },
     {
       "source": "Ars Technica",
@@ -297,14 +313,6 @@
       "link": "https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/",
       "published": "Fri, 25 Sep 2026 21:10:51 +0000",
       "summary": "Despite challenges, Tesla aims for 1,000 Optimus robots per week by end of…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Meta opens early access program for new Muse features",
-      "link": "https://techcrunch.com/2026/09/25/meta-opens-early-access-program-for-new-muse-features/",
-      "published": "Fri, 25 Sep 2026 20:34:53 +0000",
-      "summary": "Anyone interested in joining has to ask Muse to put them on the…"
     },
     {
       "source": "Ars Technica",
@@ -361,14 +369,6 @@
       "link": "https://arstechnica.com/space/2026/09/after-seven-years-a-spacecraft-company-is-releasing-its-otters-into-the-wild/",
       "published": "Fri, 25 Sep 2026 15:35:23 +0000",
       "summary": "\"There is always a tension that comes with seeing the first of anything…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "US being left behind in EV charging speeds as China goes sub-5 min to 70%",
-      "link": "https://arstechnica.com/cars/2026/09/us-being-left-behind-in-ev-charging-speeds-as-china-goes-sub-5-min-to-70/",
-      "published": "Fri, 25 Sep 2026 15:21:55 +0000",
-      "summary": "The new LFP battery charges from 10 to 70% in 4.5 minutes at just…"
     }
   ]
 }
