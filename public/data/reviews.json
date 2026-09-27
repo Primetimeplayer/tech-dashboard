@@ -1,7 +1,21 @@
 {
-  "updated": "2026-09-27T00:08:42.258Z",
+  "updated": "2026-09-27T06:07:33.692Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Why we won't know how visible the iPhone Duo's crease is for a long time",
+      "link": "https://www.engadget.com/2266671/iphone-duo-wont-know-how-visible-crease-for-long-time/",
+      "published": "Sun, 27 Sep 2026 00:30:00 +0000",
+      "summary": "The iPhone Duo has an impressively minimal crease, but that's only how it looks at the start. We'll have to wait a while to see what develops over time."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How powerful of a power bank do you need to safely charge a laptop?",
+      "link": "https://www.engadget.com/2266595/how-powerful-power-bank-needs-to-be-charge-laptop/",
+      "published": "Sun, 27 Sep 2026 00:00:00 +0000",
+      "summary": "A power bank is more than its capacity. You also need to know how fast it can deliver power so your laptop doesn't drain while it's connected."
+    },
     {
       "source": "Engadget Reviews",
       "title": "Your old GPU could be worth more than you think",
@@ -57,20 +71,6 @@
       "link": "https://www.engadget.com/2269867/minecraft-is-getting-a-new-dimension-called-the-sift-in-2027/",
       "published": "Sat, 26 Sep 2026 19:19:53 +0000",
       "summary": "The Sift will first be released with Minecraft Dungeons 2 later this month before arriving in the base game."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "What type of power cord does a PS5 use?",
-      "link": "https://www.engadget.com/2265348/playstation-power-cord-what-type/",
-      "published": "Sat, 26 Sep 2026 18:45:00 +0000",
-      "summary": "You probably don't think much about your PlayStation's power cord unless it needs to be replaced. If that time comes, here's what to know."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "You can use your old laptop to make a smart home hub",
-      "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
-      "published": "Sat, 26 Sep 2026 18:30:00 +0000",
-      "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
     }
   ]
 }

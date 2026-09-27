@@ -1,7 +1,23 @@
 {
-  "updated": "2026-09-27T00:08:25.973Z",
+  "updated": "2026-09-27T06:07:32.897Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "PNOE’s new face mask wants to make lab-grade breath testing a self-serve affair",
+      "link": "https://techcrunch.com/2026/09/26/pnoes-new-face-mask-wants-to-make-lab-grade-breath-testing-a-self-serve-affair/",
+      "published": "Sun, 27 Sep 2026 01:40:30 +0000",
+      "summary": "PNOĒ, the Malden, Mass.-based startup whose breath-analyzing mask used to bear an unfortunate resemblance to Bane's, is launching a sleeker self-serve version on October 1 that lets gym-goers measure their VO₂ max and other metabolic marker"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Google tests buying from Walmart-owned Flipkart through Gemini and AI Mode in India",
+      "link": "https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/",
+      "published": "Sun, 27 Sep 2026 01:30:00 +0000",
+      "summary": "The limited test covers select products and users, with a broader rollout planned for later in October."
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -243,14 +259,6 @@
       "summary": "Anyone interested in joining has to ask Muse to put them on the list."
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "The hottest new hangout for middle schoolers is NPR’s comment section?",
-      "link": "https://techcrunch.com/2026/09/25/the-hottest-new-hangout-for-middle-schoolers-is-nprs-comment-section/",
-      "published": "Fri, 25 Sep 2026 20:33:58 +0000",
-      "summary": "When NPR staffers flagged strange comments under their podcasts on Spotify as bots, it took a Gen Z colleague to (immediately) figure out the mystery."
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "Thieves Stole ‘Nvidia’ Trailers. They Got 20 Tons of Sand",
@@ -273,14 +281,6 @@
       "link": "https://arstechnica.com/apple/2026/09/review-the-iphone-18-pro-is-apples-coolest-smartphone-but-only-literally/",
       "published": "Fri, 25 Sep 2026 19:34:42 +0000",
       "summary": "Better thermals and battery life make this iterative update nicer to use."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Anthropic to pay Akamai $11.6 billion over seven years in cloud deal",
-      "link": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
-      "published": "Fri, 25 Sep 2026 19:13:38 +0000",
-      "summary": "Anthropic has committed $11.6 billion over seven years to Akamai's cloud infrastructure, a bet on CPUs that could grow to about $20 billion, and in an unusual arrangement, Akamai is giving Anthropic a potential stake of up to 5% of its stoc"
     },
     {
       "source": "Ars Technica",
