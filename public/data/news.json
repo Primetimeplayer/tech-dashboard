@@ -1,7 +1,63 @@
 {
-  "updated": "2026-09-27T09:27:49.448Z",
+  "updated": "2026-09-27T12:07:07.464Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Googlebooks might be the real deal",
+      "link": "https://www.theverge.com/tech/1000424/googlebooks-meta-ray-ban-audio-control-resonant-microsoft-surface-mouse",
+      "published": "2026-09-27T12:00:00.000Z",
+      "summary": "Hi, friends! Welcome to Installer No. 145, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, I'm happy to be done traveling for a bit, and also you can read all the old editions at the Installer…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The smart home graveyard is getting crowded",
+      "link": "https://www.theverge.com/column/1000778/smart-home-june-oven-graveyard",
+      "published": "2026-09-27T12:00:00.000Z",
+      "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the fragile state of your connected devices, follow Jennifer Pattison Tuohy. The Stepback arrives in our subscribers' inboxes on…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Party Speakers (2026): JBL, Sony, Marshall, and More",
+      "link": "https://www.wired.com/story/best-party-speaker/",
+      "published": "Sun, 27 Sep 2026 11:30:00 +0000",
+      "summary": "These speakers combine serious volume, big bass, portability, and the occasional karaoke session to bring the party…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "What’s the Best Pet DNA Test? We Tested the Most Popular Ones",
+      "link": "https://www.wired.com/story/best-pet-dna-test-kits/",
+      "published": "Sun, 27 Sep 2026 11:02:00 +0000",
+      "summary": "I sent my cats’ saliva to the lab to get health and genetic insights sent to my inbox—with very different…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "You Don’t Need to Pay for Distraction-Blocking Software",
+      "link": "https://www.wired.com/story/you-dont-need-to-pay-for-distraction-blocking-software/",
+      "published": "Sun, 27 Sep 2026 10:15:00 +0000",
+      "summary": "These free iOS and Android apps create the physical friction you need to put down your…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Data Center Backlash Should Also Be a Climate Reckoning. It Isn’t Yet",
+      "link": "https://www.wired.com/story/data-center-backlash-climate-reckoning/",
+      "published": "Sun, 27 Sep 2026 10:00:00 +0000",
+      "summary": "Climate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities’ impact on the…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Nicotine Is Mounting a Comeback in the Wellness Movement",
+      "link": "https://www.wired.com/story/nicotine-is-mounting-a-comeback-in-the-wellness-movement/",
+      "published": "Sun, 27 Sep 2026 09:30:00 +0000",
+      "summary": "Improving mood and increasing longevity are just some of the unfounded claims about this substance circling around the “natural” medicine corners of the…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -179,14 +235,6 @@
       "summary": "A competition between the gravity of the inner core and other forces in the mantle is altering the Earth's…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Best Early Prime Day Deals Ahead of Amazon’s Second Sale (2026)",
-      "link": "https://www.wired.com/story/amazon-prime-day-early-deals-09-26-2026/",
-      "published": "Sat, 26 Sep 2026 09:05:00 +0000",
-      "summary": "Amazon Prime Big Deal Days officially begin on October 6 and 7, but I’ve already spotted early discounts on gear our team…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Can &#8216;eSUV&#8217; e-bikes really go from trail to town?",
@@ -201,14 +249,6 @@
       "link": "https://techcrunch.com/2026/09/25/at-meta-connect-the-companys-smart-glasses-were-everywhere/",
       "published": "Sat, 26 Sep 2026 01:08:57 +0000",
       "summary": "The company behind Facebook and Instagram wants to keep consumers connected to the digital world via its ever-growing line of smart…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Quince Luggage Is Affordable but Doesn’t Feel Cheap (2026)",
-      "link": "https://www.wired.com/story/quince-wants-to-be-your-new-away-luggage/",
-      "published": "Sat, 26 Sep 2026 00:02:00 +0000",
-      "summary": "Is Quince the Away alternative we’ve been waiting for? I tested its luggage to find out, and the price difference is hard to…"
     },
     {
       "source": "TechCrunch",
@@ -267,14 +307,6 @@
       "summary": "Anyone interested in joining has to ask Muse to put them on the…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Thieves Stole ‘Nvidia’ Trailers. They Got 20 Tons of Sand",
-      "link": "https://www.wired.com/story/thieves-stole-nvidia-trailers-they-got-20-tons-of-sand/",
-      "published": "Fri, 25 Sep 2026 20:30:40 +0000",
-      "summary": "They wanted the silicon. They got the…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Your uncle’s frozen Mac says it’s infected after viewing a Google ad. Now what?",
@@ -315,36 +347,12 @@
       "summary": "Renewables easily cover changes in US demand, which is rising by 2% in…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Roku&#8217;s first OLED TVs are up to $400 off, starting at $699",
-      "link": "https://www.theverge.com/gadgets/1000859/roku-pro-series-oled-nothing-phone-4a-pro-deal-sale",
-      "published": "2026-09-25T18:18:57.000Z",
-      "summary": "Roku’s new OLED TVs are already marked down. | Image: The Verge Roku recently launched its first-ever OLED TVs. The $999 starting price was already impressive for the 55-inch Pro Series model that has a 120Hz refresh rate OLED panel (with…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Microsoft stops insisting you need a \"Copilot+ PC\"",
       "link": "https://arstechnica.com/gadgets/2026/09/microsoft-stops-insisting-you-need-a-copilot-pc/",
       "published": "Fri, 25 Sep 2026 17:57:37 +0000",
       "summary": "Microsoft's new Surface laptops forgo Copilot+ PC…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Phones don’t have lights",
-      "link": "https://www.theverge.com/podcast/1000751/vergecast-meta-connect-muse-googlebooks",
-      "published": "2026-09-25T17:42:59.000Z",
-      "summary": "Mark Zuckerberg has a new defense of the Ray-Ban Meta glasses: They're actually doing more to signal they're taking a photo than phones do. He's brought this up in at least two recent interviews, noting that the glasses have a light that…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Appeals Court Lets the Pentagon Designate Anthropic a Supply-Chain Risk",
-      "link": "https://www.wired.com/story/appeals-court-lets-the-pentagon-designate-anthropic-a-supply-chain-risk/",
-      "published": "Fri, 25 Sep 2026 16:58:20 +0000",
-      "summary": "The AI lab had argued multiple violations of its rights, but a divided panel of judges sided with the Trump…"
     },
     {
       "source": "Ars Technica",
@@ -361,14 +369,6 @@
       "link": "https://arstechnica.com/cars/2026/09/us-being-left-behind-in-ev-charging-speeds-as-china-goes-sub-5-min-to-70/",
       "published": "Fri, 25 Sep 2026 15:21:55 +0000",
       "summary": "The new LFP battery charges from 10 to 70% in 4.5 minutes at just…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "War Bros Didn’t Always Rule Silicon Valley",
-      "link": "https://www.wired.com/story/war-bros-didnt-always-rule-silicon-valley/",
-      "published": "Fri, 25 Sep 2026 15:00:00 +0000",
-      "summary": "Some say that tech was always about the money and the military. Don’t buy that…"
     }
   ]
 }
