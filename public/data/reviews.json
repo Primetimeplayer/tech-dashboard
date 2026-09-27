@@ -1,7 +1,49 @@
 {
-  "updated": "2026-09-26T20:23:00.660Z",
+  "updated": "2026-09-27T00:08:42.258Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Your old GPU could be worth more than you think",
+      "link": "https://www.engadget.com/2267877/your-old-gpu-worth-more-than-you-think/",
+      "published": "Sat, 26 Sep 2026 23:45:00 +0000",
+      "summary": "Your old GPU could be a goldmine thanks to the RAMaggedon."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Why your iPhone hates printer cables",
+      "link": "https://www.engadget.com/2266565/why-iphone-hates-printer-cables/",
+      "published": "Sat, 26 Sep 2026 23:30:00 +0000",
+      "summary": "AirPrint is the easiest path to printing on iPhone; other apps enable this, but printing with a cable isn't supported."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How to factory reset your Google Home Mini",
+      "link": "https://www.engadget.com/2266523/how-to-factory-reset-google-home-mini/",
+      "published": "Sat, 26 Sep 2026 23:00:00 +0000",
+      "summary": "Google Home Mini speakers may have been discontinued, but there are plenty still being used. If you have one, let's talk about how to reset it."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "iPhone 18 Pro vs. iPhone 17 Pro: What's new?",
+      "link": "https://www.engadget.com/2267863/iphone-18-pro-vs-17-pro-comparison-explained/",
+      "published": "Sat, 26 Sep 2026 22:45:00 +0000",
+      "summary": "The iPhone 18 Pro iterates on the iPhone 17 Pro while making some minor improvements, but what exactly is different?"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How high is too high for speakers in your home sound system?",
+      "link": "https://www.engadget.com/2266518/how-high-too-high-speakers-home-sound-system/",
+      "published": "Sat, 26 Sep 2026 22:30:00 +0000",
+      "summary": "Too much height makes dialogue and fine details sound less direct."
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Stop bringing your phone in the shower: How steam can ruin 'waterproof' phones",
+      "link": "https://www.engadget.com/2266522/why-steam-ruins-phone-more-than-water/",
+      "published": "Sat, 26 Sep 2026 22:00:00 +0000",
+      "summary": "Phone manufacturers are pretty direct in their guidance on this one."
+    },
     {
       "source": "Engadget Reviews",
       "title": "This external GPU uses Wi-Fi to transform any device into a gaming rig",
@@ -29,48 +71,6 @@
       "link": "https://www.engadget.com/2265491/you-can-use-your-old-laptop-to-make-a-smart-home-hub/",
       "published": "Sat, 26 Sep 2026 18:30:00 +0000",
       "summary": "An old netbook can automate the devices that otherwise aren't interested in talking to one another."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "How to properly clean your laptop fan",
-      "link": "https://www.engadget.com/2266513/how-to-clean-laptop-fan/",
-      "published": "Sat, 26 Sep 2026 18:00:00 +0000",
-      "summary": "Start with the vents before you reach for a screwdriver."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Apple hit with a $5.7 billion verdict for alleged patent infringement",
-      "link": "https://www.engadget.com/2269826/apple-hit-with-a-57-billion-verdict-for-alleged-patent-infringement/",
-      "published": "Sat, 26 Sep 2026 17:02:42 +0000",
-      "summary": "Apple is reportedly looking to appeal the jury verdict."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "TikTok will pay Alabama $100 million to settle social media addiction lawsuit",
-      "link": "https://www.engadget.com/2269822/tiktok-will-pay-alabama-100-million-to-settle-social-media-addiction-lawsuit/",
-      "published": "Sat, 26 Sep 2026 16:41:00 +0000",
-      "summary": "TikTok has settled Alabama's social media addiction lawsuit before it was supposed to go to trial."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "The MacBook models that macOS 27 Golden Gate does not support",
-      "link": "https://www.engadget.com/2266414/macbook-models-macos-27-golden-gate-does-not-support/",
-      "published": "Sat, 26 Sep 2026 16:30:00 +0000",
-      "summary": "macOS Golden Gate refines the Mac software experience, but not everyone can upgrade."
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Garmin Fenix 9 vs Fenix 8: How much of an upgrade is the new model?",
-      "link": "https://www.engadget.com/2266039/armin-fenix-9-vs-8-how-much-of-upgrade-new-model/",
-      "published": "Sat, 26 Sep 2026 16:00:00 +0000",
-      "summary": "Which sport smartwatch should you get?"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Why NVIDIA's most powerful GPU is so rarely sold to consumers",
-      "link": "https://www.engadget.com/2265946/why-most-powerful-nvidia-gpu-rarely-sold-to-consumers/",
-      "published": "Sat, 26 Sep 2026 15:30:00 +0000",
-      "summary": "NVIDIA's $16,000 RTX PRO 6000 can beat the RTX 5090, but gamers aren't who it's built for."
     }
   ]
 }

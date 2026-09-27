@@ -1,7 +1,31 @@
 {
-  "updated": "2026-09-26T20:22:59.928Z",
+  "updated": "2026-09-27T00:08:25.973Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Apple hit with $5.7 billion in damages over haptic patents",
+      "link": "https://www.theverge.com/tech/1001118/apple-hit-with-5-7-billion-in-damages-over-haptic-patents",
+      "published": "2026-09-26T21:30:01.000Z",
+      "summary": "Haptics tech company Taction sued Apple in 2021, alleging it infringed two of its patents. Now a federal jury in San Diego has awarded Taction over $5.7 billion in damages. According to CNBC, \"The lawsuit centered around U.S. Patent Nos. 10"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Insurers claim AI is already increasing healthcare costs",
+      "link": "https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/",
+      "published": "Sat, 26 Sep 2026 21:02:06 +0000",
+      "summary": "Blue Cross Blue Shield says hospital use of AI tools led to an additional $942M in healthcare spending over a two-year period."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "TikTok agrees to pay at least $100M in Alabama settlement",
+      "link": "https://techcrunch.com/2026/09/26/tiktok-agrees-to-pay-at-least-100m-in-alabama-settlement/",
+      "published": "Sat, 26 Sep 2026 20:24:45 +0000",
+      "summary": "TikTok will pay Alabama at least $100 million in a settlement tied to allegations that the short-form video platform misled users about safety and was designed to addict children."
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -267,28 +291,12 @@
       "summary": "\"There is no evidence of any significant, widespread displacement or reduction in hiring.”"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Mark Wahlberg is coming to TechCrunch Disrupt 2026, and he wants to talk about your work, not his",
-      "link": "https://techcrunch.com/2026/09/25/mark-wahlberg-is-coming-to-techcrunch-disrupt-2026/",
-      "published": "Fri, 25 Sep 2026 18:48:33 +0000",
-      "summary": "Mark Wahlberg joins Bruce K. Lee at Disrupt to discuss investing, entrepreneurship, healthcare, wellness, and building businesses."
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Paramount/WBD merger conditions give the public \"virtually nothing,\" judge is told",
       "link": "https://arstechnica.com/tech-policy/2026/09/paramount-wbd-merger-conditions-give-the-public-virtually-nothing-judge-is-told/",
       "published": "Fri, 25 Sep 2026 18:42:57 +0000",
       "summary": "US judge reviews deal with California, says it must not be result of collusion."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Ahead of US IPO, British AI neocloud Nscale secures $3.36B in convertible financing",
-      "link": "https://techcrunch.com/2026/09/25/ahead-of-u-s-ipo-british-ai-neocloud-nscale-secures-3-36b-in-convertible-finacing/",
-      "published": "Fri, 25 Sep 2026 18:33:59 +0000",
-      "summary": "The funding, which comes from Third Point, Nvidia, and others, will fuel the company's massive AI data center buildout."
     },
     {
       "source": "Ars Technica",
@@ -321,14 +329,6 @@
       "link": "https://www.theverge.com/podcast/1000751/vergecast-meta-connect-muse-googlebooks",
       "published": "2026-09-25T17:42:59.000Z",
       "summary": "Mark Zuckerberg has a new defense of the Ray-Ban Meta glasses: They're actually doing more to signal they're taking a photo than phones do. He's brought this up in at least two recent interviews, noting that the glasses have a light that co"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "These camera apps give you more control over the iPhone 18 Pro’s aperture",
-      "link": "https://www.theverge.com/tech/1000729/moment-pro-blackmagic-camera-ii-ios-app-iphone-18-pro-max-aperature-camera",
-      "published": "2026-09-25T17:23:30.000Z",
-      "summary": "One of the questionable limitations of the iPhone 18 Pro's new main camera with a variable aperture is that you're limited to just four settings in the native iOS' camera app in manual mode: f/1.48, f/1.8, f/2.8, and f/4. Those same limitat"
     },
     {
       "source": "Wired",
