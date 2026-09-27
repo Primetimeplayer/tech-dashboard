@@ -21,9 +21,27 @@ tech-dashboard/
 ```
 
 The dashboard now has: a **card grid** layout, a **Latest** strip (items from
-the last few hours), filters for **category, source, and date range**, a
-**search box**, a **☐ theme toggle** (remembers your choice), and it quietly
-**re-checks for new data every 5 minutes** without a full page reload.
+the last few hours), filters for **category, source, date range, and
+hardware-only**, a **search box**, **save/bookmark with personal notes**, a
+**share** button that copies a ready-to-post blurb, a **☐ theme toggle**, and
+it quietly **re-checks for new data every 5 minutes** without a full page
+reload.
+
+- **Hardware highlighting** — any item whose title/summary mentions chips,
+  GPUs, specific device categories, robotics, etc. gets a `⚡ Hardware`
+  badge and can be isolated with the "⚡ Hardware" filter pill. The keyword
+  list lives in `HARDWARE_KEYWORDS` near the top of the `<script>` block in
+  `public/index.html` — edit it freely to match what you actually care
+  about.
+- **Saved items + notes** — click "☆ Save" on any card to bookmark it (button
+  becomes "★ Saved") and a small notes box appears where you can jot down
+  why it caught your eye. Click "★ Saved" in the filter row to see only your
+  saved items. This is stored in your browser's `localStorage`, tied to that
+  one browser — it won't sync across devices, and clearing browser data will
+  clear it too.
+- **Share** — click "⇪ Share" on any card to copy a ready-to-paste blurb
+  (title, the why-it-matters note if there is one, and the link) to your
+  clipboard, ready to drop into a tweet, Slack message, or newsletter.
 
 Sample placeholder data ships in `public/data/` so the page renders
 immediately — run the fetch scripts (below) to replace it with live data.

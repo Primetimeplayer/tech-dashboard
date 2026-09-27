@@ -21,6 +21,8 @@
     --papers: #6FA8D8;
     --reviews: #C9836B;
     --reddit: #8FB878;
+    --hardware: #D9C25C;
+    --saved: #E0A5C9;
     --focus: #E9E4D6;
     --live: #6FCF97;
   }
@@ -37,6 +39,8 @@
     --papers: #2A6FA3;
     --reviews: #A55A3F;
     --reddit: #4E7A38;
+    --hardware: #8A6D1A;
+    --saved: #A94A7D;
     --focus: #1E2624;
     --live: #2F8F5B;
   }
@@ -57,17 +61,9 @@
   .wrap { max-width: 980px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem; }
 
   .mast { border-bottom: 1px solid var(--line); padding: 2.25rem 0 1.5rem; }
-  .mast .wrap { max-width: 980px; }
-
   .mast-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
 
-  .wordmark {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 1.9rem;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
+  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0; }
   .wordmark span { color: var(--news); }
 
   .mast-right { display: flex; align-items: center; gap: 0.9rem; }
@@ -78,103 +74,42 @@
     color: var(--text-muted);
     text-align: right;
     line-height: 1.5;
-    display: flex;
-    align-items: center;
-    gap: 0.4em;
+    display: flex; align-items: center; gap: 0.4em;
   }
 
-  .live-dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--live);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--live); animation: pulse 2.4s ease-in-out infinite; }
   @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
   .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--text);
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
+    background: transparent; border: 1px solid var(--line); color: var(--text);
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
   }
   .theme-toggle:hover { border-color: var(--news); }
 
   .tagline { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 1rem; max-width: 52ch; }
 
   /* --- Latest strip --- */
-  .latest {
-    padding: 1.1rem 0 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .latest-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin: 0 0 0.6rem;
-  }
-  .latest-row {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    padding-bottom: 1.1rem;
-    scrollbar-width: thin;
-  }
+  .latest { padding: 1.1rem 0 0; border-bottom: 1px solid var(--line); }
+  .latest-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: var(--text-muted); margin: 0 0 0.6rem; }
+  .latest-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 1.1rem; scrollbar-width: thin; }
   .latest-card {
-    flex: 0 0 auto;
-    width: 230px;
-    background: var(--panel-raised);
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--dot, var(--line));
-    padding: 0.7rem 0.8rem;
-    text-decoration: none;
-    color: var(--text);
+    flex: 0 0 auto; width: 230px; background: var(--panel-raised);
+    border: 1px solid var(--line); border-top: 3px solid var(--dot, var(--line));
+    padding: 0.7rem 0.8rem; text-decoration: none; color: var(--text);
   }
-  .latest-card .cat {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.7rem;
-    color: var(--dot);
-    margin-bottom: 0.3rem;
-  }
-  .latest-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    line-height: 1.3;
-    margin: 0;
-  }
+  .latest-card .cat { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: var(--dot); margin-bottom: 0.3rem; }
+  .latest-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; line-height: 1.3; margin: 0; }
 
   /* --- Controls --- */
-  .controls {
-    padding: 1.1rem 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
+  .controls { padding: 1.1rem 0 0; display: flex; flex-direction: column; gap: 0.8rem; }
   .filters { display: flex; gap: 0.6rem; flex-wrap: wrap; font-family: 'Space Grotesk', sans-serif; align-items: center; }
 
   .filter {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--text-muted);
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-family: inherit;
-    cursor: pointer;
-    display: flex; align-items: center; gap: 0.5em;
+    background: transparent; border: 1px solid var(--line); color: var(--text-muted);
+    padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.85rem; font-family: inherit;
+    cursor: pointer; display: flex; align-items: center; gap: 0.5em;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
   .filter:hover { color: var(--text); border-color: #3a5252; }
@@ -184,107 +119,98 @@
   .filter[data-cat="papers"][aria-pressed="true"] { background: var(--papers); }
   .filter[data-cat="reviews"][aria-pressed="true"] { background: var(--reviews); }
   .filter[data-cat="reddit"][aria-pressed="true"] { background: var(--reddit); }
+  .filter.toggle-hw[aria-pressed="true"] { background: var(--hardware); }
+  .filter.toggle-saved[aria-pressed="true"] { background: var(--saved); }
   .filter[aria-pressed="true"] .swatch { background: var(--bg); }
+  .divider-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--line); margin: 0 0.1rem; }
 
   .row2 { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
-
   select, .search-row {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    background: var(--input-bg);
-    color: var(--text);
-    border: 1px solid var(--line);
-    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; background: var(--input-bg);
+    color: var(--text); border: 1px solid var(--line); border-radius: 8px;
   }
-
   select { padding: 0.5rem 0.7rem; cursor: pointer; }
-
   .search-row { flex: 1; min-width: 220px; display: flex; align-items: center; padding: 0.1rem 0.2rem; }
   .search-row svg { margin: 0 0.6rem; flex-shrink: 0; opacity: 0.6; }
   #search { flex: 1; border: none; background: transparent; color: var(--text); font: inherit; padding: 0.5rem 0.2rem; outline: none; }
   #search::placeholder { color: var(--text-muted); }
 
-  .result-count {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin: 1rem 0 0;
-  }
+  .result-count { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: var(--text-muted); margin: 1rem 0 0; }
 
   /* --- Card grid --- */
   main { padding: 0.75rem 0 4rem; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 1rem;
-    margin-top: 0.75rem;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
 
   .card {
+    position: relative;
     background: var(--panel);
     border: 1px solid var(--line);
     border-top: 3px solid var(--dot, var(--line));
     border-radius: 6px;
-    padding: 1rem 1.1rem 1.15rem;
+    padding: 1rem 1.1rem 0.9rem;
     display: flex;
     flex-direction: column;
   }
-
   .card.news { --dot: var(--news); }
   .card.papers { --dot: var(--papers); }
   .card.reviews { --dot: var(--reviews); }
   .card.reddit { --dot: var(--reddit); }
+  .card.is-hardware { box-shadow: inset 0 0 0 1px var(--hardware); }
+
+  .hw-badge {
+    position: absolute; top: -10px; right: 12px;
+    background: var(--hardware); color: #1B1706;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600;
+    padding: 0.15rem 0.5rem; border-radius: 999px;
+  }
 
   .card-meta {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.76rem;
-    color: var(--text-muted);
-    display: flex; gap: 0.5em; align-items: baseline; flex-wrap: wrap;
-    margin-bottom: 0.5rem;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.76rem; color: var(--text-muted);
+    display: flex; gap: 0.5em; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem;
   }
   .card-meta .cat-label { color: var(--dot); }
 
-  .card h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-    line-height: 1.35;
-    margin: 0 0 0.5rem;
-  }
+  .card h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.05rem; line-height: 1.35; margin: 0 0 0.5rem; }
   .card h2 a { text-decoration: none; }
   .card h2 a:hover { text-decoration: underline; text-decoration-color: var(--dot); }
-
   .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; line-height: 1.55; }
 
   .why {
-    margin-top: 0.7rem;
-    padding-top: 0.6rem;
-    border-top: 1px dashed var(--line);
-    font-size: 0.86rem;
-    font-style: italic;
-    color: var(--text);
+    margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px dashed var(--line);
+    font-size: 0.86rem; font-style: italic; color: var(--text);
   }
   .why b { font-style: normal; color: var(--dot); font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; display: block; margin-bottom: 0.2rem; }
 
-  .empty {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--text-muted);
-    padding: 2rem 0;
-    font-size: 0.9rem;
+  .card-actions {
+    margin-top: 0.8rem; padding-top: 0.6rem; border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 0.4rem;
   }
+  .icon-btn {
+    background: transparent; border: 1px solid var(--line); color: var(--text-muted);
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem;
+    padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 0.35em;
+  }
+  .icon-btn:hover { color: var(--text); border-color: #3a5252; }
+  .icon-btn.active { color: var(--saved); border-color: var(--saved); }
+  .icon-btn.copied { color: var(--live); border-color: var(--live); }
 
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 1.25rem 0 3rem;
-    color: var(--text-muted);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.78rem;
+  .note-box { margin-top: 0.6rem; }
+  .note-box textarea {
+    width: 100%; min-height: 52px; resize: vertical;
+    background: var(--input-bg); color: var(--text); border: 1px solid var(--line);
+    border-radius: 6px; font-family: 'Source Serif 4', Georgia, serif; font-size: 0.85rem;
+    padding: 0.5rem; outline: none;
   }
+  .note-box textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .note-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: var(--text-muted); margin: 0 0 0.3rem; }
+
+  .empty { font-family: 'Space Grotesk', sans-serif; color: var(--text-muted); padding: 2rem 0; font-size: 0.9rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 1.25rem 0 3rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; }
 
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 2px;
+    outline: 2px solid var(--focus); outline-offset: 2px;
   }
 </style>
 </head>
@@ -318,6 +244,9 @@
       <button class="filter" data-cat="papers" aria-pressed="false"><span class="swatch" style="--dot: var(--papers)"></span>AI papers</button>
       <button class="filter" data-cat="reviews" aria-pressed="false"><span class="swatch" style="--dot: var(--reviews)"></span>Reviews</button>
       <button class="filter" data-cat="reddit" aria-pressed="false"><span class="swatch" style="--dot: var(--reddit)"></span>Reddit</button>
+      <span class="divider-dot"></span>
+      <button class="filter toggle-hw" id="hwToggle" aria-pressed="false">⚡ Hardware</button>
+      <button class="filter toggle-saved" id="savedToggle" aria-pressed="false">★ Saved</button>
     </div>
     <div class="row2">
       <select id="sourceFilter"><option value="all">All sources</option></select>
@@ -339,7 +268,7 @@
   </main>
 
   <footer>
-    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Edit freely — this is your dashboard.
+    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes live only in this browser (<code>localStorage</code>) — they won't follow you to another device. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>.
   </footer>
 </div>
 
@@ -354,13 +283,26 @@
   const resultCountEl = document.getElementById('resultCount');
   const latestSectionEl = document.getElementById('latestSection');
   const latestRowEl = document.getElementById('latestRow');
+  const hwToggleEl = document.getElementById('hwToggle');
+  const savedToggleEl = document.getElementById('savedToggle');
 
-  const AUTO_REFRESH_MS = 5 * 60 * 1000; // 5 minutes
-  const LATEST_WINDOW_MS = 3 * 60 * 60 * 1000; // 3 hours
+  const AUTO_REFRESH_MS = 5 * 60 * 1000;
+  const LATEST_WINDOW_MS = 3 * 60 * 60 * 1000;
+
+  const HARDWARE_KEYWORDS = [
+    'gpu', 'cpu', 'chip', 'chipset', 'processor', 'silicon', 'semiconductor',
+    'nvidia', 'amd', 'intel', 'qualcomm', 'tsmc', 'apple silicon',
+    'laptop', 'smartphone', 'tablet', 'wearable', 'smartwatch',
+    'headset', 'vr', 'ar glasses', 'robot', 'robotics', 'drone',
+    'accelerator', 'tpu', 'npu', 'inference chip', 'data center hardware',
+    'battery', 'sensor', 'camera module', 'motherboard', 'ssd', 'ram',
+  ];
 
   let activeFilter = 'all';
   let activeSource = 'all';
   let activeDate = 'all';
+  let hardwareOnly = false;
+  let savedOnly = false;
   let searchTerm = '';
   let allItems = [];
 
@@ -380,6 +322,32 @@
     try { localStorage.setItem('signal-theme', next); } catch (e) {}
   });
   initTheme();
+
+  // --- Saved items + notes (localStorage) ---
+  function loadSaved() {
+    try {
+      return JSON.parse(localStorage.getItem('signal-saved') || '{}');
+    } catch (e) { return {}; }
+  }
+  function persistSaved(map) {
+    try { localStorage.setItem('signal-saved', JSON.stringify(map)); } catch (e) {}
+  }
+  let savedMap = loadSaved(); // { [link]: { savedAt, note } }
+
+  function toggleSave(link) {
+    if (savedMap[link]) {
+      delete savedMap[link];
+    } else {
+      savedMap[link] = { savedAt: new Date().toISOString(), note: '' };
+    }
+    persistSaved(savedMap);
+    render();
+  }
+  function updateNote(link, text) {
+    if (!savedMap[link]) return;
+    savedMap[link].note = text;
+    persistSaved(savedMap);
+  }
 
   // --- Helpers ---
   function timeAgo(iso) {
@@ -405,15 +373,19 @@
     if (filter === 'week') return ageMs <= 7 * 24 * 60 * 60 * 1000;
     return true;
   }
-
-  // --- Populate source dropdown from loaded data ---
-  function populateSources() {
-    const sources = [...new Set(allItems.map((i) => i.source).filter(Boolean))].sort();
-    sourceFilterEl.innerHTML = '<option value="all">All sources</option>' +
-      sources.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+  function isHardware(item) {
+    const text = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+    return HARDWARE_KEYWORDS.some((kw) => text.includes(kw));
   }
 
-  // --- Latest strip ---
+  function populateSources() {
+    const sources = [...new Set(allItems.map((i) => i.source).filter(Boolean))].sort();
+    const current = sourceFilterEl.value;
+    sourceFilterEl.innerHTML = '<option value="all">All sources</option>' +
+      sources.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+    if ([...sourceFilterEl.options].some((o) => o.value === current)) sourceFilterEl.value = current;
+  }
+
   function renderLatest() {
     const latest = allItems
       .filter((i) => i.published && Date.now() - new Date(i.published).getTime() <= LATEST_WINDOW_MS)
@@ -428,7 +400,31 @@
     `).join('');
   }
 
-  // --- Main grid ---
+  function buildShareText(item) {
+    const hook = item.whyItMatters || item.summary || '';
+    return `${item.title}${hook ? ' — ' + hook : ''} ${item.link}`.trim();
+  }
+
+  async function copyText(text, btn) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      // fallback for older browsers / non-secure contexts
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e2) {}
+      document.body.removeChild(ta);
+    }
+    const original = btn.textContent;
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+  }
+
   function render() {
     const term = searchTerm.trim().toLowerCase();
     const items = allItems.filter((i) => {
@@ -436,7 +432,9 @@
       const matchesSource = activeSource === 'all' || i.source === activeSource;
       const matchesDate = withinDateFilter(i.published, activeDate);
       const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
-      return matchesCat && matchesSource && matchesDate && matchesTerm;
+      const matchesHw = !hardwareOnly || isHardware(i);
+      const matchesSaved = !savedOnly || !!savedMap[i.link];
+      return matchesCat && matchesSource && matchesDate && matchesTerm && matchesHw && matchesSaved;
     });
 
     resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
@@ -446,8 +444,13 @@
       return;
     }
 
-    feedEl.innerHTML = items.map((item) => `
-      <article class="card ${item.category}">
+    feedEl.innerHTML = items.map((item, idx) => {
+      const hw = isHardware(item);
+      const saved = !!savedMap[item.link];
+      const note = saved ? (savedMap[item.link].note || '') : '';
+      return `
+      <article class="card ${item.category}${hw ? ' is-hardware' : ''}" data-idx="${idx}">
+        ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
         <div class="card-meta">
           <span class="cat-label">${catLabel(item.category)}</span>
           <span>·</span>
@@ -458,8 +461,32 @@
         <h2><a href="${item.link}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a></h2>
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
         ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
+        <div class="card-actions">
+          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeHtml(item.link)}">${saved ? '★ Saved' : '☆ Save'}</button>
+          <button class="icon-btn share-btn" data-link="${escapeHtml(item.link)}">⇪ Share</button>
+        </div>
+        ${saved ? `
+        <div class="note-box">
+          <p class="note-label">Your note</p>
+          <textarea class="note-input" data-link="${escapeHtml(item.link)}" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+        </div>` : ''}
       </article>
-    `).join('');
+    `;
+    }).join('');
+
+    // wire up per-item data for share/save buttons without re-escaping issues
+    feedEl.querySelectorAll('.save-btn').forEach((btn) => {
+      btn.addEventListener('click', () => toggleSave(btn.dataset.link));
+    });
+    feedEl.querySelectorAll('.share-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = allItems.find((i) => i.link === btn.dataset.link);
+        if (item) copyText(buildShareText(item), btn);
+      });
+    });
+    feedEl.querySelectorAll('.note-input').forEach((ta) => {
+      ta.addEventListener('change', () => updateNote(ta.dataset.link, ta.value));
+    });
   }
 
   function renderAll() {
@@ -467,7 +494,6 @@
     render();
   }
 
-  // --- Data loading ---
   async function loadJSON(file, category, mapFn) {
     try {
       const res = await fetch(`data/${file}?_=${Date.now()}`);
@@ -480,7 +506,7 @@
     }
   }
 
-  async function refresh(isBackground) {
+  async function refresh() {
     const [news, papers, reviews, reddit] = await Promise.all([
       loadJSON('news.json', 'news', (i) => i),
       loadJSON('papers.json', 'papers', (i) => ({
@@ -495,36 +521,37 @@
       (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
     );
 
-    const currentSource = sourceFilterEl.value;
     populateSources();
-    if ([...sourceFilterEl.options].some((o) => o.value === currentSource)) {
-      sourceFilterEl.value = currentSource;
-    }
-
     statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
     renderAll();
   }
 
-  // --- Controls ---
   filtersEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter');
+    const btn = e.target.closest('.filter[data-cat]');
     if (!btn) return;
-    filtersEl.querySelectorAll('.filter').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    filtersEl.querySelectorAll('.filter[data-cat]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     btn.setAttribute('aria-pressed', 'true');
     activeFilter = btn.dataset.cat;
+    render();
+  });
+  hwToggleEl.addEventListener('click', () => {
+    hardwareOnly = !hardwareOnly;
+    hwToggleEl.setAttribute('aria-pressed', String(hardwareOnly));
+    render();
+  });
+  savedToggleEl.addEventListener('click', () => {
+    savedOnly = !savedOnly;
+    savedToggleEl.setAttribute('aria-pressed', String(savedOnly));
     render();
   });
   sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; render(); });
   dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; render(); });
   searchEl.addEventListener('input', (e) => { searchTerm = e.target.value; render(); });
 
-  // Keep relative timestamps ("3m ago") feeling alive without a full refetch
   setInterval(renderAll, 60 * 1000);
+  setInterval(refresh, AUTO_REFRESH_MS);
 
-  // Quietly check for new data periodically
-  setInterval(() => refresh(true), AUTO_REFRESH_MS);
-
-  refresh(false);
+  refresh();
 </script>
 
 </body>
