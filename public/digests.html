@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digests — Signal</title>
+<meta name="description" content="Weekly auto-generated digests from Signal's tech dashboard — newsletter-ready markdown and thread versions, copyable in one click.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://primetimeplayer.github.io/tech-dashboard/digests.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Digests — Signal">
+<meta property="og:description" content="Weekly auto-generated digests from Signal's tech dashboard.">
+<meta property="og:url" content="https://primetimeplayer.github.io/tech-dashboard/digests.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Digests — Signal">
+<meta name="twitter:description" content="Weekly auto-generated digests from Signal's tech dashboard.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +95,10 @@
   <h1 class="page-title">Weekly digests</h1>
   <p class="sub">Auto-generated every week from the dashboard's own data — newsletter-ready markdown and a thread version, both copyable below.</p>
 
+  <noscript>
+    <p class="empty">This page requires JavaScript to load and display digests. Please enable JavaScript to continue.</p>
+  </noscript>
+
   <div class="layout">
     <div class="list" id="digestList"><div class="empty">Loading…</div></div>
     <div>
@@ -127,7 +141,7 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
   }
 
   async function copyText(text, btn) {

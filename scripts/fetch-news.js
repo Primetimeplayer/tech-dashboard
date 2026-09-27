@@ -28,7 +28,13 @@ function cleanSummary(raw = '') {
     .replace(/<[^>]*>/g, ' ')     // strip any stray HTML
     .replace(/\s+/g, ' ')
     .trim()
-    .slice(0, 240);
+    .slice(0, 240)
+    .replace(/\s+\S*$/, '')   // end at word boundary
+    .replace(/\s+$/, '')
+    .trim()
+    .replace(/[.,;:!?]$/, '')  // remove trailing punctuation
+    .trim()
+    .concat('…');
 }
 
 async function fetchFeed(feed) {

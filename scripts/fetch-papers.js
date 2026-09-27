@@ -49,7 +49,7 @@ async function main() {
   const entries = parsed.feed.entry ?? [];
   const papers = entries.map((entry) => ({
     title: clean(entry.title?.[0]),
-    summary: clean(entry.summary?.[0]).slice(0, 400),
+    summary: clean(entry.summary?.[0]).slice(0, 400).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…'),
     link: entry.id?.[0],
     published: entry.published?.[0],
     authors: (entry.author ?? []).map((a) => a.name?.[0]).filter(Boolean),

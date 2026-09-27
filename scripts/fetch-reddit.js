@@ -16,7 +16,7 @@ const POSTS_PER_SUB = 8;
 const USER_AGENT = 'personal-tech-dashboard/1.0 (by u/your-username)';
 
 function cleanText(raw = '') {
-  return raw.replace(/\s+/g, ' ').trim().slice(0, 240);
+  return raw.replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
 }
 
 async function fetchSubreddit(sub) {

@@ -22,7 +22,7 @@ const FEEDS = [
 const ITEMS_PER_FEED = 10;
 
 function cleanSummary(raw = '') {
-  return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240);
+  return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
 }
 
 async function fetchFeed(feed) {

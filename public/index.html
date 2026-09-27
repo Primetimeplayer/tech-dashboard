@@ -4,6 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Signal — a personal tech dashboard</title>
+<meta name="description" content="Tech news, AI papers, device reviews, and Reddit discussion — pulled on a schedule, no algorithm, no ads. A personal tech dashboard by Signal.">
+<meta name="author" content="Signal">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://primetimeplayer.github.io/tech-dashboard/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Signal — a personal tech dashboard">
+<meta property="og:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.">
+<meta property="og:url" content="https://primetimeplayer.github.io/tech-dashboard/">
+<meta property="og:site_name" content="Signal">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Signal — a personal tech dashboard">
+<meta name="twitter:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Signal",
+  "description": "A personal tech dashboard aggregating tech news, AI papers, device reviews, and Reddit discussion.",
+  "url": "https://primetimeplayer.github.io/tech-dashboard/"
+}
+</script>
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +53,7 @@
     --saved: #E0A5C9;
     --focus: #E9E4D6;
     --live: #6FCF97;
+    --skeleton: #1A2C30;
   }
 
   :root[data-theme="light"] {
@@ -43,6 +72,7 @@
     --saved: #A94A7D;
     --focus: #1E2624;
     --live: #2F8F5B;
+    --skeleton: #DAD6C5;
   }
 
   * { box-sizing: border-box; }
@@ -75,6 +105,7 @@
     text-align: right;
     line-height: 1.5;
     display: flex; align-items: center; gap: 0.4em;
+    white-space: nowrap;
   }
 
   .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--live); animation: pulse 2.4s ease-in-out infinite; }
@@ -84,9 +115,10 @@
   .theme-toggle {
     background: transparent; border: 1px solid var(--line); color: var(--text);
     width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .theme-toggle:hover { border-color: var(--news); }
+  .theme-toggle svg { width: 16px; height: 16px; }
 
   .tagline { margin: 0.6rem 0 0; color: var(--text-muted); font-size: 1rem; max-width: 52ch; }
 
@@ -135,6 +167,11 @@
   #search { flex: 1; border: none; background: transparent; color: var(--text); font: inherit; padding: 0.5rem 0.2rem; outline: none; }
   #search::placeholder { color: var(--text-muted); }
 
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
   .result-count { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; color: var(--text-muted); margin: 1rem 0 0; }
 
   /* --- Card grid --- */
@@ -158,7 +195,8 @@
   .card.is-hardware { box-shadow: inset 0 0 0 1px var(--hardware); }
 
   .hw-badge {
-    position: absolute; top: -10px; right: 12px;
+    position: absolute; top: 0; right: 12px;
+    transform: translateY(-50%);
     background: var(--hardware); color: #1B1706;
     font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600;
     padding: 0.15rem 0.5rem; border-radius: 999px;
@@ -207,14 +245,65 @@
 
   .empty { font-family: 'Space Grotesk', sans-serif; color: var(--text-muted); padding: 2rem 0; font-size: 0.9rem; }
 
+  /* --- Loading skeleton --- */
+  .skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+  .skeleton-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1rem 1.1rem 0.9rem; min-height: 200px;
+  }
+  .skeleton-line {
+    height: 0.7rem; background: var(--skeleton); border-radius: 4px; margin-bottom: 0.6rem;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+  .skeleton-line.short { width: 60%; }
+  .skeleton-line.medium { width: 80%; }
+  .skeleton-line.full { width: 100%; }
+  .skeleton-line:last-child { margin-bottom: 0; }
+  @keyframes skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  @media (prefers-reduced-motion: reduce) { .skeleton-line { animation: none; } }
+
+  /* --- Error banner --- */
+  .error-banner {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem;
+    background: var(--panel); border: 1px solid var(--reviews); border-radius: 6px;
+    padding: 0.6rem 0.9rem; margin-top: 0.75rem; color: var(--text);
+    display: none;
+  }
+  .error-banner.visible { display: block; }
+
+  /* --- Load more --- */
+  .load-more-wrap { text-align: center; padding: 1rem 0 0; }
+  .load-more {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;
+    background: transparent; border: 1px solid var(--line); color: var(--text-muted);
+    border-radius: 999px; padding: 0.5rem 1.5rem; cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .load-more:hover { color: var(--text); border-color: var(--news); }
+
   footer { border-top: 1px solid var(--line); padding: 1.25rem 0 3rem; color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; }
 
-  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid var(--focus); outline-offset: 2px;
+  }
+
+  /* --- Search hint --- */
+  .search-hint {
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: var(--text-muted);
+    border: 1px solid var(--line); border-radius: 4px; padding: 0.1rem 0.35rem;
+    margin-right: 0.6rem; white-space: nowrap;
   }
 </style>
 </head>
 <body>
+
+<noscript>
+  <div class="mast"><div class="wrap">
+    <h1 class="wordmark">Signal<span>.</span></h1>
+    <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+    <p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 1.5rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
+  </div></div>
+</noscript>
 
 <div class="mast">
   <div class="wrap">
@@ -223,7 +312,9 @@
       <div class="mast-right">
         <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:var(--text-muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a>
         <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
       </div>
     </div>
     <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
@@ -250,7 +341,9 @@
       <button class="filter toggle-saved" id="savedToggle" aria-pressed="false">★ Saved</button>
     </div>
     <div class="row2">
+      <label for="sourceFilter" class="visually-hidden">Filter by source</label>
       <select id="sourceFilter"><option value="all">All sources</option></select>
+      <label for="dateFilter" class="visually-hidden">Filter by date</label>
       <select id="dateFilter">
         <option value="all">Any time</option>
         <option value="today">Today</option>
@@ -258,14 +351,29 @@
       </select>
       <div class="search-row">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search" type="search" placeholder="Search headlines and summaries…" autocomplete="off">
+        <label for="search" class="visually-hidden">Search headlines and summaries</label>
+        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <span class="search-hint" id="searchHint">/</span>
       </div>
     </div>
   </div>
   <p class="result-count" id="resultCount"></p>
 
+  <div class="error-banner" id="errorBanner"></div>
+
   <main>
-    <div class="grid" id="feed"></div>
+    <div class="skeleton-grid" id="skeleton">
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+      <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
+    </div>
+    <div class="grid" id="feed" style="display:none;"></div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+      <button class="load-more" id="loadMoreBtn">Show more</button>
+    </div>
   </main>
 
   <footer>
@@ -275,20 +383,31 @@
 
 <script>
   const feedEl = document.getElementById('feed');
+  const skeletonEl = document.getElementById('skeleton');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
   const searchEl = document.getElementById('search');
   const sourceFilterEl = document.getElementById('sourceFilter');
   const dateFilterEl = document.getElementById('dateFilter');
   const themeToggleEl = document.getElementById('themeToggle');
+  const themeIconEl = document.getElementById('themeIcon');
   const resultCountEl = document.getElementById('resultCount');
   const latestSectionEl = document.getElementById('latestSection');
   const latestRowEl = document.getElementById('latestRow');
   const hwToggleEl = document.getElementById('hwToggle');
   const savedToggleEl = document.getElementById('savedToggle');
+  const errorBannerEl = document.getElementById('errorBanner');
+  const loadMoreWrapEl = document.getElementById('loadMoreWrap');
+  const loadMoreBtnEl = document.getElementById('loadMoreBtn');
+  const searchHintEl = document.getElementById('searchHint');
 
   const AUTO_REFRESH_MS = 5 * 60 * 1000;
   const LATEST_WINDOW_MS = 3 * 60 * 60 * 1000;
+  const PAGE_SIZE = 18;
+  const SEARCH_DEBOUNCE_MS = 150;
+
+  const SUN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const MOON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 
   const HARDWARE_KEYWORDS = [
     'gpu', 'cpu', 'chip', 'chipset', 'processor', 'silicon', 'semiconductor',
@@ -306,20 +425,34 @@
   let savedOnly = false;
   let searchTerm = '';
   let allItems = [];
+  let visibleCount = PAGE_SIZE;
+  let searchTimer = null;
+  let fetchErrors = [];
 
   // --- Theme ---
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    themeToggleEl.textContent = theme === 'light' ? '◑' : '◐';
+    themeIconEl.outerHTML = theme === 'light' ? SUN_SVG.replace('<svg', '<svg id="themeIcon"') : MOON_SVG.replace('<svg', '<svg id="themeIcon"');
+    // Re-grab the element since outerHTML replaced it
+    // Actually, let's use innerHTML instead
+  }
+  function setThemeIcon(theme) {
+    const container = document.getElementById('themeToggle');
+    container.innerHTML = theme === 'light'
+      ? '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   }
   function initTheme() {
     let saved = null;
     try { saved = localStorage.getItem('signal-theme'); } catch (e) {}
-    applyTheme(saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+    const theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    setThemeIcon(theme);
   }
   themeToggleEl.addEventListener('click', () => {
     const next = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'dark' : 'light';
-    applyTheme(next);
+    document.documentElement.setAttribute('data-theme', next);
+    setThemeIcon(next);
     try { localStorage.setItem('signal-theme', next); } catch (e) {}
   });
   initTheme();
@@ -367,6 +500,9 @@
   function escapeHtml(str = '') {
     return str.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
+  function escapeAttr(str = '') {
+    return str.replace(/"/g, '&quot;');
+  }
   function withinDateFilter(iso, filter) {
     if (filter === 'all' || !iso) return true;
     const ageMs = Date.now() - new Date(iso).getTime();
@@ -380,10 +516,29 @@
   }
 
   function populateSources() {
+    // Group sources by category for easier scanning
+    const byCategory = { news: [], papers: [], reviews: [], reddit: [] };
     const sources = [...new Set(allItems.map((i) => i.source).filter(Boolean))].sort();
+    sources.forEach((s) => {
+      const item = allItems.find((i) => i.source === s);
+      const cat = item ? item.category : null;
+      if (cat && byCategory[cat]) byCategory[cat].push(s);
+      else byCategory.news.push(s); // fallback
+    });
+
     const current = sourceFilterEl.value;
-    sourceFilterEl.innerHTML = '<option value="all">All sources</option>' +
-      sources.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+    let html = '<option value="all">All sources</option>';
+    const labels = { news: 'News', papers: 'AI Papers', reviews: 'Reviews', reddit: 'Reddit' };
+    for (const cat of ['news', 'papers', 'reviews', 'reddit']) {
+      if (byCategory[cat].length) {
+        html += `<optgroup label="${labels[cat]}">`;
+        byCategory[cat].forEach((s) => {
+          html += `<option value="${escapeAttr(s)}">${escapeHtml(s)}</option>`;
+        });
+        html += '</optgroup>';
+      }
+    }
+    sourceFilterEl.innerHTML = html;
     if ([...sourceFilterEl.options].some((o) => o.value === current)) sourceFilterEl.value = current;
   }
 
@@ -394,7 +549,7 @@
     if (!latest.length) { latestSectionEl.hidden = true; return; }
     latestSectionEl.hidden = false;
     latestRowEl.innerHTML = latest.map((item) => `
-      <a class="latest-card ${item.category}" href="${item.link}" target="_blank" rel="noopener">
+      <a class="latest-card ${item.category}" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">
         <div class="cat">${catLabel(item.category)} · ${timeAgo(item.published)}</div>
         <h3>${escapeHtml(item.title)}</h3>
       </a>
@@ -426,9 +581,9 @@
     setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
   }
 
-  function render() {
+  function getFilteredItems() {
     const term = searchTerm.trim().toLowerCase();
-    const items = allItems.filter((i) => {
+    return allItems.filter((i) => {
       const matchesCat = activeFilter === 'all' || i.category === activeFilter;
       const matchesSource = activeSource === 'all' || i.source === activeSource;
       const matchesDate = withinDateFilter(i.published, activeDate);
@@ -437,15 +592,38 @@
       const matchesSaved = !savedOnly || !!savedMap[i.link];
       return matchesCat && matchesSource && matchesDate && matchesTerm && matchesHw && matchesSaved;
     });
+  }
+
+  function render() {
+    const items = getFilteredItems();
+    visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
     resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
 
+    // Show/hide error banner
+    if (fetchErrors.length) {
+      errorBannerEl.textContent = `Some sources couldn't be loaded (${fetchErrors.join(', ')}). Showing partial results.`;
+      errorBannerEl.classList.add('visible');
+    } else {
+      errorBannerEl.classList.remove('visible');
+    }
+
     if (!items.length) {
+      feedEl.style.display = 'none';
+      skeletonEl.style.display = 'none';
+      loadMoreWrapEl.style.display = 'none';
       feedEl.innerHTML = '<div class="empty">Nothing matches. Try a different filter, source, date range, or search term.</div>';
+      feedEl.style.display = 'block';
       return;
     }
 
-    feedEl.innerHTML = items.map((item, idx) => {
+    // Hide skeleton, show feed
+    skeletonEl.style.display = 'none';
+    feedEl.style.display = 'grid';
+
+    const visible = items.slice(0, visibleCount);
+
+    feedEl.innerHTML = visible.map((item, idx) => {
       const hw = isHardware(item);
       const saved = !!savedMap[item.link];
       const note = saved ? (savedMap[item.link].note || '') : '';
@@ -459,23 +637,23 @@
           <span>·</span>
           <span>${timeAgo(item.published)}</span>
         </div>
-        <h2><a href="${item.link}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a></h2>
+        <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></h2>
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
         ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
         <div class="card-actions">
-          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeHtml(item.link)}">${saved ? '★ Saved' : '☆ Save'}</button>
-          <button class="icon-btn share-btn" data-link="${escapeHtml(item.link)}">⇪ Share</button>
+          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}">${saved ? '★ Saved' : '☆ Save'}</button>
+          <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
         </div>
         ${saved ? `
         <div class="note-box">
           <p class="note-label">Your note</p>
-          <textarea class="note-input" data-link="${escapeHtml(item.link)}" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+          <textarea class="note-input" data-link="${escapeAttr(item.link)}" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
         </div>` : ''}
       </article>
     `;
     }).join('');
 
-    // wire up per-item data for share/save buttons without re-escaping issues
+    // Wire up per-item data for share/save buttons
     feedEl.querySelectorAll('.save-btn').forEach((btn) => {
       btn.addEventListener('click', () => toggleSave(btn.dataset.link));
     });
@@ -488,6 +666,14 @@
     feedEl.querySelectorAll('.note-input').forEach((ta) => {
       ta.addEventListener('change', () => updateNote(ta.dataset.link, ta.value));
     });
+
+    // Show/hide load more button
+    if (items.length > visibleCount) {
+      loadMoreWrapEl.style.display = 'block';
+      loadMoreBtnEl.textContent = `Show more (${items.length - visibleCount} remaining)`;
+    } else {
+      loadMoreWrapEl.style.display = 'none';
+    }
   }
 
   function renderAll() {
@@ -503,11 +689,13 @@
       return (data.items || []).map((raw) => ({ ...mapFn(raw), category }));
     } catch (err) {
       console.error('Failed to load', file, err);
+      fetchErrors.push(file.replace('.json', ''));
       return [];
     }
   }
 
   async function refresh() {
+    fetchErrors = [];
     const [news, papers, reviews, reddit] = await Promise.all([
       loadJSON('news.json', 'news', (i) => i),
       loadJSON('papers.json', 'papers', (i) => ({
@@ -527,27 +715,54 @@
     renderAll();
   }
 
+  // --- Event listeners ---
   filtersEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.filter[data-cat]');
     if (!btn) return;
     filtersEl.querySelectorAll('.filter[data-cat]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     btn.setAttribute('aria-pressed', 'true');
     activeFilter = btn.dataset.cat;
+    visibleCount = PAGE_SIZE;
     render();
   });
   hwToggleEl.addEventListener('click', () => {
     hardwareOnly = !hardwareOnly;
     hwToggleEl.setAttribute('aria-pressed', String(hardwareOnly));
+    visibleCount = PAGE_SIZE;
     render();
   });
   savedToggleEl.addEventListener('click', () => {
     savedOnly = !savedOnly;
     savedToggleEl.setAttribute('aria-pressed', String(savedOnly));
+    visibleCount = PAGE_SIZE;
     render();
   });
-  sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; render(); });
-  dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; render(); });
-  searchEl.addEventListener('input', (e) => { searchTerm = e.target.value; render(); });
+  sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
+  dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
+
+  // Debounced search
+  searchEl.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { visibleCount = PAGE_SIZE; render(); }, SEARCH_DEBOUNCE_MS);
+  });
+
+  // Keyboard shortcut: "/" to focus search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchEl && !e.target.matches('input, textarea, select')) {
+      e.preventDefault();
+      searchEl.focus();
+      searchHintEl.style.display = 'none';
+    }
+  });
+  searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
+  searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });
+
+  // Load more button
+  loadMoreBtnEl.addEventListener('click', () => {
+    visibleCount += PAGE_SIZE;
+    render();
+  });
 
   setInterval(renderAll, 60 * 1000);
   setInterval(refresh, AUTO_REFRESH_MS);
