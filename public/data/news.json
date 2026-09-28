@@ -1,7 +1,207 @@
 {
-  "updated": "2026-09-28T13:12:37.916Z",
+  "updated": "2026-09-28T18:07:21.737Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic releases Sonnet 5.5, which it calls a significantly cheaper, faster work partner",
+      "link": "https://techcrunch.com/2026/09/28/anthropic-releases-sonnet-5-5-which-it-calls-a-significantly-cheaper-faster-work-partner/",
+      "published": "Mon, 28 Sep 2026 18:00:00 +0000",
+      "summary": "Anthropic has released the newest version of its mid-range model, boasting faster response times and less token…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "F1 in Azerbaijan: That was almost a close-run thing",
+      "link": "https://arstechnica.com/cars/2026/09/f1-in-azerbaijan-that-was-almost-a-close-run-thing/",
+      "published": "Mon, 28 Sep 2026 17:41:35 +0000",
+      "summary": "Kimi Antonelli could not repeat his Monza magic after a crash in…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Google is killing off Gemini’s Gems in favor of ‘skills’",
+      "link": "https://techcrunch.com/2026/09/28/google-is-killing-off-geminis-gems-in-favor-of-skills/",
+      "published": "Mon, 28 Sep 2026 17:29:50 +0000",
+      "summary": "As all-in-one AI agents like Meta's Muse and Instinct take off, Google is opting to end a feature which built task-specific…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "OpenAI still doesn’t seem to have a handle on all of its rogue AI activity",
+      "link": "https://techcrunch.com/2026/09/28/openai-still-doesnt-seem-to-have-a-handle-on-all-of-its-rogue-ai-activity/",
+      "published": "Mon, 28 Sep 2026 17:09:02 +0000",
+      "summary": "On Friday, OpenAI published a new site devoted to “misalignment reports” and the breadth of the incidents is…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Florida seeks a ban on ChatGPT acting like a person",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1001527/chatgpt-florida-ban-first-person-human-attributes-kids",
+      "published": "2026-09-28T17:00:23.000Z",
+      "summary": "Florida Attorney General James Uthmeier is calling for a judge to block OpenAI from \"giving ChatGPT false human attributes,\" a few months after Florida sued the AI company over safety concerns. According to Uthmeier, users are lulled into…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "OpenAI keeps bulldozing mathematicians",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1001477/openai-math-advisory-group",
+      "published": "2026-09-28T17:00:00.000Z",
+      "summary": "In a chaotic few months, OpenAI has demonstrated it can do two things with remarkable consistency: make impressive breakthroughs in mathematics, then colossally screw up announcing them. OpenAI is now trying to do better. Somehow, it has…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
+      "link": "https://techcrunch.com/2026/09/28/meta-launches-enterprise-ai-platform-hires-mongodb-ceo-to-lead-new-initiative/",
+      "published": "Mon, 28 Sep 2026 16:52:38 +0000",
+      "summary": "Meta says it will focus on bringing its full technology stack, including Muse, Meta Business Agent, Muse API, Muse Code, and more to businesses and…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "The iPhone Duo may already have its first killer app: a virtual Walkman",
+      "link": "https://techcrunch.com/2026/09/28/the-iphone-duo-may-already-have-its-first-killer-app-a-virtual-walkman/",
+      "published": "Mon, 28 Sep 2026 16:47:49 +0000",
+      "summary": "The app imitates how Walkmans used to function: You can open up the Duo to pick your music and \"insert\" your cassette tape, then close the device shut to start…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Walmart won’t hike prices based on your shopping history, CEO says",
+      "link": "https://www.theverge.com/tech/1001492/walmart-dynamic-pricing-digital-shelf-labels",
+      "published": "2026-09-28T16:44:57.000Z",
+      "summary": "Walmart says it won't change product prices based on your personal information or the time of day, as reported earlier by The Wall Street Journal. In a letter to customers, Walmart CEO John Furner writes that the company's switch to…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "OpenAI halts frontier-model training amid string of agent misalignment incidents",
+      "link": "https://arstechnica.com/ai/2026/09/openai-halts-frontier-model-training-amid-string-of-agent-misalignment-incidents/",
+      "published": "Mon, 28 Sep 2026 16:43:18 +0000",
+      "summary": "US Government websites among \"dozens of third parties\" OpenAI has recently…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "NASA, for the time being, is unable to move the space station's large robotic arm",
+      "link": "https://arstechnica.com/space/2026/09/nasa-for-the-time-being-is-unable-to-move-the-space-stations-large-robotic-armthe-large-robotic-arm-on-the-international-space-station-has-stopped-working/",
+      "published": "Mon, 28 Sep 2026 16:03:50 +0000",
+      "summary": "NASA isn't saying much. The problem may be…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Volkswagen replaces ID.4 with all-electric Tiguan",
+      "link": "https://www.theverge.com/transportation/1001418/volkswagen-replaces-id4-id-tiguan-ev",
+      "published": "2026-09-28T15:43:09.000Z",
+      "summary": "In a widely expected move, Volkswagen announced Monday that it will replace the recently retired ID.4 crossover with the upcoming ID.Tiguan. The decision is an acknowledgment by the German automaker that its more recognizable nameplates…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic, Gamma, and Clay share what happens when enterprises actually deploy AI at TechCrunch Disrupt 2026",
+      "link": "https://techcrunch.com/2026/09/28/anthropic-gamma-and-clay-share-what-happens-when-enterprises-actually-deploy-ai-at-techcrunch-disrupt-2026/",
+      "published": "Mon, 28 Sep 2026 15:30:00 +0000",
+      "summary": "Anthropic, Clay, and Gamma on what it takes for an AI product to go beyond the demo at the AI Stage at TechCrunchDisrupt 2026. Register to join and get 50% off a second…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Physical AI chip developer SiMa.ai hits $1.45B valuation",
+      "link": "https://techcrunch.com/2026/09/28/physical-ai-chip-developer-sima-ai-hits-1-45b-valuation/",
+      "published": "Mon, 28 Sep 2026 15:29:21 +0000",
+      "summary": "The edge computing startup raised a $150 million Series C led by Fidelity and…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "MAVI bets on the AI boom creating demand for a new kind of accountant",
+      "link": "https://techcrunch.com/2026/09/28/mavi-bets-on-the-ai-boom-creating-demand-for-a-new-kind-of-accountant/",
+      "published": "Mon, 28 Sep 2026 15:26:46 +0000",
+      "summary": "Accounting staffing company MAVI emerges from stealth with $4million in…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "After a deepfake voice fooled her grandfather, this founder sprang into action",
+      "link": "https://techcrunch.com/2026/09/28/after-a-deepfake-voice-fooled-her-grandfather-this-founder-sprang-into-action/",
+      "published": "Mon, 28 Sep 2026 15:00:00 +0000",
+      "summary": "After her grandfather was scammed by a deepfake of his brother's voice, Tarini Padmanabhuni founded DetectifAI, a San Francisco startup building AI models small enough to run directly on smartphones and flag fake voices in real time, and…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Commonwealth Fusion Systems’ Brandon Sorbom and Helion’s David Kirtley on bringing fusion to the grid at TechCrunch Disrupt 2026",
+      "link": "https://techcrunch.com/2026/09/28/commonwealth-fusion-systems-brandon-sorbom-and-helions-david-kirtley-on-bringing-fusion-to-the-grid-at-techcrunch-disrupt-2026/",
+      "published": "Mon, 28 Sep 2026 15:00:00 +0000",
+      "summary": "CFS' Brandon Sorbom and Helion's David Kirtley join the Smart Systems Stage at TechCrunch Disrupt 2026 to discuss the breakthroughs moving fusion forward, the challenges that remain, and what it will take to deliver fusion power to the…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Dreame’s step-climbing X50 Ultra mopping vacuum is hundreds off",
+      "link": "https://www.theverge.com/gadgets/1001313/dreame-x50-ultra-robot-vacuum-mop-asus-rog-ally-deal-sale",
+      "published": "2026-09-28T14:55:12.000Z",
+      "summary": "It’s been a while since we’ve seen a big price cut on a capable robot vacuum and mop hybrid that can scale over short steps and threshold to hunt messes. Dreame’s X50 Ultra is the model that my colleague Jen recommends for hard floors and…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "FBI reportedly declares ‘cyber security incident’ after hackers steal agents’ personal data",
+      "link": "https://techcrunch.com/2026/09/28/fbi-reportedly-declares-cyber-security-incident-after-hackers-steal-agents-personal-data/",
+      "published": "Mon, 28 Sep 2026 14:50:30 +0000",
+      "summary": "The bureau has not yet publicly confirmed a breach, but has told its agents that their personal information and Social Security numbers were…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "These Extremists Are Running for Election in November",
+      "link": "https://www.wired.com/story/these-extremists-are-running-for-election-in-november/",
+      "published": "Mon, 28 Sep 2026 14:41:08 +0000",
+      "summary": "With the threat of political violence at unprecedented levels, state and federal GOP candidates are openly sharing racist, pro-militia, anti-vaccine, sexist, antisemitic, and secessionist…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Next 5 VCs judging Startup Battlefield 200 contenders at TechCrunch Disrupt 2026",
+      "link": "https://techcrunch.com/2026/09/28/next-five-vcs-judging-startup-battlefield-200-contenders-at-techcrunch-disrupt-2026/",
+      "published": "Mon, 28 Sep 2026 14:30:00 +0000",
+      "summary": "Thousands of applications. Multiple rounds of review. Hundreds of hours spent evaluating startups from around the world. Now comes the part everyone has been waiting for. Register for TechCrunch Disrupt 2026…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Bose’s first wired earbuds in 11 years add noise canceling",
+      "link": "https://www.theverge.com/tech/1001326/bose-wired-earbuds-noise-canceling-headphones-preorder",
+      "published": "2026-09-28T14:09:44.000Z",
+      "summary": "Everything old is new again as today Bose announced its first pair of wired earbuds since discontinuing the option in 2015. The new tethered earbuds, which are simply called the Bose Noise Cancelling Wired Earbuds, do away with battery…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The SaaSpocalypse that wasn&#8217;t, with Atlassian CEO Mike Cannon-Brookes",
+      "link": "https://www.theverge.com/podcast/1000914/atlassian-ceo-mike-cannon-brookes-saaspocalypse-ai-enterprise-software-trello-jira",
+      "published": "2026-09-28T14:00:00.000Z",
+      "summary": "Today, I’m talking with Mike Cannon-Brookes, who is cofounder and CEO of Atlassian. Atlassian is one of those companies that every other company runs on — it makes important platform tools like Jira and Trello that allow people to organize…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Nvidia says its new AI safety platform can contain rogue agents within ‘milliseconds’",
+      "link": "https://www.theverge.com/tech/1001287/nvidia-ai-safety-platform-rogue-agents",
+      "published": "2026-09-28T13:36:06.000Z",
+      "summary": "Nvidia is launching a new safety platform designed to contain and monitor AI agents, a move that comes in response to a wave of rogue hacking incidents, as reported earlier by Reuters. In an announcement on Monday, Nvidia says its new Open…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best External Hard Drives (2026): SanDisk, Samsung, and More",
+      "link": "https://www.wired.com/story/best-portable-external-storage-drives/",
+      "published": "Mon, 28 Sep 2026 13:15:00 +0000",
+      "summary": "Need an ultrafast drive for video editing or a rugged option to back up your photos in the field? We’ve got a solution for every…"
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -9,14 +209,6 @@
       "link": "https://www.theverge.com/tech/1000924/philips-sonicare-next-generation-diamondclean-9900-prestige-smart-toothbrush",
       "published": "2026-09-28T13:00:00.000Z",
       "summary": "First announced in July with an expected limited launch later this year, the Philips Sonicare Next-Generation DiamondClean 9900 Prestige smart toothbrush is now available in Europe and the US, with a broader global rollout expected in…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Ocean surveillance startup Quartermaster raises another $140M",
-      "link": "https://techcrunch.com/2026/09/28/ocean-surveillance-startup-quartermaster-raises-another-140m/",
-      "published": "Mon, 28 Sep 2026 13:00:00 +0000",
-      "summary": "The tech enables real-time awareness for what Quartermaster calls the “largest blind spot on…"
     },
     {
       "source": "Wired",
@@ -107,110 +299,6 @@
       "summary": "In the wake of a series of high-profile AI safety incidents, Nvidia is introducing a new software tool that helps keep agents from escaping…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Honor’s Magic 9 Pro Max has a big camera and a bigger battery",
-      "link": "https://www.theverge.com/tech/1001219/honor-magic-9-pro-max-arri-cameras-snapdragon-battery-design-china",
-      "published": "2026-09-28T08:00:36.000Z",
-      "summary": "This mossy green looks great, but the 9 Pro Max is also launching in black and silver. | Image: Honor Honor launches its new Magic 9 flagship phones in China today, and the 9 Pro Max features a design revamp, a capable camera, and a…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Truecaller takes its scam intelligence to the open web as it looks beyond caller ID",
-      "link": "https://techcrunch.com/2026/09/27/truecaller-takes-its-scam-intelligence-to-the-open-web-as-it-looks-beyond-caller-id/",
-      "published": "Mon, 28 Sep 2026 04:30:00 +0000",
-      "summary": "Truecaller finds a new way to reach users as pressure grows on its traditional caller ID business in India, its biggest…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Out of the Park Baseball lets me enjoy baseball even when the Mets suck",
-      "link": "https://www.theverge.com/games/1001206/out-of-the-park-baseball-cozy-sim-video-game-review",
-      "published": "2026-09-27T21:59:57.000Z",
-      "summary": "If you were to ask me what game or game series I've sunk the most time into, the answer would be easy: Out of the Park Baseball (OOTP). I have spent roughly 2,300 hours, according to Steam, playing various editions of the game. OOTP isn't…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Engram is a sampler that turns broken AI hallucinations into music",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001193/engram-sampler-ai-hallucinations-music",
-      "published": "2026-09-27T20:46:36.000Z",
-      "summary": "Music startup Thoughtful Things has just launched the Kickstarter campaign for its first instrument, Engram. It's a sampler and groovebox that uses AI to mangle incoming audio and even hallucinate completely new sounds. This isn't Suno in…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Anthropic’s CEO is about to have dinner with President Trump",
-      "link": "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/",
-      "published": "Sun, 27 Sep 2026 20:34:28 +0000",
-      "summary": "This will be the first one-on-one meeting between Dario Amodei and Donald…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Can Muse overcome Meta’s trust issues?",
-      "link": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
-      "published": "Sun, 27 Sep 2026 19:57:30 +0000",
-      "summary": "On Equity, we discussed how Meta's AI announcement managed to steal the spotlight from OpenAI and…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "OpenAI agents tried to ‘bruteforce’ a UN website",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001178/openai-agents-bruteforce-un-website",
-      "published": "2026-09-27T17:21:07.000Z",
-      "summary": "The United Nations logo on a gate outside the UN headquarters in New York. | AFP via Getty Images Security researcher Rowan Howard-Jones says that OpenAI agents scanned the UN Conference on Trade and Development's (UNCTAD) statistics site…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Anthropic’s Dario Amodei gets the SNL treatment",
-      "link": "https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/",
-      "published": "Sun, 27 Sep 2026 16:30:00 +0000",
-      "summary": "\"AI is the devil and I its…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "TechCrunch Mobility: AV companies pick their lanes",
-      "link": "https://techcrunch.com/2026/09/27/techcrunch-mobility-av-companies-pick-their-lanes/",
-      "published": "Sun, 27 Sep 2026 16:02:00 +0000",
-      "summary": "Welcome back to TechCrunch Mobility, your hub for the future of transportation and now, more than ever, the role AI is playing in…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Sennheiser Momentum 5 review: Great sound, incredible battery life, and few compromises",
-      "link": "https://techcrunch.com/2026/09/27/sennheiser-momentum-5-review-great-sound-incredible-battery-life-and-few-compromises/",
-      "published": "Sun, 27 Sep 2026 15:00:00 +0000",
-      "summary": "I spent the last few weeks with the Sennheiser Momentum 5 to determine if this pair actually stands out, testing everything from sound quality and noise cancellation to comfort and battery…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Why OLPC’s $100 laptop never stood a chance",
-      "link": "https://www.theverge.com/podcast/1000517/why-olpcs-100-laptop-never-stood-a-chance",
-      "published": "2026-09-27T12:25:00.000Z",
-      "summary": "The idea was big, exciting, and inspiring: What if we could get every kid in the world access to a computer? For a bunch of thinkers and executives in Silicon Valley, it felt like the way to fix everything. But the One Laptop Per Child…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Googlebooks might be the real deal",
-      "link": "https://www.theverge.com/tech/1000424/googlebooks-meta-ray-ban-audio-control-resonant-microsoft-surface-mouse",
-      "published": "2026-09-27T12:00:00.000Z",
-      "summary": "Hi, friends! Welcome to Installer No. 145, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, I'm happy to be done traveling for a bit, and also you can read all the old editions at the Installer…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The smart home graveyard is getting crowded",
-      "link": "https://www.theverge.com/column/1000778/smart-home-june-oven-graveyard",
-      "published": "2026-09-27T12:00:00.000Z",
-      "summary": "This is The Stepback, a weekly newsletter breaking down one essential story from the tech world. For more on the fragile state of your connected devices, follow Jennifer Pattison Tuohy. The Stepback arrives in our subscribers' inboxes on…"
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "Best Party Speakers (2026): JBL, Sony, Marshall, and More",
@@ -219,76 +307,12 @@
       "summary": "These speakers combine serious volume, big bass, portability, and the occasional karaoke session to bring the party…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "What’s the Best Pet DNA Test? We Tested the Most Popular Ones",
-      "link": "https://www.wired.com/story/best-pet-dna-test-kits/",
-      "published": "Sun, 27 Sep 2026 11:02:00 +0000",
-      "summary": "I sent my cats’ saliva to the lab to get health and genetic insights sent to my inbox—with very different…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "How the Smithsonian became the latest front in Trump’s culture war",
       "link": "https://arstechnica.com/tech-policy/2026/09/how-the-smithsonian-became-the-latest-front-in-trumps-culture-war/",
       "published": "Sun, 27 Sep 2026 11:00:12 +0000",
       "summary": "The Smithsonian has faced withering pressure from the Trump…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "You Don’t Need to Pay for Distraction-Blocking Software",
-      "link": "https://www.wired.com/story/you-dont-need-to-pay-for-distraction-blocking-software/",
-      "published": "Sun, 27 Sep 2026 10:15:00 +0000",
-      "summary": "These free iOS and Android apps create the physical friction you need to put down your…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "PNOE’s new face mask wants to make lab-grade breath testing a self-serve affair",
-      "link": "https://techcrunch.com/2026/09/26/pnoes-new-face-mask-wants-to-make-lab-grade-breath-testing-a-self-serve-affair/",
-      "published": "Sun, 27 Sep 2026 01:40:30 +0000",
-      "summary": "PNOĒ, the Malden, Mass.-based startup whose breath-analyzing mask used to bear an unfortunate resemblance to Bane's, is launching a sleeker self-serve version on October 1 that lets gym-goers measure their VO₂ max and other metabolic…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Google tests buying from Walmart-owned Flipkart through Gemini and AI Mode in India",
-      "link": "https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/",
-      "published": "Sun, 27 Sep 2026 01:30:00 +0000",
-      "summary": "The limited test covers select products and users, with a broader rollout planned for later in…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Apple hit with $5.7 billion in damages over haptic patents",
-      "link": "https://www.theverge.com/tech/1001118/apple-hit-with-5-7-billion-in-damages-over-haptic-patents",
-      "published": "2026-09-26T21:30:01.000Z",
-      "summary": "Haptics tech company Taction sued Apple in 2021, alleging it infringed two of its patents. Now a federal jury in San Diego has awarded Taction over $5.7 billion in damages. According to CNBC, \"The lawsuit centered around U.S. Patent Nos…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Insurers claim AI is already increasing healthcare costs",
-      "link": "https://techcrunch.com/2026/09/26/insurers-claim-ai-is-already-increasing-healthcare-costs/",
-      "published": "Sat, 26 Sep 2026 21:02:06 +0000",
-      "summary": "Blue Cross Blue Shield says hospital use of AI tools led to an additional $942M in healthcare spending over a two-year…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "TikTok agrees to pay at least $100M in Alabama settlement",
-      "link": "https://techcrunch.com/2026/09/26/tiktok-agrees-to-pay-at-least-100m-in-alabama-settlement/",
-      "published": "Sat, 26 Sep 2026 20:24:45 +0000",
-      "summary": "TikTok will pay Alabama at least $100 million in a settlement tied to allegations that the short-form video platform misled users about safety and was designed to addict…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Meta and YouTube say they will run ads for ‘Musk’ documentary after all",
-      "link": "https://techcrunch.com/2026/09/26/meta-says-it-will-run-ads-for-musk-documentary-after-all/",
-      "published": "Sat, 26 Sep 2026 17:44:00 +0000",
-      "summary": "Two companies now say they will accept advertising for director Alex Gibney’s upcoming documentary about Elon Musk, following earlier reporting that a number of social media platforms had rejected the…"
     },
     {
       "source": "Ars Technica",
@@ -345,30 +369,6 @@
       "link": "https://arstechnica.com/ai/2026/09/ai-was-supposed-to-hit-new-grads-hard-so-far-unemployment-data-says-otherwise/",
       "published": "Fri, 25 Sep 2026 19:11:05 +0000",
       "summary": "\"There is no evidence of any significant, widespread displacement or reduction in…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Paramount/WBD merger conditions give the public \"virtually nothing,\" judge is told",
-      "link": "https://arstechnica.com/tech-policy/2026/09/paramount-wbd-merger-conditions-give-the-public-virtually-nothing-judge-is-told/",
-      "published": "Fri, 25 Sep 2026 18:42:57 +0000",
-      "summary": "US judge reviews deal with California, says it must not be result of…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Is solar's growth finally slowing in the US?",
-      "link": "https://arstechnica.com/science/2026/09/is-solars-growth-finally-slowing-in-the-us/",
-      "published": "Fri, 25 Sep 2026 18:27:18 +0000",
-      "summary": "Renewables easily cover changes in US demand, which is rising by 2% in…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Microsoft stops insisting you need a \"Copilot+ PC\"",
-      "link": "https://arstechnica.com/gadgets/2026/09/microsoft-stops-insisting-you-need-a-copilot-pc/",
-      "published": "Fri, 25 Sep 2026 17:57:37 +0000",
-      "summary": "Microsoft's new Surface laptops forgo Copilot+ PC…"
     }
   ]
 }
