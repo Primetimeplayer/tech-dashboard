@@ -1,7 +1,21 @@
 {
-  "updated": "2026-09-28T12:07:31.415Z",
+  "updated": "2026-09-28T13:12:38.651Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Why it's important to eject external drives properly",
+      "link": "https://www.engadget.com/2267984/why-its-important-to-properly-eject-external-drives/",
+      "published": "Mon, 28 Sep 2026 12:45:00 +0000",
+      "summary": "Safely removing external drives before removing them might sound like old-school advice, but it's still important to keep your files…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How long will a 20,000 mAh power bank typically last?",
+      "link": "https://www.engadget.com/2267973/how-long-20000-mah-power-bank-lasts/",
+      "published": "Mon, 28 Sep 2026 12:15:00 +0000",
+      "summary": "If you need to charge your phone repeatedly while away from an outlet, a big power bank could be a good…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Una watch review: A modular, repairable GPS watch is a good first step",
@@ -57,20 +71,6 @@
       "link": "https://www.engadget.com/2267714/how-to-improve-carplay-navigation-use-google-maps-not-apple-maps/",
       "published": "Sun, 27 Sep 2026 23:00:00 +0000",
       "summary": "Google Maps can't be set as the default GPS app in CarPlay in most regions, but you can still make it easier to use while…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "When is it worth using a bike computer over a smartphone?",
-      "link": "https://www.engadget.com/2267892/phone-vs-bike-computer-differences/",
-      "published": "Sun, 27 Sep 2026 22:45:00 +0000",
-      "summary": "Your phone may be all you need until battery life, navigation or rough conditions start getting in the…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "How to turn your old MacBook into a home NAS server",
-      "link": "https://www.engadget.com/2266517/how-to-turn-your-old-macbook-into-home-nas-server/",
-      "published": "Sun, 27 Sep 2026 22:30:00 +0000",
-      "summary": "If you have a MacBook sitting around collecting dust, you can give it new life by turning it into a home NAS server. Here's how to get…"
     }
   ]
 }

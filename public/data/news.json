@@ -1,7 +1,39 @@
 {
-  "updated": "2026-09-28T12:07:30.598Z",
+  "updated": "2026-09-28T13:12:37.916Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Philips’ motion-tracking smart toothbrush uses AI to make you a better brusher",
+      "link": "https://www.theverge.com/tech/1000924/philips-sonicare-next-generation-diamondclean-9900-prestige-smart-toothbrush",
+      "published": "2026-09-28T13:00:00.000Z",
+      "summary": "First announced in July with an expected limited launch later this year, the Philips Sonicare Next-Generation DiamondClean 9900 Prestige smart toothbrush is now available in Europe and the US, with a broader global rollout expected in…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Ocean surveillance startup Quartermaster raises another $140M",
+      "link": "https://techcrunch.com/2026/09/28/ocean-surveillance-startup-quartermaster-raises-another-140m/",
+      "published": "Mon, 28 Sep 2026 13:00:00 +0000",
+      "summary": "The tech enables real-time awareness for what Quartermaster calls the “largest blind spot on…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Bose Launches New Wired Earbuds After More Than a Decade",
+      "link": "https://www.wired.com/story/bose-to-release-wired-headphones-after-10-years/",
+      "published": "Mon, 28 Sep 2026 13:00:00 +0000",
+      "summary": "The Bose Noise Cancelling Wired Earbuds are the first new wired headphones from the brand since 2015, inspired directly by teen preferences. We got an early…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "SpaceX preps next-gen Starlink as Amazon’s competitor stalls",
+      "link": "https://www.theverge.com/science/1001259/spacex-starlink-satellites-starship-amazon-leo",
+      "published": "2026-09-28T12:09:17.000Z",
+      "summary": "SpaceX is gearing up for a monumental flight today that's sure to be closely watched by Amazon. If successful, SpaceX will deploy its first Starlink V3 satellites, which tout meaningful upgrades to the ever-expanding Starlink…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -211,14 +243,6 @@
       "summary": "These free iOS and Android apps create the physical friction you need to put down your…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Data Center Backlash Should Also Be a Climate Reckoning. It Isn’t Yet",
-      "link": "https://www.wired.com/story/data-center-backlash-climate-reckoning/",
-      "published": "Sun, 27 Sep 2026 10:00:00 +0000",
-      "summary": "Climate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities’ impact on the…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "PNOE’s new face mask wants to make lab-grade breath testing a self-serve affair",
@@ -259,36 +283,12 @@
       "summary": "TikTok will pay Alabama at least $100 million in a settlement tied to allegations that the short-form video platform misled users about safety and was designed to addict…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Decap is the man behind the drums behind your favorite song",
-      "link": "https://www.theverge.com/report/1000994/decap-drums-that-knock-interview",
-      "published": "2026-09-26T19:30:00.000Z",
-      "summary": "Drums on film. | Image: Decap I don't think I'm going to hurt anyone's feelings by pointing out that Decap doesn't have the name recognition of Kendrick Lamar, Olivia Rodrigo, or Charli XCX. But his fingerprints are all over tracks from…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Meta and YouTube say they will run ads for ‘Musk’ documentary after all",
       "link": "https://techcrunch.com/2026/09/26/meta-says-it-will-run-ads-for-musk-documentary-after-all/",
       "published": "Sat, 26 Sep 2026 17:44:00 +0000",
       "summary": "Two companies now say they will accept advertising for director Alex Gibney’s upcoming documentary about Elon Musk, following earlier reporting that a number of social media platforms had rejected the…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Kids turned the comment section of an NPR podcast into a group chat",
-      "link": "https://www.theverge.com/entertainment/1001056/this-american-life-npr-kids-group-chat-comment-section",
-      "published": "2026-09-26T17:32:35.000Z",
-      "summary": "Middle schoolers, likely blocked from other apps and social networks, apparently turned the Spotify comment section under an episode of NPR's Wild Card into an impromptu group chat. In a new episode of This American Life, host Ira Glass…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Levoit’s new air purifier is for the pet odors that have taken over your apartment",
-      "link": "https://techcrunch.com/2026/09/26/levoits-new-air-purifier-is-for-the-pet-odors-that-have-taken-over-your-apartment/",
-      "published": "Sat, 26 Sep 2026 17:00:00 +0000",
-      "summary": "This $189.99 air purifier is specifically designed to tackle pet odors, removing up to 70% in one…"
     },
     {
       "source": "Ars Technica",
