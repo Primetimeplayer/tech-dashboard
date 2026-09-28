@@ -532,6 +532,7 @@ padding: 1.5rem; }
       <span class="divider-dot"></span>
       <button class="filter toggle-hw" id="hwToggle" aria-pressed="false">⚡ Hardware</button>
       <button class="filter toggle-saved" id="savedToggle" aria-pressed="false">★ Saved</button>
+      <button class="filter" id="syncSettingsBtn" title="Optional: sync saved items across devices" aria-label="Sync settings">⚙</button>
     </div>
     <div class="row2">
       <label for="sourceFilter" class="visually-hidden">Filter by source</label>
@@ -570,7 +571,7 @@ padding: 1.5rem; }
   </main>
 
   <footer>
-    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes live only in this browser (<code>localStorage</code>) — they won't follow you to another device. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>.
+    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes live only in this browser (<code>localStorage</code>) — they won't follow you to another device. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
   </footer>
 </div>
 
@@ -661,6 +662,57 @@ padding: 1.5rem; }
   }
   let savedMap = loadSaved(); // { [link]: { savedAt, note } }
 
+  // --- Optional serverless sync (see cloudflare-worker/README.md) ---
+  // Does nothing until you click the gear button and enter an endpoint + token.
+  function getSyncConfig() {
+    try {
+      return {
+        endpoint: localStorage.getItem('signal-sync-endpoint') || '',
+        token: localStorage.getItem('signal-sync-token') || '',
+      };
+    } catch (e) { return { endpoint: '', token: '' }; }
+  }
+
+  async function syncPush() {
+    const { endpoint, token } = getSyncConfig();
+    if (!endpoint || !token) return;
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Sync-Token': token },
+        body: JSON.stringify(savedMap),
+      });
+    } catch (e) { console.error('Sync push failed:', e.message); }
+  }
+
+  async function syncPull() {
+    const { endpoint, token } = getSyncConfig();
+    if (!endpoint || !token) return;
+    try {
+      const res = await fetch(endpoint, { headers: { 'X-Sync-Token': token } });
+      if (!res.ok) throw new Error('sync pull: ' + res.status);
+      const remote = await res.json();
+      if (Object.keys(remote).length) {
+        savedMap = remote; // once the server has data, it is the source of truth
+        persistSaved(savedMap);
+      } else if (Object.keys(savedMap).length) {
+        await syncPush(); // first-time setup: upload what is already saved locally
+      }
+    } catch (e) { console.error('Sync pull failed:', e.message); }
+  }
+
+  document.getElementById('syncSettingsBtn').addEventListener('click', () => {
+    const current = getSyncConfig();
+    const endpoint = prompt('Sync endpoint URL (leave blank to turn sync off):', current.endpoint);
+    if (endpoint === null) return; // cancelled
+    const token = endpoint ? prompt('Sync token:', current.token) : '';
+    try {
+      localStorage.setItem('signal-sync-endpoint', endpoint || '');
+      localStorage.setItem('signal-sync-token', token || '');
+    } catch (e) {}
+    if (endpoint) { syncPull().then(render); }
+  });
+
   function toggleSave(link) {
     if (savedMap[link]) {
       delete savedMap[link];
@@ -668,12 +720,14 @@ padding: 1.5rem; }
       savedMap[link] = { savedAt: new Date().toISOString(), note: '' };
     }
     persistSaved(savedMap);
+    syncPush();
     render();
   }
   function updateNote(link, text) {
     if (!savedMap[link]) return;
     savedMap[link].note = text;
     persistSaved(savedMap);
+    syncPush();
   }
 
   // --- Helpers ---
@@ -960,7 +1014,7 @@ padding: 1.5rem; }
   setInterval(renderAll, 60 * 1000);
   setInterval(refresh, AUTO_REFRESH_MS);
 
-  refresh();
+  syncPull().then(refresh);
 </script>
 
 </body>
