@@ -1,0 +1,16 @@
+name = "signal-sync"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Create this with: wrangler kv namespace create SAVED_KV
+# then paste the id it prints below.
+kv_namespaces = [
+  { binding = "SAVED_KV", id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID" }
+]
+
+[vars]
+# Your GitHub Pages origin, so only your own site's requests are accepted.
+ALLOWED_ORIGIN = "https://primetimeplayer.github.io"
+
+# SYNC_TOKEN is a secret, NOT set here -- see the README in this folder.
+# Set it with: wrangler secret put SYNC_TOKEN

@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reviews.json');
 
-const parser = new Parser({ timeout: 10000 });
+const parser = new Parser({ timeout: 10000, headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' } });
 
 // Section-specific feeds tend to be cleaner than filtering a firehose feed
 // by keyword. Swap in whatever outlets you actually read.

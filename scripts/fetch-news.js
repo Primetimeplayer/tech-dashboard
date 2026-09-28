@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'news.json');
 
-const parser = new Parser({ timeout: 10000 });
+const parser = new Parser({ timeout: 10000, headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' } });
 
 // Add or remove feeds freely. Most news/blog sites publish an RSS feed
 // even if it isn't linked in the nav -- try /feed, /rss, or /rss.xml.
