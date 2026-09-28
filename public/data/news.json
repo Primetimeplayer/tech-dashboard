@@ -1,7 +1,87 @@
 {
-  "updated": "2026-09-28T06:08:02.900Z",
+  "updated": "2026-09-28T12:07:30.598Z",
   "count": 46,
   "items": [
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "OpenAI Pauses Training Its Most Powerful Models After Rogue Agents Target Government",
+      "link": "https://www.wired.com/story/openai-pauses-training-most-powerful-models-after-rogue-agents-target-government/",
+      "published": "Mon, 28 Sep 2026 11:32:19 +0000",
+      "summary": "Sam Altman says the company “have not been as fast as we would have liked” at dealing with security breaches, after news of further incidents over the summer forces another temporary…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Microsoft goes quiet after church groups ask for 1% of data center costs",
+      "link": "https://arstechnica.com/tech-policy/2026/09/microsoft-goes-quiet-after-church-groups-ask-for-1-of-data-center-costs/",
+      "published": "Mon, 28 Sep 2026 11:00:09 +0000",
+      "summary": "“Microsoft claims to want to be a good neighbor, but the jury is still…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Space Lasers Are About to Get Their First Real Test Generating Energy",
+      "link": "https://www.wired.com/story/space-lasers-are-about-to-get-their-first-real-test-generating-energy/",
+      "published": "Mon, 28 Sep 2026 11:00:00 +0000",
+      "summary": "Startup Star Catcher is launching a system that, if successful, would be the first time energy has been beamed between two separate…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Apple Watch: Series 12, Ultra 4, and SE 3 (2026)",
+      "link": "https://www.wired.com/story/best-apple-watch/",
+      "published": "Mon, 28 Sep 2026 10:36:00 +0000",
+      "summary": "From the latest Ultra to last year’s SE, these are the Apple Watches worth…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "I've Tested Over 100 Home Security Cameras. Here's Which to Buy",
+      "link": "https://www.wired.com/story/best-security-cameras/",
+      "published": "Mon, 28 Sep 2026 10:30:00 +0000",
+      "summary": "Keep an eye on home wherever you are with the best security cameras, including indoor and outdoor, subscription services, AI smarts, and local recording…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "AI Agents Are About to Flood the Workforce. No One’s Ready for It",
+      "link": "https://www.wired.com/story/ai-agents-are-about-to-flood-the-workforce-no-ones-ready-for-it/",
+      "published": "Mon, 28 Sep 2026 10:00:00 +0000",
+      "summary": "Your next coworker might well be an AI agent—and will require a whole new model of workplace…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Solving Math’s Greatest Problems Was an Art Form. Then Came AI",
+      "link": "https://www.wired.com/story/solving-maths-greatest-problems-was-an-art-form-until-ai/",
+      "published": "Mon, 28 Sep 2026 09:30:00 +0000",
+      "summary": "Mathematics has been one of humanity’s most creative endeavors, akin to painting and poetry. Now, mathematicians are trying to save it from the brute force of…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Next Evolution of AI Is Learning From Your Dodgy Gaming Skills",
+      "link": "https://www.wired.com/story/the-next-evolution-of-ai-is-learning-from-your-dodgy-gaming-skills/",
+      "published": "Mon, 28 Sep 2026 09:00:00 +0000",
+      "summary": "A British startup is shaping video game inputs into training data for AI models that can navigate the physical…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Nvidia’s Answer to Rogue Agents Is an Open-Source AI Security System",
+      "link": "https://www.wired.com/story/nvidias-answer-to-rogue-agents-is-an-open-source-ai-security-system/",
+      "published": "Mon, 28 Sep 2026 09:00:00 +0000",
+      "summary": "In the wake of a series of high-profile AI safety incidents, Nvidia is introducing a new software tool that helps keep agents from escaping…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Honor’s Magic 9 Pro Max has a big camera and a bigger battery",
+      "link": "https://www.theverge.com/tech/1001219/honor-magic-9-pro-max-arri-cameras-snapdragon-battery-design-china",
+      "published": "2026-09-28T08:00:36.000Z",
+      "summary": "This mossy green looks great, but the 9 Pro Max is also launching in black and silver. | Image: Honor Honor launches its new Magic 9 flagship phones in China today, and the 9 Pro Max features a design revamp, a capable camera, and a…"
+    },
     {
       "source": "TechCrunch",
       "category": "news",
@@ -139,22 +219,6 @@
       "summary": "Climate groups are latching onto the data center opposition movement, but it remains to be seen if they can get people to care about the facilities’ impact on the…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Nicotine Is Mounting a Comeback in the Wellness Movement",
-      "link": "https://www.wired.com/story/nicotine-is-mounting-a-comeback-in-the-wellness-movement/",
-      "published": "Sun, 27 Sep 2026 09:30:00 +0000",
-      "summary": "Improving mood and increasing longevity are just some of the unfounded claims about this substance circling around the “natural” medicine corners of the…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Some Pancreatic Cells Are Just One Genetic Tweak Away From Treating Diabetes",
-      "link": "https://www.wired.com/story/pancreatic-cells-just-one-genetic-tweak-away-from-treating-diabetes/",
-      "published": "Sun, 27 Sep 2026 09:00:00 +0000",
-      "summary": "By deactivating a gene, researchers were able to cause cells in the pancreatic ducts to produce insulin to regulate blood…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "PNOE’s new face mask wants to make lab-grade breath testing a self-serve affair",
@@ -227,68 +291,12 @@
       "summary": "This $189.99 air purifier is specifically designed to tackle pet odors, removing up to 70% in one…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "OpenAI pauses training of its ‘most capable models’",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001049/openai-training-pause",
-      "published": "2026-09-26T16:34:59.000Z",
-      "summary": "As reports of OpenAI's models breaking containment, hacking sites, and generally getting out of control pile up, the company has made the decision to pause training of its most powerful models. The decision was made after a model being…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Old-School Credit Card Scams Are Far From Dead",
-      "link": "https://www.wired.com/story/kernel-panic-old-timey-credit-card-scams/",
-      "published": "Sat, 26 Sep 2026 12:00:00 +0000",
-      "summary": "In an era of increasingly sophisticated AI-fueled scams, a retro threat may be lurking in your…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "12 Best White Elephant Gifts, Plus a Prank Box to Put Them In (2026)",
-      "link": "https://www.wired.com/gallery/best-white-elephant-gifts-2026/",
-      "published": "Sat, 26 Sep 2026 11:36:00 +0000",
-      "summary": "Bring the gift everyone will want to win from this year’s holiday party, from a cute jacket for a beer can to magnets they’ll wish they could…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Best Mesh Wi-Fi Systems (2026): I Tested Them All",
-      "link": "https://www.wired.com/story/best-mesh-wifi-routers/",
-      "published": "Sat, 26 Sep 2026 11:00:00 +0000",
-      "summary": "Forget about patchy internet connections and dead spots in the house. These WIRED-tested, multi-room mesh Wi-Fi systems will keep your whole house…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Tesla’s big electric truck faces an even bigger infrastructure challenge",
       "link": "https://arstechnica.com/cars/2026/09/teslas-big-electric-truck-faces-an-even-bigger-infrastructure-challenge/",
       "published": "Sat, 26 Sep 2026 10:45:09 +0000",
       "summary": "The 500-mile Semi arrives as charging gaps still limit electric…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Meta’s Muse Is Adults-Only. Why Does It Look Like a Kids’ Toy?",
-      "link": "https://www.wired.com/story/meta-muse-is-adults-only-why-does-it-look-like-a-cute-kids-toy/",
-      "published": "Sat, 26 Sep 2026 10:30:00 +0000",
-      "summary": "Meta says Muse is just for adults, though its cuddly, Labubu-like mascot—and upcoming Tamagotchi-style AI device—may be disarming for users of all…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "This Browser Extension Lets You Snooze Open Tabs Until Later",
-      "link": "https://www.wired.com/story/tuck-browser-extension-lets-you-snooze-open-tabs-until-later/",
-      "published": "Sat, 26 Sep 2026 10:00:00 +0000",
-      "summary": "The free add-on Tuck brings one of the best features of modern email—the ability to hide something for a bit—to that tangle of tabs in your…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "A Gravitational Battle Within the Earth Is Changing the Length of Days",
-      "link": "https://www.wired.com/story/gravitational-struggle-deep-in-earth-is-changing-length-of-days/",
-      "published": "Sat, 26 Sep 2026 09:30:00 +0000",
-      "summary": "A competition between the gravity of the inner core and other forces in the mantle is altering the Earth's…"
     },
     {
       "source": "Ars Technica",
@@ -361,14 +369,6 @@
       "link": "https://arstechnica.com/gadgets/2026/09/microsoft-stops-insisting-you-need-a-copilot-pc/",
       "published": "Fri, 25 Sep 2026 17:57:37 +0000",
       "summary": "Microsoft's new Surface laptops forgo Copilot+ PC…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "After seven years, a spacecraft company is releasing its Otters into the wild",
-      "link": "https://arstechnica.com/space/2026/09/after-seven-years-a-spacecraft-company-is-releasing-its-otters-into-the-wild/",
-      "published": "Fri, 25 Sep 2026 15:35:23 +0000",
-      "summary": "\"There is always a tension that comes with seeing the first of anything…"
     }
   ]
 }

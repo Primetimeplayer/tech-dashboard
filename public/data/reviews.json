@@ -1,7 +1,28 @@
 {
-  "updated": "2026-09-28T06:08:03.838Z",
+  "updated": "2026-09-28T12:07:31.415Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Una watch review: A modular, repairable GPS watch is a good first step",
+      "link": "https://www.engadget.com/2267443/una-watch-review/",
+      "published": "Mon, 28 Sep 2026 12:00:00 +0000",
+      "summary": "A small Scottish startup made a modular, repairable smart-ish watch, showing up the rest of the wearables industry in the…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "The US government plans to use AI to help redact documents",
+      "link": "https://www.engadget.com/2270348/the-us-government-plans-to-use-ai-to-help-redact-documents/",
+      "published": "Mon, 28 Sep 2026 11:25:54 +0000",
+      "summary": "AI use for FOIA requests might result in even more information being…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "You can now preorder the tiny Boox Picco ereader",
+      "link": "https://www.engadget.com/2268196/you-can-now-preorder-the-tiny-boox-picco-ereader/",
+      "published": "Mon, 28 Sep 2026 07:00:00 +0000",
+      "summary": "It's so…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Level 1, 2 and 3 EV chargers: Which is better to use?",
@@ -50,27 +71,6 @@
       "link": "https://www.engadget.com/2266517/how-to-turn-your-old-macbook-into-home-nas-server/",
       "published": "Sun, 27 Sep 2026 22:30:00 +0000",
       "summary": "If you have a MacBook sitting around collecting dust, you can give it new life by turning it into a home NAS server. Here's how to get…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Here's what happens to your old computer parts you donate to Goodwill",
-      "link": "https://www.engadget.com/2267008/donated-old-computer-parts-goodwill-what-happens-to-them/",
-      "published": "Sun, 27 Sep 2026 22:00:00 +0000",
-      "summary": "Goodwill has a pretty robust electronics refurbishment…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Bill Gates says it's 'completely irresponsible' for AI to not have safeguards",
-      "link": "https://www.engadget.com/2270166/bill-gates-says-that-its-completely-irresponsible-for-ai-to-not-have-safeguards/",
-      "published": "Sun, 27 Sep 2026 19:12:29 +0000",
-      "summary": "The Microsoft co-founder said that the more present danger is bad actors with access to AI…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Should you ditch your tablet for a foldable phone?",
-      "link": "https://www.engadget.com/2267889/ditch-tablet-for-foldable-phone/",
-      "published": "Sun, 27 Sep 2026 18:45:00 +0000",
-      "summary": "Foldables expand to almost the size of an iPad…"
     }
   ]
 }
