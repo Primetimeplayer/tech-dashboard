@@ -1,7 +1,14 @@
 {
-  "updated": "2026-09-28T00:08:23.435Z",
+  "updated": "2026-09-28T06:08:03.838Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Level 1, 2 and 3 EV chargers: Which is better to use?",
+      "link": "https://www.engadget.com/2267893/level-1-2-vs-3-ev-charger-which-is-better/",
+      "published": "Mon, 28 Sep 2026 00:30:00 +0000",
+      "summary": "Provided you don't drive long distances every day, Level 1 charging could be all you…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Are 3D printers worth buying in 2026?",
@@ -64,13 +71,6 @@
       "link": "https://www.engadget.com/2267889/ditch-tablet-for-foldable-phone/",
       "published": "Sun, 27 Sep 2026 18:45:00 +0000",
       "summary": "Foldables expand to almost the size of an iPad…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "BYD says its new solid-state EV battery tech is nearly ready for the open road",
-      "link": "https://www.engadget.com/2265495/byd-new-solid-state-battery-ev-almost-ready-2027/",
-      "published": "Sun, 27 Sep 2026 18:30:00 +0000",
-      "summary": "The Chinese company is one of several car makers expected to adopt solid-state batteries in the next few…"
     }
   ]
 }

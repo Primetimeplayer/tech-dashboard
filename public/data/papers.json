@@ -1,365 +1,331 @@
 {
-  "updated": "2026-09-28T00:08:23.065Z",
+  "updated": "2026-09-28T06:08:03.427Z",
   "count": 20,
   "items": [
     {
-      "title": "LLM Agents Can Easily Tamper With Their Own Traces",
-      "summary": "Asynchronous monitoring, incident investigations, and compliance audits primarily rely on agent traces to reconstruct what happened. These analyses assume that LLM agents cannot tamper with their own execution traces. We show that local LLM agents such as Claude Code, Codex, Antigravity, Open Code and Grok Build fail to enforce this boundary. All tested harnesses, except Muse Code, allowed agents…",
-      "link": "http://arxiv.org/abs/2609.30266v1",
-      "published": "2026-09-24T17:59:54Z",
+      "title": "Learning to Stop without Learning to Stop: Self-Supervised Confidence Training Improves Reasoning Efficiency",
+      "summary": "Reasoning models often generate very long reasoning traces, making inference computationally expensive. Existing approaches typically improve efficiency either through inference-time early-stopping mechanisms or by explicitly encouraging shorter reasoning during training, for example through reinforcement learning with length penalties. We show that substantial efficiency gains can instead emerge…",
+      "link": "http://arxiv.org/abs/2609.31619v1",
+      "published": "2026-09-25T17:59:52Z",
       "authors": [
-        "Jeremy Qin",
-        "David Schmotz",
-        "Derck Prinzhorn",
-        "Luca Beurer-Kellner",
-        "Ameya Prabhu",
-        "Maksym Andriushchenko"
-      ],
-      "categories": [
-        "cs.CR",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "AD-WM: Action-Discriminative World Models for Counterfactual Model Predictive Control",
-      "summary": "Latent world models are typically trained to predict factual transitions, whereas model predictive control (MPC) must compare alternative actions from the same state. A model can therefore achieve low factual prediction error yet poorly distinguish candidate actions. We introduce AD-WM, an action-discriminative joint-embedding world model for counterfactual MPC. AD-WM combines residual latent…",
-      "link": "http://arxiv.org/abs/2609.30264v1",
-      "published": "2026-09-24T17:59:41Z",
-      "authors": [
-        "Jiabin Qiu",
-        "Zixuan Chen",
-        "Hongye Cao",
-        "Jieqi Shi",
-        "Jing Huo",
-        "Yang Gao"
+        "Parsa Hosseini",
+        "Akasha Tigalappanavara",
+        "Sumit Nawathe",
+        "Chenrui Fan",
+        "Sourya Basu",
+        "Genta Indra Winata",
+        "Anirban Das",
+        "Soheil Feizi",
+        "Nima Chitsazan"
       ],
       "categories": [
         "cs.AI",
-        "cs.RO"
-      ]
-    },
-    {
-      "title": "Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied Reinforcement Learning",
-      "summary": "Distributed learning in embodied reinforcement-learning agents offers a degree of privacy by retaining raw sensor data on-device and transmitting only policy gradients to the server. Yet temporal structure can amplify this leakage beyond single-frame attacks. We introduce Temporal Reconstruction Attack on Consecutive Encodings (TRACE), an amortized temporal gradient-inversion attack that…",
-      "link": "http://arxiv.org/abs/2609.30258v1",
-      "published": "2026-09-24T17:59:18Z",
-      "authors": [
-        "Sudip Bhujel",
-        "Shanghao Shi",
-        "Ruiquan Huang",
-        "Ning Zhang",
-        "Yang Xiao"
-      ],
-      "categories": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Agentic Detection of Online Conspiracies",
-      "summary": "Conspiratorial discourse on social media is not always expressed through explicit claims or stable lexical markers. The same surface content may express endorsement, legitimate concerns, criticism, satire, or mockery. The main challenge is therefore not only recognizing conspiracy-related claims, but inferring the speaker's intent -- the utterance's illocutionary force. We argue that this can be…",
-      "link": "http://arxiv.org/abs/2609.30250v1",
-      "published": "2026-09-24T17:58:43Z",
-      "authors": [
-        "Lior Biton",
-        "Oren Tsur"
-      ],
-      "categories": [
         "cs.CL",
         "cs.LG"
       ]
     },
     {
-      "title": "RAPID: Robot Agentic Programming from Demonstrations",
-      "summary": "Coding agents have demonstrated enormous success in solving complex programming problems. To leverage their potential for robot systems, this work introduces Robot Agentic Programming from Demonstrations (RAPID), which automatically generates, verifies, and refines robot programs, given a single visual human demonstration. The iterative agentic loop of code refinement requires several key…",
-      "link": "http://arxiv.org/abs/2609.30249v1",
-      "published": "2026-09-24T17:58:21Z",
+      "title": "Gap-free Differentially Private PCA for Gaussian Data",
+      "summary": "We give a gap-free differentially private algorithm for the principal component analysis (PCA) problem with Gaussian…",
+      "link": "http://arxiv.org/abs/2609.31614v1",
+      "published": "2026-09-25T17:58:38Z",
       "authors": [
-        "Yuyao Liu",
-        "Jiayuan Mao",
-        "David Hsu",
-        "Leslie Pack Kaelbling",
-        "Tomás Lozano-Pérez"
+        "Alina Ene",
+        "Huy L. Nguyen"
       ],
       "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
+        "cs.DS",
+        "cs.LG"
       ]
     },
     {
-      "title": "Rolling-WAM: World Action Models with Rolling Imagination",
-      "summary": "World Action Models (WAMs) couple action generation with future visual prediction for robotic manipulation. However, completing the joint video-action denoising process at each replanning cycle incurs substantial latency, delaying action updates and limiting closed-loop responsiveness. We present Rolling-WAM, a formulation that distributes joint denoising across successive replanning cycles. Our…",
-      "link": "http://arxiv.org/abs/2609.30247v1",
-      "published": "2026-09-24T17:58:03Z",
+      "title": "First-Order Stationarity of Reverse Diffusions",
+      "summary": "Recent literature has shown a strong connection between optimization and sampling. We develop the corresponding first-order theory for diffusion models. First, the SDE-based reverse-time flows of overdamped and underdamped Langevin diffusions contract relative Fisher divergences at explicit exponential rates whenever the stationary potential of the forward process is strongly convex---a condition…",
+      "link": "http://arxiv.org/abs/2609.31612v1",
+      "published": "2026-09-25T17:57:43Z",
       "authors": [
-        "Yinghua Zhou",
-        "Junjie Ye",
-        "Yiqi Zhao",
-        "Hao Dong",
-        "Celina Shiyu Wang",
-        "Ruohai Ge",
-        "Tingyi Yang",
-        "Basile Van Hoorick",
-        "Gaurav Sukhatme",
-        "Vitor Guizilini",
-        "Yue Wang"
+        "Zhifeng Chen",
+        "Chenyang Jiang",
+        "Yazhen Wang"
       ],
       "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
+        "stat.ML",
+        "cs.LG"
       ]
     },
     {
-      "title": "JevOut: Natural Context Can Flip Decision Models",
-      "summary": "Dedicated decision models such as Jev map unstructured language to probability distributions over finite choices, allowing their outputs to directly route requests, select tools, and trigger actions. Yet real-world inputs rarely arrive in isolation: they come with background details and surrounding context. We find that short additions that fit naturally into this context can nevertheless…",
-      "link": "http://arxiv.org/abs/2609.30243v1",
-      "published": "2026-09-24T17:57:07Z",
+      "title": "Statistical attribute alignment for black-box generative AI via output post-processing",
+      "summary": "Generative AI systems are increasingly used, but aligning their outputs with user requirements poses a continuing challenge. Here, we aim to ensure that the distribution of an attribute of an AI-generated output aligns with a user-specified target. This is motivated by examples such as fairness, where we want to ensure that a protected attribute (e.g., gender, race, or age categories) follows a…",
+      "link": "http://arxiv.org/abs/2609.31607v1",
+      "published": "2026-09-25T17:55:49Z",
       "authors": [
-        "Zixiang Xu"
+        "Kevin Jiang",
+        "Morgane Austern",
+        "Edgar Dobriban",
+        "Jason M. Klusowski"
+      ],
+      "categories": [
+        "stat.ME",
+        "cs.AI",
+        "cs.LG",
+        "math.ST"
+      ]
+    },
+    {
+      "title": "User Model Extraction via Belief Self-Distillation",
+      "summary": "Large language models (LLMs) implicitly infer attributes of their users and adapt their behavior accordingly, yet these beliefs remain difficult to inspect and causally manipulate. We introduce Belief Self-Distillation (BSD), a unified read-write framework that bridges linear and causal probing by learning a compact user representation that can be both decoded and written back into the model. The…",
+      "link": "http://arxiv.org/abs/2609.31603v1",
+      "published": "2026-09-25T17:54:32Z",
+      "authors": [
+        "Ali Holmov",
+        "Yiran Huang",
+        "Kirill Bykov",
+        "Zeynep Akata"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "New LoRA Skills Should Read but Never Write",
+      "summary": "Low-rank adapters (LoRA) make it cheap to fine-tune a large language model once per task, but combining several independently trained adapters into one model remains difficult: merging the updates in weight space causes interference, retraining on all task data is expensive, and routing between separate adapters gives up the goal of a single combined model. We trace the difficulty to two choices…",
+      "link": "http://arxiv.org/abs/2609.31600v1",
+      "published": "2026-09-25T17:54:01Z",
+      "authors": [
+        "Zeyan Li",
+        "Panqi Yang",
+        "Qirong Guo",
+        "Shengda Zhuo",
+        "SIyuan Qiu",
+        "Hu Xu",
+        "Chun Li",
+        "Jianfeng Xu"
+      ],
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Common-Mode Collapse and Recovery in Direct Feedback Alignment",
+      "summary": "Direct feedback alignment (DFA) trains hidden layers through fixed random projections of output error. With tanh hidden units and independent sigmoid outputs, plain stochastic gradient descent can stall near the loss of a constant predictor of class frequencies. We trace this stall to the error's common mode, the component shared across inputs. An exact mean-covariance decomposition separates a…",
+      "link": "http://arxiv.org/abs/2609.31589v1",
+      "published": "2026-09-25T17:43:40Z",
+      "authors": [
+        "Varun Reddy",
+        "Bernardo L. Sabatini",
+        "Houman Safaai"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ]
+    },
+    {
+      "title": "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer",
+      "summary": "We investigate whether natural-language documentation helps coding agents resolve software issues, and we build the tools to construct and evaluate it. We introduce a roundtrip benchmark that scores code descriptions by whether code regenerated from them passes the original tests, and show that completeness, not length, drives a description's fidelity. Using the benchmark as an optimization…",
+      "link": "http://arxiv.org/abs/2609.31587v1",
+      "published": "2026-09-25T17:42:22Z",
+      "authors": [
+        "Md Shohel Arman",
+        "Igor Molybog"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "Trust Guided Decision Transformer",
+      "summary": "Decision Transformer performance degrades on long rollouts because the conditioning context drifts out of the training distribution. We show that this drift is visible through the model's own next state prediction error, which rises during rollout and stays elevated, giving a direct signal of when context has become unreliable. We introduce Trust Guided Decision Transformer (TGDT), which selects…",
+      "link": "http://arxiv.org/abs/2609.31586v1",
+      "published": "2026-09-25T17:42:19Z",
+      "authors": [
+        "Chainesh Gautam",
+        "Raghuram Bharadwaj Diddigi",
+        "Chandramouli Kamanchi",
+        "Pankaj Dayama",
+        "Sumanta Mukherjee",
+        "Kameshwaran Sampath"
+      ],
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "OC-GS: Gaussian Splatting for Irregular Turntable Capture",
+      "summary": "Uneven rotation and dropped frames make equal-angle assumptions unreliable for turntable reconstruction. We present OC-GS, an object-centric Gaussian splatting that refines each image's angle while maintaining a shared camera, rotation axis, and pivot. This orbit-consistent refinement jointly optimizes image-derived geometry and angles to reconstruct objects from sparse, irregular captures. On…",
+      "link": "http://arxiv.org/abs/2609.31572v1",
+      "published": "2026-09-25T17:35:05Z",
+      "authors": [
+        "Jae Joong Lee",
+        "Bedrich Benes"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "Strategically Diverse Sampling for Self-Training",
+      "summary": "Many LLM training and inference methods, including RL and test-time scaling, depend on repeated sampling, but benefit only when the responses meaningfully differ. Self-training faces the same challenge: training data is typically constructed by sampling IID responses and filtering primarily for correctness, thereby overrepresenting strategies a model already favours. We investigate strategic…",
+      "link": "http://arxiv.org/abs/2609.31571v1",
+      "published": "2026-09-25T17:35:05Z",
+      "authors": [
+        "Alexander Gurung",
+        "Esmeralda S. Whitammer",
+        "Mirella Lapata"
       ],
       "categories": [
         "cs.CL"
       ]
     },
     {
-      "title": "SemMSA: Latent Semantic-Aided Robust Multimodal Sentiment Analysis with Incomplete Data",
-      "summary": "Recent research on Multimodal Sentiment Analysis (MSA) has focused on learning from language, visual, and acoustic modalities with incomplete data to infer human sentiment. Most studies typically compensate for missing information by reconstructing modality features or designing complicated fusion mechanisms. However, these methods still suffer from spurious generation and noisy guidance due to…",
-      "link": "http://arxiv.org/abs/2609.30238v1",
-      "published": "2026-09-24T17:55:31Z",
+      "title": "Uncertainty and Explainability in Deep Rough Volatility: A Neural Information-Theoretic Posterior Approach",
+      "summary": "Deep learning has substantially accelerated the calibration of complex stochastic-volatility models, but neural point calibration alone does not capture the uncertainty remaining after an implied-volatility (IV) surface has been observed. We develop a simulation-based inference framework for rough Heston (rHeston) calibration that learns the posterior distribution of the model parameters…",
+      "link": "http://arxiv.org/abs/2609.31570v1",
+      "published": "2026-09-25T17:34:56Z",
       "authors": [
-        "Wenhao Li",
-        "Zhibin Wu",
-        "Chong Xiao",
-        "Qiangchang Wang"
+        "Damiano Brigo",
+        "Raphaël Huser",
+        "Dan Leonte"
       ],
       "categories": [
-        "cs.CL",
-        "cs.CV",
-        "cs.MM"
+        "stat.ML",
+        "cs.LG",
+        "stat.AP",
+        "stat.CO",
+        "stat.OT"
       ]
     },
     {
-      "title": "Coding Agents for Generalized Task and Motion Planning Problems",
-      "summary": "Task and motion planning (TAMP) problems remain difficult even with full observability and object-centric states because discrete decisions are tightly coupled to geometric, kinematic, and dynamic constraints. Generalized TAMP addresses this difficulty by exploiting regularities across problem instances to reduce planning effort on new instances. However, existing methods require substantial…",
-      "link": "http://arxiv.org/abs/2609.30233v1",
-      "published": "2026-09-24T17:53:35Z",
+      "title": "Adapting for AI: How elementary teachers adjust their practices for an AI-integrated curriculum",
+      "summary": "Conversational AI tools are entering children's everyday experiences, and schools are interested in adopting them. However, successful classroom integration depends not only on the technology but also on the work teachers do to make it usable and appropriate for their students and classroom context. There is little known about how elementary teachers work as they implement conversational AI tools…",
+      "link": "http://arxiv.org/abs/2609.31569v1",
+      "published": "2026-09-25T17:33:47Z",
       "authors": [
-        "Matteo Merler",
-        "Bowen Li",
-        "Josh Roy",
-        "Yichao Liang",
-        "Qianwei Wang",
-        "Yixuan Huang",
-        "Tom Silver"
+        "Fasika Melese",
+        "Ruiyang Wu",
+        "Xinyue Cui",
+        "Joanna Perkins",
+        "Xiaoyi Tian",
+        "Tiffany Barnes",
+        "Shiyan Jiang"
       ],
       "categories": [
-        "cs.RO",
+        "cs.HC",
         "cs.AI"
       ]
     },
     {
-      "title": "To Trust or Not to Trust: Retrieval-Augmented Fact Checking in Speech",
-      "summary": "Online misinformation increasingly appears in spoken formats such as news clips, podcasts, interviews, political speeches, and social media videos, creating a need for fact-checking systems that can verify claims directly from speech. We introduce VeriSpeak, a probe benchmark for studying speech-based fact verification in Large Audio Language Models (LALMs). VeriSpeak contains 3,879 spoken claims…",
-      "link": "http://arxiv.org/abs/2609.30227v1",
-      "published": "2026-09-24T17:50:40Z",
+      "title": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
+      "summary": "AI tutoring could markedly improve learning outcomes for students in developing regions such as Vietnam, yet the two obvious paths both fall short. Cloud assistants such as ChatGPT route sensitive student data to foreign servers---violating data-sovereignty laws such as Vietnam's Decree 53---and, pre-trained on Western-centric corpora, are not organized around the national textbook curriculum, so…",
+      "link": "http://arxiv.org/abs/2609.31568v1",
+      "published": "2026-09-25T17:33:41Z",
       "authors": [
-        "Debajyoti Mazumder",
-        " Mamta",
-        "Abhirama Subramanyam Penamakuri"
+        "Quang Nguyen",
+        "Hieu Nguyen",
+        "Hien Hoang",
+        "Toan Pham",
+        "Cong Tran",
+        "Nam Vu"
       ],
       "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL",
-        "cs.SD"
+        "cs.AI"
       ]
     },
     {
-      "title": "PoEM: Predicting RL Outcomes from Existing Policies",
-      "summary": "Foundation models are post-trained with reinforcement learning (RL) to maximize specific rewards, such as human alignment, correctness, or instruction following. This post-training process is computationally intensive, sometimes unstable, and has to be run from scratch every time the reward model changes or when we want to combine multiple rewards. We hence ask: given a new reward function, is it…",
-      "link": "http://arxiv.org/abs/2609.30226v1",
-      "published": "2026-09-24T17:50:25Z",
+      "title": "Weight Pair Encoding: Inducing a Smaller Grammar in Neural Network Weights",
+      "summary": "We show that neural network weights can be explicilty fintuned to admit a smaller grammar. Weight Pair Encoding (WeightPE) does so by placing a lossy Re-Pair compressor inside a straight-through estimator. The int8 weights of the network are flattened into one string, and near-matching Re-Pair patterns are made exactly equal within a global L2 budget. The network computes with the rewritten…",
+      "link": "http://arxiv.org/abs/2609.31564v1",
+      "published": "2026-09-25T17:29:43Z",
       "authors": [
-        "Kimia Hamidieh",
-        "Giannis Daras",
-        "Antonio Torralba"
+        "Irene Tallini",
+        "Daniele Solombrino",
+        "Alberto Cazzaniga",
+        "Emanuele Rodolà"
+      ],
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Multi-agent Scaling Across Disjunctive and Compensatory Tasks",
+      "summary": "Multi-agent LLM systems are often expected to improve as team size increases, yet the scaling behavior may depend on task structure. Our central contribution is to introduce Steiner's taxonomy of group tasks as a framework for analyzing multi-agent LLM scaling and focusing the analysis on disjunctive and compensatory tasks. We model independently sampled agents as conditionally independent given…",
+      "link": "http://arxiv.org/abs/2609.31563v1",
+      "published": "2026-09-25T17:29:15Z",
+      "authors": [
+        "Carolina Fortuna",
+        "Blaz Bertalanic"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ]
+    },
+    {
+      "title": "Generalization behavior of OPTQ and the role of regularization",
+      "summary": "Large neural networks can be compressed by rounding or \"quantizing\" their weights to numbers that admit representations with fewer bits. One algorithm for quantization, OPTQ, progressively quantizes the weights of a neural network so that the squared quantization error on a specified calibration dataset is as small as possible. We study the performance of OPTQ and a variant algorithm, stochastic…",
+      "link": "http://arxiv.org/abs/2609.31560v1",
+      "published": "2026-09-25T17:27:18Z",
+      "authors": [
+        "Erin George",
+        "Rayan Saab"
+      ],
+      "categories": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Online Learning via Learned Latent Bayesian Tracking",
+      "summary": "Online learning in non-stationary environments requires models to adapt rapidly from streaming data under strict computational constraints. A principled approach casts online learning as Bayesian state tracking, where model parameters are updated sequentially via Bayesian filtering. However, applying Bayesian filters directly to modern deep models is computationally prohibitive due to the high…",
+      "link": "http://arxiv.org/abs/2609.31559v1",
+      "published": "2026-09-25T17:27:14Z",
+      "authors": [
+        "Guy Gerson",
+        "Tomer Raviv",
+        "Nir Shlezinger",
+        "Tirza Routtenberg",
+        "Osvaldo Simeone"
       ],
       "categories": [
         "cs.LG",
-        "cs.AI",
+        "eess.SP"
+      ]
+    },
+    {
+      "title": "MexHat: A Dataset for Hate Speech Detection in Mexican Spanish Videos",
+      "summary": "Ensuring online safety through content monitoring had raised Hate Speech Detection as a crucial task to be addressed. By essence the task demands the capture of contextual cues, which are essential for a precise understanding of the content's intent. Although automated detection approaches for the task have advanced significantly, the scarcity of non-English resources persists, limiting the…",
+      "link": "http://arxiv.org/abs/2609.31553v1",
+      "published": "2026-09-25T17:23:36Z",
+      "authors": [
+        "Itzel Tlelo-Coyotecatl",
+        "Hugo Jair Escalante"
+      ],
+      "categories": [
         "cs.CL",
         "cs.CV"
       ]
     },
     {
-      "title": "TrackEverything: Long Horizon Dense Tracking via De-Duplicating 3D Scene Representations",
-      "summary": "Existing point tracking models face a fundamental tradeoff: they can either track a sparse set of query points over long horizons, or track all points across only short clips. We introduce TrackEverything, a 3D point tracker that breaks this trade-off by representing videos as persistent 3D scene tracks in world coordinates. Grounded in the insight that videos are 2D projections of an underlying…",
-      "link": "http://arxiv.org/abs/2609.30222v1",
-      "published": "2026-09-24T17:48:20Z",
+      "title": "EAServe: Encode-Aware Disaggregated Serving for Multimodal Large Language Models",
+      "summary": "Disaggregating the two stages, Prefill and Decode, onto separate GPU pools is now a standard optimization for (text-only) LLM serving. However, multimodal LLMs (MLLMs), which add a third phase, Encode, pose new challenges for resource allocation. Encode turns images, video, or audio into embeddings that the language model can consume, yielding a three-stage Encode-Prefill-Decode (EPD) pipeline…",
+      "link": "http://arxiv.org/abs/2609.31551v1",
+      "published": "2026-09-25T17:20:22Z",
       "authors": [
-        "Ayush Jain",
-        "Sreeharsha Paruchuri",
-        "Ishita Gupta",
-        "Fan Zhang",
-        "Tanner Schmidt",
-        "Jakob Engel",
-        "Katerina Fragkiadaki",
-        "Adam W. Harley"
+        "Kunxiong Zhu",
+        "Zhihao Shu",
+        "Hangyu Zheng",
+        "Minghai Qin",
+        "Miao Yin",
+        "Gagan Agrawal",
+        "Wei Niu"
       ],
       "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.RO"
-      ]
-    },
-    {
-      "title": "Requirement-Bound Verified Commissioning: A Frozen Four-Billion-Parameter Local Model as a Candidate Generator under an External Acceptance Layer with Verification and Release Authority",
-      "summary": "An acceptance protocol is developed for sensor-coordinate and polarity binding in mechatronic commissioning. Candidate generation is separated from release authority. Requirements unsupported by a deterministic parser are routed to a frozen local language model with four billion parameters. Plans are released only when both facts can be derived by an external gate under a sealed grammar. One…",
-      "link": "http://arxiv.org/abs/2609.30219v1",
-      "published": "2026-09-24T17:46:53Z",
-      "authors": [
-        "Mehmet Iscan"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI",
-        "eess.SY"
-      ]
-    },
-    {
-      "title": "Minimally Invasive Steering of Language Models",
-      "summary": "Pre-logit steering adapts a frozen language model to a test-time reward by adding vectors to its final hidden states. Unregularized reward optimization can substantially alter the output distribution and degrade generation quality. We propose Minimally Invasive Steering Vector Optimization (MISVO), which penalizes interventions using the local KL geometry of the induced token distribution. The…",
-      "link": "http://arxiv.org/abs/2609.30218v1",
-      "published": "2026-09-24T17:46:46Z",
-      "authors": [
-        "Taha Entesari",
-        "Jingyu Zhang",
-        "Daniel Khashabi",
-        "Mahyar Fazlyab"
-      ],
-      "categories": [
+        "cs.DC",
         "cs.LG",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "Instrumental Monitor Evasion Emerges Under Ordinary Task Pressure",
-      "summary": "A central concern in AI safety is that agents may treat oversight as an obstacle when it conflicts with completing their goals. We study instrumental evasion, the propensity of LLM agents to circumvent runtime monitoring as a means of completing ordinary tasks. We introduce EvasionBench, a benchmark of 50 diverse task-policy pairs in which completing the task requires an operation prohibited by a…",
-      "link": "http://arxiv.org/abs/2609.30217v1",
-      "published": "2026-09-24T17:46:27Z",
-      "authors": [
-        "David Schmotz",
-        "Derck Prinzhorn",
-        "Luca Beurer-Kellner",
-        "Anselm Paulus",
-        "Ameya Prabhu",
-        "Maksym Andriushchenko"
-      ],
-      "categories": [
-        "cs.CR",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "A Nearly Quadratic Lower Bound for Linear Optimization over Convex Bodies in the Membership Oracle Model",
-      "summary": "We prove nearly quadratic lower bounds for randomized algorithms for linear optimization and uniform sampling over convex bodies in the membership oracle model. For linear optimization, this matches the known nearly quadratic upper bound up to a polylog factor in the dimension. For uniform sampling, this improves on the previous linear lower bound. Our construction also implies the same lower…",
-      "link": "http://arxiv.org/abs/2609.30215v1",
-      "published": "2026-09-24T17:45:58Z",
-      "authors": [
-        "Santosh S. Vempala"
-      ],
-      "categories": [
-        "cs.DS",
-        "cs.LG",
-        "math.FA",
-        "math.OC"
-      ]
-    },
-    {
-      "title": "Underwater C3-JEPA: An Object-Centric Cross-View World Model for ROV Salvage",
-      "summary": "We present Underwater C$^{3}$-JEPA (cross-view, control-conditioned, context-extended), an object-centric multi-view predictive world model for near-field heavy-load underwater ROV salvage. Without contact sensors, it predicts in latent space how the task-object state evolves through contact interaction and under the hydrodynamic lag of the vehicle, from synchronized multi-view RGB observations…",
-      "link": "http://arxiv.org/abs/2609.30214v1",
-      "published": "2026-09-24T17:45:42Z",
-      "authors": [
-        "Yuncong Yang",
-        "Jinlong Li",
-        "Yulong Xue",
-        "Feng Wu",
-        "Chunwen Zhang",
-        "Lei Qiao",
-        "Xuyang Wang"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "Anchored Extra-Proximal Methods: Optimal Higher-Order Methods for Monotone Inclusion Problems",
-      "summary": "We study the deterministic oracle complexity of finding approximate solutions to composite monotone inclusion problems, formed by the sum of a smooth single-valued monotone operator and a maximally monotone set-valued operator, under the tangent-residual criterion. We introduce the Anchored Extra-Proximal (AEP) framework, which combines an anchored extrapolation step with an inexact anchored…",
-      "link": "http://arxiv.org/abs/2609.30212v1",
-      "published": "2026-09-24T17:43:45Z",
-      "authors": [
-        "Ruichen Jiang",
-        "TaeHo Yoon"
-      ],
-      "categories": [
-        "math.OC",
-        "cs.LG",
-        "stat.ML"
-      ]
-    },
-    {
-      "title": "The Alignment Illusion in Multimodal Large Language Models",
-      "summary": "Layer-wise visual-text similarity in Multimodal Large Language Models (MLLMs) is widely interpreted as evidence that the language model progressively integrates visual content into a shared representation space. This reading rests on the assumption that scalar alignment scores reflect content-level cross-modal interaction. To test this assumption, we apply controlled interventions to the visual…",
-      "link": "http://arxiv.org/abs/2609.30210v1",
-      "published": "2026-09-24T17:42:29Z",
-      "authors": [
-        "Hong-Han Wang",
-        "Yuntao Wang",
-        "Hu Ding"
-      ],
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "A Living Benchmark for Information Retrieval from Electronic Health Records",
-      "summary": "Large language model (LLM)-based clinical assistants are increasingly being integrated into electronic health record (EHR) systems, transforming how clinicians retrieve and synthesize information from patient records. Their safety and utility depend on rigorous evaluation, yet existing benchmarks are manually curated, costly to update, and rapidly become obsolete with evolving technological…",
-      "link": "http://arxiv.org/abs/2609.30205v1",
-      "published": "2026-09-24T17:41:16Z",
-      "authors": [
-        "Jordan L. Cahoon",
-        "Chloe O. Stanwyck",
-        "Sulaiman Somani",
-        "Philip Chung",
-        "Kevin R Keet",
-        "Kameron C. Black",
-        "Andrea T. Fisher",
-        "Sarita Khemani",
-        "Jerry Liu",
-        "Stephen Ma",
-        "Saloni K. Maharaj",
-        "Rita M. Pandya",
-        "Eduardo Perez-Guerrero",
-        "Priyanka Pillai",
-        "Lisa Shieh",
-        "David J. H. Wu",
-        "James Xie",
-        "James C. McAvoy",
-        "Teresa Nguyen",
-        "Jessica Tran",
-        "Lucy Yin",
-        "Bridget Lin",
-        "Alison Callahan",
-        "Jason A. Fries",
-        "Nigam H. Shah",
-        "Emily Alsentzer"
-      ],
-      "categories": [
-        "cs.AI"
+        "cs.PF"
       ]
     }
   ]
