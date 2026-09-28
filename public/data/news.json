@@ -1,7 +1,39 @@
 {
-  "updated": "2026-09-27T18:06:34.677Z",
+  "updated": "2026-09-28T00:08:22.534Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Out of the Park Baseball lets me enjoy baseball even when the Mets suck",
+      "link": "https://www.theverge.com/games/1001206/out-of-the-park-baseball-cozy-sim-video-game-review",
+      "published": "2026-09-27T21:59:57.000Z",
+      "summary": "If you were to ask me what game or game series I've sunk the most time into, the answer would be easy: Out of the Park Baseball (OOTP). I have spent roughly 2,300 hours, according to Steam, playing various editions of the game. OOTP isn't…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Engram is a sampler that turns broken AI hallucinations into music",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1001193/engram-sampler-ai-hallucinations-music",
+      "published": "2026-09-27T20:46:36.000Z",
+      "summary": "Music startup Thoughtful Things has just launched the Kickstarter campaign for its first instrument, Engram. It's a sampler and groovebox that uses AI to mangle incoming audio and even hallucinate completely new sounds. This isn't Suno in…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic’s CEO is about to have dinner with President Trump",
+      "link": "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/",
+      "published": "Sun, 27 Sep 2026 20:34:28 +0000",
+      "summary": "This will be the first one-on-one meeting between Dario Amodei and Donald…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Can Muse overcome Meta’s trust issues?",
+      "link": "https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/",
+      "published": "Sun, 27 Sep 2026 19:57:30 +0000",
+      "summary": "On Equity, we discussed how Meta's AI announcement managed to steal the spotlight from OpenAI and…"
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -195,28 +227,12 @@
       "summary": "As reports of OpenAI's models breaking containment, hacking sites, and generally getting out of control pile up, the company has made the decision to pause training of its most powerful models. The decision was made after a model being…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Can Cloudflare CEO Matthew Prince save the web from AI?",
-      "link": "https://www.theverge.com/podcast/1000344/cloudflare-matthew-prince-google-zero-ai-web-advertising",
-      "published": "2026-09-26T14:00:00.000Z",
-      "summary": "Today, I’m talking with Matthew Prince, who is CEO of Cloudflare. This episode is part of a two-part series on the future of business. Matthew last joined us on the show about two and a half years ago, at what we thought then was a wild…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "I created an interactive digital avatar of myself — and you can talk to it",
       "link": "https://techcrunch.com/2026/09/26/i-created-an-interactive-digital-avatar-of-myself-and-you-can-talk-to-it/",
       "published": "Sat, 26 Sep 2026 14:00:00 +0000",
       "summary": "After obtaining an interactive avatar and training it to discuss venture fraud, I have mixed feelings about making AI clones of…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Control Resonant is a great game — it’s even better when you read everything",
-      "link": "https://www.theverge.com/games/1000818/control-resonant-reading-collectibles-documents-logs",
-      "published": "2026-09-26T13:00:00.000Z",
-      "summary": "In Control Resonant, the entire world is at stake. But that didn't stop the diligent employees of the Federal Bureau of Control from filing reams of paperwork, and it didn't stop me from reading everything I could find, either. Reading is…"
     },
     {
       "source": "Wired",
@@ -273,22 +289,6 @@
       "link": "https://www.wired.com/story/gravitational-struggle-deep-in-earth-is-changing-length-of-days/",
       "published": "Sat, 26 Sep 2026 09:30:00 +0000",
       "summary": "A competition between the gravity of the inner core and other forces in the mantle is altering the Earth's…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "At Meta Connect, the company’s smart glasses were everywhere",
-      "link": "https://techcrunch.com/2026/09/25/at-meta-connect-the-companys-smart-glasses-were-everywhere/",
-      "published": "Sat, 26 Sep 2026 01:08:57 +0000",
-      "summary": "The company behind Facebook and Instagram wants to keep consumers connected to the digital world via its ever-growing line of smart…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Crusoe abandons $1.25B plan to use Boom turbines at AI data centers",
-      "link": "https://techcrunch.com/2026/09/25/crusoe-abandons-1-25b-plan-to-use-boom-turbines-at-ai-data-centers/",
-      "published": "Fri, 25 Sep 2026 23:11:10 +0000",
-      "summary": "Boom Supersonic CEO Blake Scholl said the company's new stationary power plants were no longer in Crusoe's near-term…"
     },
     {
       "source": "Ars Technica",
