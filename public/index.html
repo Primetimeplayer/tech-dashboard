@@ -239,9 +239,7 @@
 }
 /* --- Google News style story layout --- */
 
-.grid {
-  background: red !important;
-}
+
 </style>
 </head>
 <body>
@@ -386,7 +384,7 @@
   const skeletonEl = document.getElementById('skeleton');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
-  const searchEl = document.getElementById('search');
+  const searchEl = document.getElementById('search') || document.getElementById('headerSearch');
  const sourceFilterEl = document.getElementById('sourceFilter'); // may be null
 const dateFilterEl = document.getElementById('dateFilter');     // may be null
   const themeToggleEl = document.getElementById('themeToggle');
@@ -766,7 +764,7 @@ const dateFilterEl = document.getElementById('dateFilter');     // may be null
     );
 
     populateSources();
-    statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
+    if (statusEl) statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
     renderAll();
   }
 
@@ -819,11 +817,11 @@ if (dateFilterEl) {
     if (e.key === '/' && document.activeElement !== searchEl && !e.target.matches('input, textarea, select')) {
       e.preventDefault();
       searchEl.focus();
-      searchHintEl.style.display = 'none';
+      if (searchHintEl) searchHintEl.style.display = 'none';
     }
   });
-  searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
-  searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });
+  searchEl.addEventListener('focus', () => { if (searchHintEl) searchHintEl.style.display = 'none'; });
+  searchEl.addEventListener('blur', () => { if (!searchEl.value && searchHintEl) searchHintEl.style.display = ''; });
 
   // Load more button
   loadMoreBtnEl.addEventListener('click', () => {
