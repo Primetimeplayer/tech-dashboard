@@ -1,7 +1,49 @@
 {
-  "updated": "2026-09-29T06:08:07.261Z",
+  "updated": "2026-09-29T12:08:20.816Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Marshall just revealed its smallest party speaker yet",
+      "link": "https://www.engadget.com/2267699/marshall-just-revealed-its-smallest-party-speaker-yet/",
+      "published": "Tue, 29 Sep 2026 12:00:00 +0000",
+      "summary": "I guess \"reasonably-sized gathering speaker\" doesn't have the same…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Nothing's flagship $399 Headphone 1 Pro actually have some professional features",
+      "link": "https://www.engadget.com/2271675/nothing-headphone-1-pro/",
+      "published": "Tue, 29 Sep 2026 10:29:41 +0000",
+      "summary": "Nothing's new 'pro' headphones feature a flat EQ, bucking the trend of custom…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Anthropic lost $8 billion last year and said its AI could destroy humanity",
+      "link": "https://www.engadget.com/2271659/anthropic-lost-8-billion-says-it-could-destroy-humanity/",
+      "published": "Tue, 29 Sep 2026 09:59:57 +0000",
+      "summary": "Despite a $2 trillion valuation ahead of its IPO, Anthropic hasn't been a money-spinning operation so…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Meta now has a version of Muse just for small businesses",
+      "link": "https://www.engadget.com/2271498/meta-now-has-a-version-of-muse-just-for-small-businesses/",
+      "published": "Tue, 29 Sep 2026 09:30:00 +0000",
+      "summary": "The agent can now connect to ad accounts and analytics for Instagram and…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "OpenAI reportedly cancels GPT-6.1 Astra's release over deceptive behavior",
+      "link": "https://www.engadget.com/2271626/openai-cancels-gpt-6-1-astra-release-deceptive-behavior/",
+      "published": "Tue, 29 Sep 2026 08:15:26 +0000",
+      "summary": "According to The New York Times, OpenAI scrapped GPT-6.1 Astra's release because it didn't meet safety…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Opera for Android now comes with a free eSIM and 3GB of data",
+      "link": "https://www.engadget.com/2271064/opera-for-android-now-comes-with-a-free-esim-and-3gb-of-data/",
+      "published": "Tue, 29 Sep 2026 08:00:00 +0000",
+      "summary": "It's limited to Opera users in certain countries…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "How to get started with Shortcuts on your MacBook",
@@ -29,48 +71,6 @@
       "link": "https://www.engadget.com/2271475/california-is-banning-public-officials-from-making-memecoins/",
       "published": "Mon, 28 Sep 2026 22:55:33 +0000",
       "summary": "The state has enacted several new rules around…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "My iPhone hit 1,000 charge cycles — Here's how it's holding up",
-      "link": "https://www.engadget.com/2269075/iphone-hit-1000-charge-cycles-how-holding-up/",
-      "published": "Mon, 28 Sep 2026 22:30:00 +0000",
-      "summary": "I've had my iPhone 15 Pro Max for three years and have completed 1,000 battery charge cycles. Here's what the experience has been…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "How to improve your FPS for better gaming (without buying new hardware)",
-      "link": "https://www.engadget.com/2268998/how-to-improve-fps-better-gaming-no-new-hardware/",
-      "published": "Mon, 28 Sep 2026 22:00:00 +0000",
-      "summary": "Frame rates and graphical fidelity have an inverse relationship, so making your games look a little less beautiful runs them much…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Discord is testing a lightweight mode to free up resources while gaming",
-      "link": "https://www.engadget.com/2271273/discord-is-testing-a-lightweight-mode-to-free-up-resources-while-gaming/",
-      "published": "Mon, 28 Sep 2026 19:51:39 +0000",
-      "summary": "Unsurprisingly, it's called Game…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Google will support ChromeOS until 2034 as it shifts to Googlebook OS",
-      "link": "https://www.engadget.com/2271249/google-will-support-chromeos-until-2034-as-it-shifts-to-googlebook-os/",
-      "published": "Mon, 28 Sep 2026 19:36:57 +0000",
-      "summary": "Some recent Chromebook devices will be able to switch to the new operating…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Meta is starting an enterprise business to justify its massive AI spending",
-      "link": "https://www.engadget.com/2271136/meta-is-starting-an-enterprise-business-to-justify-its-massive-ai-spending/",
-      "published": "Mon, 28 Sep 2026 18:37:57 +0000",
-      "summary": "Meta wants to sell its AI products and services to other…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Ayaneo shrank down the Game Boy form factor with its latest $89 handheld",
-      "link": "https://www.engadget.com/2271129/ayaneo-shrank-down-the-game-boy-form-factor-with-its-latest-89-handheld/",
-      "published": "Mon, 28 Sep 2026 18:31:44 +0000",
-      "summary": "The Konkr Pocket Block is now up for preorder and will start shipping in…"
     }
   ]
 }
