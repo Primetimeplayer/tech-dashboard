@@ -1,166 +1,91 @@
 {
-  "updated": "2026-09-29T00:08:55.454Z",
+  "updated": "2026-09-29T06:08:06.903Z",
   "count": 20,
   "items": [
     {
-      "title": "Learning to Stop without Learning to Stop: Self-Supervised Confidence Training Improves Reasoning Efficiency",
-      "summary": "Reasoning models often generate very long reasoning traces, making inference computationally expensive. Existing approaches typically improve efficiency either through inference-time early-stopping mechanisms or by explicitly encouraging shorter reasoning during training, for example through reinforcement learning with length penalties. We show that substantial efficiency gains can instead emerge…",
-      "link": "http://arxiv.org/abs/2609.31619v1",
-      "published": "2026-09-25T17:59:52Z",
+      "title": "FurE: Efficient Instance-Specific 3D Fur Reconstruction without Animal-Fur Datasets",
+      "summary": "Realistic and editable animal fur reconstruction from multi-view images is challenging due to fine-scale detail, self-occlusion and obfuscation, and, unlike human hair, the lack of animal-fur datasets. Fur usually covers most of an animal's body, with large inter-species and intra-species variability. We present FurE, an efficient strand-based animal fur reconstruction method that recovers a…",
+      "link": "http://arxiv.org/abs/2609.35770v1",
+      "published": "2026-09-28T17:59:58Z",
       "authors": [
-        "Parsa Hosseini",
-        "Akasha Tigalappanavara",
-        "Sumit Nawathe",
-        "Chenrui Fan",
-        "Sourya Basu",
-        "Genta Indra Winata",
-        "Anirban Das",
-        "Soheil Feizi",
-        "Nima Chitsazan"
+        "Srinjay Sarkar",
+        "Prakhar Kaushik",
+        "Soumava Paul",
+        "Alan Yuille"
       ],
       "categories": [
+        "cs.CV",
         "cs.AI",
+        "cs.GR"
+      ]
+    },
+    {
+      "title": "Telescopic Language Models",
+      "summary": "One deployed language model must often serve many compute budgets, yet serving each budget still means a separate training or compression run per point. We train a Telescopic Language Model (TLM) to be that continuum: a nested-capacity Transformer supervised by stochastic prefix supervision with a full anchor. At every step, one randomly truncated prefix of the capacity axis is trained against…",
+      "link": "http://arxiv.org/abs/2609.35769v1",
+      "published": "2026-09-28T17:59:53Z",
+      "authors": [
+        "Zhilin Guo",
+        "Boqiao Zhang",
+        "Hakan Aktas",
+        "Kyle Fogarty",
+        "Nursena Koprucu Aslan",
+        "Wenzhao Li",
+        "Canberk Baykal",
+        "Albert Miao",
+        "Siyu Hong",
+        "Yixiao Liu",
+        "Adam Wu",
+        "Ashish Kumar Singh",
+        "Sakar Khattar",
+        "Chenliang Zhou",
+        "Weihao Xia",
+        "Cristina Nader Vasconcelos",
+        "Cengiz Oztireli"
+      ],
+      "categories": [
         "cs.CL",
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "PDMD: Projected Distribution Matching Distillation for Video Diffusion Models",
+      "summary": "Modern video diffusion models require tens of denoising evaluations over long spatiotemporal token sequences. Distribution Matching Distillation (DMD) reduces the number of function evaluations (NFE) to just a few. However, DMD samples can degrade during training, exhibiting progressive oversaturation and artifacts. We trace this instability to critic errors, which enter successive student…",
+      "link": "http://arxiv.org/abs/2609.35768v1",
+      "published": "2026-09-28T17:59:52Z",
+      "authors": [
+        "Zimo Wang",
+        "Junkun Yuan",
+        "Angtian Wang",
+        "Haotian Yang",
+        "Canyu Zhang",
+        "Siyuan Yuan",
+        "Xingchang Huang",
+        "Bo Liu",
+        "Yizhi Wang",
+        "Yiding Yang",
+        "Chongyang Ma",
+        "Gordon Guocheng Qian"
+      ],
+      "categories": [
+        "cs.CV",
         "cs.LG"
       ]
     },
     {
-      "title": "Gap-free Differentially Private PCA for Gaussian Data",
-      "summary": "We give a gap-free differentially private algorithm for the principal component analysis (PCA) problem with Gaussian…",
-      "link": "http://arxiv.org/abs/2609.31614v1",
-      "published": "2026-09-25T17:58:38Z",
+      "title": "Learning Native Reflection in Unified Models with Interleaved Reinforcement Learning",
+      "summary": "Unified multimodal models can both look at and render images, so in principle they can repair their own generations: diagnose what an image gets wrong, revise it, observe the result, and diagnose again. Whether a revision helps is known only after it is rendered, so the reflection text and the image generation must be learned jointly, over the whole loop. Supervised fine-tuning (SFT) on…",
+      "link": "http://arxiv.org/abs/2609.35767v1",
+      "published": "2026-09-28T17:59:36Z",
       "authors": [
-        "Alina Ene",
-        "Huy L. Nguyen"
-      ],
-      "categories": [
-        "cs.DS",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "First-Order Stationarity of Reverse Diffusions",
-      "summary": "Recent literature has shown a strong connection between optimization and sampling. We develop the corresponding first-order theory for diffusion models. First, the SDE-based reverse-time flows of overdamped and underdamped Langevin diffusions contract relative Fisher divergences at explicit exponential rates whenever the stationary potential of the forward process is strongly convex---a condition…",
-      "link": "http://arxiv.org/abs/2609.31612v1",
-      "published": "2026-09-25T17:57:43Z",
-      "authors": [
-        "Zhifeng Chen",
-        "Chenyang Jiang",
-        "Yazhen Wang"
-      ],
-      "categories": [
-        "stat.ML",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Statistical attribute alignment for black-box generative AI via output post-processing",
-      "summary": "Generative AI systems are increasingly used, but aligning their outputs with user requirements poses a continuing challenge. Here, we aim to ensure that the distribution of an attribute of an AI-generated output aligns with a user-specified target. This is motivated by examples such as fairness, where we want to ensure that a protected attribute (e.g., gender, race, or age categories) follows a…",
-      "link": "http://arxiv.org/abs/2609.31607v1",
-      "published": "2026-09-25T17:55:49Z",
-      "authors": [
-        "Kevin Jiang",
-        "Morgane Austern",
-        "Edgar Dobriban",
-        "Jason M. Klusowski"
-      ],
-      "categories": [
-        "stat.ME",
-        "cs.AI",
-        "cs.LG",
-        "math.ST"
-      ]
-    },
-    {
-      "title": "User Model Extraction via Belief Self-Distillation",
-      "summary": "Large language models (LLMs) implicitly infer attributes of their users and adapt their behavior accordingly, yet these beliefs remain difficult to inspect and causally manipulate. We introduce Belief Self-Distillation (BSD), a unified read-write framework that bridges linear and causal probing by learning a compact user representation that can be both decoded and written back into the model. The…",
-      "link": "http://arxiv.org/abs/2609.31603v1",
-      "published": "2026-09-25T17:54:32Z",
-      "authors": [
-        "Ali Holmov",
-        "Yiran Huang",
-        "Kirill Bykov",
-        "Zeynep Akata"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.CL"
-      ]
-    },
-    {
-      "title": "New LoRA Skills Should Read but Never Write",
-      "summary": "Low-rank adapters (LoRA) make it cheap to fine-tune a large language model once per task, but combining several independently trained adapters into one model remains difficult: merging the updates in weight space causes interference, retraining on all task data is expensive, and routing between separate adapters gives up the goal of a single combined model. We trace the difficulty to two choices…",
-      "link": "http://arxiv.org/abs/2609.31600v1",
-      "published": "2026-09-25T17:54:01Z",
-      "authors": [
-        "Zeyan Li",
-        "Panqi Yang",
-        "Qirong Guo",
-        "Shengda Zhuo",
-        "SIyuan Qiu",
-        "Hu Xu",
-        "Chun Li",
-        "Jianfeng Xu"
-      ],
-      "categories": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Common-Mode Collapse and Recovery in Direct Feedback Alignment",
-      "summary": "Direct feedback alignment (DFA) trains hidden layers through fixed random projections of output error. With tanh hidden units and independent sigmoid outputs, plain stochastic gradient descent can stall near the loss of a constant predictor of class frequencies. We trace this stall to the error's common mode, the component shared across inputs. An exact mean-covariance decomposition separates a…",
-      "link": "http://arxiv.org/abs/2609.31589v1",
-      "published": "2026-09-25T17:43:40Z",
-      "authors": [
-        "Varun Reddy",
-        "Bernardo L. Sabatini",
-        "Houman Safaai"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.NE"
-      ]
-    },
-    {
-      "title": "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer",
-      "summary": "We investigate whether natural-language documentation helps coding agents resolve software issues, and we build the tools to construct and evaluate it. We introduce a roundtrip benchmark that scores code descriptions by whether code regenerated from them passes the original tests, and show that completeness, not length, drives a description's fidelity. Using the benchmark as an optimization…",
-      "link": "http://arxiv.org/abs/2609.31587v1",
-      "published": "2026-09-25T17:42:22Z",
-      "authors": [
-        "Md Shohel Arman",
-        "Igor Molybog"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.AI",
-        "cs.CL"
-      ]
-    },
-    {
-      "title": "Trust Guided Decision Transformer",
-      "summary": "Decision Transformer performance degrades on long rollouts because the conditioning context drifts out of the training distribution. We show that this drift is visible through the model's own next state prediction error, which rises during rollout and stays elevated, giving a direct signal of when context has become unreliable. We introduce Trust Guided Decision Transformer (TGDT), which selects…",
-      "link": "http://arxiv.org/abs/2609.31586v1",
-      "published": "2026-09-25T17:42:19Z",
-      "authors": [
-        "Chainesh Gautam",
-        "Raghuram Bharadwaj Diddigi",
-        "Chandramouli Kamanchi",
-        "Pankaj Dayama",
-        "Sumanta Mukherjee",
-        "Kameshwaran Sampath"
-      ],
-      "categories": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "OC-GS: Gaussian Splatting for Irregular Turntable Capture",
-      "summary": "Uneven rotation and dropped frames make equal-angle assumptions unreliable for turntable reconstruction. We present OC-GS, an object-centric Gaussian splatting that refines each image's angle while maintaining a shared camera, rotation axis, and pivot. This orbit-consistent refinement jointly optimizes image-derived geometry and angles to reconstruct objects from sparse, irregular captures. On…",
-      "link": "http://arxiv.org/abs/2609.31572v1",
-      "published": "2026-09-25T17:35:05Z",
-      "authors": [
-        "Jae Joong Lee",
-        "Bedrich Benes"
+        "Yijia Fan",
+        "Ziqi Huang",
+        "Zhongang Cai",
+        "Yan Li",
+        "Zimo Wen",
+        "Wanqi Yin",
+        "Haiwen Diao",
+        "Ziwei Liu"
       ],
       "categories": [
         "cs.CV",
@@ -168,164 +93,336 @@
       ]
     },
     {
-      "title": "Strategically Diverse Sampling for Self-Training",
-      "summary": "Many LLM training and inference methods, including RL and test-time scaling, depend on repeated sampling, but benefit only when the responses meaningfully differ. Self-training faces the same challenge: training data is typically constructed by sampling IID responses and filtering primarily for correctness, thereby overrepresenting strategies a model already favours. We investigate strategic…",
-      "link": "http://arxiv.org/abs/2609.31571v1",
-      "published": "2026-09-25T17:35:05Z",
+      "title": "Retrieving Biblical Intertextual References in Karen Blixen's Seven Gothic Tales",
+      "summary": "Identifying intertextual references is central to literary scholarship, but computationally difficult when source material is transformed through paraphrase, allusion, historical language, and translation. We investigate this problem through biblical intertextuality in Karen Blixen's Seven Gothic Tales. Drawing on the commentary to a critical edition, we construct a benchmark of 189 annotated…",
+      "link": "http://arxiv.org/abs/2609.35765v1",
+      "published": "2026-09-28T17:59:27Z",
       "authors": [
-        "Alexander Gurung",
-        "Esmeralda S. Whitammer",
-        "Mirella Lapata"
+        "András Kovács",
+        "Alexander Conroy",
+        "Daniel Hershcovich",
+        "Jens Bjerring-Hansen"
       ],
       "categories": [
         "cs.CL"
       ]
     },
     {
-      "title": "Uncertainty and Explainability in Deep Rough Volatility: A Neural Information-Theoretic Posterior Approach",
-      "summary": "Deep learning has substantially accelerated the calibration of complex stochastic-volatility models, but neural point calibration alone does not capture the uncertainty remaining after an implied-volatility (IV) surface has been observed. We develop a simulation-based inference framework for rough Heston (rHeston) calibration that learns the posterior distribution of the model parameters…",
-      "link": "http://arxiv.org/abs/2609.31570v1",
-      "published": "2026-09-25T17:34:56Z",
+      "title": "Unifying Distributional Training for One-Step Visual Generation",
+      "summary": "\\emph{Distributional training} provides collective supervision for one-step visual generation by matching real and generated features in frozen representation spaces. We introduce \\emph{a unified theoretical framework} that separates distribution modeling from matching discrepancy and connects global objectives to pointwise feature updates through Wasserstein gradient flow. Under this framework…",
+      "link": "http://arxiv.org/abs/2609.35763v1",
+      "published": "2026-09-28T17:59:14Z",
       "authors": [
-        "Damiano Brigo",
-        "Raphaël Huser",
-        "Dan Leonte"
-      ],
-      "categories": [
-        "stat.ML",
-        "cs.LG",
-        "stat.AP",
-        "stat.CO",
-        "stat.OT"
-      ]
-    },
-    {
-      "title": "Adapting for AI: How elementary teachers adjust their practices for an AI-integrated curriculum",
-      "summary": "Conversational AI tools are entering children's everyday experiences, and schools are interested in adopting them. However, successful classroom integration depends not only on the technology but also on the work teachers do to make it usable and appropriate for their students and classroom context. There is little known about how elementary teachers work as they implement conversational AI tools…",
-      "link": "http://arxiv.org/abs/2609.31569v1",
-      "published": "2026-09-25T17:33:47Z",
-      "authors": [
-        "Fasika Melese",
-        "Ruiyang Wu",
-        "Xinyue Cui",
-        "Joanna Perkins",
-        "Xiaoyi Tian",
-        "Tiffany Barnes",
-        "Shiyan Jiang"
-      ],
-      "categories": [
-        "cs.HC",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
-      "summary": "AI tutoring could markedly improve learning outcomes for students in developing regions such as Vietnam, yet the two obvious paths both fall short. Cloud assistants such as ChatGPT route sensitive student data to foreign servers---violating data-sovereignty laws such as Vietnam's Decree 53---and, pre-trained on Western-centric corpora, are not organized around the national textbook curriculum, so…",
-      "link": "http://arxiv.org/abs/2609.31568v1",
-      "published": "2026-09-25T17:33:41Z",
-      "authors": [
-        "Quang Nguyen",
-        "Hieu Nguyen",
-        "Hien Hoang",
-        "Toan Pham",
-        "Cong Tran",
-        "Nam Vu"
-      ],
-      "categories": [
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "Weight Pair Encoding: Inducing a Smaller Grammar in Neural Network Weights",
-      "summary": "We show that neural network weights can be explicilty fintuned to admit a smaller grammar. Weight Pair Encoding (WeightPE) does so by placing a lossy Re-Pair compressor inside a straight-through estimator. The int8 weights of the network are flattened into one string, and near-matching Re-Pair patterns are made exactly equal within a global L2 budget. The network computes with the rewritten…",
-      "link": "http://arxiv.org/abs/2609.31564v1",
-      "published": "2026-09-25T17:29:43Z",
-      "authors": [
-        "Irene Tallini",
-        "Daniele Solombrino",
-        "Alberto Cazzaniga",
-        "Emanuele Rodolà"
+        "Chi Zhang",
+        "Haoyang Shi",
+        "Yueyi Liu",
+        "Ruichuan An",
+        "Junkang Zhou",
+        "Chang Li",
+        "Xiuyuan Lu",
+        "Yichi Zhang",
+        "Bo Wang",
+        "Yuhang Wu",
+        "Sen Cui",
+        "Miao Liu"
       ],
       "categories": [
         "cs.LG"
       ]
     },
     {
-      "title": "Multi-agent Scaling Across Disjunctive and Compensatory Tasks",
-      "summary": "Multi-agent LLM systems are often expected to improve as team size increases, yet the scaling behavior may depend on task structure. Our central contribution is to introduce Steiner's taxonomy of group tasks as a framework for analyzing multi-agent LLM scaling and focusing the analysis on disjunctive and compensatory tasks. We model independently sampled agents as conditionally independent given…",
-      "link": "http://arxiv.org/abs/2609.31563v1",
-      "published": "2026-09-25T17:29:15Z",
+      "title": "Scaling Long-Form Story Generation via Narrative State Tracking",
+      "summary": "LLMs have demonstrated strong capabilities in creative writing. However, scaling them to full-length novels remains challenging, as maintaining narrative consistency becomes increasingly difficult. Existing story-generation methods typically focus on stories of up to about ten thousand words, leaving their ability to scale to full-length novels underexplored. In this work, we introduce Narrative…",
+      "link": "http://arxiv.org/abs/2609.35759v1",
+      "published": "2026-09-28T17:59:09Z",
       "authors": [
-        "Carolina Fortuna",
-        "Blaz Bertalanic"
+        "Zhennan Wan",
+        "Jianfei Chen"
       ],
       "categories": [
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "TokenCast: Forecasting Token Consumption During LLM Agent Execution",
+      "summary": "When a large language model (LLM) agent executes the same task, token consumption can vary by over an order of magnitude across runs. The agent chooses its next steps based on tool feedback and intermediate results, while the growing context steadily inflates the input size of every subsequent call. The total consumption of a task is therefore hard to predict before execution and the prediction…",
+      "link": "http://arxiv.org/abs/2609.35760v1",
+      "published": "2026-09-28T17:59:09Z",
+      "authors": [
+        "Chaoqian Ouyang",
+        "Ling Yue",
+        "Libin Zheng",
+        "Huanghui Guo",
+        "Shengxiang Xu",
+        "YiShu Wang",
+        "Ran Li",
+        "Jian Yin",
+        "Shaowu Pan",
+        "Shimin Di"
+      ],
+      "categories": [
+        "cs.LG",
         "cs.AI",
-        "cs.MA"
+        "cs.SE"
       ]
     },
     {
-      "title": "Generalization behavior of OPTQ and the role of regularization",
-      "summary": "Large neural networks can be compressed by rounding or \"quantizing\" their weights to numbers that admit representations with fewer bits. One algorithm for quantization, OPTQ, progressively quantizes the weights of a neural network so that the squared quantization error on a specified calibration dataset is as small as possible. We study the performance of OPTQ and a variant algorithm, stochastic…",
-      "link": "http://arxiv.org/abs/2609.31560v1",
-      "published": "2026-09-25T17:27:18Z",
+      "title": "Statistical Learning of Contractive Dynamical Representations for Composite Adaptive Control",
+      "summary": "We present a representation-learning framework for composite adaptive tracking control under dynamically coupled disturbances. The framework connects classical disturbance-accommodating control (DAC) to recent last-layer adaptive disturbance-rejection methods. Specifically, we introduce a statistically principled hard expectation-maximization (hard-EM) procedure, with a Kalman smoother in the…",
+      "link": "http://arxiv.org/abs/2609.35758v1",
+      "published": "2026-09-28T17:59:07Z",
       "authors": [
-        "Erin George",
-        "Rayan Saab"
+        "Min Kim",
+        "José Leonardo Brenes",
+        "Fred Hadaegh",
+        "Soon-Jo Chung"
       ],
       "categories": [
-        "cs.LG"
+        "eess.SY",
+        "cs.LG",
+        "cs.RO"
       ]
     },
     {
-      "title": "Online Learning via Learned Latent Bayesian Tracking",
-      "summary": "Online learning in non-stationary environments requires models to adapt rapidly from streaming data under strict computational constraints. A principled approach casts online learning as Bayesian state tracking, where model parameters are updated sequentially via Bayesian filtering. However, applying Bayesian filters directly to modern deep models is computationally prohibitive due to the high…",
-      "link": "http://arxiv.org/abs/2609.31559v1",
-      "published": "2026-09-25T17:27:14Z",
+      "title": "Neural Harmonic Measure Operator",
+      "summary": "We introduce Neural Harmonic Measure Operator (NHMO), a neural solver for elliptic PDE problems on variable-shape domains. The harmonic measure of a domain is the boundary probability distribution that, integrated against any boundary data, returns the Dirichlet Laplace solution. It depends only on the geometry, not on the boundary data. NHMO parameterizes the density of this measure as a…",
+      "link": "http://arxiv.org/abs/2609.35752v1",
+      "published": "2026-09-28T17:58:13Z",
       "authors": [
-        "Guy Gerson",
-        "Tomer Raviv",
-        "Nir Shlezinger",
-        "Tirza Routtenberg",
-        "Osvaldo Simeone"
+        "Jinjin He",
+        "Sinan Wang",
+        "Yuchen Sun",
+        "Bo Zhu"
       ],
       "categories": [
         "cs.LG",
-        "eess.SP"
+        "math.NA"
       ]
     },
     {
-      "title": "MexHat: A Dataset for Hate Speech Detection in Mexican Spanish Videos",
-      "summary": "Ensuring online safety through content monitoring had raised Hate Speech Detection as a crucial task to be addressed. By essence the task demands the capture of contextual cues, which are essential for a precise understanding of the content's intent. Although automated detection approaches for the task have advanced significantly, the scarcity of non-English resources persists, limiting the…",
-      "link": "http://arxiv.org/abs/2609.31553v1",
-      "published": "2026-09-25T17:23:36Z",
+      "title": "How to Loop MoE: Flatten the Experts, Untie the Attention",
+      "summary": "Looped Transformers reuse one block of layers several times: by spending extra computation they push a model of fixed size further, and so use its parameters more fully; while sparse mixture-of-experts (MoE) models activate only a few of many experts for each token. Looped MoE bridges these two design philosophies and gives MoE models new potential for better expert usage, but it raises a…",
+      "link": "http://arxiv.org/abs/2609.35751v1",
+      "published": "2026-09-28T17:58:03Z",
       "authors": [
-        "Itzel Tlelo-Coyotecatl",
-        "Hugo Jair Escalante"
+        "Shouren Wang",
+        "Chuang Ma",
+        "Mohsen Hariri",
+        "Debargha Ganguly",
+        "Wang Yang",
+        "Xiaoqing Tong",
+        "Qianying Liu",
+        "Xiaotian Han",
+        "Vipin Chaudhary"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "KV-streams for Efficient Compaction in Agentic Reinforcement Learning",
+      "summary": "Scaling the horizon of agentic LLMs is bottlenecked by the need to fit ever longer context traces in GPU memory. Context compaction has been the most popular mechanism to alleviate this issue, keeping GPU memory constant for a given trace. Unfortunately, most compaction strategies rely on prefilling the LLM context many times over, hindering training throughput. To alleviate this bottleneck and…",
+      "link": "http://arxiv.org/abs/2609.35750v1",
+      "published": "2026-09-28T17:57:42Z",
+      "authors": [
+        "Emiliano Penaloza",
+        "Dane Malenfant",
+        "Dheeraj Vattikonda",
+        "Roger Creus Castanyer",
+        "Siddarth Venkatraman",
+        "Abhay Puri",
+        "Jonathan Light",
+        "Matthew James Sargent",
+        "Augustine N. Mavor-Parker",
+        "Massimo Caccia",
+        "Lucas Caccia",
+        "Glen Berseth",
+        "Esmeralda S. Whitammer",
+        "Alessandro Sordoni",
+        "Minseon Kim",
+        "Marc-Alexandre Côté",
+        "Laurent Charlin",
+        "Guillaume Lajoie"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "Towards Communication-Efficient Social Intelligence in Language Agents",
+      "summary": "Socially intelligent language agents must negotiate, coordinate, and resolve conflicting preferences while respecting the time and attention of both participants. Balancing these demands is challenging because agents must convey enough to address a partner's constraints and advance their goals without adding words that do not help the interaction. In this paper, we propose Teacher-Assisted…",
+      "link": "http://arxiv.org/abs/2609.35749v1",
+      "published": "2026-09-28T17:57:16Z",
+      "authors": [
+        "Linxiao Gong",
+        "Yijie Xu",
+        "Tianfu Wang",
+        "Yin Wu",
+        "Yili Wang",
+        "Xingbo Yao",
+        "Huizai Yao",
+        "Xilin Xia",
+        "Haowen Yang",
+        "Hui Xiong"
+      ],
+      "categories": [
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "Improving Test-Time Scaling with Adaptive Looped Transformers",
+      "summary": "Looped transformers have demonstrated promising parameter efficiency by reusing layers for latent computation. Prior studies compare looped and non-looped models at matched parameters or per-token FLOPs. However, to the best of our knowledge, whether looping improves test-time scaling as outputs grow longer remains underexplored. Through post-training looped transformers, we study the…",
+      "link": "http://arxiv.org/abs/2609.35748v1",
+      "published": "2026-09-28T17:56:55Z",
+      "authors": [
+        "Yichen You",
+        "Tianyu Fu",
+        "Aosong Feng",
+        "Xingtai Lv",
+        "Xuefei Ning",
+        "Ning Ding",
+        "Yu Wang"
       ],
       "categories": [
         "cs.CL",
-        "cs.CV"
+        "cs.LG"
       ]
     },
     {
-      "title": "EAServe: Encode-Aware Disaggregated Serving for Multimodal Large Language Models",
-      "summary": "Disaggregating the two stages, Prefill and Decode, onto separate GPU pools is now a standard optimization for (text-only) LLM serving. However, multimodal LLMs (MLLMs), which add a third phase, Encode, pose new challenges for resource allocation. Encode turns images, video, or audio into embeddings that the language model can consume, yielding a three-stage Encode-Prefill-Decode (EPD) pipeline…",
-      "link": "http://arxiv.org/abs/2609.31551v1",
-      "published": "2026-09-25T17:20:22Z",
+      "title": "Copy the Same, Distill the Difference: Initializing Linear Vision Transformers",
+      "summary": "Linear Vision Transformers (ViTs) are designed to replace the attention in Softmax ViTs with the linear-complexity attention operator for more efficient token routing, but they require from-scratch pre-training and typically underperform the original Softmax version. How to initialize linear ViTs both efficiently and effectively still remains unclear. In this work, we explicitly ask: given that…",
+      "link": "http://arxiv.org/abs/2609.35745v1",
+      "published": "2026-09-28T17:55:21Z",
       "authors": [
-        "Kunxiong Zhu",
-        "Zhihao Shu",
-        "Hangyu Zheng",
-        "Minghai Qin",
-        "Miao Yin",
-        "Gagan Agrawal",
-        "Wei Niu"
+        "Huaiyuan Qin",
+        "Muli Yang",
+        "Gabriel James Goenawan",
+        "Shiqi Huang",
+        "Min Kass Chong",
+        "Wahyu Wiratama",
+        "Peng Hu",
+        "Chen Gong",
+        "Wu Liu",
+        "Xi Peng",
+        "Chun Jian Ho",
+        "Hongyuan Zhu"
       ],
       "categories": [
-        "cs.DC",
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "FinAutoRubric: Expert-Guided Automatic Rubric Generation for Evaluating Financial Research Agents",
+      "summary": "Evaluating finance research agents requires rubrics that reflect expert standards and fix the values correct as of an information cutoff. Expert-reviewed finance benchmarks rely on fixed, per-item rubrics, which are costly to extend and cannot encode each institution's own standard. In FinAutoRubric, experts specify reusable evaluation guidance, while agents and code carry out query-specific…",
+      "link": "http://arxiv.org/abs/2609.35744v1",
+      "published": "2026-09-28T17:55:06Z",
+      "authors": [
+        "Hoyoung Lee",
+        "Suyeol Yun",
+        "Jack Haverty",
+        "Yunju Cho",
+        "Meesong Kim",
+        "Daekyung Park",
+        "Sumin Kim",
+        "Jihoon Kwon",
+        "Jasmine Jia Geng",
+        "Andrew Chin",
+        "Yin Luo",
+        "Edward Tong",
+        "Yu Yu",
+        "Zach Golkhou",
+        "Minkyu Kim",
+        "Igor Halperin",
+        "Young Cha",
+        "Alejandro Lopez-Lira",
+        "Chanyeol Choi",
+        "Yongjae Lee"
+      ],
+      "categories": [
+        "cs.AI",
+        "q-fin.CP"
+      ]
+    },
+    {
+      "title": "Shockingly Simple Self-retrospection Improves Agentic Models Without RL",
+      "summary": "People learn not only by repeating successful actions, but also by recounting and explaining their experiences, revising their understanding to guide future behavior. Can a language-model agent improve its future actions by training only on explanations of its own experience? We investigate this question by studying Retrospection-Only Fine-Tuning (ROFT), a minimal online procedure designed to…",
+      "link": "http://arxiv.org/abs/2609.35741v1",
+      "published": "2026-09-28T17:54:24Z",
+      "authors": [
+        "Jonathan Light",
+        "Christopher Zhang Cui",
+        "Jeonghye Kim",
+        "Roger Creus Castanyer",
+        "Emiliano Penaloza",
+        "Zhengyan Shi",
+        "Alessandro Sordoni",
+        "Marc-Alexandre Côté",
+        "Xingdi Yuan",
+        "Minseon Kim"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "Harness Learning Enables Generalizable Test-Time Adaptation",
+      "summary": "A language-model agent is jointly defined by its model and its harness, the executable program that organizes model calls, tool use, and information flow. Because different tasks call for different ways of organizing these operations, the harness needs to be adapted using feedback from the task at hand. We introduce harness learning, which trains a proposer model to revise a solver's harness…",
+      "link": "http://arxiv.org/abs/2609.35738v1",
+      "published": "2026-09-28T17:52:54Z",
+      "authors": [
+        "Alvin Zhang",
+        "Xuecheng Liu",
+        "Zixuan Wang",
+        "Fahim Tajwar",
+        "Daman Arora",
+        "Ruslan Salakhutdinov",
+        "Daniel Khashabi",
+        "Yuda Song",
+        "Andrea Zanette"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Failure-Transparent Agents: Benchmarking Post-Failure Reporting in Tool-Using Language Models",
+      "summary": "Tool-using agents can fail twice: a required tool can fail, and the agent can then report success without the evidence needed to justify it. Existing benchmarks often entangle this reporting failure with tool selection, recovery, and environment dynamics. We introduce Failure-Transparent Agents (FTA), a controlled benchmark that fixes the failed observation and required evidence state before…",
+      "link": "http://arxiv.org/abs/2609.35732v1",
+      "published": "2026-09-28T17:51:41Z",
+      "authors": [
+        "Junru Zhu",
+        "Shiming Xie",
+        "Aime Lu Fan Chen",
+        "Xiaoqing Ding",
+        "Chunxin Tang",
+        "Ruoyu Qi",
+        "Yulang Fei"
+      ],
+      "categories": [
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "X-Reset: Scaling Object-Centric Reinforcement Learning via Cross-Embodiment Resets",
+      "summary": "Reinforcement learning (RL) in simulation can train dexterous manipulation policies without robot demonstrations, but training a single generalist policy with task-agnostic rewards faces a severe exploration problem: approaching, grasping, and reorienting diverse objects with many degrees of freedom is difficult to discover from scratch. Prior works make exploration tractable with high-quality…",
+      "link": "http://arxiv.org/abs/2609.35715v1",
+      "published": "2026-09-28T17:46:42Z",
+      "authors": [
+        "Prithwish Dan",
+        "Chenyang Ma",
+        "Wei Zhan"
+      ],
+      "categories": [
         "cs.LG",
-        "cs.PF"
+        "cs.AI",
+        "cs.RO"
       ]
     }
   ]

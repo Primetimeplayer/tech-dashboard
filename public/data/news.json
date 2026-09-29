@@ -1,7 +1,87 @@
 {
-  "updated": "2026-09-29T00:08:40.973Z",
+  "updated": "2026-09-29T06:08:06.101Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic’s prospectus details losses, growth, and, yes, a warning that its AI could end humanity",
+      "link": "https://techcrunch.com/2026/09/28/anthropics-prospectus-details-losses-growth-and-yes-a-warning-that-its-ai-could-end-humanity/",
+      "published": "Tue, 29 Sep 2026 05:13:43 +0000",
+      "summary": "In its prospectus, Anthropic just told investors it's losing tens of billions of dollars a year, but also growing like crazy, and — oh yeah — its own AI might pose an existential risk to…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Motorola Coupon Code for October 2026",
+      "link": "https://www.wired.com/story/motorola-coupon-code/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Upgrade your smartphone for less with the latest Motorola promo codes, free shipping offers, and exclusive seasonal…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "NordVPN Coupons: 75% Off, Plus 3 Months Free in October 2026",
+      "link": "https://www.wired.com/story/nordvpn-coupon/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Save up to 77% on 2-year plans and get 3 free months with our NordVPN discount…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Home Depot Promo Codes: 30% Off in October 2026",
+      "link": "https://www.wired.com/story/home-depot-promo-code/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Save up to 50% today with the latest Home Depot promo codes for appliances, power tools, and more this…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "50% Off Blue Apron Promo Codes | October 2026",
+      "link": "https://www.wired.com/story/blue-apron-coupon/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Browse chef-curated meal plans, plus get $25 off with an exclusive Blue Apron coupon code, plus 50% off your first 2 orders, and more top coupons on…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Uplift Promo Codes: $300 Off",
+      "link": "https://www.wired.com/story/uplift-desk-coupon-code/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Upgrade your home office with the best Uplift Desk discount codes. Save on standing desks, ergonomic chairs, and…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Target Promo Code: $50 Off | October 2026",
+      "link": "https://www.wired.com/story/target-promo-code/",
+      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
+      "summary": "Get $50 off your next order or up to 50% off site wide with Target coupon codes and Circle…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Nothing’s new flagship Headphone 1 Pro put you in the studio",
+      "link": "https://www.theverge.com/tech/1001797/nothings-headphone-1-pro-review",
+      "published": "2026-09-29T01:00:00.000Z",
+      "summary": "The Headphone 1 Pro flagship headphones keep Nothing’s aesthetic while adding some surprises. | Photo: John Higgins / The Verge Nothing has been on a bit of an audio tear this year, releasing the solid Headphone A and the surprisingly good…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Nothing’s New Headphone (1) Pro Are Made for the Studio",
+      "link": "https://www.wired.com/story/nothings-new-headphone-1-pro-are-made-for-the-studio/",
+      "published": "Tue, 29 Sep 2026 01:00:00 +0000",
+      "summary": "With three drivers in each ear and tuning from Metropolis Studios, Nothing wants its new $399 cans to shine in the studio while also making your commute more…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Peak XV ups Surge seed investment ceiling to $5M, unveils 18-startup cohort",
+      "link": "https://techcrunch.com/2026/09/28/peak-xv-goes-bigger-at-seed-with-new-surge-cohort-as-series-a-bar-rises/",
+      "published": "Tue, 29 Sep 2026 00:30:00 +0000",
+      "summary": "Thirteen of the 18 startups in Peak XV’s latest Surge cohort are targeting global markets, while more than half are based in…"
+    },
     {
       "source": "TechCrunch",
       "category": "news",
@@ -144,7 +224,7 @@
       "title": "The AI boom took over Climate Week and not everyone is happy about it",
       "link": "https://techcrunch.com/2026/09/28/the-ai-boom-took-over-climate-week-and-not-everyone-is-happy-about-it/",
       "published": "Mon, 28 Sep 2026 19:21:59 +0000",
-      "summary": "Just like the rest of the U.S, data centers and AI are dividing climate tech founders and…"
+      "summary": "Just like the rest of the U.S., data centers and AI are dividing climate tech founders and…"
     },
     {
       "source": "Ars Technica",
@@ -235,14 +315,6 @@
       "summary": "As all-in-one AI agents like Meta's Muse and Instinct take off, Google is opting to end a feature that built task-specific…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI still doesn’t seem to have a handle on all of its rogue AI activity",
-      "link": "https://techcrunch.com/2026/09/28/openai-still-doesnt-seem-to-have-a-handle-on-all-of-its-rogue-ai-activity/",
-      "published": "Mon, 28 Sep 2026 17:09:02 +0000",
-      "summary": "On Friday, OpenAI published a new site devoted to “misalignment reports” and the breadth of the incidents is…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Florida seeks a ban on ChatGPT acting like a person",
@@ -257,14 +329,6 @@
       "link": "https://www.theverge.com/ai-artificial-intelligence/1001477/openai-math-advisory-group",
       "published": "2026-09-28T17:00:00.000Z",
       "summary": "In a chaotic few months, OpenAI has demonstrated it can do two things with remarkable consistency: make impressive breakthroughs in mathematics, then colossally screw up announcing them. OpenAI is now trying to do better. Somehow, it has…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Meta launches enterprise AI platform, hires MongoDB CEO to lead new initiative",
-      "link": "https://techcrunch.com/2026/09/28/meta-launches-enterprise-ai-platform-hires-mongodb-ceo-to-lead-new-initiative/",
-      "published": "Mon, 28 Sep 2026 16:52:38 +0000",
-      "summary": "Meta says it will focus on bringing its full technology stack, including Muse, Meta Business Agent, Muse API, Muse Code, and more to businesses and…"
     },
     {
       "source": "The Verge",
@@ -291,14 +355,6 @@
       "summary": "In a widely expected move, Volkswagen announced Monday that it will replace the recently retired ID.4 crossover with the upcoming ID.Tiguan. The decision is an acknowledgment by the German automaker that its more recognizable nameplates…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Dreame’s step-climbing X50 Ultra mopping vacuum is hundreds off",
-      "link": "https://www.theverge.com/gadgets/1001313/dreame-x50-ultra-robot-vacuum-mop-asus-rog-ally-deal-sale",
-      "published": "2026-09-28T14:55:12.000Z",
-      "summary": "It’s been a while since we’ve seen a big price cut on a capable robot vacuum and mop hybrid that can scale over short steps and threshold to hunt messes. Dreame’s X50 Ultra is the model that my colleague Jen recommends for hard floors and…"
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "These Extremists Are Running for Election in November",
@@ -313,62 +369,6 @@
       "link": "https://www.wired.com/story/best-portable-external-storage-drives/",
       "published": "Mon, 28 Sep 2026 13:15:00 +0000",
       "summary": "Need an ultrafast drive for video editing or a rugged option to back up your photos in the field? We’ve got a solution for every…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Bose Launches New Wired Earbuds After More Than a Decade",
-      "link": "https://www.wired.com/story/bose-to-release-wired-headphones-after-10-years/",
-      "published": "Mon, 28 Sep 2026 13:00:00 +0000",
-      "summary": "The Bose Noise Cancelling Wired Earbuds are the first new wired headphones from the brand since 2015, inspired directly by teen preferences. We got an early…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "OpenAI Pauses Training Its Most Powerful Models After Rogue Agents Target Government",
-      "link": "https://www.wired.com/story/openai-pauses-training-most-powerful-models-after-rogue-agents-target-government/",
-      "published": "Mon, 28 Sep 2026 11:32:19 +0000",
-      "summary": "Sam Altman says the company “have not been as fast as we would have liked” at dealing with security breaches, after news of further incidents over the summer forces another temporary…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Space Lasers Are About to Get Their First Real Test Generating Energy",
-      "link": "https://www.wired.com/story/space-lasers-are-about-to-get-their-first-real-test-generating-energy/",
-      "published": "Mon, 28 Sep 2026 11:00:00 +0000",
-      "summary": "Startup Star Catcher is launching a system that, if successful, would be the first time energy has been beamed between two separate…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Best Apple Watch: Series 12, Ultra 4, and SE 3 (2026)",
-      "link": "https://www.wired.com/story/best-apple-watch/",
-      "published": "Mon, 28 Sep 2026 10:36:00 +0000",
-      "summary": "From the latest Ultra to last year’s SE, these are the Apple Watches worth…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "I've Tested Over 100 Home Security Cameras. Here's Which to Buy",
-      "link": "https://www.wired.com/story/best-security-cameras/",
-      "published": "Mon, 28 Sep 2026 10:30:00 +0000",
-      "summary": "Keep an eye on home wherever you are with the best security cameras, including indoor and outdoor, subscription services, AI smarts, and local recording…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "AI Agents Are About to Flood the Workforce. No One’s Ready for It",
-      "link": "https://www.wired.com/story/ai-agents-are-about-to-flood-the-workforce-no-ones-ready-for-it/",
-      "published": "Mon, 28 Sep 2026 10:00:00 +0000",
-      "summary": "Your next coworker might well be an AI agent—and will require a whole new model of workplace…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Solving Math’s Greatest Problems Was an Art Form. Then Came AI",
-      "link": "https://www.wired.com/story/solving-maths-greatest-problems-was-an-art-form-until-ai/",
-      "published": "Mon, 28 Sep 2026 09:30:00 +0000",
-      "summary": "Mathematics has been one of humanity’s most creative endeavors, akin to painting and poetry. Now, mathematicians are trying to save it from the brute force of…"
     }
   ]
 }

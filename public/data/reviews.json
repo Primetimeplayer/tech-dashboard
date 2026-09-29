@@ -1,7 +1,14 @@
 {
-  "updated": "2026-09-29T00:08:55.769Z",
+  "updated": "2026-09-29T06:08:07.261Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "How to get started with Shortcuts on your MacBook",
+      "link": "https://www.engadget.com/2269315/how-to-use-macbook-shortcuts/",
+      "published": "Tue, 29 Sep 2026 00:30:00 +0000",
+      "summary": "Your Mac's Shortcuts app is a powerful way to automate tedious tasks, and you can now set up scripts using natural…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "The warning signs that your iPhone battery needs to be replaced",
@@ -64,13 +71,6 @@
       "link": "https://www.engadget.com/2271129/ayaneo-shrank-down-the-game-boy-form-factor-with-its-latest-89-handheld/",
       "published": "Mon, 28 Sep 2026 18:31:44 +0000",
       "summary": "The Konkr Pocket Block is now up for preorder and will start shipping in…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Where to find YouTube's autoplay settings and how to turn it off and on",
-      "link": "https://www.engadget.com/2268943/where-to-find-youtubes-autoplay-settings-and-how-to-turn-it-off-and-on/",
-      "published": "Mon, 28 Sep 2026 18:30:00 +0000",
-      "summary": "An annoying feature that's typically on by…"
     }
   ]
 }
