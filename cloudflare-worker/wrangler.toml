@@ -5,7 +5,7 @@ compatibility_date = "2024-01-01"
 # Create this with: wrangler kv namespace create SAVED_KV
 # then paste the id it prints below.
 kv_namespaces = [
-  { binding = "SAVED_KV", id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID" }
+  { binding = "SAVED_KV", id = "719661e9da164f7fa37ac79291328724" }
 ]
 
 [vars]

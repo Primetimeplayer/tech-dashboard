@@ -14,9 +14,12 @@
     "serve": "npx http-server public -p 8080 -o"
   },
   "dependencies": {
-    "rss-parser": "^3.13.0",
     "node-fetch": "^3.3.2",
+    "rss-parser": "^3.13.0",
     "xml2js": "^0.6.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^4.142.0"
+  }
 }
