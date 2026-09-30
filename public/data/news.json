@@ -1,7 +1,191 @@
 {
-  "updated": "2026-09-29T18:08:51.105Z",
+  "updated": "2026-09-30T00:08:35.546Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "America.gov gets really weird when you ask it about Minecraft, but it’s not a glitch",
+      "link": "https://techcrunch.com/2026/09/29/america-gov-gets-really-weird-when-you-ask-it-about-minecraft-but-its-not-a-glitch/",
+      "published": "Tue, 29 Sep 2026 23:30:55 +0000",
+      "summary": "For the sake of national security, it's a relief to learn that America.gov is not hallucinating to the point that it's penning lengthy…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Range Rover Sport Electric: Price, Specs, Availability",
+      "link": "https://www.wired.com/story/range-rover-sport-electric-arrives-with-more-for-less/",
+      "published": "Tue, 29 Sep 2026 23:01:00 +0000",
+      "summary": "By sharing the same platform, the Sport gets the same specs as the classier Range Rover Electric, but with added torque at a smaller…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Most powerful obesity drug yet: People lost up to 25% of weight in trial",
+      "link": "https://arstechnica.com/health/2026/09/most-powerful-obesity-drug-yet-people-lost-up-to-25-of-weight-in-trial/",
+      "published": "Tue, 29 Sep 2026 22:30:37 +0000",
+      "summary": "Retatrutide is a triple-hormone obesity drug simulating GLP-1, GIP, and…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Trump orders US government to call AI ‘Super Intelligence’",
+      "link": "https://www.theverge.com/policy/1002468/trump-ai-superintelligence-executive-order-ai",
+      "published": "2026-09-29T22:25:45.000Z",
+      "summary": "Image: Carolyn Van Houten / The Washington Post via Getty Images The US executive branch is no longer acknowledging the existence of \"artificial intelligence.\" Going forward, official policy websites, policy documents, and press releases…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "The internet is convinced Elon Musk’s xAI trolled OpenAI’s ‘Dots’ launch",
+      "link": "https://techcrunch.com/2026/09/29/the-internet-is-convinced-elon-musks-xai-trolled-openais-dots-launch/",
+      "published": "Tue, 29 Sep 2026 22:20:59 +0000",
+      "summary": "Before OpenAI launched its new AI agent, Dots, on Tuesday, Elon Musk's xAI had already acquired the domain name \"dot.com,\" which now redirects to the Grok chatbot download…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Your car and its mobile app are probably handing over all kinds of data to tech companies",
+      "link": "https://techcrunch.com/2026/09/29/your-car-and-its-mobile-app-are-probably-handing-over-all-kinds-of-data-to-tech-companies/",
+      "published": "Tue, 29 Sep 2026 22:18:35 +0000",
+      "summary": "Researchers at Northeastern University found vehicles and their companion apps regularly shared detailed data with some of the largest tech…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "BMW’s revamped i3 boasts up to 468 miles of range",
+      "link": "https://www.theverge.com/transportation/1002173/bmws-revamped-i3-boasts-up-to-468-miles-of-range",
+      "published": "2026-09-29T22:01:00.000Z",
+      "summary": "When BMW first announced it was reimagining the i3 as an all-electric four-door sedan built on its Neue Klasse platform, it left out a lot of important details, like battery capacity, range, and price. Today, the German automaker is…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Protests against OpenAI get increasingly creative",
+      "link": "https://arstechnica.com/ai/2026/09/what-iceberg-bay-area-artists-target-openai-with-titanic-themed-protest-art/",
+      "published": "Tue, 29 Sep 2026 21:52:58 +0000",
+      "summary": "New sculpture depicts AI leaders escaping a sinking…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "a16z-backed EliseAI raises $350M, doubles valuation to $4B",
+      "link": "https://techcrunch.com/2026/09/29/a16z-backed-eliseai-raises-350m-doubles-valuation-to-4b/",
+      "published": "Tue, 29 Sep 2026 21:51:36 +0000",
+      "summary": "EliseAI raises $350M, doubles valuation in a…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Suspected ShinyHunters leader arrested in the Netherlands",
+      "link": "https://www.theverge.com/tech/1002410/shinyhunters-hacking-suspect-arrested",
+      "published": "2026-09-29T21:50:31.000Z",
+      "summary": "Dutch police say they arrested a 24-year-old Amsterdam man in connection with ShinyHunters, the hacking group that claimed responsibility for high-profile attacks on Ticketmaster, Rockstar Games, and more recently, the FBI. In a press…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Elon Musk&#8217;s AI-powered Grokipedia is updating again",
+      "link": "https://www.theverge.com/tech/1002448/elon-musk-grokipedia-ai-updating-again",
+      "published": "2026-09-29T21:49:09.000Z",
+      "summary": "Elon Musk | Image: Laura Normand / The Verge Grokipedia, the AI-powered online encyclopedia from SpaceXAI, appears to be updating articles once again after a months-long pause. In August, Lawfare reported that articles on Grokipedia hadn't…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Tesla secures $30B in new credit lines as it looks to scale Cybercab, Optimus",
+      "link": "https://techcrunch.com/2026/09/29/tesla-secures-30b-in-new-credit-lines-as-it-looks-to-scale-cybercab-optimus/",
+      "published": "Tue, 29 Sep 2026 21:20:12 +0000",
+      "summary": "The company says it won't draw on the new debt facilities this year, as it has already planned at least $25 billion in capital…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "AMD acquires World Labs AI startup, upping the ante against Nvidia",
+      "link": "https://arstechnica.com/ai/2026/09/amd-acquires-world-labs-ai-pioneer-fei-fei-lis-world-models-startup/",
+      "published": "Tue, 29 Sep 2026 21:14:49 +0000",
+      "summary": "The deal, which is expected to close by year's end, is worth $8.2…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Trump ads paid for by US government allegedly violate anti-propaganda laws",
+      "link": "https://arstechnica.com/tech-policy/2026/09/trump-ads-paid-for-by-us-government-allegedly-violate-anti-propaganda-laws/",
+      "published": "Tue, 29 Sep 2026 20:23:40 +0000",
+      "summary": "FCC unlikely to stop Trump ads described as illegal taxpayer-funded…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "OpenAI’s latest features take direct aim at the app store model",
+      "link": "https://techcrunch.com/2026/09/29/openais-latest-features-take-direct-aim-at-the-app-store-model/",
+      "published": "Tue, 29 Sep 2026 20:15:47 +0000",
+      "summary": "OpenAI is building out the pieces of an alternative to the traditional app store model, turning ChatGPT into a place where software can be discovered and used by people and AI agents…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "OpenAI repotedly in talks to raise $30B round at $1.4T valuation",
+      "link": "https://techcrunch.com/2026/09/29/openai-repotedly-in-talks-to-raise-30b-round-at-1-4t-valuation/",
+      "published": "Tue, 29 Sep 2026 19:52:37 +0000",
+      "summary": "The new round is anticipated to be the company's last before its delayed 2027 public…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "OpenAI Gets Sued Over the Hugging Face Hack",
+      "link": "https://www.wired.com/story/openai-sued-over-the-hugging-face-hack/",
+      "published": "Tue, 29 Sep 2026 19:05:00 +0000",
+      "summary": "A nonprofit in California is doing what Hugging Face has not—attempting to hold OpenAI legally accountable for the actions of its…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "More Ways to Disrupt: New 2026 Side Events from KOTRA, WayFounder, Enterprise Ireland, SafetyWing + Descope",
+      "link": "https://techcrunch.com/2026/09/29/more-ways-to-disrupt-new-2026-side-events-from-kotra-wayfounder-enterprise-ireland-safetywing-descope/",
+      "published": "Tue, 29 Sep 2026 18:48:03 +0000",
+      "summary": "Disrupt doesn’t end when you leave Moscone West. 👀 Founder dinners, investor meetups, happy hours, workshops, roundtables and more are taking over San Francisco during Disrupt Week. See what’s happening, find your people, and start…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Apple Pay set to launch in India with Axis Bank today, sources say",
+      "link": "https://techcrunch.com/2026/09/29/apple-pay-set-to-launch-in-india-with-axis-bank-today-sources-say/",
+      "published": "Tue, 29 Sep 2026 18:45:00 +0000",
+      "summary": "Some of India's largest banks are holding off on supporting Apple Pay…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Here’s why OpenAI is absent from Nvidia’s industry-wide effort to end rogue AI agents",
+      "link": "https://techcrunch.com/2026/09/29/heres-why-openai-is-absent-from-nvidias-industry-wide-effort-to-end-rogue-ai-agents/",
+      "published": "Tue, 29 Sep 2026 18:35:00 +0000",
+      "summary": "OpenAI isn't a public supporter of Nvidia's Open Agent Safety Platform, but it is privately working with Nvidia, TechCrunch has…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "NASA has a Dragon dilemma, and there appear to be no good answers",
+      "link": "https://arstechnica.com/space/2026/09/nasa-has-a-dragon-dilemma-and-there-appear-to-be-no-good-answers/",
+      "published": "Tue, 29 Sep 2026 18:34:00 +0000",
+      "summary": "So is SpaceX just being selfish or…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Away’s New Series 3 Luggage Plays It Safe—That’s the Point",
+      "link": "https://www.wired.com/story/away-launches-series-3-luggage/",
+      "published": "Tue, 29 Sep 2026 18:29:17 +0000",
+      "summary": "Away’s third generation of its iconic luggage retains the familiar design while introducing invisible tech, such as a new wheel system and an improved telescoping…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Here's what actually happened in OpenAI's Australian gov't server hack",
+      "link": "https://arstechnica.com/ai/2026/09/heres-what-actually-happened-in-openais-australian-govt-server-hack/",
+      "published": "Tue, 29 Sep 2026 18:11:09 +0000",
+      "summary": "Without a \"full set of safeguards,\" agent accessed \"system information and source…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -16,7 +200,7 @@
       "title": "OpenAI takes on Microsoft with the launch of what feels a whole lot like ChatGPT’s own office suite",
       "link": "https://techcrunch.com/2026/09/29/openai-takes-on-microsoft-with-the-launch-of-what-feels-a-whole-lot-like-chatgpts-own-office-suite/",
       "published": "Tue, 29 Sep 2026 17:45:51 +0000",
-      "summary": "OpenAI's newly announced suite of office features puts it into mor direct competition with more traditional software…"
+      "summary": "OpenAI's newly announced suite of office features puts it into more direct competition with more traditional software…"
     },
     {
       "source": "The Verge",
@@ -29,7 +213,7 @@
     {
       "source": "Ars Technica",
       "category": "news",
-      "title": "Apple worked with Trump admin to remove ICE-tracking apps, lawmaker says",
+      "title": "Apple pressured to explain Trump role in ICE-tracking app removals",
       "link": "https://arstechnica.com/tech-policy/2026/09/apple-worked-with-trump-admin-to-remove-ice-tracking-apps-lawmaker-says/",
       "published": "Tue, 29 Sep 2026 17:29:14 +0000",
       "summary": "Lawmaker rejects Apple excuse for banning ICE-tracking apps as…"
@@ -43,14 +227,6 @@
       "summary": "Dutch police said the hacker, arrested for being part of the ShinyHunters cybercriminal gang, had plans to organize the murder of two people on his…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "AI-powered app maker Wabi pivots to a messaging experience",
-      "link": "https://techcrunch.com/2026/09/29/ai-powered-app-maker-wabi-pivots-to-a-messaging-experience/",
-      "published": "Tue, 29 Sep 2026 17:20:00 +0000",
-      "summary": "Wabi is repositioning its prompt-based app builder as a personal AI agent that can create interfaces on demand, combining chat, apps and ongoing…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Razer’s low-latency wireless gaming keyboard is almost half off",
@@ -59,44 +235,12 @@
       "summary": "Razer’s DeathStalker V2 Pro is discounted in both black and white. | Image: The Verge Woot has the Razer DeathStalker V2 Pro TKL on sale for $130, a significant discount from its usual $219.99 price point. This keyboard is built for…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI launches Dots, its bubbly agentic avatar",
-      "link": "https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/",
-      "published": "Tue, 29 Sep 2026 17:17:15 +0000",
-      "summary": "Dots are meant to operate independent of any specific hardware or interface, pursuing user-defined goals continuously in the background with minimal…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "OpenAI launches Dots, its Muse competitor",
       "link": "https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor",
       "published": "2026-09-29T17:15:00.000Z",
       "summary": "Like Muse, OpenAI’s Dots are represented by cute, customizable avatars. | Image: OpenAI OpenAI is responding to Meta's buzzy Muse AI with agentic helpers of its own: Dots. During its DevDay keynote on Tuesday, OpenAI announced that Dots…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI gives Codex reusable cloud environments that work across devices",
-      "link": "https://techcrunch.com/2026/09/29/openai-gives-codex-reusable-cloud-environments-that-work-across-devices/",
-      "published": "Tue, 29 Sep 2026 17:15:00 +0000",
-      "summary": "OpenAI is expanding Codex with reusable cloud development environments, a revamped CLI with voice controls, new code review tools and a security-focused product for scanning repositories and preparing…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI launches GPT-6.1 Sol, says it nearly matches GPT-6 Astra and costs less",
-      "link": "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/",
-      "published": "Tue, 29 Sep 2026 17:15:00 +0000",
-      "summary": "OpenAI says GPT-6.1 Sol delivers significant improvements over GPT-6 Sol across complex professional tasks, including code writing and debugging, document understanding, and executing multi-step business…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI expands ChatGPT’s plugins with app-like interfaces and automations",
-      "link": "https://techcrunch.com/2026/09/29/openai-expands-chatgpts-plugins-with-app-like-interfaces-and-automations/",
-      "published": "Tue, 29 Sep 2026 17:15:00 +0000",
-      "summary": "OpenAI is expanding ChatGPT plugins with dedicated sidebar homes, interactive panels, file viewers, improved discovery, and support for…"
     },
     {
       "source": "Wired",
@@ -115,14 +259,6 @@
       "summary": "On Tuesday, OpenAI's annual DevDay event began with protests, flyers, and chants. \"Sam Altman, get off it, put people over profit,\" said a group of protesters marching in a circle in front of a series of signs that spelled out \"PEOPLE OVER…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Can a chatbot fix the government maze? The White House is about to find out",
-      "link": "https://techcrunch.com/2026/09/29/can-a-chatbot-fix-the-government-maze-the-white-house-is-about-to-find-out/",
-      "published": "Tue, 29 Sep 2026 16:55:56 +0000",
-      "summary": "America.gov is intended to simplify the process of navigating government bureaucracy, but language models are imperfect and remain prone to hallucinations, which could cause new…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Xbox’s Mythic Achievements are here and they&#8217;re just like PlayStation Platinum trophies",
@@ -137,46 +273,6 @@
       "link": "https://www.theverge.com/tech/1002107/apple-ceo-john-ternus-product-launch-strategy",
       "published": "2026-09-29T16:09:44.000Z",
       "summary": "John Ternus, Apple's new CEO, wants Apple to launch products more often than its usual splashy moments in the fall and the spring, according to a Bloomberg report detailing some of Ternus's initial plans for the company. Apple regularly…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "OpenAI DevDay 2026: The biggest news and announcements",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001681/openai-devday-2026-biggest-news-announcements",
-      "published": "2026-09-29T16:00:00.000Z",
-      "summary": "It’s OpenAI’s turn in the fall tech events calendar. The company is hosting its annual DevDay on September 29th in San Francisco, starting with a live keynote featuring CEO Sam Altman. The company is teasing “20+ launches” with Altman…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "This might be our first look at Google’s Pixel 11A",
-      "link": "https://www.theverge.com/tech/1002072/google-pixel-11a-leaked-renders-first-look",
-      "published": "2026-09-29T15:57:10.000Z",
-      "summary": "The only noticable difference is that the camera oval is shorter. | Image: Android Headlines Google isn't making any significant design changes to its upcoming midrange Pixel update, judging by the leaks shared by Android Headlines. The…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Instinct founder said more than 50% of transactions on the platform are travel-related",
-      "link": "https://techcrunch.com/2026/09/29/instinct-founder-said-more-than-50-of-transactions-on-the-platform-are-travel-related/",
-      "published": "Tue, 29 Sep 2026 15:12:07 +0000",
-      "summary": "Instinct founder said the platform is growing 10% day by day, with transaction volume increasing at a similar…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "After losing his voice to cancer, this founder is building ‘glasses for voice’",
-      "link": "https://techcrunch.com/2026/09/29/after-losing-his-voice-to-cancer-this-founder-is-building-glasses-for-voice/",
-      "published": "Tue, 29 Sep 2026 15:00:00 +0000",
-      "summary": "Uhura Bionics, part of the Startup Battlefield 200 at TechCrunch Disrupt, wants to replace flat, robotics voice devices with one that carries…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Oura shelves its $2.2B IPO, citing ‘uncertainty’ in the market",
-      "link": "https://techcrunch.com/2026/09/29/oura-shelves-its-2-2b-ipo-citing-uncertainty-in-the-market/",
-      "published": "Tue, 29 Sep 2026 14:56:55 +0000",
-      "summary": "The postponement of the IPO will delay some of the company's plans for its proceeds from the IPO, as well as those of its…"
     },
     {
       "source": "Ars Technica",
@@ -203,36 +299,12 @@
       "summary": "Similar performance, security trade-offs also seen in current public…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Leaked images reveal new colors for Amazon’s next entry-level Kindle",
-      "link": "https://www.theverge.com/tech/1001905/amazon-leak-basic-entry-level-kindle-colors-design-power-button",
-      "published": "2026-09-29T14:10:50.000Z",
-      "summary": "Amazon typically introduces new Kindle models a few months ahead of the holiday shopping season, and this year it looks like that will include a bigger update to the entry-level Kindle than what debuted in 2024. The last upgrades to the…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Anthropic’s IPO pitch includes a warning about human extinction",
       "link": "https://arstechnica.com/ai/2026/09/anthropics-ipo-pitch-includes-a-warning-about-human-extinction/",
       "published": "Tue, 29 Sep 2026 14:10:00 +0000",
       "summary": "The Claude maker warns its own models could resist shutdowns and cause catastrophic…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Meta&#8217;s Muse AI sent a YouTuber’s address to a stranger",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1001886/meta-muse-ai-facebook-marketplace-security-concerns",
-      "published": "2026-09-29T14:08:21.000Z",
-      "summary": "Tech YouTuber Matt Robb says that Muse gave out his home address to a total stranger this weekend, after authorizing the bot to handle his Facebook Marketplace account. That's despite Meta placing great emphasis on the security features of…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "With Dazzle, Marissa Mayer bets your camera roll has more info on your life than your inbox",
-      "link": "https://techcrunch.com/2026/09/29/with-dazzle-marissa-mayer-bets-your-camera-roll-has-more-info-on-your-life-than-your-inbox/",
-      "published": "Tue, 29 Sep 2026 13:53:01 +0000",
-      "summary": "Mayer argues that if a photo is worth a thousand words, your camera roll is worth millions. By analyzing all the photos stored on your phone, Dazzle claims to understand your hobbies, interests, food, and style preferences, how you like to…"
     },
     {
       "source": "Ars Technica",
@@ -297,78 +369,6 @@
       "link": "https://www.wired.com/review/beats-360/",
       "published": "Tue, 29 Sep 2026 10:00:00 +0000",
       "summary": "Beats’ new flagship headphones are customizable, stylish, fun, and great for working out. But there are stronger options for everyday…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Plastic Is Melting Onto Corals",
-      "link": "https://www.wired.com/story/plastic-is-melting-onto-corals/",
-      "published": "Tue, 29 Sep 2026 09:30:00 +0000",
-      "summary": "Scientists have found a new form of pollution, one where plastic and pieces of coral become irreversibly…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "19 Best Gifts for Plant Lovers and Gardeners (2026)",
-      "link": "https://www.wired.com/story/gifts-for-plant-lovers-and-gardeners-2026/",
-      "published": "Tue, 29 Sep 2026 09:15:00 +0000",
-      "summary": "From smart apps and planters to unique tools, these gifts will turn even a black thumb into a next-level plant…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "NordVPN Coupons: 75% Off, Plus 3 Months Free in October 2026",
-      "link": "https://www.wired.com/story/nordvpn-coupon/",
-      "published": "Tue, 29 Sep 2026 05:00:00 +0000",
-      "summary": "Save up to 77% on 2-year plans and get 3 free months with our NordVPN discount…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Boeing \"incredibly excited\" to serve as nation's only astronaut transportation",
-      "link": "https://arstechnica.com/space/2026/09/boeing-incredibly-excited-to-serve-as-nations-only-astronaut-transportation/",
-      "published": "Mon, 28 Sep 2026 22:24:33 +0000",
-      "summary": "\"We couldn't provide detailed pricing to the CLD…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Experts worry about Nvidia's AI chip sales in China and influence over Trump",
-      "link": "https://arstechnica.com/tech-policy/2026/09/nvidia-may-sell-more-chips-in-china-as-jensen-huangs-influence-over-trump-grows/",
-      "published": "Mon, 28 Sep 2026 21:49:10 +0000",
-      "summary": "China is reportedly mulling letting ByteDance, Alibaba buy banned Nvidia…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "SpaceX's Starship goes orbital, deploying first next-gen Starlinks",
-      "link": "https://arstechnica.com/space/2026/09/starships-first-orbital-launch-gives-lift-to-spacexs-next-gen-starlinks/",
-      "published": "Mon, 28 Sep 2026 21:26:19 +0000",
-      "summary": "Starship had already flown 99 percent of the way to low-Earth orbit. Monday's flight added the last…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Florida invokes extinction fears in legal bid to halt OpenAI development",
-      "link": "https://arstechnica.com/ai/2026/09/florida-asks-court-to-put-the-brakes-on-openais-frontier-ai-development/",
-      "published": "Mon, 28 Sep 2026 20:49:39 +0000",
-      "summary": "State says LLMs threaten civilization as \"the greatest public nuisance ever…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "New device captures carbon dioxide by pumping it across a battery",
-      "link": "https://arstechnica.com/science/2026/09/new-device-captures-carbon-dioxide-by-pumping-it-across-a-battery/",
-      "published": "Mon, 28 Sep 2026 20:31:06 +0000",
-      "summary": "The design requires less energy to capture CO2 than current…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "To keep drug prices high, pharma has been piling up the patents",
-      "link": "https://arstechnica.com/health/2026/09/to-keep-drug-prices-high-pharma-has-been-piling-up-the-patents/",
-      "published": "Mon, 28 Sep 2026 19:53:37 +0000",
-      "summary": "Add-on patents have increased drug patent periods from two years to over…"
     }
   ]
 }
