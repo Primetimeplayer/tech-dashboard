@@ -78,9 +78,25 @@
   .thread-item .n { color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; margin-right: 0.4em; }
 
   .empty { color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; padding: 2rem 0; }
-</style>
+
+    </style>
 </head>
 <body>
+<aside class="sidebar">
+  <a class="sidebar-home" href="index.html">Home</a>
+  <div class="sidebar-label">TOPICS</div>
+  <a class="sidebar-item" href="index.html#technology">Technology</a>
+  <a class="sidebar-item" href="index.html#ai">AI &amp; Research</a>
+  <a class="sidebar-item" href="index.html#reviews">Reviews</a>
+  <a class="sidebar-item" href="index.html#community">Community</a>
+  <div class="sidebar-label">LIBRARY</div>
+  <a class="sidebar-item" href="index.html#hardware">Hardware</a>
+  <a class="sidebar-item" href="index.html#saved">Saved</a>
+  <a class="sidebar-item active" href="digests.html">Digests</a>
+  <a class="sidebar-item" href="index.html#settings">Settings</a>
+  <div class="sidebar-recents"><div class="sidebar-label">RECENTS</div><div id="recentArticles"></div></div>
+</aside>
+<main class="main-content">
 
 <div class="mast">
   <div class="wrap">
@@ -210,5 +226,6 @@
   init();
 </script>
 
+</main>
 </body>
 </html>
