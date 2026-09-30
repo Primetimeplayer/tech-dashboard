@@ -1,7 +1,71 @@
 {
-  "updated": "2026-09-30T06:08:00.163Z",
+  "updated": "2026-09-30T12:08:54.189Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Two Google alumni raise $11.3M to back AI startups that enterprises will actually pay for",
+      "link": "https://techcrunch.com/2026/09/30/bag-ventures-sets-its-eyes-deeper-into-the-ai-stack/",
+      "published": "Wed, 30 Sep 2026 12:00:00 +0000",
+      "summary": "BAG Ventures announces close of a $11.3M Fund I to invest in all things…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Airbnb adds AI search, more social features",
+      "link": "https://techcrunch.com/2026/09/30/airbnb-adds-ai-search-more-social-features/",
+      "published": "Wed, 30 Sep 2026 12:00:00 +0000",
+      "summary": "Airbnb is also launching new services such as meal delivery and laundry in select…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Best Gifts for Book Lovers (2026): E-Readers, Handy Accessories, Book Sets",
+      "link": "https://www.wired.com/story/gifts-for-book-lovers/",
+      "published": "Wed, 30 Sep 2026 11:36:00 +0000",
+      "summary": "Any one of these gift ideas will make your favorite bookworm very happy, from e-readers and accessories to handy reading…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Cloudflare plans to issue quantum-safe TLS certificates",
+      "link": "https://arstechnica.com/security/2026/09/cloudflare-plans-to-issue-quantum-safe-tls-certificates/",
+      "published": "Wed, 30 Sep 2026 11:15:14 +0000",
+      "summary": "The move will be part of a major overhaul of the ecosystem for website…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Best Gaming Routers (2026): Tested By a Family of Gamers",
+      "link": "https://www.wired.com/story/best-gaming-routers/",
+      "published": "Wed, 30 Sep 2026 11:00:00 +0000",
+      "summary": "Gaming online can seriously strain your internet connection, but the best gaming routers could give you the…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Black Twitter Is Thriving—on Threads",
+      "link": "https://www.wired.com/story/threads-is-black-twitters-unlikely-spiritual-successor/",
+      "published": "Wed, 30 Sep 2026 10:30:00 +0000",
+      "summary": "From outrage over Nolan Wells’ death to analysis of HBO Max’s Lanterns, Threads has transformed into a vital artery of the Black social media…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "How Israeli Checkpoints Choke Palestinian Life in the Occupied West Bank",
+      "link": "https://www.wired.com/story/how-israeli-checkpoints-choke-palestinian-life-occupied-west-bank/",
+      "published": "Wed, 30 Sep 2026 10:00:00 +0000",
+      "summary": "Lost time. Lost jobs. Lost friends. Lost family. Lost lives. Our joint investigation reveals the system that has divided the West Bank and measures what it cost people to move through…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Mattresses for Kids (2026): Saatva, Birch, Helix, and More",
+      "link": "https://www.wired.com/gallery/the-best-kids-mattresses/",
+      "published": "Wed, 30 Sep 2026 09:32:00 +0000",
+      "summary": "Learn what to look for when buying a kids’ mattress, plus how six top models stack up, according to my…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -13,18 +77,18 @@
     {
       "source": "Wired",
       "category": "news",
-      "title": "30% Off Canon Promo Codes | October 2026",
-      "link": "https://www.wired.com/story/canon-promo-code/",
-      "published": "Wed, 30 Sep 2026 05:00:00 +0000",
-      "summary": "Save an extra 10% or 30% with Canon coupon codes, plus up to $1,600 on cameras, printers, and more this October…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
       "title": "LG Promo Codes and Coupons for October 2026",
       "link": "https://www.wired.com/story/lg-promo-code/",
       "published": "Wed, 30 Sep 2026 05:00:00 +0000",
       "summary": "Save 20% with an LG promo code today, plus up to $1,000 off appliances, 40% off bestselling TVs and…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "30% Off Canon Promo Codes | October 2026",
+      "link": "https://www.wired.com/story/canon-promo-code/",
+      "published": "Wed, 30 Sep 2026 05:00:00 +0000",
+      "summary": "Save an extra 10% or 30% with Canon coupon codes, plus up to $1,600 on cameras, printers, and more this October…"
     },
     {
       "source": "Wired",
@@ -227,22 +291,6 @@
       "summary": "Without a \"full set of safeguards,\" agent accessed \"system information and source…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Anthropic Says It Discovered a Crispr-Like System. Now What?",
-      "link": "https://www.wired.com/story/anthropic-says-it-discovered-a-crispr-like-system-now-what/",
-      "published": "Tue, 29 Sep 2026 18:03:01 +0000",
-      "summary": "“The experiments are still in the queue. The PR is already live,” says one…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI takes on Microsoft with the launch of what feels a whole lot like ChatGPT’s own office suite",
-      "link": "https://techcrunch.com/2026/09/29/openai-takes-on-microsoft-with-the-launch-of-what-feels-a-whole-lot-like-chatgpts-own-office-suite/",
-      "published": "Tue, 29 Sep 2026 17:45:51 +0000",
-      "summary": "OpenAI's newly announced suite of office features puts it into more direct competition with more traditional software…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "AI researchers put out videos saying superintelligence is ‘exactly as dangerous as it sounds’",
@@ -259,14 +307,6 @@
       "summary": "Lawmaker rejects Apple excuse for banning ICE-tracking apps as…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Dutch police arrest ShinyHunters hacker accused of planning two murders",
-      "link": "https://techcrunch.com/2026/09/29/dutch-police-arrest-shinyhunters-hacker-accused-of-planning-two-murders/",
-      "published": "Tue, 29 Sep 2026 17:27:09 +0000",
-      "summary": "Dutch police said the hacker, arrested for being part of the ShinyHunters cybercriminal gang, had plans to organize the murder of two people on his…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Razer’s low-latency wireless gaming keyboard is almost half off",
@@ -281,14 +321,6 @@
       "link": "https://www.theverge.com/ai-artificial-intelligence/1002033/openai-dots-launch-muse-competitor",
       "published": "2026-09-29T17:15:00.000Z",
       "summary": "Like Muse, OpenAI’s Dots are represented by cute, customizable avatars. | Image: OpenAI OpenAI is responding to Meta's buzzy Muse AI with agentic helpers of its own: Dots. During its DevDay keynote on Tuesday, OpenAI announced that Dots…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "OpenAI’s Dots Are Always-On AI Agents—and Its Answer to Meta’s Muse",
-      "link": "https://www.wired.com/story/openai-dots-always-on-ai-agents-that-proactively-help/",
-      "published": "Tue, 29 Sep 2026 17:15:00 +0000",
-      "summary": "These cute agents are designed to connect to your apps and tackle multistep…"
     },
     {
       "source": "The Verge",
@@ -337,38 +369,6 @@
       "link": "https://arstechnica.com/ai/2026/09/anthropics-ipo-pitch-includes-a-warning-about-human-extinction/",
       "published": "Tue, 29 Sep 2026 14:10:00 +0000",
       "summary": "The Claude maker warns its own models could resist shutdowns and cause catastrophic…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Interview: Firefox's chief on why he hopes a redesign will help win users from Chrome",
-      "link": "https://arstechnica.com/gadgets/2026/09/mozillas-head-of-firefox-talks-product-priorities-ai-skepticism-and-browser-choice/",
-      "published": "Tue, 29 Sep 2026 13:00:19 +0000",
-      "summary": "Mozilla's Ajit Varma explains why a redesign suits the fight for the open…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "I Found National Coffee Day Deals Worth Making Coffee at Home For (2026)",
-      "link": "https://www.wired.com/story/national-coffee-day-deals-2026/",
-      "published": "Tue, 29 Sep 2026 11:30:00 +0000",
-      "summary": "From a $100 Keurig to a rare discount on a De’Longhi espresso machine, these WIRED-tested picks caught my…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "How to Beat Surveillance Pricing Before It Bleeds You Dry",
-      "link": "https://www.wired.com/story/how-to-beat-surveillance-pricing-before-it-bleeds-you-dry/",
-      "published": "Tue, 29 Sep 2026 10:45:00 +0000",
-      "summary": "Consumer advocate Lindsay Owen’s new book, Gouged, traces how corporations use software—from ever-changing prices to opaque algorithms—to squeeze every penny from…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "7 Best Smartwatch Models: Apple, Google, Garmin (2026)",
-      "link": "https://www.wired.com/story/best-smartwatch/",
-      "published": "Tue, 29 Sep 2026 10:39:00 +0000",
-      "summary": "These WIRED-tested wearables reduce your reliance on a phone while keeping you…"
     }
   ]
 }

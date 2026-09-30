@@ -1,7 +1,49 @@
 {
-  "updated": "2026-09-30T06:08:00.869Z",
+  "updated": "2026-09-30T12:08:55.025Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "The Samsung Galaxy SmartTag 3's special feature is being a pet activity monitor",
+      "link": "https://www.engadget.com/2272675/the-samsung-galaxy-smarttag-3-special-feature-is-being-a-pet-activity-monitor/",
+      "published": "Wed, 30 Sep 2026 12:00:00 +0000",
+      "summary": "Not only can it keep tabs on your furball's location, it can monitor their motion and sleep…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Samsung Galaxy Tab S12 Ultra review: The apex Android tablet",
+      "link": "https://www.engadget.com/2272526/samsung-galaxy-tab-s12-ultra-review/",
+      "published": "Wed, 30 Sep 2026 12:00:00 +0000",
+      "summary": "Starting at $1,400, the Samsung Galaxy Tab S12 Ultra is super expensive. But that's the price you'll have to pay for the best Android…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Airbnb is adding a personalized map and other discovery tools",
+      "link": "https://www.engadget.com/2272794/airbnb-is-adding-a-personalized-map-and-other-discovery-tools/",
+      "published": "Wed, 30 Sep 2026 12:00:00 +0000",
+      "summary": "The rental service is getting more social and more…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Apple Pay finally arrives in India on a limited basis",
+      "link": "https://www.engadget.com/2272991/apple-pay-arrives-india/",
+      "published": "Wed, 30 Sep 2026 10:30:18 +0000",
+      "summary": "Apple Pay is now available in India, but it only supports cards by Axis Bank for…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "The US government's new AI chatbot gives Minecraft's end poem a bureaucratic twist",
+      "link": "https://www.engadget.com/2272978/the-us-governments-new-ai-chatbot-gives-minecrafts-end-poem-a-bureaucratic-twist/",
+      "published": "Wed, 30 Sep 2026 09:48:35 +0000",
+      "summary": "The new America.gov chatbot will write you a remixed version of Minecraft's end poem, then deny ever doing…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Sony implements a lottery system to deal with the PS5 Pro shortage in Japan",
+      "link": "https://www.engadget.com/2272946/sony-lottery-system-ps5-pro-japan/",
+      "published": "Wed, 30 Sep 2026 07:55:04 +0000",
+      "summary": "Gamers in Japan will have to prove they actually use their PS consoles to be able to buy a PS5…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Don't throw away your old router — Do this instead",
@@ -29,48 +71,6 @@
       "link": "https://www.engadget.com/2271451/prepare-samsung-galaxy-one-ui-9-update/",
       "published": "Tue, 29 Sep 2026 22:30:00 +0000",
       "summary": "With Samsung's One UI 9 rollout chugging along the globe, there's no better time to make a few quick checks before you make the…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "How do translation earbuds actually work?",
-      "link": "https://www.engadget.com/2271253/translation-earbuds-how-work-explained/",
-      "published": "Tue, 29 Sep 2026 22:00:00 +0000",
-      "summary": "Translation earbuds are gaining momentum, but actually using them may not be quite the experience you're…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Codenames Party is the latest addition to Netflix Games",
-      "link": "https://www.engadget.com/2272720/codenames-party-is-the-latest-addition-to-netflix-games/",
-      "published": "Tue, 29 Sep 2026 21:00:07 +0000",
-      "summary": "The word association game introduces a new Party Mode for streaming…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Apple's iOS 27.0.1 update arrives with fixes for Face ID and touchscreen issues",
-      "link": "https://www.engadget.com/2272713/ios-27-0-1-iphone-update-face-id-touchscreen-issue-fixes/",
-      "published": "Tue, 29 Sep 2026 20:51:37 +0000",
-      "summary": "Why you should update your iPhone 18 Pro to iOS…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Apple updates Final Cut Camera to support the iPhone 18 Pro's variable aperture",
-      "link": "https://www.engadget.com/2272667/apple-updates-final-cut-camera-to-support-the-iphone-18-pro-s-variable-aperture/",
-      "published": "Tue, 29 Sep 2026 20:17:31 +0000",
-      "summary": "The company is also rolling out new features across several of its Creator Studio…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Mozilla deploys a new-look Firefox across desktop and mobile",
-      "link": "https://www.engadget.com/2272664/mozilla-deploys-a-new-look-firefox-across-desktop-and-mobile/",
-      "published": "Tue, 29 Sep 2026 20:16:45 +0000",
-      "summary": "The redesigned browser brings back compact mode and adds a theme…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Google partners with known nerd Henry Cavill on a video game to showcase Googlebooks",
-      "link": "https://www.engadget.com/2272594/google-henry-cavill-make-video-game-googlebook/",
-      "published": "Tue, 29 Sep 2026 19:49:27 +0000",
-      "summary": "The final result will be published in…"
     }
   ]
 }
