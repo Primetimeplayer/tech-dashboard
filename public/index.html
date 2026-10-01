@@ -3928,214 +3928,298 @@ label[for="dateFilter"] {
   initTheme();
 
   // --- Saved items + account sync ---
-  const AUTH_BASE = 'https://signal-sync.primetimeplayer-signal-sync.workers.dev';
-  let authState = { authenticated: false, user: null };
-  let authReady = false;
+const AUTH_BASE = 'https://signal-sync.primetimeplayer-signal-sync.workers.dev';
+const AUTH_TOKEN_KEY = 'signal-auth-token';
 
-  function loadSaved() {
-    try {
-      return JSON.parse(localStorage.getItem('signal-saved') || '{}');
-    } catch (e) { return {}; }
+let authState = { authenticated: false, user: null };
+let authReady = false;
+let authToken = localStorage.getItem(AUTH_TOKEN_KEY) || '';
+
+function loadSaved() {
+  try {
+    return JSON.parse(localStorage.getItem('signal-saved') || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function persistSaved(map) {
+  try {
+    localStorage.setItem('signal-saved', JSON.stringify(map));
+  } catch (e) {}
+}
+
+let savedMap = loadSaved();
+
+function authHeaders(extra = {}) {
+  const headers = { ...extra };
+
+  if (authToken) {
+    headers.Authorization = `Bearer ${authToken}`;
   }
 
-  function persistSaved(map) {
-    try { localStorage.setItem('signal-saved', JSON.stringify(map)); } catch (e) {}
-  }
+  return headers;
+}
 
-  let savedMap = loadSaved(); // { [link]: { savedAt, note } }
+async function exchangeAuthCode() {
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('auth_code');
 
-  async function getAuthState() {
-    try {
-      const res = await fetch(`${AUTH_BASE}/api/me`, {
-        credentials: 'include',
-      });
+  if (!code) return false;
 
-      if (!res.ok) {
-        authState = { authenticated: false, user: null };
-        return authState;
-      }
-
-      authState = await res.json();
-      return authState;
-    } catch (e) {
-      console.error('Auth check failed:', e.message);
-      authState = { authenticated: false, user: null };
-      return authState;
-    }
-  }
-
-  async function getCloudSaved() {
-    const res = await fetch(`${AUTH_BASE}/api/saved`, {
-      credentials: 'include',
+  try {
+    const res = await fetch(`${AUTH_BASE}/auth/exchange`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code }),
     });
 
-    if (!res.ok) throw new Error(`saved GET: ${res.status}`);
+    if (!res.ok) {
+      throw new Error(`auth exchange: ${res.status}`);
+    }
 
     const data = await res.json();
-    const items = Array.isArray(data) ? data : (data.items || []);
 
-    const map = {};
-    for (const item of items) {
-      if (!item.story_url) continue;
-      map[item.story_url] = {
-        savedAt: item.saved_at || new Date().toISOString(),
-        note: item.note || '',
-      };
+    if (!data.token) {
+      throw new Error('Auth exchange returned no token');
     }
 
-    return map;
-  }
+    authToken = data.token;
+    localStorage.setItem(AUTH_TOKEN_KEY, authToken);
 
-  async function putCloudSaved(link, item) {
-    const res = await fetch(`${AUTH_BASE}/api/saved`, {
-      method: 'PUT',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        url: link,
-        title: item.title || '',
-        note: item.note || '',
-        savedAt: item.savedAt || new Date().toISOString(),
-      }),
+    history.replaceState(
+      {},
+      document.title,
+      window.location.pathname + window.location.hash
+    );
+
+    return true;
+  } catch (e) {
+    console.error('Auth exchange failed:', e.message);
+    authToken = '';
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    return false;
+  }
+}
+
+async function getAuthState() {
+  try {
+    const res = await fetch(`${AUTH_BASE}/api/me`, {
+      headers: authHeaders(),
     });
 
-    if (!res.ok) throw new Error(`saved PUT: ${res.status}`);
-  }
+    if (!res.ok) {
+      authState = { authenticated: false, user: null };
 
-  async function deleteCloudSaved(link) {
-    const res = await fetch(
-      `${AUTH_BASE}/api/saved?url=${encodeURIComponent(link)}`,
-      {
-        method: 'DELETE',
-        credentials: 'include',
-      }
-    );
-
-    if (!res.ok) throw new Error(`saved DELETE: ${res.status}`);
-  }
-
-  async function migrateLocalSavedToCloud() {
-    const localMap = { ...savedMap };
-    const remoteMap = await getCloudSaved();
-
-    const localLinks = Object.keys(localMap);
-    const remoteLinks = Object.keys(remoteMap);
-
-    // First login: upload existing local saves.
-    // If both local and cloud contain saves, merge them rather than deleting either.
-    const merged = { ...remoteMap, ...localMap };
-
-    for (const link of Object.keys(localMap)) {
-      const item = localMap[link];
-      await putCloudSaved(link, item);
-    }
-
-    savedMap = merged;
-    persistSaved(savedMap);
-
-    // If the account already had saves that were not present locally,
-    // keep them locally as well.
-    if (remoteLinks.some((link) => !localMap[link])) {
-      persistSaved(savedMap);
-    }
-
-    console.log(
-      `Saved Stories synced: ${localLinks.length} local, ${remoteLinks.length} account`
-    );
-  }
-
-  async function initAuth() {
-    await getAuthState();
-    authReady = true;
-
-    const accountBtn = document.getElementById('syncSettingsBtn');
-
-    if (authState.authenticated) {
-      if (accountBtn) {
-        accountBtn.textContent = 'Log out';
-        accountBtn.title = authState.user?.email || 'Log out';
+      if (res.status === 401) {
+        authToken = '';
+        localStorage.removeItem(AUTH_TOKEN_KEY);
       }
 
-      try {
-        await migrateLocalSavedToCloud();
-        render();
-      } catch (e) {
-        console.error('Saved Stories sync failed:', e.message);
-      }
-    } else {
-      if (accountBtn) {
-        accountBtn.textContent = 'Log in';
-        accountBtn.title = 'Sign in with Google';
-      }
+      return authState;
     }
-  }
 
-  document.getElementById('syncSettingsBtn').addEventListener('click', () => {
-    if (authState.authenticated) {
-      window.location.href = `${AUTH_BASE}/auth/logout`;
-    } else {
-      window.location.href = `${AUTH_BASE}/auth/google`;
-    }
+    authState = await res.json();
+    return authState;
+  } catch (e) {
+    console.error('Auth check failed:', e.message);
+    authState = { authenticated: false, user: null };
+    return authState;
+  }
+}
+
+async function getCloudSaved() {
+  const res = await fetch(`${AUTH_BASE}/api/saved`, {
+    headers: authHeaders(),
   });
 
-  async function toggleSave(link) {
-    const wasSaved = !!savedMap[link];
+  if (!res.ok) throw new Error(`saved GET: ${res.status}`);
+
+  const data = await res.json();
+  const items = Array.isArray(data) ? data : (data.saved || data.items || []);
+  const map = {};
+
+  for (const item of items) {
+    if (!item.url && !item.story_url) continue;
+
+    const link = item.url || item.story_url;
+
+    map[link] = {
+      savedAt: item.savedAt || item.saved_at || new Date().toISOString(),
+      note: item.note || '',
+    };
+  }
+
+  return map;
+}
+
+async function putCloudSaved(link, item) {
+  const res = await fetch(`${AUTH_BASE}/api/saved`, {
+    method: 'PUT',
+    headers: authHeaders({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify({
+      url: link,
+      title: item.title || '',
+      note: item.note || '',
+      savedAt: item.savedAt || new Date().toISOString(),
+    }),
+  });
+
+  if (!res.ok) throw new Error(`saved PUT: ${res.status}`);
+}
+
+async function deleteCloudSaved(link) {
+  const res = await fetch(
+    `${AUTH_BASE}/api/saved?url=${encodeURIComponent(link)}`,
+    {
+      method: 'DELETE',
+      headers: authHeaders(),
+    }
+  );
+
+  if (!res.ok) throw new Error(`saved DELETE: ${res.status}`);
+}
+
+async function migrateLocalSavedToCloud() {
+  const localMap = { ...savedMap };
+  const remoteMap = await getCloudSaved();
+
+  for (const link of Object.keys(localMap)) {
+    const item = localMap[link];
+    await putCloudSaved(link, item);
+  }
+
+  savedMap = { ...remoteMap, ...localMap };
+  persistSaved(savedMap);
+
+  console.log(
+    `Saved Stories synced: ${Object.keys(localMap).length} local, ${Object.keys(remoteMap).length} account`
+  );
+}
+
+async function logoutAccount() {
+  try {
+    if (authToken) {
+      await fetch(`${AUTH_BASE}/auth/logout`, {
+        method: 'POST',
+        headers: authHeaders(),
+      });
+    }
+  } catch (e) {
+    console.error('Logout failed:', e.message);
+  }
+
+  authToken = '';
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  authState = { authenticated: false, user: null };
+  authReady = true;
+
+  const accountBtn = document.getElementById('syncSettingsBtn');
+
+  if (accountBtn) {
+    accountBtn.textContent = 'Log in';
+    accountBtn.title = 'Sign in with Google';
+  }
+
+  render();
+}
+
+async function initAuth() {
+  await exchangeAuthCode();
+  await getAuthState();
+
+  authReady = true;
+
+  const accountBtn = document.getElementById('syncSettingsBtn');
+
+  if (authState.authenticated) {
+    if (accountBtn) {
+      accountBtn.textContent = 'Log out';
+      accountBtn.title = authState.user?.email || 'Log out';
+    }
+
+    try {
+      await migrateLocalSavedToCloud();
+      render();
+    } catch (e) {
+      console.error('Saved Stories sync failed:', e.message);
+    }
+  } else {
+    if (accountBtn) {
+      accountBtn.textContent = 'Log in';
+      accountBtn.title = 'Sign in with Google';
+    }
+  }
+}
+
+document.getElementById('syncSettingsBtn').addEventListener('click', () => {
+  if (authState.authenticated) {
+    logoutAccount();
+  } else {
+    window.location.href = `${AUTH_BASE}/auth/google`;
+  }
+});
+
+async function toggleSave(link) {
+  const wasSaved = !!savedMap[link];
+
+  if (wasSaved) {
+    delete savedMap[link];
+  } else {
+    savedMap[link] = {
+      savedAt: new Date().toISOString(),
+      note: '',
+    };
+  }
+
+  persistSaved(savedMap);
+  render();
+
+  if (!authReady || !authState.authenticated) return;
+
+  try {
+    if (wasSaved) {
+      await deleteCloudSaved(link);
+    } else {
+      await putCloudSaved(link, savedMap[link]);
+    }
+  } catch (e) {
+    console.error('Saved Story update failed:', e.message);
 
     if (wasSaved) {
-      delete savedMap[link];
-    } else {
       savedMap[link] = {
         savedAt: new Date().toISOString(),
         note: '',
       };
+    } else {
+      delete savedMap[link];
     }
 
     persistSaved(savedMap);
     render();
-
-    if (!authReady || !authState.authenticated) return;
-
-    try {
-      if (wasSaved) {
-        await deleteCloudSaved(link);
-      } else {
-        await putCloudSaved(link, savedMap[link]);
-      }
-    } catch (e) {
-      console.error('Saved Story update failed:', e.message);
-
-      // Roll back the optimistic local change if the account update failed.
-      if (wasSaved) {
-        savedMap[link] = {
-          savedAt: new Date().toISOString(),
-          note: '',
-        };
-      } else {
-        delete savedMap[link];
-      }
-
-      persistSaved(savedMap);
-      render();
-    }
   }
+}
 
-  async function updateNote(link, text) {
-    if (!savedMap[link]) return;
+async function updateNote(link, text) {
+  if (!savedMap[link]) return;
 
-    savedMap[link].note = text;
-    persistSaved(savedMap);
+  savedMap[link].note = text;
+  persistSaved(savedMap);
 
-    if (!authReady || !authState.authenticated) return;
+  if (!authReady || !authState.authenticated) return;
 
-    try {
-      await putCloudSaved(link, savedMap[link]);
-    } catch (e) {
-      console.error('Saved Story note update failed:', e.message);
-    }
+  try {
+    await putCloudSaved(link, savedMap[link]);
+  } catch (e) {
+    console.error('Saved Story note update failed:', e.message);
   }
+}
 
-  // Initialize authentication independently of the news feed.
-  initAuth();
+initAuth();
 
   // --- Helpers ---
   function timeAgo(iso) {

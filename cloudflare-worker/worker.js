@@ -108,14 +108,30 @@ function corsHeaders(request, env) {
   return {
     "Access-Control-Allow-Origin": origin,
     "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
     Vary: "Origin",
   };
 }
 
+function getBearerToken(request) {
+  const header = request.headers.get("Authorization") || "";
+
+  if (!header.startsWith("Bearer ")) {
+    return null;
+  }
+
+  const token = header.slice(7).trim();
+
+  return token || null;
+}
+
+function getSessionToken(request) {
+  return getBearerToken(request) || getCookie(request, "signal_session");
+}
+
 async function requireUser(request, env) {
-  const sessionToken = getCookie(request, "signal_session");
+  const sessionToken = getSessionToken(request);
 
   if (!sessionToken) {
     return null;
@@ -343,6 +359,100 @@ async function handleGoogleCallback(request, env) {
     }
   }
 
+  const authCode = randomString(32);
+  const authCodeHash = await sha256(authCode);
+
+  const authCodeExpiresAt = new Date(
+    Date.now() + 2 * 60 * 1000
+  ).toISOString();
+
+  await env.SIGNAL_DB.prepare(`
+    INSERT INTO auth_codes (
+      code_hash,
+      user_id,
+      expires_at
+    )
+    VALUES (?, ?, ?)
+  `)
+    .bind(authCodeHash, user.id, authCodeExpiresAt)
+    .run();
+
+  const clearOAuthCookie = serializeCookie(
+    "signal_oauth",
+    "",
+    {
+      maxAge: 0,
+      httpOnly: true,
+      secure: true,
+      sameSite: "Lax",
+    }
+  );
+
+  const response = redirect(
+    `${env.ALLOWED_ORIGIN}/tech-dashboard/?auth_code=${encodeURIComponent(authCode)}`
+  );
+
+  response.headers.append("Set-Cookie", clearOAuthCookie);
+
+  return response;
+}
+
+async function handleAuthExchange(request, env) {
+  let body;
+
+  try {
+    body = await request.json();
+  } catch {
+    return json(
+      { error: "Invalid JSON" },
+      400,
+      allowedOrigin(request, env)
+    );
+  }
+
+  const code =
+    typeof body.code === "string"
+      ? body.code.trim()
+      : "";
+
+  if (!code) {
+    return json(
+      { error: "code is required" },
+      400,
+      allowedOrigin(request, env)
+    );
+  }
+
+  const codeHash = await sha256(code);
+
+  const row = await env.SIGNAL_DB.prepare(`
+    SELECT
+      auth_codes.user_id,
+      users.email
+    FROM auth_codes
+    JOIN users ON users.id = auth_codes.user_id
+    WHERE auth_codes.code_hash = ?
+      AND auth_codes.expires_at > CURRENT_TIMESTAMP
+  `)
+    .bind(codeHash)
+    .first();
+
+  if (!row) {
+    return json(
+      { error: "Invalid or expired auth code" },
+      401,
+      allowedOrigin(request, env)
+    );
+  }
+
+  // One-time use: consume the auth code before issuing the session.
+  await env.SIGNAL_DB.prepare(`
+    DELETE FROM auth_codes
+    WHERE code_hash = ?
+  `)
+    .bind(codeHash)
+    .run();
+
   const sessionToken = randomString(32);
   const sessionHash = await sha256(sessionToken);
 
@@ -358,41 +468,25 @@ async function handleGoogleCallback(request, env) {
     )
     VALUES (?, ?, ?)
   `)
-    .bind(sessionHash, user.id, expiresAt)
+    .bind(sessionHash, row.user_id, expiresAt)
     .run();
 
-  const sessionCookie = serializeCookie(
-    "signal_session",
-    sessionToken,
+  return json(
     {
-      maxAge: SESSION_DAYS * 24 * 60 * 60,
-      httpOnly: true,
-      secure: true,
-      sameSite: "Lax",
-    }
+      authenticated: true,
+      token: sessionToken,
+      user: {
+        id: row.user_id,
+        email: row.email,
+      },
+    },
+    200,
+    allowedOrigin(request, env)
   );
-
-  const clearOAuthCookie = serializeCookie(
-    "signal_oauth",
-    "",
-    {
-      maxAge: 0,
-      httpOnly: true,
-      secure: true,
-      sameSite: "Lax",
-    }
-  );
-
-  const response = redirect(`${env.ALLOWED_ORIGIN}/tech-dashboard/`);
-
-  response.headers.append("Set-Cookie", sessionCookie);
-  response.headers.append("Set-Cookie", clearOAuthCookie);
-
-  return response;
 }
 
 async function handleLogout(request, env) {
-  const sessionToken = getCookie(request, "signal_session");
+  const sessionToken = getSessionToken(request);
 
   if (sessionToken) {
     const sessionHash = await sha256(sessionToken);
@@ -411,6 +505,16 @@ async function handleLogout(request, env) {
     secure: true,
     sameSite: "Lax",
   });
+
+  if (request.method === "POST") {
+    const response = json(
+      { authenticated: false },
+      200,
+      allowedOrigin(request, env)
+    );
+    response.headers.append("Set-Cookie", cookie);
+    return response;
+  }
 
   const response = redirect(`${env.ALLOWED_ORIGIN}/tech-dashboard/`);
   response.headers.append("Set-Cookie", cookie);
@@ -630,6 +734,10 @@ export default {
 
     if (url.pathname === "/auth/callback") {
       return handleGoogleCallback(request, env);
+    }
+
+    if (url.pathname === "/auth/exchange" && request.method === "POST") {
+      return handleAuthExchange(request, env);
     }
 
     if (url.pathname === "/auth/logout") {
