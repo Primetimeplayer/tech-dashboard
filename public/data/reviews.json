@@ -1,7 +1,21 @@
 {
-  "updated": "2026-10-01T00:08:58.071Z",
+  "updated": "2026-10-01T06:10:10.845Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Apple TV is down",
+      "link": "https://www.engadget.com/2274184/apple-tv-is-down/",
+      "published": "Thu, 01 Oct 2026 04:22:21 +0000",
+      "summary": "Several Apple services went down for maintenance on the afternoon of September 30. Only Apple TV remains…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How to watch NASA's Crew-13 launch",
+      "link": "https://www.engadget.com/2274090/how-to-watch-nasa-crew-13-launch/",
+      "published": "Thu, 01 Oct 2026 01:20:00 +0000",
+      "summary": "How to watch NASA's Crew-13…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Elon Musk and Palmer Luckey will advise the government on the future of warfare",
@@ -57,20 +71,6 @@
       "link": "https://www.engadget.com/2273319/freckles-smartphone-aims-to-get-kids-back-outside-on-their-own/",
       "published": "Wed, 30 Sep 2026 16:00:00 +0000",
       "summary": "Freckle's smartphone encourages kids to get outside. What a…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Affordable alternatives to DJI's Osmo Pocket 4",
-      "link": "https://www.engadget.com/2271706/affordable-alternatives-to-djis-osmo-pocket-4/",
-      "published": "Wed, 30 Sep 2026 15:30:00 +0000",
-      "summary": "The best options when DJI's gimbal camera is too expensive or…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Nintendo's Mario Kart Tour mobile game is officially dead",
-      "link": "https://www.engadget.com/2273291/nintendos-mario-kart-tour-mobile-game-is-officially-dead/",
-      "published": "Wed, 30 Sep 2026 15:23:57 +0000",
-      "summary": "It joins other smartphone titles in the graveyard, like Miitomo, Dr. Mario World and Dragalia…"
     }
   ]
 }
