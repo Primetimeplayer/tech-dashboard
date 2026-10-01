@@ -8,6 +8,11 @@ kv_namespaces = [
   { binding = "SAVED_KV", id = "719661e9da164f7fa37ac79291328724" }
 ]
 
+
+d1_databases = [
+  { binding = "SIGNAL_DB", database_name = "signal-db", database_id = "3c051f20-7eb2-4c1e-962f-456b4f23623a" }
+]
+
 [vars]
 # Your GitHub Pages origin, so only your own site's requests are accepted.
 ALLOWED_ORIGIN = "https://primetimeplayer.github.io"

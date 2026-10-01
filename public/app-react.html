@@ -12,39 +12,1061 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
 <style>
-  :root {
-    --bg: #0F1B1C; --panel: #14252A; --line: #24393A; --text: #E9E4D6;
-    --text-muted: #839391; --input-bg: #0B1516;
-    --news: #E8A33D; --papers: #6FA8D8; --reviews: #C9836B; --reddit: #8FB878;
+  
+:root {
+  --bg: #F3F8FC;
+  --panel: #FFFFFF;
+  --panel-raised: #F8FBFE;
+  --line: #DCE7F2;
+  --text: #14294B;
+  --text-muted: #7188A8;
+  --input-bg: #FFFFFF;
+
+  --news: #F2A51A;
+  --papers: #438BFA;
+  --reviews: #8B42E8;
+  --reddit: #EF6262;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(205,226,248,.42), transparent 34rem),
+    radial-gradient(circle at 88% 12%, rgba(224,238,251,.45), transparent 32rem),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* Header */
+
+.mast {
+  padding: 1.8rem 0 1.35rem;
+  border-bottom: 1px solid #DFE9F3;
+}
+
+.mast-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.85rem;
+  letter-spacing: -1.3px;
+  margin: 0;
+  color: #173253;
+}
+
+.wordmark span {
+  color: #438BFA;
+}
+
+.mast-row > div {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  color: #587493;
+  border: 1px solid #DCE7F2;
+  border-radius: 999px;
+  padding: .42rem .75rem;
+  background: #FFFFFF;
+  text-decoration: none;
+  transition: color .18s ease, border-color .18s ease,
+              background .18s ease;
+}
+
+.badge:hover {
+  color: var(--text);
+  border-color: var(--news);
+  background: rgba(232,163,61,.06);
+}
+
+.note {
+  color: var(--text-muted);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: .95rem;
+  line-height: 1.65;
+  margin: .9rem 0 0;
+  max-width: 66ch;
+}
+
+.note a {
+  color: var(--news);
+  text-underline-offset: 3px;
+}
+
+/* Search and category controls */
+
+.controls {
+  display: flex;
+  gap: .65rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1.5rem 0 1.4rem;
+  padding: .8rem;
+  border: 1px solid #E0EAF4;
+  border-radius: 14px;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 3px 14px rgba(39,77,119,.04);
+  backdrop-filter: blur(12px);
+}
+
+.filter {
+  background: #F7FAFE;
+  border: 1px solid #DCE7F2;
+  color: #637D9D;
+  padding: .62rem 1.05rem;
+  border-radius: 999px;
+  font-size: .83rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.filter:hover {
+  color: #19385E;
+  border-color: var(--dot, var(--news));
+  transform: translateY(-1px);
+}
+
+.filter.active {
+  background: var(--dot, var(--news));
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 3px 10px rgba(53,105,168,.13);
+}
+
+#search {
+  flex: 1;
+  min-width: 220px;
+  background: #FFFFFF;
+  border: 1px solid #DCE7F2;
+  color: #19385E;
+  box-shadow: inset 0 1px 2px rgba(39,77,119,.025);
+  border-radius: 999px;
+  padding: .72rem 1rem;
+  font-family: inherit;
+  font-size: .84rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+#search::placeholder {
+  color: #71817F;
+}
+
+#search:focus {
+  border-color: var(--news);
+  box-shadow: 0 0 0 3px rgba(232,163,61,.10);
+}
+
+/* Article grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  align-items: stretch;
+}
+
+.card {
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid #E0EAF4;
+  border-top: 3px solid var(--dot, var(--line));
+  border-radius: 14px;
+  padding: 1.15rem 1.2rem 1.25rem;
+  box-shadow: 0 3px 14px rgba(39, 77, 119, .055);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #BBD5F1;
+  box-shadow: 0 10px 24px rgba(39,77,119,.10);
+}
+
+.card-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .7rem;
+  color: #7890AE;
+  margin-bottom: .7rem;
+  line-height: 1.55;
+}
+
+.card-meta .cat {
+  color: var(--dot);
+  font-weight: 600;
+}
+
+.card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 650;
+  font-size: 1.02rem;
+  letter-spacing: -.35px;
+  line-height: 1.42;
+  margin: 0 0 .65rem;
+  color: #183458;
+}
+
+.card h2 a {
+  color: #183458;
+  text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.card h2 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--dot);
+}
+
+.card p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  margin: 0;
+  color: #7186A2;
+  font-size: .88rem;
+  line-height: 1.65;
+}
+
+.empty {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  background: rgba(20,37,42,.35);
+}
+
+/* Keyboard accessibility */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--news);
+  outline-offset: 3px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Source Serif 4', Georgia, serif; }
-  a { color: inherit; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.5rem 4rem; }
-  .mast { border-bottom: 1px solid var(--line); padding: 2rem 0 1.25rem; }
-  .mast-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; }
-  .wordmark { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.7rem; margin: 0; }
-  .wordmark span { color: var(--news); }
-  .badge { font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; color: var(--text-muted); border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.6rem; }
-  .note { color: var(--text-muted); font-size: 0.9rem; margin: 0.6rem 0 0; max-width: 60ch; }
-  .note a { color: var(--news); }
 
-  .controls { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; margin: 1.25rem 0; font-family: 'Space Grotesk', sans-serif; }
-  .filter { background: transparent; border: 1px solid var(--line); color: var(--text-muted); padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.85rem; font-family: inherit; cursor: pointer; }
-  .filter.active { background: var(--dot, var(--news)); color: var(--bg); border-color: transparent; }
-  #search { flex: 1; min-width: 200px; background: var(--input-bg); border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 0.55rem 0.8rem; font-family: inherit; font-size: 0.85rem; }
+  .wrap {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+}
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--dot, var(--line)); border-radius: 6px; padding: 1rem 1.1rem; }
-  .card-meta { font-family: 'Space Grotesk', sans-serif; font-size: 0.76rem; color: var(--text-muted); margin-bottom: 0.5rem; }
-  .card-meta .cat { color: var(--dot); }
-  .card h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.02rem; line-height: 1.35; margin: 0 0 0.4rem; }
-  .card h2 a:hover { text-decoration-color: var(--dot); }
-  .card p { margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
-  .empty { font-family: 'Space Grotesk', sans-serif; color: var(--text-muted); padding: 2rem 0; }
+@media (max-width: 600px) {
+  .wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mast {
+    padding-top: 1.6rem;
+  }
+
+  .wordmark {
+    font-size: 1.75rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: .85rem;
+  }
+
+  .controls {
+    gap: .5rem;
+    padding: .65rem;
+  }
+
+  .filter {
+    padding: .55rem .85rem;
+    font-size: .78rem;
+  }
+
+  #search {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .card {
+    padding: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
+
+/* --- Editorial card refinement --- */
+
+.grid {
+  gap: 1.2rem;
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 205px;
+  padding: 1.35rem;
+  border-radius: 15px;
+  background: linear-gradient(
+    155deg,
+    #1B3035 0%,
+    #14252A 100%
+  );
+  box-shadow: 0 5px 18px rgba(0,0,0,.12);
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: .7rem;
+  letter-spacing: .015em;
+  margin-bottom: .9rem;
+}
+
+.card-meta .cat {
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+
+.card h2 {
+  font-size: 1.04rem;
+  line-height: 1.48;
+  letter-spacing: -.3px;
+  margin-bottom: .75rem;
+}
+
+.card h2 a {
+  color: var(--text);
+  transition: color .18s ease;
+}
+
+.card h2 a:hover {
+  color: var(--dot);
+  text-decoration: none;
+}
+
+.card p {
+  font-size: .9rem;
+  line-height: 1.7;
+  color: #91A19F;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 32px rgba(0,0,0,.23);
+}
+
+@media (max-width: 600px) {
+  .card {
+    min-height: 0;
+    padding: 1.2rem;
+  }
+}
+
+
+.results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.8rem 0 .8rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.results-bar > div {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.results-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--text-muted);
+}
+
+.results-count {
+  font-size: .78rem;
+  color: var(--text);
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .3rem .65rem;
+}
+
+.results-context {
+  font-size: .75rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .results-bar {
+    margin-top: 1.2rem;
+  }
+}
+
+
+.search-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 190px;
+  min-width: 190px;
+  max-width: 260px;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.clear-search {
+  position: absolute;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted, #9aa3b2);
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.clear-search:hover {
+  color: var(--text, #fff);
+}
+
+
+.sort-select {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 10px;
+  background: var(--surface, #171d27);
+  color: var(--text, #fff);
+  font: inherit;
+  cursor: pointer;
+}
+
+.sort-select:focus-visible {
+  outline: 2px solid var(--accent, #8ba8ff);
+  outline-offset: 2px;
+}
+
+
+.clear-filters {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted, #a5afbf);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.clear-filters:hover {
+  border-color: var(--accent, #8ba8ff);
+  color: var(--text, #fff);
+}
+
+
+.back-top-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 3rem;
+}
+
+.back-top {
+  padding: 10px 18px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted, #a5afbf);
+  font: inherit;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, transform .2s;
+}
+
+.back-top:hover {
+  color: var(--text, #fff);
+  border-color: var(--accent, #8ba8ff);
+  transform: translateY(-2px);
+}
+
+
+.view-toggle {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text, #fff);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.view-toggle:hover {
+  border-color: var(--accent, #8ba8ff);
+}
+
+.grid.compact-view {
+  gap: 10px;
+}
+
+.grid.compact-view .card {
+  padding: 14px;
+}
+
+.grid.compact-view .card p {
+  display: none;
+}
+
+
+.jump-latest {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 10px;
+  background: var(--surface, #171d27);
+  color: var(--text, #fff);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.jump-latest:hover {
+  border-color: var(--accent, #8ba8ff);
+}
+
+
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--accent, #8ba8ff);
+  z-index: 9999;
+  transition: width .08s linear;
+  pointer-events: none;
+}
+\n
+.wrap.light-mode {
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --text: #172033;
+  --muted: #5d687b;
+  --text-muted: #687386;
+  --border: #dce2ec;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.wrap.light-mode .card,
+.wrap.light-mode .controls,
+.wrap.light-mode .search-wrap input,
+.wrap.light-mode .sort-select {
+  background: #ffffff;
+  color: #172033;
+  border-color: #dce2ec;
+}
+
+.wrap.light-mode .note,
+.wrap.light-mode .results-context,
+.wrap.light-mode .results-count {
+  color: #5d687b;
+}
+
+.theme-toggle {
+  padding: 8px 12px;
+  border: 1px solid var(--border, #303846);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+/* Light theme refinements */
+.wrap.light-mode {
+  background: #f4f6fa;
+  color: #172033;
+}
+
+.wrap.light-mode .mast,
+.wrap.light-mode .results-bar {
+  color: #172033;
+}
+
+.wrap.light-mode .wordmark {
+  color: #172033;
+}
+
+.wrap.light-mode .card {
+  background: #ffffff;
+  color: #172033;
+  border: 1px solid #dce2ec;
+  box-shadow: 0 4px 18px rgba(20, 35, 60, 0.05);
+}
+
+.wrap.light-mode .card h3,
+.wrap.light-mode .card h2 {
+  color: #172033;
+}
+
+.wrap.light-mode .card p,
+.wrap.light-mode .card .meta {
+  color: #596579;
+}
+
+.wrap.light-mode .controls {
+  background: #ffffff;
+  border-color: #dce2ec;
+}
+
+.wrap.light-mode .filter {
+  color: #425067;
+  border-color: #d1d9e5;
+}
+
+.wrap.light-mode .filter.active {
+  color: #172033;
+}
+
+.wrap.light-mode .search-wrap input,
+.wrap.light-mode .sort-select {
+  background: transparent;
+  color: #172033;
+  border-color: #d1d9e5;
+}
+
+.wrap.light-mode .clear-filters,
+.wrap.light-mode .view-toggle,
+.wrap.light-mode .jump-latest,
+.wrap.light-mode .theme-toggle {
+  color: #344158;
+  border-color: #cbd5e2;
+}
+
+.wrap.light-mode .note,
+.wrap.light-mode .results-context,
+.wrap.light-mode .results-count {
+  color: #596579;
+}
+
+
+/* Final light-mode contrast adjustments */
+.wrap.light-mode .card h3,
+.wrap.light-mode .card h2,
+.wrap.light-mode .card a {
+  color: #243149 !important;
+}
+
+.wrap.light-mode .card p {
+  color: #596579 !important;
+}
+
+.wrap.light-mode .search-wrap input {
+  background: transparent;
+  color: #172033;
+  border-color: #cbd5e2;
+}
+
+.wrap.light-mode .search-wrap input::placeholder {
+  color: #778398;
+}
+
+.wrap.light-mode .jump-latest {
+  background: #ffffff;
+  color: #344158;
+}
+
+.wrap.light-mode .results-count {
+  background: #e8eef7;
+  color: #344158;
+}
+
+.wrap.light-mode .filter.active {
+  background: #f2ad3e;
+  color: #172033;
+}
+
+
+.search-hint {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.search-hint kbd {
+  padding: 2px 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+}
+
+
+/* Compact editorial masthead */
+.mast {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mast-row {
+  min-height: 38px;
+}
+
+.mast-heading {
+  margin-top: 12px;
+}
+
+.mast-eyebrow {
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+
+.mast-heading h2 {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.mast-heading p {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.mast-heading > .badge {
+  margin-bottom: 0;
+}
+
+.results-bar {
+  margin-top: 14px;
+}
+
+
+/* Transparent search field in both themes */
+.search-wrap input {
+  background: transparent !important;
+}
+
+.wrap.light-mode .search-wrap input {
+  background: transparent !important;
+}
+
+
+
+
+/* Shared editorial content alignment */
+.mast,
+.controls,
+.results-bar,
+.grid {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.results-bar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.grid {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Full-width toolbar alignment */
+.controls {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1000px) {
+  .controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-wrap {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: none;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Compact desktop filter toolbar */
+@media (min-width: 1000px) {
+  .controls {
+    flex-wrap: nowrap;
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .controls .filter,
+  .controls .clear-filters,
+  .controls .view-toggle,
+  .controls .jump-latest {
+    padding: 9px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .search-wrap {
+    flex: 1 1 160px;
+    min-width: 140px;
+    max-width: 220px;
+  }
+
+  .search-wrap input {
+    min-width: 0;
+    padding: 10px 28px 10px 12px;
+    font-size: 12px;
+  }
+
+  .search-hint {
+    display: none;
+  }
+
+  .sort-select {
+    min-width: 0;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+}
+
+/* Final unified compact header */
+.mast {
+  padding: 12px 0 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mast-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 38px;
+}
+
+.mast-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mast-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.mast-eyebrow {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.mast-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+}
+
+.mast-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mast-heading > .badge {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .mast-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+}
+
+
+/* Latest Stories — compact editorial strip */
+.react-latest {
+  margin: 18px 0 22px;
+  padding: 14px;
+  border: 1px solid #D7E9FC;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #F1F8FF 0%, #F8FBFF 100%);
+  box-shadow: 0 3px 14px rgba(44, 93, 145, .045);
+}
+
+.react-latest-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 2px 12px;
+}
+
+.react-latest-heading h2 {
+  margin: 0;
+  color: #172E53;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+
+.react-latest-heading span {
+  color: #6483AB;
+  font-size: 11px;
+}
+
+.react-latest-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 0 4px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: #C5D5E7 transparent;
+}
+
+.react-latest-card {
+  flex: 0 0 190px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid #E5EDF6;
+  border-radius: 10px;
+  background: rgba(255,255,255,.88);
+  color: #193458;
+  text-decoration: none;
+  scroll-snap-align: start;
+  transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.react-latest-card:hover {
+  transform: translateY(-2px);
+  border-color: #B8D5F5;
+  box-shadow: 0 5px 14px rgba(45, 95, 150, .08);
+}
+
+.react-latest-card .cat {
+  color: #7189A8;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.react-latest-card strong {
+  color: #1B355B;
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+@media (max-width: 600px) {
+  .react-latest {
+    padding: 11px;
+    margin: 14px 0 18px;
+  }
+
+  .react-latest-card {
+    flex-basis: 170px;
+    min-height: 88px;
+  }
+}
+
 </style>
 </head>
 <body>
+<div id="reading-progress"></div>
 <div id="root"></div>
 
 <script type="text/babel">
@@ -96,6 +1118,52 @@ function App() {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState('all');
   const [search, setSearch] = useState('');
+  const [sortOrder, setSortOrder] = useState("newest");
+  const [compactView, setCompactView] = useState(
+    () => localStorage.getItem("signal-view") === "compact"
+  );
+  const [lightMode, setLightMode] = useState(
+    () => localStorage.getItem("signal-theme") === "light"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("signal-theme", lightMode ? "light" : "dark");
+  }, [lightMode]);
+  const [lastUpdated, setLastUpdated] = useState(null);
+  const latestItems = useMemo(
+    () => items
+      .filter(i => i.published && !Number.isNaN(new Date(i.published).getTime()))
+      .slice(0, 10),
+    [items]
+  );
+
+  useEffect(() => {
+    const handleShortcut = (e) => {
+      const target = e.target;
+      const typing = target instanceof HTMLElement &&
+        (target.isContentEditable ||
+         ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+
+      if (e.key === "/" && !typing) {
+        e.preventDefault();
+        document.getElementById("search")?.focus();
+      }
+
+      if (e.key === "Escape" && target?.id === "search") {
+        setSearch("");
+        target.blur();
+      }
+    };
+
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
+  }, []);
+
+  const clearFilters = () => {
+    setCategory("all");
+    setSearch("");
+    setSortOrder("newest");
+  };
 
   useEffect(() => {
     (async () => {
@@ -112,33 +1180,79 @@ function App() {
         (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
       );
       setItems(all);
+      setLastUpdated(new Date());
     })();
   }, []);
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return items.filter((i) => {
+    const results = items.filter((i) => {
       const matchesCat = category === 'all' || i.category === category;
       const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
       return matchesCat && matchesTerm;
     });
-  }, [items, category, search]);
+
+    return [...results].sort((a, b) => {
+      const dateA = new Date(a.date || a.published || 0).getTime();
+      const dateB = new Date(b.date || b.published || 0).getTime();
+      return sortOrder === "oldest" ? dateA - dateB : dateB - dateA;
+    });
+  }, [items, category, search, sortOrder]);
 
   return (
-    <div className="wrap">
-      <div className="mast">
+    <div className={`wrap ${lightMode ? "light-mode" : ""}`}>
+      <header className="mast">
         <div className="mast-row">
           <h1 className="wordmark">Signal<span>.</span></h1>
-          <div style={{display:"flex",gap:"0.5rem",alignItems:"center"}}><a href="index.html" className="badge" style={{textDecoration:"none",cursor:"pointer"}}>← Main Dashboard</a><span className="badge">⚛ React build — experimental</span></div>
-        </div>
-        <p className="note">
-          Same data, same styling philosophy, rebuilt with React to see how it feels. The main
-          site stays plain HTML/JS at <a href="index.html">index.html</a> — this is a parallel
-          experiment, not a replacement. It intentionally skips saved items, sync, and the digest
-          archive to stay focused on the core browsing experience.
-        </p>
-      </div>
 
+          <nav className="mast-actions" aria-label="Site navigation">
+            <a href="index.html" className="badge">Main Dashboard</a>
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={() => {
+                setLightMode(mode => {
+                  const next = !mode;
+                  localStorage.setItem("signal-theme", next ? "light" : "dark");
+                  return next;
+                });
+              }}
+              aria-pressed={lightMode}
+            >
+              {lightMode ? "☾ Dark mode" : "☀ Light mode"}
+            </button>
+          </nav>
+        </div>
+
+        <div className="mast-heading">
+          <div>
+            <div className="mast-eyebrow">THE DAILY BRIEFING</div>
+            <h2>Top stories</h2>
+            <p>Technology, research, and ideas worth your attention.</p>
+          </div>
+        </div>
+      </header>
+<div className="results-bar">
+  <div>
+    <span className="results-label">YOUR FEED</span>
+    <span className="results-count">
+      Showing {filtered.length} of {items.length} {items.length === 1 ? 'story' : 'stories'}
+    </span>
+    {lastUpdated && (
+      <span className="results-context">
+        Updated {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </span>
+    )}
+  </div>
+  <span className="results-context">
+    {[
+      category === 'all'
+        ? null
+        : CATEGORIES.find(c => c.key === category)?.label,
+      search.trim() ? `Search: ${search.trim()}` : null
+    ].filter(Boolean).join(' · ') || 'All categories'}
+  </span>
+</div>
       <div className="controls">
         {CATEGORIES.map((c) => (
           <button
@@ -150,27 +1264,149 @@ function App() {
             {c.label}
           </button>
         ))}
-        <input
-          id="search"
-          type="search"
-          placeholder="Search headlines and summaries…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="search-wrap">
+          <input
+            id="search"
+            type="search"
+            placeholder="Search headlines and summaries…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <div className="search-hint">
+            Press <kbd>/</kbd> to search · <kbd>Esc</kbd> to clear
+          </div>
+          {search && (
+            <button
+              type="button"
+              className="clear-search"
+              onClick={() => setSearch("")}
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          )}
+        </div>
+        <select
+          className="sort-select"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          aria-label="Sort stories"
+        >
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+        <button
+          type="button"
+          className="jump-latest"
+          onClick={() => {
+            setSortOrder("newest");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          ↓ Latest
+        </button>
+        <button
+          type="button"
+          className="view-toggle"
+          onClick={() => {
+            setCompactView(v => {
+              const next = !v;
+              localStorage.setItem("signal-view", next ? "compact" : "comfortable");
+              return next;
+            });
+          }}
+          aria-pressed={compactView}
+        >
+          {compactView ? "Comfortable view" : "Compact view"}
+        </button>
+        <button
+          type="button"
+          className="clear-filters"
+          onClick={clearFilters}
+        >
+          Clear filters
+        </button>
       </div>
 
+      {latestItems.length > 0 && (
+        <section className="react-latest" aria-label="Latest stories">
+          <div className="react-latest-heading">
+            <h2>Latest Stories</h2>
+            <span>10 newest available</span>
+          </div>
+          <div className="react-latest-row">
+            {latestItems.map((item, idx) => (
+              <a
+                className="react-latest-card"
+                key={item.link + idx}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="cat">{CAT_LABEL[item.category]} · {timeAgo(item.published)}</span>
+                <strong>{item.title}</strong>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
       {filtered.length === 0 ? (
-        <div className="empty">Nothing matches yet — data may still be loading, or try a different filter.</div>
+        <div className="empty">
+  <h3>No stories found</h3>
+  <p>Try another search or reset your filters to see all available stories.</p>
+  <button
+    type="button"
+    className="clear-filters"
+    onClick={clearFilters}
+  >
+    Reset filters
+  </button>
+</div>
       ) : (
-        <div className="grid">
+        <div className={`grid ${compactView ? "compact-view" : ""}`}>
           {filtered.map((item, idx) => <Card key={item.link + idx} item={item} />)}
         </div>
       )}
+
+      <div className="back-top-wrap">
+        <button
+          type="button"
+          className="back-top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          ↑ Back to top
+        </button>
+      </div>
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
-</body>
+
+<script>
+(() => {
+  const bar = document.getElementById("reading-progress");
+  let ticking = false;
+
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+    bar.style.width = Math.min(100, Math.max(0, progress)) + "%";
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
+\n</body>
 </html>
