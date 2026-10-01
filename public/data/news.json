@@ -1,7 +1,127 @@
 {
-  "updated": "2026-10-01T06:10:09.639Z",
+  "updated": "2026-10-01T12:09:56.729Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Satlyt, founded by a former Google and SpaceX product manager, raises $8M to run AI on satellites",
+      "link": "https://techcrunch.com/2026/10/01/satlyt-founded-by-a-former-google-and-spacex-product-manager-raises-8m-to-run-ai-on-satellites/",
+      "published": "Thu, 01 Oct 2026 12:00:00 +0000",
+      "summary": "Satlyt wants to be the Android of orbital computing, offering open software that works on many companies' satellites, versus SpaceX's closed, all-in-one iPhone-style…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Measles Is Forcing Hospitals to Adapt to a New Normal",
+      "link": "https://www.wired.com/story/measles-is-forcing-hospitals-to-adapt-to-a-new-normal/",
+      "published": "Thu, 01 Oct 2026 12:00:00 +0000",
+      "summary": "The US resurgence of measles is forcing hospitals and health systems to adopt new protocols and procedures to deal with a disease they thought was in the…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Gifts for Parents (and Their Babies): Bottle Washers, Prepared Meals, and More",
+      "link": "https://www.wired.com/story/gifts-for-parents-2026/",
+      "published": "Thu, 01 Oct 2026 11:30:00 +0000",
+      "summary": "If your friend is in the depths of newborn survival, these gifts and gadgets can go a long way to make parenting a little…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Wi-Fi Routers (2026): My Honest Picks After Testing 50+",
+      "link": "https://www.wired.com/gallery/best-wifi-routers/",
+      "published": "Thu, 01 Oct 2026 11:30:00 +0000",
+      "summary": "Don’t suffer the buffer. These WIRED-tested home routers will deliver reliable internet across your home, whatever your needs or…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Real Threat to the Midterms Is Regular Americans Thinking Violence Is the Answer",
+      "link": "https://www.wired.com/story/the-real-threat-to-the-midterms-is-regular-americans-thinking-violence-is-the-answer/",
+      "published": "Thu, 01 Oct 2026 11:30:00 +0000",
+      "summary": "Robert A. Pape, a leading authority on political violence, wants Americans to understand that the threat is coming not from the fringes, but from the…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Tractive Cat 6 Mini Review: A Fitbit for Your Cat",
+      "link": "https://www.wired.com/review/tractive-cat-6-mini/",
+      "published": "Thu, 01 Oct 2026 11:03:00 +0000",
+      "summary": "Cats are finally getting the dog treatment. This smart cat collar features GPS location, activity, and sleep tracking, plus all-new heart and respiratory rate…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Exclusive: Neurable’s First Brain-Scanning Headphones Want to Fine-Tune Your Focus",
+      "link": "https://www.wired.com/story/exclusive-neurable-one-brain-scanning-headphones-want-to-fix-your-focus/",
+      "published": "Thu, 01 Oct 2026 11:00:00 +0000",
+      "summary": "The company claims that its new device, the Neurable One, can keep you in the zone, calculate the best time to take a break, and tell you when your “brain battery” needs a…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Madison Square Garden’s James Dolan Is Spending Big on New York’s Governor Race",
+      "link": "https://www.wired.com/story/madison-square-gardens-james-dolan-is-spending-big-on-new-yorks-governor-race/",
+      "published": "Thu, 01 Oct 2026 10:30:00 +0000",
+      "summary": "James Dolan has put surveillance at the center of his sports and entertainment empire. Now he’s getting involved in GOP politics by backing a candidate who supports Flock, ICE, and AI data…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Huawei made a whole camera to attach to its latest phone",
+      "link": "https://www.theverge.com/gadgets/1003196/huawei-mate-90-pro-max-ruiying-z10-camera",
+      "published": "2026-10-01T10:15:48.000Z",
+      "summary": "I’m sorry, this is just a camera that makes phone calls. | Image: Huawei Over the last few years, Chinese Android manufacturers have followed Vivo's example of launching add-on \"teleconverter\" lenses for their flagship phones, enabling…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "This very fancy e-bike is one of the first to go semi-solid state",
+      "link": "https://www.theverge.com/news/1003195/lemmos-fancy-e-bike-is-one-of-the-first-with-a-semi-solid-state-battery",
+      "published": "2026-10-01T10:11:29.000Z",
+      "summary": "Lemmo wants you to call it an SUV. | Image: Lemmo The Lemmo 3 is the first cargo bike from the respected German e-bike maker. This premium, step-through longtail is a slightly less insane take on Rivian's Also TM-B, with one major…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The People of Utah vs. Kevin O&#8217;Leary",
+      "link": "https://www.theverge.com/cs/features/993343/stratos-utah-kevin-oleary-data-center-backlash",
+      "published": "2026-10-01T10:00:02.000Z",
+      "summary": "On the morning of May 11th, the celebrity investor Kevin O’Leary appeared on Fox Business and announced that he was under attack by Chinese agents. For weeks, he had been going on TV and posting online to tout his project, called Wonder…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Apple Mac Studio (M5 Ultra) Review: Unlimited Power",
+      "link": "https://www.wired.com/review/apple-mac-studio-m5-ultra-2026/",
+      "published": "Thu, 01 Oct 2026 10:00:00 +0000",
+      "summary": "The Mac Studio can run frontier-level AI language models locally. It’s only a preview of what’s to…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Secrets of the US Spyware King",
+      "link": "https://www.wired.com/story/the-secrets-of-the-us-spyware-king/",
+      "published": "Thu, 01 Oct 2026 09:30:00 +0000",
+      "summary": "In an exclusive interview with WIRED, Paragon Solutions CEO Andrew Boyd reveals the limits of the company’s promise to keep bad actors from abusing its powerful espionage…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Noise from Universal&#8217;s latest ride made rich locals furious, fast",
+      "link": "https://www.theverge.com/entertainment/1003182/universal-hollywood-fast-and-furious-rollercoaster-noise",
+      "published": "2026-10-01T09:00:04.000Z",
+      "summary": "Don’t have too much fun, you’ll upset the neighbors. | Photo: Ronaldo Bolaños / Los Angeles Times via Getty Images Universal Studios Hollywood has pledged to erect another sound barrier around its latest attraction after local residents…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Casio’s Crystal G-Shock Is the Most Expensive Ever Made",
+      "link": "https://www.wired.com/story/casio-crystal-g-shock-is-the-most-expensive-ever-made/",
+      "published": "Thu, 01 Oct 2026 09:00:00 +0000",
+      "summary": "Meet the full-blue sapphire MRG-D5000, a crazy G-Shock that costs more than a Patek Philippe or Porsche…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -17,70 +137,6 @@
       "link": "https://www.wired.com/story/nordvpn-coupon/",
       "published": "Thu, 01 Oct 2026 05:00:00 +0000",
       "summary": "Save up to 77% on 2-year plans and get 3 free months with our NordVPN discount…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Mountain Hardwear Coupon Code 15% Off October",
-      "link": "https://www.wired.com/story/mountain-hardwear-promo-codes/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "High-performance mountaineering and hiking apparel doesn't have to break the…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Booking.com Promo Codes: 20% Off | October 2026",
-      "link": "https://www.wired.com/story/booking-com-promo-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Enjoy big savings on your next adventure with our Booking.com promo codes, coupons, and handpicked travel…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Paramount+ Coupon Codes and Deals for 2026",
-      "link": "https://www.wired.com/story/paramount-plus-coupon-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Save on streaming with the latest Paramount+ promo codes and deals, including 50% off subscriptions, free trials, and…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "20% Off Samsung Promo Code | October 2026",
-      "link": "https://www.wired.com/story/samsung-promo-codes/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Save 30% or 10% with Samsung coupon codes, up to $1,000 on appliances, plus limited-time deals on the Galaxy Z Fold7, Flip7, and…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Newegg Promo Codes and Coupons for October 2026",
-      "link": "https://www.wired.com/story/newegg-promo-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Enjoy up to 10% off your entire order with today’s Newegg promo code and discount codes. Save with the latest deals for gaming PCs, laptops, and computer…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "eBay Coupons: 20% Off in October 2026",
-      "link": "https://www.wired.com/story/ebay-coupon-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Save up to 60% on a selection of items at eBay, including electronics, home products, card games, car parts and…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "AT&T Promo Codes: $50 Off This October 2026",
-      "link": "https://www.wired.com/story/att-promo-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Whether you’re looking to upgrade your internet or get the latest phone, we’ve got you covered with our selection of AT&T coupons and…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Dyson Promo Codes: 25% Off in October 2026",
-      "link": "https://www.wired.com/story/dyson-cordless-vacuum-promo-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Get 25% off with a Dyson coupon code, plus save up to $600 with discounts on vacuums, $150 off Airwraps, and…"
     },
     {
       "source": "The Verge",
@@ -163,14 +219,6 @@
       "summary": "It's possible to send electrical signals right through human…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "The White House Is Starting to Panic Over the Midterms",
-      "link": "https://www.wired.com/story/the-white-house-is-starting-to-panic-over-the-midterms/",
-      "published": "Wed, 30 Sep 2026 21:00:00 +0000",
-      "summary": "President Donald Trump still thinks Republicans have a shot. His aides are less…"
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "Neon sticks it to A24 by announcing a Creative Commons SCP Foundation movie",
@@ -201,14 +249,6 @@
       "link": "https://techcrunch.com/2026/09/30/factory-ceo-just-accused-his-vc-board-advisor-of-spying-for-cognition/",
       "published": "Wed, 30 Sep 2026 20:39:09 +0000",
       "summary": "VC Chris Degnan and former board adviser to Factory AI has taken a job as chief revenue officer for competitor Cognition -- and everyone is arguing on X about…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Trump’s AI Safety ‘Accord’ Is a Fancy Pinky-Swear",
-      "link": "https://www.wired.com/story/trumps-ai-safety-accord-is-a-fancy-pinky-swear/",
-      "published": "Wed, 30 Sep 2026 20:30:09 +0000",
-      "summary": "Six major AI companies signed a voluntary agreement with the White House this week vowing to implement safeguards. It’s unclear how much that…"
     },
     {
       "source": "TechCrunch",
@@ -315,52 +355,12 @@
       "summary": "Sam Altman onstage at OpenAI’s DevDay 2026. | Photo: Hayden Field / The Verge While AI has made plenty of inroads on people's phones and computers, it's largely failed in dedicated devices. But over the next year, two major AI companies…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Reddit says it has to cut back access to ‘Old Reddit’ because of AI bots",
-      "link": "https://www.theverge.com/tech/1002788/old-reddit-ai-scraping",
-      "published": "2026-09-30T17:45:00.000Z",
-      "summary": "Reddit is further limiting who can use the \"Old Reddit\" experience as part of its efforts to combat scraping and automated traffic. Reddit recently started forcing users to log in to be able to use Old Reddit, but in the \"next few months,\"…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Reddit is killing RSS feeds and ending public API access because of AI bots",
       "link": "https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/",
       "published": "Wed, 30 Sep 2026 17:45:00 +0000",
       "summary": "Reddit is ending support for RSS feeds, as the company continues tightening access to its trove of user-generated…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "The ugly economics of consumer AI",
-      "link": "https://techcrunch.com/2026/09/30/the-ugly-economics-of-consumer-ai/",
-      "published": "Wed, 30 Sep 2026 17:24:45 +0000",
-      "summary": "There’s a reason frontier labs have gotten gun-shy about consumer AI — and it’s not because the tech isn’t good…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Amazon&#8217;s delivery driver smart glasses will reportedly take photos &#8216;almost constantly&#8217;",
-      "link": "https://www.theverge.com/tech/1002766/amazon-delivery-driver-smart-glasses-privacy",
-      "published": "2026-09-30T17:21:29.000Z",
-      "summary": "Amazon deliveries could soon come with a new catch: the delivery driver's smart glasses will be snapping photos of anything they see while they're in use, including people and private property. Bloomberg reports that the glasses could take…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Here&#8217;s what AI leaders are saying about Trump’s new safety plan",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1002636/ai-execs-trump-self-policing-deal-comments",
-      "published": "2026-09-30T17:15:49.000Z",
-      "summary": "If you think this shot is amusing, check out the panicked look on Zuckerberg’s face when Trump calls on him to speak. | Photo: Kevin Dietsch/Getty Images After hosting a meal with Big Tech leaders on Tuesday, President Donald Trump…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "This blog could help you poop better",
-      "link": "https://www.theverge.com/column/1002625/optimizer-fibermaxxing-wellness-health",
-      "published": "2026-09-30T17:00:00.000Z",
-      "summary": "This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. Opt in for Optimizer here. \"I will explode your…"
     },
     {
       "source": "Ars Technica",

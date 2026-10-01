@@ -1,7 +1,28 @@
 {
-  "updated": "2026-10-01T06:10:10.845Z",
+  "updated": "2026-10-01T12:09:57.659Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Neon will make a truly open-source SCP movie after A24 controversy",
+      "link": "https://www.engadget.com/2274276/neon-scp-foundation-movie-open-source/",
+      "published": "Thu, 01 Oct 2026 10:41:44 +0000",
+      "summary": "Movie studios are turning to the horror fiction site SCP Foundation and showing how dealing with that community can go right, and…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Google's first Gemini 4 model is 'Argon'",
+      "link": "https://www.engadget.com/2274263/google-gemini-4-model-argon/",
+      "published": "Thu, 01 Oct 2026 09:26:30 +0000",
+      "summary": "Google trained Gemini 4 Argon to be highly capable in knowledge work, cybersecurity defense and creative…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "California's new law bans companies from relying on AI to fire workers",
+      "link": "https://www.engadget.com/2274224/california-law-bans-companies-from-relying-on-ai-to-fire-workers/",
+      "published": "Thu, 01 Oct 2026 07:36:44 +0000",
+      "summary": "California enacts new laws aimed at companies using AI to initiate job cuts or monitor…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Apple TV is down",
@@ -50,27 +71,6 @@
       "link": "https://www.engadget.com/2273526/an-analogue-pocket-restock-is-coming-october-2/",
       "published": "Wed, 30 Sep 2026 16:59:39 +0000",
       "summary": "It's sure to sell out fast…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Tinder now offers group hangouts as an alternative to one-on-one dates",
-      "link": "https://www.engadget.com/2273422/tinder-now-offers-group-hangouts-as-an-alternative-to-one-on-one-dates/",
-      "published": "Wed, 30 Sep 2026 16:22:25 +0000",
-      "summary": "At least in theory, it's a little less…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Xbox's disc-to-digital feature is now available for everyone",
-      "link": "https://www.engadget.com/2273385/xboxs-disc-to-digital-feature-is-now-available-for-everyone/",
-      "published": "Wed, 30 Sep 2026 16:07:24 +0000",
-      "summary": "Many (if not all) Xbox Series X and Xbox One games are…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Freckle's smartphone aims to get kids back outside on their own",
-      "link": "https://www.engadget.com/2273319/freckles-smartphone-aims-to-get-kids-back-outside-on-their-own/",
-      "published": "Wed, 30 Sep 2026 16:00:00 +0000",
-      "summary": "Freckle's smartphone encourages kids to get outside. What a…"
     }
   ]
 }
