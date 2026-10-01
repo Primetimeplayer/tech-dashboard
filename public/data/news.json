@@ -1,14 +1,246 @@
 {
-  "updated": "2026-10-01T12:09:56.729Z",
+  "updated": "2026-10-01T18:09:43.897Z",
   "count": 46,
   "items": [
     {
+      "source": "Wired",
+      "category": "news",
+      "title": "Experience What It’s Like to Travel in the Occupied West Bank",
+      "link": "https://www.wired.com/story/experience-what-its-like-to-travel-in-the-occupied-west-bank/",
+      "published": "Thu, 01 Oct 2026 18:00:00 +0000",
+      "summary": "Traverse barriers and checkpoints in the occupied West Bank—your choices reflect the reality of nearly 3.5 million Palestinians who live…"
+    },
+    {
       "source": "TechCrunch",
       "category": "news",
-      "title": "Satlyt, founded by a former Google and SpaceX product manager, raises $8M to run AI on satellites",
-      "link": "https://techcrunch.com/2026/10/01/satlyt-founded-by-a-former-google-and-spacex-product-manager-raises-8m-to-run-ai-on-satellites/",
-      "published": "Thu, 01 Oct 2026 12:00:00 +0000",
-      "summary": "Satlyt wants to be the Android of orbital computing, offering open software that works on many companies' satellites, versus SpaceX's closed, all-in-one iPhone-style…"
+      "title": "Opus 5.5 loves to tell you ‘this matters’ (and other AI writing tells)",
+      "link": "https://techcrunch.com/2026/10/01/opus-5-5-loves-to-tell-you-this-matters-and-other-ai-writing-tells/",
+      "published": "Thu, 01 Oct 2026 17:50:19 +0000",
+      "summary": "Opus 5.5’s biggest tell is the word “dependable,” which pops up 23 times more often than in human…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Judge dismisses antitrust lawsuits over Google’s AI Overviews",
+      "link": "https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed",
+      "published": "2026-10-01T17:12:21.000Z",
+      "summary": "A federal judge has dismissed a pair of antitrust lawsuits filed by Chegg and Rolling Stone parent company Penske Media Corporation, which accused Google of driving away web traffic with its AI-powered search features, as reported earlier…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "This startup wants to turn idle user car inventory into rental revenue",
+      "link": "https://techcrunch.com/2026/10/01/this-startup-wants-to-turn-idle-user-car-inventory-into-rental-revenue/",
+      "published": "Thu, 01 Oct 2026 17:09:00 +0000",
+      "summary": "When Igor Dobrianskyi looks at a car dealership lot, he doesn't see rows of cars — he sees millions of dollars just sitting there, depreciating, while people who only need a car for a few months are stuck paying too much for too little…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Sony brings AI graphics upscaling to the regular PS5",
+      "link": "https://www.theverge.com/games/1003549/sony-ps5-quick-spectral-super-resolution-qssr",
+      "published": "2026-10-01T16:53:39.000Z",
+      "summary": "Sony is launching a new AI upscaling technology specifically for the regular PS5. The new tech, called Quick Spectral Super Resolution (QSSR), is a \"new performance tier of AI upscaling\" that's a result of Sony's Project Amethyst work with…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Amazon releases its own Jev clone as decision models flood the web",
+      "link": "https://techcrunch.com/2026/10/01/amazon-releases-its-own-jev-clone-as-decision-models-flood-the-web/",
+      "published": "Thu, 01 Oct 2026 16:49:22 +0000",
+      "summary": "Amazon Web Services' Strand Labs has released the latest Jevalike decision model, Strands Decider…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Shopify debuts Canvas, a way to build online stores by chatting with AI",
+      "link": "https://techcrunch.com/2026/10/01/shopify-debuts-canvas-a-way-to-build-online-stores-by-chatting-with-ai/",
+      "published": "Thu, 01 Oct 2026 16:44:35 +0000",
+      "summary": "Shopify’s new Canvas site builder lets merchants create and customize their online stores by chatting with its AI agent Sidekick, while watching the changes happen in real…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "California governor vetoes bill banning use of ‘pervert glasses’ to secretly record people",
+      "link": "https://techcrunch.com/2026/10/01/california-governor-vetoes-bill-banning-use-of-pervert-glasses-to-secretly-record-people/",
+      "published": "Thu, 01 Oct 2026 16:35:25 +0000",
+      "summary": "The California state bill would have penalized people who secretly recorded people in public with wearables equipped with cameras and…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "With most information hidden, the game Stratego",
+      "link": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+      "published": "Thu, 01 Oct 2026 16:28:04 +0000",
+      "summary": "Adding in a second neural network that guesses the identity of hidden pieces was…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Can VR glasses save VR?",
+      "link": "https://www.theverge.com/tech/1003034/meta-vr-glasses-vs-augmented-reality",
+      "published": "2026-10-01T16:10:32.000Z",
+      "summary": "Sean wears the Meta VR Glasses. | Photo: Meta I'm pretty sure I won't be buying the $1,299 Meta VR Glasses. That's too rich for my blood in today's economy, and my feelings about Meta are… conflicted. But I want you to understand that Meta…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Microsoft’s Office and Teams chief is leaving",
+      "link": "https://www.theverge.com/news/1003515/microsoft-ryan-roslansky-office-teams-linkedin-leaving",
+      "published": "2026-10-01T16:02:37.000Z",
+      "summary": "After nearly 18 years at LinkedIn and Microsoft, Ryan Roslansky is leaving the company. Roslansky, who until recently was the CEO of LinkedIn, was promoted to the head of Office last year and then took control of Microsoft Teams earlier…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Inside Microsoft’s big Copilot rethink",
+      "link": "https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad",
+      "published": "2026-10-01T16:00:00.000Z",
+      "summary": "Last week, Microsoft CEO Satya Nadella hosted an intimate, invite-only event for leaders from some of its key enterprise customers. Instead of a flashy media event, Nadella outlined the future of Copilot directly to the customers Microsoft…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Tim Heidecker Is Bringing His Joe Rogan Parody Show to The Onion",
+      "link": "https://www.wired.com/story/tim-heidecker-is-bringing-his-joe-rogan-parody-show-to-the-onion/",
+      "published": "Thu, 01 Oct 2026 16:00:00 +0000",
+      "summary": "Five years after the comedian went viral with a 12-hour blabberthon mocking the king of bro podcasting, he’s back in character to shill a supplement called “Crab…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "One year later, Tesla and Musk still don’t have a good definition of ‘abundance’",
+      "link": "https://techcrunch.com/2026/10/01/one-year-later-tesla-and-musk-are-still-dont-have-a-good-definition-of-abundance/",
+      "published": "Thu, 01 Oct 2026 15:50:10 +0000",
+      "summary": "The CEO promised to get more specific about his vision. But the details are still…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "As US relations fray, Canada gets serious about its own launch industry",
+      "link": "https://arstechnica.com/space/2026/10/as-us-relations-fray-canada-gets-serious-about-its-own-launch-industry/",
+      "published": "Thu, 01 Oct 2026 15:30:49 +0000",
+      "summary": "The Canada Rocket Company gets serious about medium-lift…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Brian Chesky interview: AI agents need their own operating system",
+      "link": "https://techcrunch.com/2026/10/01/brian-chesky-interview-ai-agents-need-their-own-operating-system/",
+      "published": "Thu, 01 Oct 2026 15:12:00 +0000",
+      "summary": "Brian Chesky on making Airbnb agent-friendly, the state of consumer AI, and why the world needs an AI-native operating…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "NYC is now the first city in America that bans sketchy subscriptions",
+      "link": "https://www.theverge.com/policy/1003426/nyc-click-to-cancel-subscriptions-rule",
+      "published": "2026-10-01T14:49:25.000Z",
+      "summary": "Image: Angela Weiss / AFP via Getty Images | AFP via Getty Images New York City residents struggling to get out of recurring subscription fees can now submit complaints to the city government. As of Thursday, the city's click-to-cancel…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "OpenAI’s new agent is a shot at Meta — but can it compete with free?",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle",
+      "published": "2026-10-01T14:36:50.000Z",
+      "summary": "A pop-up shop for \"dots,\" a personal assistant agent at OpenAI DevDay 2026. (Photo by Heather Diehl/Getty Images) | Getty Images At OpenAI's annual DevDay conference, the company pulled out all the stops to compete with its rivals -…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Inside our months-long investigation into Kevin O’Leary’s Utah data center debacle",
+      "link": "https://www.theverge.com/podcast/1002851/utah-ai-data-center-stratos-kevin-oleary-investigation-backlash",
+      "published": "2026-10-01T14:00:00.000Z",
+      "summary": "Today I’m talking with Josh Dzieza, a longtime features writer here at The Verge, about Kevin O’Leary’s plans to build a massive data center in Utah. The idea was to build the world’s biggest data center — a 40,000-acre AI campus with nine…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Photon held a funeral for mobile apps. Now it has $4.5M to help replace them with agents.",
+      "link": "https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/",
+      "published": "Thu, 01 Oct 2026 14:00:00 +0000",
+      "summary": "The startup helps developers build AI agents that work over iMessage, SMS/RCS, email, and other messaging platforms. It's a bet that consumers will increasingly use agents instead of downloading…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The best early October Prime Day deals happening now",
+      "link": "https://www.theverge.com/gadgets/999447/best-early-amazon-prime-day-big-deals-sale-october",
+      "published": "2026-10-01T13:35:15.000Z",
+      "summary": "It’s not even October yet and Amazon is already offering some Prime Big Deal Day discounts on its own hardware, along with plenty of other popular products. It’s all to hype up October Prime Day, which starts October 6th at 3AM ET and…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "What even is a ‘microdrama’?",
+      "link": "https://www.theverge.com/entertainment/1003297/microdramas-neighbours-epis-roseberry-reelshort-dramabox-vertical-video",
+      "published": "2026-10-01T13:30:00.000Z",
+      "summary": "On Monday, Variety reported that RoseBerry Media is recutting episodes of the Australian soap opera Neighbours \"into microdramas.\" These clips will be available on Epis, a short-form vertical video streaming platform. Though Neighbours ran…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Hearing tech startup Legato launches its AI hearing glasses",
+      "link": "https://techcrunch.com/2026/10/01/hearing-tech-startup-legato-launches-its-ai-hearing-glasses/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "The glasses stem from the startup’s goal of making hearing care more accessible by addressing the cost, comfort, and stigma associated with traditional hearing…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Audible’s new features let you explore book worlds — and use AI to talk to characters",
+      "link": "https://techcrunch.com/2026/10/01/audibles-new-features-let-you-explore-book-worlds-and-even-talk-to-characters/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "Audible is rolling out new features that help listeners keep track of characters, explore places and imagery mentioned in books, and even interact with characters using generative…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "The new Kindle ditches the raised bezel in a push toward a smaller, lighter e-reader",
+      "link": "https://techcrunch.com/2026/10/01/the-new-kindle-ditches-the-bezel-in-a-push-toward-a-smaller-lighter-e-reader/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "The new Kindle lineup features its lightest and thinnest designs yet, with a sleek, front-flush display that eliminates bezels for…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Amazon introduces Kindle Click, a $35 remote for turning pages",
+      "link": "https://techcrunch.com/2026/10/01/amazon-introduces-kindle-click-a-35-remote-for-hands-free-reading/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "The compact Bluetooth remote is designed to let readers turn pages without touching their…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "What’s the Best Kindle of 2026 (So Far)?",
+      "link": "https://www.wired.com/gallery/best-kindle/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "I’ve tested every single Kindle. Here’s how Amazon’s ebook readers stack…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Amazon Kindle, Paperwhite, and Colorsoft 2026: Specs, Price, Release Date",
+      "link": "https://www.wired.com/story/amazon-kindle-paperwhite-colorsoft-2026-refresh/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "Ahead of the Kindle’s 20th anniversary next year, Amazon is refreshing its entire range of e-readers with fresh colors, an aluminum build, and a new frame design that’s both thinner and…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Best Early Amazon Echo Deals (and the Worst) Ahead of Prime Big Deal Days",
+      "link": "https://www.wired.com/story/best-amazon-alexa-device-deals-prime-day/",
+      "published": "Thu, 01 Oct 2026 13:00:00 +0000",
+      "summary": "Amazon raised prices across its devices in August. Here are the early device deals ahead of Prime Day that are still worth it—and which…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "2 Driverless Cars Crashed Going 155 mph. That Could Be a Good Thing",
+      "link": "https://www.wired.com/story/2-driverless-cars-crashed-going-155-mph-that-could-be-a-good-thing/",
+      "published": "Thu, 01 Oct 2026 12:15:00 +0000",
+      "summary": "Only two of five vehicles finished the race around a notoriously difficult Formula 1 track, exposing what happens when autonomous systems meet blind corners, sensor failures, and…"
     },
     {
       "source": "Wired",
@@ -19,12 +251,12 @@
       "summary": "The US resurgence of measles is forcing hospitals and health systems to adopt new protocols and procedures to deal with a disease they thought was in the…"
     },
     {
-      "source": "Wired",
+      "source": "Ars Technica",
       "category": "news",
-      "title": "Best Gifts for Parents (and Their Babies): Bottle Washers, Prepared Meals, and More",
-      "link": "https://www.wired.com/story/gifts-for-parents-2026/",
-      "published": "Thu, 01 Oct 2026 11:30:00 +0000",
-      "summary": "If your friend is in the depths of newborn survival, these gifts and gadgets can go a long way to make parenting a little…"
+      "title": "PS5 emulation is suddenly making big strides on PC",
+      "link": "https://arstechnica.com/gaming/2026/10/ps5-emulation-is-suddenly-making-big-strides-on-pc/",
+      "published": "Thu, 01 Oct 2026 11:30:41 +0000",
+      "summary": "Games like Astro Bot and Demon’s Souls are running ably without a…"
     },
     {
       "source": "Wired",
@@ -37,10 +269,26 @@
     {
       "source": "Wired",
       "category": "news",
+      "title": "Best Gifts for Parents (and Their Babies): Bottle Washers, Prepared Meals, and More",
+      "link": "https://www.wired.com/story/gifts-for-parents-2026/",
+      "published": "Thu, 01 Oct 2026 11:30:00 +0000",
+      "summary": "If your friend is in the depths of newborn survival, these gifts and gadgets can go a long way to make parenting a little…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
       "title": "The Real Threat to the Midterms Is Regular Americans Thinking Violence Is the Answer",
       "link": "https://www.wired.com/story/the-real-threat-to-the-midterms-is-regular-americans-thinking-violence-is-the-answer/",
       "published": "Thu, 01 Oct 2026 11:30:00 +0000",
       "summary": "Robert A. Pape, a leading authority on political violence, wants Americans to understand that the threat is coming not from the fringes, but from the…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "NASA squeezed Treasury, vibe coded, and broke the mold in bid to save Swift",
+      "link": "https://arstechnica.com/space/2026/10/heres-why-nasa-is-celebrating-the-failed-mission-to-save-the-swift-observatory/",
+      "published": "Thu, 01 Oct 2026 11:15:15 +0000",
+      "summary": "\"We did some really, really cool stuff. I'm absolutely gutted we weren't able to get…"
     },
     {
       "source": "Wired",
@@ -57,126 +305,6 @@
       "link": "https://www.wired.com/story/exclusive-neurable-one-brain-scanning-headphones-want-to-fix-your-focus/",
       "published": "Thu, 01 Oct 2026 11:00:00 +0000",
       "summary": "The company claims that its new device, the Neurable One, can keep you in the zone, calculate the best time to take a break, and tell you when your “brain battery” needs a…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Madison Square Garden’s James Dolan Is Spending Big on New York’s Governor Race",
-      "link": "https://www.wired.com/story/madison-square-gardens-james-dolan-is-spending-big-on-new-yorks-governor-race/",
-      "published": "Thu, 01 Oct 2026 10:30:00 +0000",
-      "summary": "James Dolan has put surveillance at the center of his sports and entertainment empire. Now he’s getting involved in GOP politics by backing a candidate who supports Flock, ICE, and AI data…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Huawei made a whole camera to attach to its latest phone",
-      "link": "https://www.theverge.com/gadgets/1003196/huawei-mate-90-pro-max-ruiying-z10-camera",
-      "published": "2026-10-01T10:15:48.000Z",
-      "summary": "I’m sorry, this is just a camera that makes phone calls. | Image: Huawei Over the last few years, Chinese Android manufacturers have followed Vivo's example of launching add-on \"teleconverter\" lenses for their flagship phones, enabling…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "This very fancy e-bike is one of the first to go semi-solid state",
-      "link": "https://www.theverge.com/news/1003195/lemmos-fancy-e-bike-is-one-of-the-first-with-a-semi-solid-state-battery",
-      "published": "2026-10-01T10:11:29.000Z",
-      "summary": "Lemmo wants you to call it an SUV. | Image: Lemmo The Lemmo 3 is the first cargo bike from the respected German e-bike maker. This premium, step-through longtail is a slightly less insane take on Rivian's Also TM-B, with one major…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The People of Utah vs. Kevin O&#8217;Leary",
-      "link": "https://www.theverge.com/cs/features/993343/stratos-utah-kevin-oleary-data-center-backlash",
-      "published": "2026-10-01T10:00:02.000Z",
-      "summary": "On the morning of May 11th, the celebrity investor Kevin O’Leary appeared on Fox Business and announced that he was under attack by Chinese agents. For weeks, he had been going on TV and posting online to tout his project, called Wonder…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Apple Mac Studio (M5 Ultra) Review: Unlimited Power",
-      "link": "https://www.wired.com/review/apple-mac-studio-m5-ultra-2026/",
-      "published": "Thu, 01 Oct 2026 10:00:00 +0000",
-      "summary": "The Mac Studio can run frontier-level AI language models locally. It’s only a preview of what’s to…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Secrets of the US Spyware King",
-      "link": "https://www.wired.com/story/the-secrets-of-the-us-spyware-king/",
-      "published": "Thu, 01 Oct 2026 09:30:00 +0000",
-      "summary": "In an exclusive interview with WIRED, Paragon Solutions CEO Andrew Boyd reveals the limits of the company’s promise to keep bad actors from abusing its powerful espionage…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Noise from Universal&#8217;s latest ride made rich locals furious, fast",
-      "link": "https://www.theverge.com/entertainment/1003182/universal-hollywood-fast-and-furious-rollercoaster-noise",
-      "published": "2026-10-01T09:00:04.000Z",
-      "summary": "Don’t have too much fun, you’ll upset the neighbors. | Photo: Ronaldo Bolaños / Los Angeles Times via Getty Images Universal Studios Hollywood has pledged to erect another sound barrier around its latest attraction after local residents…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Casio’s Crystal G-Shock Is the Most Expensive Ever Made",
-      "link": "https://www.wired.com/story/casio-crystal-g-shock-is-the-most-expensive-ever-made/",
-      "published": "Thu, 01 Oct 2026 09:00:00 +0000",
-      "summary": "Meet the full-blue sapphire MRG-D5000, a crazy G-Shock that costs more than a Patek Philippe or Porsche…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Dell Coupon Codes: 20% Off for October 2026",
-      "link": "https://www.wired.com/story/dell-coupon-code/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Get 20% off with verified Dell promo code, plus today’s coupons for up to $600 off laptops, Alienware monitors, and all things…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "NordVPN Coupons: 75% Off, Plus 3 Months Free in October 2026",
-      "link": "https://www.wired.com/story/nordvpn-coupon/",
-      "published": "Thu, 01 Oct 2026 05:00:00 +0000",
-      "summary": "Save up to 77% on 2-year plans and get 3 free months with our NordVPN discount…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Vivo’s X Fold 6 accidentally feels like a throwback",
-      "link": "https://www.theverge.com/tech/1002680/vivo-x-fold-6-global-release-specs-cameras",
-      "published": "2026-10-01T02:00:00.000Z",
-      "summary": "The X Fold 6 looks like foldables did three months ago. It's a quirk of the release calendar that when Vivo's X Fold 6 launched in China this June, it was just another foldable. Now that it's ready for its global release, the size and…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Elon Musk’s Grokipedia has a ‘newly refreshed’ design",
-      "link": "https://www.theverge.com/tech/1003068/elon-musk-grokipedia-v-0-3-spacexai",
-      "published": "2026-10-01T00:23:45.000Z",
-      "summary": "Grokipedia, SpaceXAI's AI-powered competitor to Wikipedia, recently started incorporating edits again, and today, it got some design tweaks as part of a v0.3 update, including a new logo and refreshes to its homepage and live edits page…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Google releases Gemini 4 Argon, called its most powerful model yet",
-      "link": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/",
-      "published": "Wed, 30 Sep 2026 23:43:07 +0000",
-      "summary": "Google has released its latest Gemini model, marketing it as a workhorse for coding and cybersecurity…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The new and huger Paramount has a new co-CEO",
-      "link": "https://www.theverge.com/news/1003037/paramount-david-ellison-co-ceo-ynon-kriez",
-      "published": "2026-09-30T23:08:49.000Z",
-      "summary": "Paramount is appointing a new co-CEO ahead of the close of its $110 billion merger with Warner Bros. Discovery. Ynon Kreiz, previously Mattel's chairman and CEO, will be joining Paramount to lead alongside chairman and CEO David Ellison…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "The Pentagon taps Elon Musk and Palmer Luckey to help decide what the military should do next",
-      "link": "https://techcrunch.com/2026/09/30/the-pentagon-taps-elon-musk-and-palmer-luckey-to-help-decide-what-the-military-should-do-next/",
-      "published": "Wed, 30 Sep 2026 23:08:00 +0000",
-      "summary": "Defense Secretary Pete Hegseth just launched a 120-day study on the future of warfare, led by Elon Musk, Palmer Luckey, and Newt Gingrich, and while it makes sense given their ties to the administration, critics could point out that Musk's…"
     },
     {
       "source": "Ars Technica",
@@ -203,14 +331,6 @@
       "summary": "Reminder: The \"border exemption\" to your rights is…"
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Valor, Atreides, and Sequoia back AI startup Flow Engineering at $750M valuation",
-      "link": "https://techcrunch.com/2026/09/30/valor-atreides-and-sequoia-back-ai-startup-flow-engineering-at-750m-valuation/",
-      "published": "Wed, 30 Sep 2026 21:07:40 +0000",
-      "summary": "Flow Engineering, which is bringing AI agents to hardware design, also landed Roelof Botha as an angel investor and board…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "A local network of implants uses your body as the wiring",
@@ -219,44 +339,12 @@
       "summary": "It's possible to send electrical signals right through human…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Neon sticks it to A24 by announcing a Creative Commons SCP Foundation movie",
-      "link": "https://www.theverge.com/entertainment/1002958/neon-a24-creative-commons-scp-foundation-movie",
-      "published": "2026-09-30T20:45:00.000Z",
-      "summary": "A24 pissed off one of the internet's largest horror communities when it announced it was working on an SCP Foundation film, but apparently hadn't bothered to contact the SCP Wiki team, nor did it commit to releasing it under a Creative…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Attackers have been exploiting critical Zimbra flaw to steal emails",
       "link": "https://arstechnica.com/security/2026/09/attackers-have-been-exploiting-critical-zimbra-flaw-to-steal-emails/",
       "published": "Wed, 30 Sep 2026 20:44:48 +0000",
       "summary": "A simple email gives the attackers the ability to remotely inject OS…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Google announces Gemini 4 and says it&#8217;s so capable that only &#8216;trusted cyber defenders&#8217; can have it right now",
-      "link": "https://www.theverge.com/tech/1002980/google-gemini-4-argon",
-      "published": "2026-09-30T20:41:41.000Z",
-      "summary": "Google today revealed its next AI frontier model, which it's calling Gemini 4 Argon. The new model delivers \"frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Factory CEO just accused his VC board adviser of spying for Cognition",
-      "link": "https://techcrunch.com/2026/09/30/factory-ceo-just-accused-his-vc-board-advisor-of-spying-for-cognition/",
-      "published": "Wed, 30 Sep 2026 20:39:09 +0000",
-      "summary": "VC Chris Degnan and former board adviser to Factory AI has taken a job as chief revenue officer for competitor Cognition -- and everyone is arguing on X about…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Is Neko Health’s body scan worth it? Spotify billionaire’s startup has come to America",
-      "link": "https://techcrunch.com/video/is-neko-healths-body-scan-worth-it-spotify-billionaires-startup-has-come-to-america/",
-      "published": "Wed, 30 Sep 2026 20:20:02 +0000",
-      "summary": "Spotify founder Daniel Ek’s Neko Health raised $700 million to build a business around scanning your body, but it’s not the only company centering its roadmap around a new kind of preventative healthcare. Midjourney is building its own…"
     },
     {
       "source": "Ars Technica",
@@ -281,94 +369,6 @@
       "link": "https://arstechnica.com/health/2026/09/rfk-jr-says-ai-backs-his-anti-vaccine-views-we-checked-it-doesnt/",
       "published": "Wed, 30 Sep 2026 19:31:25 +0000",
       "summary": "AI is far from a perfect resource. But it seems to hallucinate less than…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Hackers stole millions of US military personnel records during months-long data breach",
-      "link": "https://techcrunch.com/2026/09/30/hackers-stole-millions-of-us-military-personnel-records-during-months-long-data-breach/",
-      "published": "Wed, 30 Sep 2026 19:29:08 +0000",
-      "summary": "The Department of Defense notified millions of current and former U.S. military personnel that their personal information had been stolen in a months-long…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "The Disney protests were a wake-up call about the risks of streaming mergers",
-      "link": "https://arstechnica.com/gadgets/2026/09/what-the-disney-protests-over-kimmel-taught-us-about-streaming-mergers/",
-      "published": "Wed, 30 Sep 2026 19:22:19 +0000",
-      "summary": "Boycotting Disney is…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "DoorDash’s drone strategy started on the ground",
-      "link": "https://techcrunch.com/2026/09/30/doordashs-drone-strategy-started-on-the-ground/",
-      "published": "Wed, 30 Sep 2026 19:22:13 +0000",
-      "summary": "DoorDash unveiled the six-propeller aircraft that will be used in its new drone delivery business at its annual Dash Forward 2026…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "BMW built the same car for gas and electric. The EV is $4,400 cheaper.",
-      "link": "https://techcrunch.com/2026/09/30/bmw-built-the-same-car-for-gas-and-electric-the-ev-is-4400-cheaper/",
-      "published": "Wed, 30 Sep 2026 19:19:40 +0000",
-      "summary": "The new BMW 3 Series shows just how quickly EVs have caught up to fossil fuel vehicles on…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI’s Jev clone could help the frontier lab stop its swarming agents",
-      "link": "https://techcrunch.com/2026/09/30/openais-jev-clone-could-help-the-frontier-lab-stop-its-swarming-agents/",
-      "published": "Wed, 30 Sep 2026 19:00:57 +0000",
-      "summary": "OpenAI's \"Decisions API\" is a Jev clone that confirms the importance of fast, cheap…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Trump plan to combat AI risks hinges on Big Tech pals policing themselves",
-      "link": "https://arstechnica.com/tech-policy/2026/09/trump-plan-to-combat-ai-risks-hinges-on-big-tech-pals-policing-themselves/",
-      "published": "Wed, 30 Sep 2026 18:47:01 +0000",
-      "summary": "Trump gets dozens of AI firms to agree to voluntary safety…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "\"An AI did it\" is no defense, says nonprofit suing OpenAI over Hugging Face hack",
-      "link": "https://arstechnica.com/tech-policy/2026/09/lawsuit-demands-openai-halt-unsafe-development-that-caused-hugging-face-hack/",
-      "published": "Wed, 30 Sep 2026 18:25:04 +0000",
-      "summary": "OpenAI makes others suffer \"the harms of its unsafe decision-making,\" nonprofit…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "AI voice startup ElevenLabs doubles valuation to $22B",
-      "link": "https://techcrunch.com/2026/09/30/ai-voice-startup-elevenlabs-doubles-valuation-to-22b/",
-      "published": "Wed, 30 Sep 2026 18:23:57 +0000",
-      "summary": "The $300 million employee tender was co-led by Wellington and T. Rowe…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The AI Tamagotchis are coming",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1002779/openai-dots-meta-muse-ai-agents-hardware-devices",
-      "published": "2026-09-30T18:07:38.000Z",
-      "summary": "Sam Altman onstage at OpenAI’s DevDay 2026. | Photo: Hayden Field / The Verge While AI has made plenty of inroads on people's phones and computers, it's largely failed in dedicated devices. But over the next year, two major AI companies…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Reddit is killing RSS feeds and ending public API access because of AI bots",
-      "link": "https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/",
-      "published": "Wed, 30 Sep 2026 17:45:00 +0000",
-      "summary": "Reddit is ending support for RSS feeds, as the company continues tightening access to its trove of user-generated…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "So what's happening with Russia's new, long-delayed crewed spacecraft?",
-      "link": "https://arstechnica.com/space/2026/09/so-whats-happening-with-russias-new-long-delayed-crewed-spacecraft/",
-      "published": "Wed, 30 Sep 2026 16:48:56 +0000",
-      "summary": "Russia says it has a \"promising, reusable manned transport…"
     }
   ]
 }
