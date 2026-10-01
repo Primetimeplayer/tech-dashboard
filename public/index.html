@@ -3094,43 +3094,6 @@ body.dark .card.is-hardware {
   border-bottom-color: #5f6368 !important;
   box-shadow: none !important;
 }
-/* Top-right action buttons */
-#hwToggle,
-#savedToggle,
-#syncSettingsBtn {
-  position: fixed !important;
-  top: 116px !important;
-  z-index: 1100 !important;
-  width: auto !important;
-  min-width: 96px !important;
-  height: 36px !important;
-  padding: 0 14px !important;
-  border: 1px solid #dadce0 !important;
-  border-radius: 18px !important;
-  background: #fff !important;
-  color: #3c4043 !important;
-  box-sizing: border-box !important;
-}
-
-#hwToggle {
-  right: 420px !important;
-}
-
-#savedToggle {
-  right: 314px !important;
-}
-
-#syncSettingsBtn {
-  right: 202px !important;
-}
-
-#hwToggle:hover,
-#savedToggle:hover,
-#syncSettingsBtn:hover {
-  background: #f1f3f4 !important;
-  border-color: #bdc1c6 !important;
-  color: #202124 !important;
-}
 /* Main filter bar */
 #filters {
   position: fixed !important;
@@ -4047,6 +4010,7 @@ async function getCloudSaved() {
     const link = item.url || item.story_url;
 
     map[link] = {
+      title: item.title || '',
       savedAt: item.savedAt || item.saved_at || new Date().toISOString(),
       note: item.note || '',
     };
@@ -4171,6 +4135,7 @@ async function toggleSave(link) {
     delete savedMap[link];
   } else {
     savedMap[link] = {
+      title: allItems.find((item) => item.link === link)?.title || '',
       savedAt: new Date().toISOString(),
       note: '',
     };
@@ -4321,13 +4286,36 @@ initAuth();
 
   function getFilteredItems() {
     const term = searchTerm.trim().toLowerCase();
-    return allItems.filter((i) => {
+
+    const baseItems = savedOnly
+      ? Object.entries(savedMap).map(([link, saved]) => {
+          const existing = allItems.find((item) => item.link === link);
+
+          return existing || {
+            link,
+            title: saved.title || link,
+            summary: '',
+            whyItMatters: '',
+            category: 'news',
+            source: (() => {
+              try { return new URL(link).hostname.replace(/^www\\./, ''); }
+              catch (e) { return ''; }
+            })(),
+            published: saved.savedAt || '',
+          };
+        })
+      : allItems;
+
+    return baseItems.filter((i) => {
       const matchesCat = activeFilter === 'all' || i.category === activeFilter;
       const matchesSource = activeSource === 'all' || i.source === activeSource;
       const matchesDate = withinDateFilter(i.published, activeDate);
-      const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
+      const matchesTerm = !term ||
+        (i.title || '').toLowerCase().includes(term) ||
+        (i.summary || '').toLowerCase().includes(term);
       const matchesHw = !hardwareOnly || isHardware(i);
       const matchesSaved = !savedOnly || !!savedMap[i.link];
+
       return matchesCat && matchesSource && matchesDate && matchesTerm && matchesHw && matchesSaved;
     });
   }
@@ -4548,6 +4536,9 @@ initAuth();
 
   renderRecents();
 </script>
+
+
+
 </body>
 </html>
 /* PROFESSIONAL SEARCH BAR */
@@ -5583,59 +5574,11 @@ body > .mast + .wrap {
 </style>
 
 
-<style id="SIDEBAR-RESTORE">
-/* Restore sidebar library + recents */
-#filters {
-  position: fixed !important;
-  top: 64px !important;
-  left: 0 !important;
-  width: 210px !important;
-  height: calc(100vh - 64px) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  box-sizing: border-box !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  z-index: 20 !important;
-}
 
-#filters .sidebar-section {
-  display: block !important;
-  width: 100% !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
 
-#filters .sidebar-item {
-  display: flex !important;
-  width: 100% !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  align-items: center !important;
-  box-sizing: border-box !important;
-}
 
-#filters .sidebar-recents {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: 100% !important;
-  margin-top: auto !important;
-}
 
-#filters .sidebar-recents #recentArticles {
-  display: block !important;
-  visibility: visible !important;
-}
 
-#filters .recent-item {
-  display: block !important;
-  visibility: visible !important;
-}
 
-@media (max-width: 800px) {
-  #filters {
-    width: 180px !important;
-  }
-}
-</style>
+
+
