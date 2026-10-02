@@ -36,13 +36,19 @@ async function fetchSubreddit(sub) {
       }));
   } catch (err) {
     console.error(`[fetch-reddit] Failed to fetch r/${sub}: ${err.message}`);
-    return [];
+    return null;
   }
 }
 
 async function main() {
   console.log(`[fetch-reddit] Fetching ${SUBREDDITS.length} subreddits...`);
-  const results = (await Promise.all(SUBREDDITS.map(fetchSubreddit))).flat();
+  const subreddits = await Promise.all(SUBREDDITS.map(fetchSubreddit));
+  const successfulSubreddits = subreddits.filter((items) => items !== null);
+  if (!successfulSubreddits.length) {
+    throw new Error('All subreddit requests failed; keeping existing data.');
+  }
+
+  const results = successfulSubreddits.flat();
   results.sort((a, b) => new Date(b.published) - new Date(a.published));
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
@@ -57,4 +63,7 @@ async function main() {
   console.log(`[fetch-reddit] Wrote ${results.length} items to ${OUT_PATH}`);
 }
 
-main();
+main().catch((err) => {
+  console.error('[fetch-reddit] Failed:', err.message);
+  process.exit(1);
+});
