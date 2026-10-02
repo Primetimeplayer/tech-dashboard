@@ -46,7 +46,30 @@ async function main() {
   const xml = await res.text();
   const parsed = await parseStringPromise(xml);
 
-  const entries = parsed.feed.entry ?? [];
+  const feed = parsed?.feed;
+  if (!feed || typeof feed !== 'object') {
+    throw new Error('arXiv response did not contain a feed.');
+  }
+
+  const totalResultsValue = feed['opensearch:totalResults']?.[0];
+  const totalResultsText = typeof totalResultsValue === 'string' ? totalResultsValue.trim() : '';
+  const totalResults = Number(totalResultsText);
+  if (
+    !/^\d+$/.test(totalResultsText) ||
+    !Number.isSafeInteger(totalResults) ||
+    totalResults < 0
+  ) {
+    throw new Error('arXiv response contained an invalid total result count.');
+  }
+
+  const entries = totalResults === 0 ? [] : feed.entry;
+  if (totalResults > 0 && (!Array.isArray(entries) || !entries.length)) {
+    throw new Error('arXiv response declared results but contained no entries.');
+  }
+  if (entries.some((entry) => !entry.title?.[0] || !entry.id?.[0] || !entry.published?.[0])) {
+    throw new Error('arXiv response contained a malformed or error entry.');
+  }
+
   const papers = entries.map((entry) => ({
     title: clean(entry.title?.[0]),
     summary: clean(entry.summary?.[0]).slice(0, 400).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…'),
