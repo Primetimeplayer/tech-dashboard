@@ -1,7 +1,35 @@
 {
-  "updated": "2026-10-02T06:08:05.187Z",
+  "updated": "2026-10-02T12:07:58.544Z",
   "count": 10,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Tesla rolls out an emergency drive-away feature after Supercharger shooting",
+      "link": "https://www.engadget.com/2275509/tesla-supercharger-emergency-drive-away-feature/",
+      "published": "Fri, 02 Oct 2026 12:03:04 +0000",
+      "summary": "Tesla's new feature will let you drive away with the Supercharger still connected in case of…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "FDA approves artificial heart valve for kids that grows as they do",
+      "link": "https://www.engadget.com/2275489/fda-approves-autus-size-adjustable-artificial-heart-valve-for-kids/",
+      "published": "Fri, 02 Oct 2026 11:19:29 +0000",
+      "summary": "The FDA has approved a new artificial heart valve that eliminates the need for multiple surgeries in children with certain congenital heart…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Balcony solar installations will soon be legal in America's most populous state",
+      "link": "https://www.engadget.com/2275466/california-legalizes-balcony-plug-in-solar/",
+      "published": "Fri, 02 Oct 2026 09:39:12 +0000",
+      "summary": "California has joined nine other US states in approving balcony solar…"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "New Mexico wants Meta to pay $40 billion in penalties for Cambridge Analytica scandal",
+      "link": "https://www.engadget.com/2275451/new-mexico-meta-40-billion-penalties-cambridge-analytica-lawsuit/",
+      "published": "Fri, 02 Oct 2026 08:47:29 +0000",
+      "summary": "New Mexico's attorney argued that the penalties Meta has to pay need to be significant enough to make an impact on the…"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Florida county finds 11 unpermitted Flock cameras with unidentified owners",
@@ -43,34 +71,6 @@
       "link": "https://www.engadget.com/2275167/police-may-have-new-ways-to-access-data-on-locked-iphones/",
       "published": "Thu, 01 Oct 2026 20:43:15 +0000",
       "summary": "A training video reportedly demonstrates how police can evade an Apple security…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Judge dismisses lawsuits claiming Google's AI Overviews siphon web traffic",
-      "link": "https://www.engadget.com/2275023/judge-dismisses-lawsuits-claiming-googles-ai-overviews-siphon-web-traffic/",
-      "published": "Thu, 01 Oct 2026 19:20:32 +0000",
-      "summary": "Google may have a monopoly in search, but neither lawsuit made a compelling case the company was leveraging…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "The Steam Autumn Sale has deals on Resident Evil Requiem and 007 First Light",
-      "link": "https://www.engadget.com/2274933/the-steam-autumn-sale-has-deals-on-resident-evil-requiem-and-007-first-light/",
-      "published": "Thu, 01 Oct 2026 18:37:56 +0000",
-      "summary": "Bye-bye…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "NYC's click-to-cancel rule is now in effect to save consumers from subscription hell",
-      "link": "https://www.engadget.com/2274831/nycs-click-to-cancel-rule-is-now-in-effect-to-save-consumers-from-subscription-hell/",
-      "published": "Thu, 01 Oct 2026 17:41:11 +0000",
-      "summary": "Can the rest of the country have this…"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Pandora claims 'we haven't made this decision lightly' after raising prices",
-      "link": "https://www.engadget.com/2274733/pandora-stream-music-service-raise-prices/",
-      "published": "Thu, 01 Oct 2026 17:15:00 +0000",
-      "summary": "The SiriusXM service joins a long list of streamers that have increased rates this…"
     }
   ]
 }

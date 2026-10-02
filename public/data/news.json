@@ -1,7 +1,119 @@
 {
-  "updated": "2026-10-02T06:08:04.355Z",
+  "updated": "2026-10-02T12:07:57.567Z",
   "count": 46,
   "items": [
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Star Wars: Galactic Racer is my childhood podracing dream come true",
+      "link": "https://www.theverge.com/entertainment/1002887/star-wars-galactic-racer-review",
+      "published": "2026-10-02T12:00:00.000Z",
+      "summary": "Yes, Sebulba is in the game. The podracing scene in The Phantom Menace is one of my favorite movie sequences ever. It's just so dang cool: The futuristic racers tear over treacherous Tatooine terrain while various Star Wars aliens bark at…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "AI hallucinations are making entitled customers even worse",
+      "link": "https://www.theverge.com/report/1002963/ai-hallucinations-customer-service-jobs-agents",
+      "published": "2026-10-02T12:00:00.000Z",
+      "summary": "Madison, a server in New York City, greets every table by asking about each diner's allergies. Lately, there have been some close calls. \"Sometimes people will tell me they have a shellfish allergy, and I'll come back, and they won't ask…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "If a data center is camouflaged in the woods, will anyone hate it?",
+      "link": "https://www.theverge.com/tech/1003681/microsoft-data-centers-ai-environment-biomimicry",
+      "published": "2026-10-02T12:00:00.000Z",
+      "summary": "San Antonio City Councilmember Ric Galvan remembers when data centers first arrived in his city in the 2000s, looking like relatively unassuming office buildings. But that's changed in recent years, as data centers have grown into massive…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Amazon writes scary blog warning communities not to block data centers",
+      "link": "https://www.theverge.com/tech/1003929/amazon-ai-data-center-blog-warning",
+      "published": "2026-10-02T11:52:20.000Z",
+      "summary": "Amazon is calling for people to support AI data center projects, or risk irreparable harm to the US economy and national security. In a more than 3,000 word blog posted today, Amazon web services CEO Matt Garman pushed back on public…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Amazon Says It's No Longer Using NDAs for Data Centers",
+      "link": "https://www.wired.com/story/amazon-says-it-is-going-to-stop-using-ndas-for-data-centers/",
+      "published": "Fri, 02 Oct 2026 11:47:58 +0000",
+      "summary": "The company announced it has stopped using secret agreements with county officials and acknowledges community backlash is leading to data center moratoriums across the…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Smart Cat Trackers of 2026: Fi Mini vs. Tractive",
+      "link": "https://www.wired.com/story/best-smart-cat-tracker/",
+      "published": "Fri, 02 Oct 2026 11:35:00 +0000",
+      "summary": "After months of monitoring Basil’s activity and sleep, I found that Fi and Tractive cat trackers come with their own…"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "TCL is right to question Samsung’s use of the term “Mini LED”",
+      "link": "https://arstechnica.com/gadgets/2026/10/tcl-is-right-to-question-samsungs-use-of-the-term-mini-led/",
+      "published": "Fri, 02 Oct 2026 10:30:11 +0000",
+      "summary": "Can it be Mini LED without a FALD…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Your Driverless Cab Is Spying on You",
+      "link": "https://www.wired.com/story/when-the-robotaxis-are-watching-you/",
+      "published": "Fri, 02 Oct 2026 10:30:00 +0000",
+      "summary": "Self-driving cars from Waymo, Zoox, and Tesla are studded with cameras and sensors. Some of them are pointing at…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Election Deniers Think the GOP’s Terrible Midterm Polling Is a ‘Psyop’",
+      "link": "https://www.wired.com/story/election-deniers-think-the-gops-terrible-midterm-polling-is-a-psyop/",
+      "published": "Fri, 02 Oct 2026 10:00:00 +0000",
+      "summary": "Dozens and dozens of high profile MAGA influencers and pundits have weighed in. “The laughable fake polls are rolling out,” Catturd posted on…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "A Flaw in ChatGPT’s Mac App Could Have Let Hackers Grab Sensitive Data",
+      "link": "https://www.wired.com/story/a-flaw-in-chatgpts-mac-app-could-have-let-hackers-grab-sensitive-data/",
+      "published": "Fri, 02 Oct 2026 09:45:00 +0000",
+      "summary": "While the focus has been on AI agents’ hacking capabilities, a recently patched vulnerability in a ChatGPT app shows that AI software is itself an inviting—and…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "AI music maker Suno now generates spoken words",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1003925/suno-speech-ai-voice-feature-beta-availability",
+      "published": "2026-10-02T09:42:19.000Z",
+      "summary": "Suno is branching out from the world of AI music, launching a new feature that generates spoken voices based on scripts or prompted descriptions. Speech is now available in public beta across Suno's web and mobile platforms, and allows you…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Health Care Workers Are Tired of Cleaning Up Palantir’s Mess",
+      "link": "https://www.wired.com/story/healthcare-workers-are-tired-of-cleaning-up-palantirs-mess/",
+      "published": "Fri, 02 Oct 2026 09:30:00 +0000",
+      "summary": "A hospital giant and radiology network turned to Palantir to streamline scheduling, but nurses and other staff say the new software is causing errors, burnout, and…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "31 Best STEM Toys for Kids (2026): Learning Made Fun",
+      "link": "https://www.wired.com/gallery/best-stem-toys-for-kids/",
+      "published": "Fri, 02 Oct 2026 09:30:00 +0000",
+      "summary": "We found lots of math-filled and science-rich toys for tiny nerds to assemble, bake, squish—or even tear apart and…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Columbia Promo Codes: 15% Off | October 2026",
+      "link": "https://www.wired.com/story/columbia-promo-code/",
+      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
+      "summary": "Explore current Columbia deals on jackets, outdoor gear, and apparel. Find active Columbia promo codes, student discounts, and free shipping offers to save on your next…"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -35,62 +147,6 @@
       "summary": "Check out our deals for Nike this October 2026, including 15% off select…"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Google Workspace Promo Codes: 14% Off for October 2026",
-      "link": "https://www.wired.com/story/google-workspace-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Boost your productivity and save with exclusive Google Workspace coupons from WIRED. Get up to 14% off plans for three months, including Starter, Standard, and Plus…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Motley Fool Promo Code: $200 Off on Stock Advisor October 2026",
-      "link": "https://www.wired.com/story/the-motley-fool-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Scale your portfolio for less with these verified The Motley Fool membership discounts, stock advisor promo codes, and Epic Bundle…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Hotels.com Coupon Codes for October 2026",
-      "link": "https://www.wired.com/story/hotels-com-coupon/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Unlock significant savings on hotels, resorts, and getaways with our verified Hotels.com promo codes and gift card discounts. Plan your perfect trip…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Columbia Promo Codes: 15% Off | October 2026",
-      "link": "https://www.wired.com/story/columbia-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Explore current Columbia deals on jackets, outdoor gear, and apparel. Find active Columbia promo codes, student discounts, and free shipping offers to save on your next…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Whoop Promo Codes: 20% Off This October 2026",
-      "link": "https://www.wired.com/story/whoop-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Whether you're looking for a Whoop free trial, student discount, or military savings, our guide to Whoop promo codes will help you maximize your membership benefits. Stay on top of your fitness goals for…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Squarespace Promo Codes: 20% Off in October 2026",
-      "link": "https://www.wired.com/story/squarespace-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Get 20% off your next website, 10% off with exclusive Squarespace discount code, 50% off plans, and more top coupons from…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Design Within Reach Promo Codes: 30% Off | October 2026",
-      "link": "https://www.wired.com/story/design-within-reach-promo-code/",
-      "published": "Fri, 02 Oct 2026 05:00:00 +0000",
-      "summary": "Get 30% off, 20% off, and free shipping with our Design Within Reach coupon codes, plus up to 50% off furniture with these special…"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Robotaxi operators will face fines for blocking first responders",
@@ -121,14 +177,6 @@
       "link": "https://arstechnica.com/science/2026/10/venus-mysterious-haze-is-actually-cosmic-dust/",
       "published": "Thu, 01 Oct 2026 22:27:04 +0000",
       "summary": "A physical model show that iron dust and sulfuric acid create the right…"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Whatever AI Safety Is, It’s Not This",
-      "link": "https://www.wired.com/story/whatever-ai-safety-looks-like-its-not-this/",
-      "published": "Thu, 01 Oct 2026 22:10:42 +0000",
-      "summary": "Asking AI companies to self-regulate is a great way to pretend like you’ve accomplished…"
     },
     {
       "source": "Ars Technica",
@@ -283,14 +331,6 @@
       "summary": "When Igor Dobrianskyi looks at a car dealership lot, he doesn't see rows of cars — he sees millions of dollars just sitting there, depreciating. Come see MyMonthlyCar in the Startup Battlefield 200 at TechCrunch Disrupt, taking place…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Sony brings AI graphics upscaling to the regular PS5",
-      "link": "https://www.theverge.com/games/1003549/sony-ps5-quick-spectral-super-resolution-qssr",
-      "published": "2026-10-01T16:53:39.000Z",
-      "summary": "Sony is launching a new AI upscaling technology specifically for the regular PS5. The new tech, called Quick Spectral Super Resolution (QSSR), is a \"new performance tier of AI upscaling\" that's a result of Sony's Project Amethyst work with…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Florida cops say they don't know who owns 11 unpermitted Flock cameras",
@@ -315,30 +355,6 @@
       "summary": "Adding in a second neural network that guesses the identity of hidden pieces was…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Can VR glasses save VR?",
-      "link": "https://www.theverge.com/tech/1003034/meta-vr-glasses-vs-augmented-reality",
-      "published": "2026-10-01T16:10:32.000Z",
-      "summary": "Sean wears the Meta VR Glasses. | Photo: Meta I'm pretty sure I won't be buying the $1,299 Meta VR Glasses. That's too rich for my blood in today's economy, and my feelings about Meta are… conflicted. But I want you to understand that Meta…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Microsoft’s Office and Teams chief is leaving",
-      "link": "https://www.theverge.com/news/1003515/microsoft-ryan-roslansky-office-teams-linkedin-leaving",
-      "published": "2026-10-01T16:02:37.000Z",
-      "summary": "After nearly 18 years at LinkedIn and Microsoft, Ryan Roslansky is leaving the company. Roslansky, who until recently was the CEO of LinkedIn, was promoted to the head of Office last year and then took control of Microsoft Teams earlier…"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Inside Microsoft’s big Copilot rethink",
-      "link": "https://www.theverge.com/tech/1003365/microsoft-copilot-os-for-work-notepad",
-      "published": "2026-10-01T16:00:00.000Z",
-      "summary": "Last week, Microsoft CEO Satya Nadella hosted an intimate, invite-only event for leaders from some of its key enterprise customers. Instead of a flashy media event, Nadella outlined the future of Copilot directly to the customers Microsoft…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "As US relations fray, Canada gets serious about its own launch industry",
@@ -347,28 +363,12 @@
       "summary": "The Canada Rocket Company gets serious about medium-lift…"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "NYC is now the first city in America that bans sketchy subscriptions",
-      "link": "https://www.theverge.com/policy/1003426/nyc-click-to-cancel-subscriptions-rule",
-      "published": "2026-10-01T14:49:25.000Z",
-      "summary": "Image: Angela Weiss / AFP via Getty Images | AFP via Getty Images New York City residents struggling to get out of recurring subscription fees can now submit complaints to the city government. As of Thursday, the city's click-to-cancel…"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "PS5 emulation is suddenly making big strides on PC",
       "link": "https://arstechnica.com/gaming/2026/10/ps5-emulation-is-suddenly-making-big-strides-on-pc/",
       "published": "Thu, 01 Oct 2026 11:30:41 +0000",
       "summary": "Games like Astro Bot and Demon’s Souls are running ably without a…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "NASA squeezed Treasury, vibe coded, and broke the mold in bid to save Swift",
-      "link": "https://arstechnica.com/space/2026/10/heres-why-nasa-is-celebrating-the-failed-mission-to-save-the-swift-observatory/",
-      "published": "Thu, 01 Oct 2026 11:15:15 +0000",
-      "summary": "\"We did some really, really cool stuff. I'm absolutely gutted we weren't able to get…"
     }
   ]
 }
