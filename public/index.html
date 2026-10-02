@@ -417,8 +417,6 @@ padding: 1.5rem; }
 }
 
 :root:not([data-theme="light"]) .card:first-child {
-  background:
-    linear-gradient(135deg, #22343B, #1A2A30);
 }
 .card:first-child {
   background:
@@ -676,8 +674,6 @@ body {
 .filters {
   justify-content: flex-start;
   padding: 0;
-  background: transparent;
-  border: 0;
   backdrop-filter: none;
 }
 
@@ -759,9 +755,6 @@ body {
   flex-direction: column;
   gap: 2px;
 
-  background: #fff;
-  border-right: 1px solid #dadce0;
-
   z-index: 1000;
 }
 
@@ -781,7 +774,6 @@ body {
   font-weight: 700;
   letter-spacing: .7px;
 
-  color: #80868b;
 }
 
 .sidebar-item {
@@ -794,12 +786,7 @@ body {
   margin: 2px 0;
   padding: 0 14px;
 
-  border: 0 !important;
   border-radius: 6px !important;
-
-  background: transparent !important;
-
-  color: #5f6368 !important;
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -809,15 +796,10 @@ body {
 }
 
 .sidebar-item:hover {
-  background: #f1f3f4 !important;
-  color: #202124 !important;
 }
 
 .sidebar-item[aria-pressed="true"] {
   position: relative;
-
-  background: #f1f3f4 !important;
-  color: #202124 !important;
 
   font-weight: 600;
 }
@@ -832,7 +814,6 @@ body {
 
   width: 3px;
 
-  background: #1a73e8;
   border-radius: 0 3px 3px 0;
 }
 
@@ -843,14 +824,12 @@ body {
   flex: 0 0 18px !important;
 
   fill: none !important;
-  stroke: #8a8f98 !important;
   stroke-width: 2.2 !important;
   stroke-linecap: round !important;
   stroke-linejoin: round !important;
 }
 
 .sidebar-item[aria-pressed="true"] .sidebar-icon {
-  stroke: #1967d2 !important;
 }
 
 .controls,
@@ -1105,8 +1084,6 @@ main {
 
 .filters {
   padding: 16px 10px;
-  background: #fff;
-  border-right: 1px solid #dadce0;
 }
 
 .sidebar-home {
@@ -1124,7 +1101,6 @@ main {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .5px;
-  color: #5f6368;
 }
 
 .sidebar-item {
@@ -1144,13 +1120,6 @@ main {
   color: #5f6368;
 }
 
-.sidebar-item:hover .sidebar-icon {
-  color: #202124;
-}
-
-.sidebar-item[aria-pressed="true"] .sidebar-icon {
-  color: #1967d2;
-}
 /* =========================================================
    SIDEBAR — PROFESSIONAL NAVIGATION
    ========================================================= */
@@ -1158,8 +1127,6 @@ main {
 .filters {
   width: 220px;
   padding: 20px 10px;
-  background: #fff;
-  border-right: 1px solid #dadce0;
 }
 
 .sidebar-home {
@@ -1179,7 +1146,6 @@ main {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .8px;
-  color: #9aa0a6;
 }
 
 .sidebar-item {
@@ -1193,12 +1159,7 @@ main {
   margin: 2px 0;
   padding: 0 14px;
 
-  border: 0 !important;
   border-radius: 6px !important;
-
-  background: transparent !important;
-
-  color: #5f6368 !important;
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -1210,13 +1171,9 @@ main {
 }
 
 .sidebar-item:hover {
-  background: #f8f9fa !important;
-  color: #202124 !important;
 }
 
 .sidebar-item[aria-pressed="true"] {
-  background: #e8f0fe !important;
-  color: #1967d2 !important;
   font-weight: 600;
 }
 
@@ -1227,11 +1184,9 @@ main {
   text-align: center;
 
   font-size: 14px;
-  color: #80868b;
 }
 
 .sidebar-item[aria-pressed="true"] .sidebar-icon {
-  color: #1967d2;
 }
 /* =========================================================
    GOOGLE NEWS HEADER POLISH
@@ -1304,14 +1259,11 @@ main {
 
   padding: 14px 16px;
 
-  background: #fff;
-  border: 1px solid #dadce0;
   border-radius: 10px;
   box-shadow: none;
 }
 
 .latest-card:hover {
-  border-color: #bdc1c6;
   box-shadow: 0 1px 3px rgba(60,64,67,.12);
   transform: none;
 }
@@ -1458,7 +1410,6 @@ main {
   font-weight: 500;
   letter-spacing: -.2px;
 
-  color: #202124;
 }
 /* =========================================================
    GOOGLE NEWS FOOTER
@@ -1988,9 +1939,6 @@ main {
 
   gap: 2px !important;
 
-  background: #fff !important;
-  border-right: 1px solid #dadce0 !important;
-
   box-sizing: border-box !important;
   overflow-y: auto !important;
   z-index: 1000 !important;
@@ -2017,11 +1965,7 @@ main {
   margin: 2px 0 !important;
   padding: 0 14px !important;
 
-  border: 0 !important;
   border-radius: 6px !important;
-
-  background: transparent !important;
-  color: #5f6368 !important;
 
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 14px !important;
@@ -2032,13 +1976,9 @@ main {
 }
 
 .sidebar-item:hover {
-  background: #f1f3f4 !important;
-  color: #202124 !important;
 }
 
 .sidebar-item[aria-pressed="true"] {
-  background: #e8f0fe !important;
-  color: #1967d2 !important;
   font-weight: 600 !important;
 }
 /* FINAL ARTICLE LIST */
@@ -2194,15 +2134,12 @@ letter-spacing: -0.15px !important;
 
   padding: 14px 16px !important;
 
-  background: #fff !important;
-  border: 1px solid #dadce0 !important;
   border-radius: 10px !important;
 
   box-shadow: none !important;
 }
 
 .latest-card:hover {
-  border-color: #bdc1c6 !important;
   box-shadow: 0 1px 3px rgba(60,64,67,.12) !important;
   transform: none !important;
 }
@@ -2638,15 +2575,11 @@ main {
 }
 
 .latest-card {
-  background: #fff !important;
-  border: 1px solid #dadce0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
 
 .latest-card:hover {
-  background: #f8f9fa !important;
-  border-color: #dadce0 !important;
   box-shadow: none !important;
   transform: none !important;
 }
@@ -2806,52 +2739,38 @@ html[data-theme="dark"] .card,
 body.dark .card,
 html[data-theme="dark"] .latest-card,
 body.dark .latest-card {
-  background: #202124 !important;
-  color: #e8eaed !important;
-  border-bottom-color: #3c4043 !important;
 }
 
 html[data-theme="dark"] .card:hover,
 body.dark .card:hover {
-  background: #292a2d !important;
 }
 
 html[data-theme="dark"] .card h2 a,
 body.dark .card h2 a {
-  color: #e8eaed !important;
 }
 
 html[data-theme="dark"] .card > p,
 body.dark .card > p {
-  color: #bdc1c6 !important;
 }
 
 html[data-theme="dark"] .card-meta,
 body.dark .card-meta {
-  color: #9aa0a6 !important;
 }
 
 html[data-theme="dark"] .sidebar-item,
 body.dark .sidebar-item {
-  color: #bdc1c6 !important;
 }
 
 html[data-theme="dark"] .sidebar-item:hover,
 body.dark .sidebar-item:hover {
-  background: #292a2d !important;
-  color: #e8eaed !important;
 }
 
 html[data-theme="dark"] .sidebar-item[aria-pressed="true"],
 body.dark .sidebar-item[aria-pressed="true"] {
-  background: #174ea6 !important;
-  color: #fff !important;
 }
 
 html[data-theme="dark"] .filters,
 body.dark .filters {
-  background: #202124 !important;
-  border-right-color: #3c4043 !important;
 }
 
 html[data-theme="dark"] .controls select,
@@ -2884,13 +2803,10 @@ body.dark .mast {
 html[data-theme="dark"] .filters,
 body.dark .filters {
   background: #303134 !important;
-  border-right-color: #5f6368 !important;
 }
 
 html[data-theme="dark"] .card,
-body.dark .card,
-html[data-theme="dark"] .latest-card,
-body.dark .latest-card {
+body.dark .card {
   background: #3c4043 !important;
   color: #e8eaed !important;
   border-bottom-color: #5f6368 !important;
@@ -2925,19 +2841,14 @@ body.dark .latest-wrap {
 
 html[data-theme="dark"] .sidebar-item,
 body.dark .sidebar-item {
-  color: #d2d5d7 !important;
 }
 
 html[data-theme="dark"] .sidebar-item:hover,
 body.dark .sidebar-item:hover {
-  background: #45484b !important;
-  color: #fff !important;
 }
 
 html[data-theme="dark"] .sidebar-item[aria-pressed="true"],
 body.dark .sidebar-item[aria-pressed="true"] {
-  background: #4a5568 !important;
-  color: #fff !important;
 }
 /* DARK MODE — SAVE & SHARE */
 
@@ -2963,19 +2874,14 @@ html[data-theme="dark"] .sidebar-item,
 body.dark .sidebar-item,
 html[data-theme="dark"] .sidebar-heading,
 body.dark .sidebar-heading {
-  color: #f1f3f4 !important;
 }
 
 html[data-theme="dark"] .sidebar-item:hover,
 body.dark .sidebar-item:hover {
-  color: #ffffff !important;
-  background: #45484b !important;
 }
 
 html[data-theme="dark"] .sidebar-item[aria-pressed="true"],
 body.dark .sidebar-item[aria-pressed="true"] {
-  color: #ffffff !important;
-  background: #4a5568 !important;
 }
 
 html[data-theme="dark"] .sidebar-home,
@@ -3609,15 +3515,10 @@ label[for="dateFilter"] {
 }
 
 .latest-card {
-  background: var(--bg) !important;
-  background-color: var(--bg) !important;
-  border: 1px solid var(--line) !important;
   box-shadow: none !important;
 }
 
 .latest-card:hover {
-  background: var(--bg) !important;
-  border-color: var(--line) !important;
   box-shadow: none !important;
   transform: translateY(-1px) !important;
 }
@@ -3702,8 +3603,6 @@ body { background: var(--app-bg) !important; }
   width: 240px !important;
   top: 64px !important;
   padding: 18px 12px !important;
-  background: var(--app-bg) !important;
-  border-right: 0 !important;
   box-shadow: none !important;
 }
 .sidebar-item {
@@ -3712,23 +3611,14 @@ body { background: var(--app-bg) !important; }
   padding: 8px 12px !important;
   margin: 2px 0 !important;
   border-radius: 9px !important;
-  background: transparent !important;
-  border: 0 !important;
-  color: #2f3033 !important;
   box-shadow: none !important;
 }
 .sidebar-item:hover {
-  background: #ececef !important;
-  color: #202123 !important;
 }
 .sidebar-item[aria-pressed="true"] {
-  background: #e9e9ec !important;
-  color: #202123 !important;
-  border: 0 !important;
   box-shadow: none !important;
 }
 .sidebar-heading {
-  color: #8a8b90 !important;
 }
 .controls, .result-count, .error-banner, main {
   margin-left: 240px !important;
@@ -3768,16 +3658,12 @@ main {
 
 <style>
 .filters {
-  background: transparent !important;
-  border: 0 !important;
   box-shadow: none !important;
 }
 
 
 <style>
 #filters {
-  background: transparent !important;
-  border-right: 0 !important;
   box-shadow: none !important;
 }
 
@@ -3968,7 +3854,6 @@ main .grid .card:hover {
   font-weight: 700 !important;
   letter-spacing: .06em !important;
   text-transform: uppercase !important;
-  color: #8a8f98 !important;
   margin: 18px 8px 8px !important;
 }
 #filters .sidebar-item {
@@ -3983,7 +3868,6 @@ main .grid .card:hover {
 .latest-card:hover {
   transform: translateY(-1px) !important;
   box-shadow: 0 3px 10px rgba(0,0,0,.07) !important;
-  border-color: #d7dce2 !important;
 }
 <style>
 ...existing CSS...
@@ -4066,9 +3950,7 @@ main .grid .card:hover {
   flex: 0 0 190px !important;
   min-height: 96px !important;
   padding: 12px !important;
-  border: 1px solid #E5EDF6 !important;
   border-radius: 10px !important;
-  background: rgba(255,255,255,.88) !important;
   box-sizing: border-box !important;
 }
 
@@ -4191,8 +4073,6 @@ body > .mast + .wrap {
 
 /* Preserve sidebar functionality but remove old visual chrome */
 .filters {
-  background: transparent !important;
-  border: 0 !important;
   box-shadow: none !important;
 }
 
@@ -4300,20 +4180,16 @@ body > .mast + .wrap {
   flex: 0 0 190px !important;
   min-height: 96px !important;
   padding: 12px !important;
-  border: 1px solid #E5EDF6 !important;
   border-radius: 10px !important;
-  background: rgba(255,255,255,.88) !important;
   box-sizing: border-box !important;
 }
 
 .latest-card .cat {
-  color: #7189A8 !important;
   font-size: 10px !important;
   line-height: 1.3 !important;
 }
 
 .latest-card h3 {
-  color: #1B355B !important;
   font-size: 12px !important;
   line-height: 1.45 !important;
   font-weight: 650 !important;
@@ -4331,7 +4207,6 @@ body > .mast + .wrap {
 
 .section-heading h2 {
   margin: 0 !important;
-  color: #172E53 !important;
   font-size: 15px !important;
   line-height: 1.3 !important;
   font-weight: 700 !important;
@@ -4568,11 +4443,9 @@ body > .mast + .wrap {
   background: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
-  border: 1px solid var(--line) !important;
 }
 
 .latest-card:hover {
-  background: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
 }
@@ -4614,10 +4487,7 @@ body > .mast + .wrap {
 
   padding: 7px 9px !important;
 
-  background: #ffffff !important;
   background-image: none !important;
-
-  border: 1px solid #E1E7EE !important;
   border-radius: 8px !important;
 
   box-shadow: 0 1px 3px rgba(30,55,80,.06) !important;
@@ -4626,15 +4496,12 @@ body > .mast + .wrap {
 }
 
 .latest-card:hover {
-  background: #ffffff !important;
-  border-color: #CBD7E4 !important;
   box-shadow: 0 3px 8px rgba(30,55,80,.10) !important;
   transform: translateY(-1px) !important;
 }
 
 .latest-card .cat {
   margin: 0 !important;
-  color: #71809A !important;
   font-size: 8px !important;
   line-height: 10px !important;
   white-space: nowrap !important;
@@ -4644,7 +4511,6 @@ body > .mast + .wrap {
 
 .latest-card h3 {
   margin: 0 !important;
-  color: #243A56 !important;
   font-size: 10px !important;
   line-height: 13px !important;
   font-weight: 650 !important;
