@@ -588,7 +588,7 @@ body {
   font-size: 30px;
   font-weight: 500;
   letter-spacing: -1.2px;
-  color: #202124;
+  color: var(--text);
 }
 
 .wordmark span {
@@ -1419,16 +1419,16 @@ footer {
   margin-top: 40px;
   padding: 24px 8px 32px;
 
-  border-top: 1px solid #dadce0;
+  border-top: 1px solid var(--line);
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 1.5;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 
 footer a {
-  color: #5f6368;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
@@ -1488,7 +1488,7 @@ select {
 #search {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  color: #202124;
+  color: var(--text);
 }
 
 .search-row input::placeholder,
@@ -1537,7 +1537,7 @@ select {
 
 .search-row input::placeholder,
 #search::placeholder {
-  color: #5f6368;
+  color: var(--text-muted);
 }
 /* =========================================================
    FILTER DROPDOWNS
@@ -1852,8 +1852,8 @@ select {
   padding: 0 !important;
   margin: 0 !important;
 
-  background: #fff !important;
-  border-bottom: 1px solid #dadce0 !important;
+  background: var(--panel) !important;
+  border-bottom: 1px solid var(--line) !important;
 
   box-shadow: none !important;
   backdrop-filter: none !important;
@@ -2430,8 +2430,8 @@ main {
 /* SEARCH BAR POLISH */
 
 .row2 .search-row {
-  border: 1px solid #dadce0 !important;
-  background: #f8f9fa !important;
+  border: 1px solid var(--line) !important;
+  background: var(--input-bg) !important;
   transition: background 120ms ease, border-color 120ms ease,
               box-shadow 120ms ease !important;
 }
@@ -2452,7 +2452,7 @@ main {
 }
 
 .search-hint {
-  color: #80868b !important;
+  color: var(--text-muted) !important;
   font-size: 11px !important;
 }
 /* FILTER CONTROLS POLISH */
@@ -2464,9 +2464,9 @@ main {
   padding: 0 38px 0 16px !important;
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 13px !important;
-  color: #3c4043 !important;
-  background: #f1f3f4 !important;
-  border: 1px solid transparent !important;
+  color: var(--text) !important;
+  background: var(--input-bg) !important;
+  border: 1px solid var(--line) !important;
   border-radius: 20px !important;
   box-shadow: none !important;
   text-align: left !important;
@@ -2571,7 +2571,7 @@ main {
   font-size: 18px !important;
   line-height: 1.3 !important;
   font-weight: 600 !important;
-  color: #202124 !important;
+  color: var(--text) !important;
 }
 
 .latest-card {
@@ -2725,7 +2725,7 @@ body.dark .mast {
 
 html[data-theme="dark"] .wordmark,
 body.dark .wordmark {
-  color: #e8eaed !important;
+  color: var(--text) !important;
 }
 
 html[data-theme="dark"] .latest,
@@ -2775,16 +2775,16 @@ body.dark .filters {
 
 html[data-theme="dark"] .controls select,
 body.dark .controls select {
-  background: #292a2d !important;
-  color: #e8eaed !important;
-  border-color: #5f6368 !important;
+  background: var(--input-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--line) !important;
 }
 
 html[data-theme="dark"] .row2 .search-row,
 body.dark .row2 .search-row {
-  background: #292a2d !important;
+  background: var(--input-bg) !important;
   color: #e8eaed !important;
-  border-color: #5f6368 !important;
+  border-color: var(--line) !important;
 }
 /* SOFTER DARK MODE */
 
@@ -2796,8 +2796,8 @@ body.dark {
 
 html[data-theme="dark"] .mast,
 body.dark .mast {
-  background: #303134 !important;
-  border-bottom-color: #5f6368 !important;
+  background: var(--panel) !important;
+  border-bottom-color: var(--line) !important;
 }
 
 html[data-theme="dark"] .filters,
@@ -2909,7 +2909,7 @@ body.search-scrolled .row2 .search-row {
 }
 
 body.search-scrolled .row2 .search-row input {
-  color: #202124 !important;
+  color: var(--text) !important;
 }
 /* MORE SEARCH TRANSPARENCY */
 
@@ -3501,11 +3501,11 @@ label[for="dateFilter"] {
 }
 
 .latest-label h2 {
-  color: inherit !important;
+  color: var(--text) !important;
 }
 
 .latest-label span {
-  color: var(--muted) !important;
+  color: var(--text-muted) !important;
 }
 
 .latest-row {
