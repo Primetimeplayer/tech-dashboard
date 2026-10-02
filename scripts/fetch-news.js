@@ -50,7 +50,7 @@ async function fetchFeed(feed) {
     }));
   } catch (err) {
     console.error(`[fetch-news] Failed to fetch ${feed.name}: ${err.message}`);
-    return [];
+    return null;
   }
 }
 
@@ -66,7 +66,13 @@ function dedupe(items) {
 
 async function main() {
   console.log(`[fetch-news] Fetching ${FEEDS.length} feeds...`);
-  const results = (await Promise.all(FEEDS.map(fetchFeed))).flat();
+  const feeds = await Promise.all(FEEDS.map(fetchFeed));
+  const successfulFeeds = feeds.filter((items) => items !== null);
+  if (!successfulFeeds.length) {
+    throw new Error('All news feeds failed; keeping existing data.');
+  }
+
+  const results = successfulFeeds.flat();
   const deduped = dedupe(results).sort(
     (a, b) => new Date(b.published ?? 0) - new Date(a.published ?? 0)
   );
@@ -83,4 +89,7 @@ async function main() {
   console.log(`[fetch-news] Wrote ${deduped.length} items to ${OUT_PATH}`);
 }
 
-main();
+main().catch((err) => {
+  console.error('[fetch-news] Failed:', err.message);
+  process.exit(1);
+});
