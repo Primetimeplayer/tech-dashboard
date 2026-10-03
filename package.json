@@ -21,6 +21,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "jsdom": "^26.1.0",
     "wrangler": "^4.142.0"
   }
 }
