@@ -25,9 +25,9 @@ function cleanSummary(raw = '') {
   return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
 }
 
-async function fetchFeed(feed) {
+async function fetchFeed(feed, parseFeed) {
   try {
-    const parsed = await parser.parseURL(feed.url);
+    const parsed = await parseFeed(feed);
     return parsed.items.slice(0, ITEMS_PER_FEED).map((item) => ({
       source: feed.name,
       title: item.title?.trim() ?? '(untitled)',
@@ -41,10 +41,15 @@ async function fetchFeed(feed) {
   }
 }
 
-async function main() {
-  console.log(`[fetch-reviews] Fetching ${FEEDS.length} feeds...`);
-  const feeds = await Promise.all(FEEDS.map(fetchFeed));
-  const successfulFeeds = feeds.filter((items) => items !== null);
+export async function runReviewsFetcher({
+  feeds = FEEDS,
+  parseFeed = (feed) => parser.parseURL(feed.url),
+  outputPath = OUT_PATH,
+  now = () => new Date(),
+} = {}) {
+  console.log(`[fetch-reviews] Fetching ${feeds.length} feeds...`);
+  const feedResults = await Promise.all(feeds.map((feed) => fetchFeed(feed, parseFeed)));
+  const successfulFeeds = feedResults.filter((items) => items !== null);
   if (!successfulFeeds.length) {
     throw new Error('All review feeds failed; keeping existing data.');
   }
@@ -52,19 +57,21 @@ async function main() {
   const results = successfulFeeds.flat();
   results.sort((a, b) => new Date(b.published ?? 0) - new Date(a.published ?? 0));
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(
-    OUT_PATH,
+    outputPath,
     JSON.stringify(
-      { updated: new Date().toISOString(), count: results.length, items: results },
+      { updated: now().toISOString(), count: results.length, items: results },
       null,
       2
     )
   );
-  console.log(`[fetch-reviews] Wrote ${results.length} items to ${OUT_PATH}`);
+  console.log(`[fetch-reviews] Wrote ${results.length} items to ${outputPath}`);
 }
 
-main().catch((err) => {
-  console.error('[fetch-reviews] Failed:', err.message);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  runReviewsFetcher().catch((err) => {
+    console.error('[fetch-reviews] Failed:', err.message);
+    process.exit(1);
+  });
+}

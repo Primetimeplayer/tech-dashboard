@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <entry>
+    <id>https://arxiv.org/abs/2501.00001</id>
+    <published>2025-01-01T12:00:00Z</published>
+    <title>Fixture paper title</title>
+    <summary>A deterministic paper abstract for fetcher tests.</summary>
+    <author><name>Example Author</name></author>
+    <category term="cs.AI" />
+  </entry>
+</feed>

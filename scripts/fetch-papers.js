@@ -37,14 +37,19 @@ function clean(text = '') {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-async function main() {
+export async function runPapersFetcher({
+  request = fetch,
+  parseXml = parseStringPromise,
+  outputPath = OUT_PATH,
+  now = () => new Date(),
+} = {}) {
   console.log('[fetch-papers] Querying arXiv...');
-  const res = await fetch(buildUrl(), { headers: { 'User-Agent': 'personal-dashboard/1.0' } });
+  const res = await request(buildUrl(), { headers: { 'User-Agent': 'personal-dashboard/1.0' } });
   if (!res.ok) {
     throw new Error(`arXiv API returned ${res.status}`);
   }
   const xml = await res.text();
-  const parsed = await parseStringPromise(xml);
+  const parsed = await parseXml(xml);
 
   const feed = parsed?.feed;
   if (!feed || typeof feed !== 'object') {
@@ -79,19 +84,21 @@ async function main() {
     categories: (entry['category'] ?? []).map((c) => c.$?.term).filter(Boolean),
   }));
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(
-    OUT_PATH,
+    outputPath,
     JSON.stringify(
-      { updated: new Date().toISOString(), count: papers.length, items: papers },
+      { updated: now().toISOString(), count: papers.length, items: papers },
       null,
       2
     )
   );
-  console.log(`[fetch-papers] Wrote ${papers.length} papers to ${OUT_PATH}`);
+  console.log(`[fetch-papers] Wrote ${papers.length} papers to ${outputPath}`);
 }
 
-main().catch((err) => {
-  console.error('[fetch-papers] Failed:', err.message);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  runPapersFetcher().catch((err) => {
+    console.error('[fetch-papers] Failed:', err.message);
+    process.exit(1);
+  });
+}

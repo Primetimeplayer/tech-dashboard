@@ -19,10 +19,10 @@ function cleanText(raw = '') {
   return raw.replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
 }
 
-async function fetchSubreddit(sub) {
+async function fetchSubreddit(sub, request) {
   const url = `https://www.reddit.com/r/${sub}/top/.json?limit=${POSTS_PER_SUB}&t=day`;
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
+    const res = await request(url, { headers: { 'User-Agent': USER_AGENT } });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     return (json.data?.children ?? [])
@@ -40,10 +40,17 @@ async function fetchSubreddit(sub) {
   }
 }
 
-async function main() {
-  console.log(`[fetch-reddit] Fetching ${SUBREDDITS.length} subreddits...`);
-  const subreddits = await Promise.all(SUBREDDITS.map(fetchSubreddit));
-  const successfulSubreddits = subreddits.filter((items) => items !== null);
+export async function runRedditFetcher({
+  subreddits = SUBREDDITS,
+  request = fetch,
+  outputPath = OUT_PATH,
+  now = () => new Date(),
+} = {}) {
+  console.log(`[fetch-reddit] Fetching ${subreddits.length} subreddits...`);
+  const subredditResults = await Promise.all(
+    subreddits.map((subreddit) => fetchSubreddit(subreddit, request))
+  );
+  const successfulSubreddits = subredditResults.filter((items) => items !== null);
   if (!successfulSubreddits.length) {
     throw new Error('All subreddit requests failed; keeping existing data.');
   }
@@ -51,19 +58,21 @@ async function main() {
   const results = successfulSubreddits.flat();
   results.sort((a, b) => new Date(b.published) - new Date(a.published));
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(
-    OUT_PATH,
+    outputPath,
     JSON.stringify(
-      { updated: new Date().toISOString(), count: results.length, items: results },
+      { updated: now().toISOString(), count: results.length, items: results },
       null,
       2
     )
   );
-  console.log(`[fetch-reddit] Wrote ${results.length} items to ${OUT_PATH}`);
+  console.log(`[fetch-reddit] Wrote ${results.length} items to ${outputPath}`);
 }
 
-main().catch((err) => {
-  console.error('[fetch-reddit] Failed:', err.message);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  runRedditFetcher().catch((err) => {
+    console.error('[fetch-reddit] Failed:', err.message);
+    process.exit(1);
+  });
+}

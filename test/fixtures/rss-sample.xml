@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fixture Feed</title>
+    <link>https://fixture.example/</link>
+    <description>A deterministic feed used by fetcher tests.</description>
+    <item>
+      <title>Fixture article</title>
+      <link>https://fixture.example/articles/one</link>
+      <pubDate>Wed, 01 Jan 2025 12:00:00 GMT</pubDate>
+      <description>A short fixture description.</description>
+    </item>
+    <item>
+      <title>Second fixture article</title>
+      <link>https://fixture.example/articles/two</link>
+      <pubDate>Tue, 31 Dec 2024 12:00:00 GMT</pubDate>
+      <description>Another short fixture description.</description>
+    </item>
+  </channel>
+</rss>
