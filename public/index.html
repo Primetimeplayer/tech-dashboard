@@ -4514,26 +4514,6 @@ body > .mast + .wrap {
 }
 
 /* Final theme-aware colors for the sidebar, feed heading, and Latest cards. */
-html[data-theme] #filters {
-  background: var(--panel) !important;
-  border-right: 1px solid var(--line) !important;
-}
-
-html[data-theme] #filters .sidebar-heading,
-html[data-theme] #filters .sidebar-section-title {
-  color: var(--text-muted) !important;
-}
-
-html[data-theme] #filters .sidebar-item {
-  background: transparent !important;
-  color: var(--text-muted) !important;
-}
-
-html[data-theme] #filters .sidebar-item .sidebar-icon {
-  color: currentColor !important;
-  stroke: currentColor !important;
-}
-
 html[data-theme] #filters .sidebar-item:hover,
 html[data-theme] #filters .sidebar-item[aria-pressed="true"],
 html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
@@ -4541,31 +4521,6 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   color: var(--text) !important;
 }
 
-html[data-theme] #filters .sidebar-item[aria-pressed="true"]::before {
-  background: var(--focus) !important;
-}
-
-html[data-theme] #filters .sidebar-item:focus-visible {
-  outline-color: var(--focus) !important;
-}
-
-html[data-theme] .section-heading h2 {
-  color: var(--text) !important;
-}
-
-html[data-theme] .latest-card,
-html[data-theme] .latest-card:hover {
-  background: var(--panel-raised) !important;
-  border: 1px solid var(--line) !important;
-}
-
-html[data-theme] .latest-card .cat {
-  color: var(--text-muted) !important;
-}
-
-html[data-theme] .latest-card h3 {
-  color: var(--text) !important;
-}
 </style>
 </head>
 <body>
