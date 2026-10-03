@@ -2679,7 +2679,7 @@ main {
 }
 
 .sidebar-item:focus-visible {
-  outline: 2px solid #1a73e8 !important;
+  outline: 2px solid var(--focus) !important;
   outline-offset: -2px !important;
 }
 /* DESKTOP WIDTH SAFETY */
@@ -3080,6 +3080,15 @@ body.dark .card.is-hardware {
   background: var(--skeleton) !important;
   border-color: transparent !important;
   color: var(--text) !important;
+}
+
+#filters .sidebar-item .sidebar-icon {
+  color: inherit;
+  stroke: currentColor;
+}
+
+#filters .sidebar-item[aria-pressed="true"]::before {
+  background-color: var(--focus);
 }
 
 /* Cancel the earlier individual fixed positioning */
@@ -3521,6 +3530,12 @@ label[for="dateFilter"] {
 .latest-card:hover {
   box-shadow: none !important;
   transform: translateY(-1px) !important;
+}
+
+html[data-theme] .latest-card,
+html[data-theme] .latest-card:hover {
+  background-color: var(--panel-raised) !important;
+  border-color: var(--line) !important;
 }
 </style>
 
