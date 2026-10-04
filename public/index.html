@@ -468,13 +468,74 @@ padding: 1.5rem; }
   .empty { font-family: 'Space Grotesk', sans-serif; color: var(--text-muted); padding: 2rem 0; font-size: 0.9rem; }
 
   /* --- Loading skeleton --- */
-  .skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
   .skeleton-card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
-    padding: 1rem 1.1rem 0.9rem; min-height: 200px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.4rem 1.4rem 1.25rem;
+    min-height: 220px;
+  }
+  .skeleton-card:first-child {
+    grid-column: span 2;
+    min-height: 400px;
+    padding: 2rem;
+    border-top-width: 10px;
   }
   .skeleton-line {
-    height: 0.7rem; background: var(--skeleton); border-radius: 4px; margin-bottom: 0.6rem;
+    height: 0.7rem;
+    background: var(--skeleton);
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+  .skeleton-line.short { width: 60%; }
+  .skeleton-line.medium { width: 80%; }
+  .skeleton-line.full { width: 100%; }
+  .skeleton-line:last-child { margin-bottom: 0; }
+  @keyframes skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  @media (prefers-reduced-motion: reduce) { .skeleton-line { animation: none; } }
+
+  .recent-empty {
+    display: none;
+    padding: 1.25rem 1.25rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+  }
+  :root[data-theme="dark"] .recent-empty {
+    background: rgba(22, 37, 42, 0.55);
+    border-color: var(--line);
+  }
+  .recent-empty-label {
+    margin: 0 0 0.35rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .recent-empty-note {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  :root[data-theme="dark"] .recent-empty-note {
+    color: var(--text-muted);
+  }
+
+  /* --- Loading skeleton --- */
+  .skeleton-line {
+    height: 0.7rem;
+    background: var(--skeleton);
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
     animation: skeleton-pulse 1.5s ease-in-out infinite;
   }
   .skeleton-line.short { width: 60%; }
@@ -3153,9 +3214,7 @@ label[for="dateFilter"] {
 label[for="sourceFilter"],
 label[for="dateFilter"] {
   display: none !important;
-}
-
-/* RECENTS */
+}/* RECENTS */
 #filters .sidebar-recents {
   margin-top: auto !important;
   padding-top: 9px !important;
@@ -3179,6 +3238,23 @@ label[for="dateFilter"] {
   background: var(--skeleton) !important;
   color: var(--text) !important;
 }
+
+/* Empty RECENT group keeps the section intentional instead of leaving a
+   bare heading with nothing beneath it. */
+#filters .sidebar-recents:has(#recentArticles:empty) .recent-empty {
+  display: flex !important;
+}
+
+#filters .sidebar-recents:has(#recentArticles:empty)::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 1px 0;
+  background: var(--line);
+  pointer-events: none;
+}
+
+
+
 
 /* MODERN NEWS CARD UI */
 .card {
@@ -4989,6 +5065,10 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   <div class="sidebar-section sidebar-recents" id="recentSection">
     <div class="sidebar-heading">RECENTS</div>
     <div id="recentArticles"></div>
+    <div class="recent-empty">
+      <p class="recent-empty-label">No recent items yet</p>
+      <p class="recent-empty-note">Previously opened articles are listed here so you can jump back to them. Bookmark any story to keep it within reach, and your saved items show under the <strong>★ Saved</strong> filter.</p>
+    </div>
   </div>
 
 </div>
@@ -5636,6 +5716,10 @@ initAuth();
       errorBannerEl.classList.remove('visible');
     }
 
+    // No matching items: show a clear, friendly empty state. The message
+    // doubles as the answer to "did the app work?" there were simply no
+    // results for the current filters. A subtle hint points back to the
+    // controls without inventing a reset button the UI does not offer.
     if (!items.length) {
       feedEl.style.display = 'none';
       skeletonEl.style.display = 'none';
@@ -5645,9 +5729,13 @@ initAuth();
       return;
     }
 
-    // Hide skeleton, show feed
-    skeletonEl.style.display = 'none';
-    feedEl.style.display = 'grid';
+    // The feed is only rendered from already-loaded data. While a data
+    // refetch is in flight (refresh()), the skeleton placeholder is shown
+    // so the feed screen never appears to snap open instantly. This block
+    // just ensures the feed stays hidden while the page redraws itself.
+    skeletonEl.style.display = 'grid';
+    feedEl.style.display = 'none';
+    loadMoreWrapEl.style.display = 'none';
 
     const visible = items.slice(0, visibleCount);
 
@@ -5724,24 +5812,32 @@ initAuth();
   }
 
   async function refresh() {
-    fetchErrors = [];
-    const [news, papers, reviews, reddit] = await Promise.all([
-      loadJSON('news.json', 'news', (i) => i),
-      loadJSON('papers.json', 'papers', (i) => ({
-        ...i,
-        source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ' et al.' : ''),
-      })),
-      loadJSON('reviews.json', 'reviews', (i) => i),
-      loadJSON('reddit.json', 'reddit', (i) => i),
-    ]);
+    const previous = skeletonEl.style.display;
+    skeletonEl.style.display = 'grid';
+    feedEl.style.display = 'none';
+    loadMoreWrapEl.style.display = 'none';
+    try {
+      fetchErrors = [];
+      const [news, papers, reviews, reddit] = await Promise.all([
+        loadJSON('news.json', 'news', (i) => i),
+        loadJSON('papers.json', 'papers', (i) => ({
+          ...i,
+          source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ' et al.' : ''),
+        })),
+        loadJSON('reviews.json', 'reviews', (i) => i),
+        loadJSON('reddit.json', 'reddit', (i) => i),
+      ]);
 
-    allItems = [...news, ...papers, ...reviews, ...reddit].sort(
-      (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
-    );
+      allItems = [...news, ...papers, ...reviews, ...reddit].sort(
+        (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
+      );
 
-    populateSources();
-    statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
-    renderAll();
+      populateSources();
+      statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
+      renderAll();
+    } finally {
+      skeletonEl.style.display = previous;
+    }
   }
 
   // --- Event listeners ---
