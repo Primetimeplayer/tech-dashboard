@@ -512,4 +512,270 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     `);
     assert.equal(resourceErrors.length, 0, `Local dashboard resources failed to load: ${JSON.stringify(resourceErrors)}`);
   });
+
+  // --- React dashboard (public/app-react.html) ---
+  //
+  // This page compiles JSX in the browser via babel-standalone and loads
+  // React/ReactDOM from cdnjs, so it only renders when those CDN assets are
+  // reachable. If they are not, the suite skips rather than reporting a pile
+  // of failures that have nothing to do with the app.
+  const reactUrl = `http://127.0.0.1:${serverInfo.port}/app-react.html`;
+  let reactReachable = true;
+  for (const asset of [
+    'https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js'
+  ]) {
+    try {
+      const res = await fetch(asset, { method: 'GET' });
+      if (!res.ok) reactReachable = false;
+    } catch {
+      reactReachable = false;
+    }
+  }
+
+  // React mounts asynchronously (CDN scripts + babel compile + data fetches),
+  // so every wait below polls for the filter bar rather than readyState.
+  const waitForReactFilters = async () => {
+    for (let i = 0; i < 100; i++) {
+      const count = await driver.executeScript('return document.querySelectorAll(".filter").length;');
+      if (count >= 5) return true;
+      await sleep(100);
+    }
+    return false;
+  };
+
+  // Switch themes through the real UI. Writing data-theme directly would
+  // desync it from React's lightMode state, leaving .wrap.light-mode stale.
+  const clickThemeToggle = async () => {
+    await driver.executeScript('document.querySelector(".theme-toggle").click();');
+    await sleep(400);
+  };
+
+  if (!reactReachable) {
+    await t.test('React dashboard requires reachable CDN assets', () => {
+      t.skip('Skipping app-react.html coverage: React/ReactDOM/babel-standalone could not be fetched from cdnjs.cloudflare.com');
+    });
+    return;
+  }
+
+  await t.test('React dashboard loads and renders its category filters', async () => {
+    await driver.navigate(reactUrl);
+
+    const mounted = await waitForReactFilters();
+    assert.ok(mounted, 'app-react.html did not render 5 category .filter buttons within timeout');
+
+    const labels = await driver.executeScript(`
+      return Array.from(document.querySelectorAll('.controls .filter'))
+        .map(b => b.textContent.trim());
+    `);
+    assert.deepEqual(labels, ['All', 'News', 'AI papers', 'Reviews', 'Reddit'], `Unexpected filter labels: ${JSON.stringify(labels)}`);
+  });
+
+  await t.test('React filter buttons keep pill geometry (guards swallowed .filter rule)', async () => {
+    // If the base .filter rule is ever dropped by CSS parse-error recovery,
+    // buttons silently fall back to the UA default: square corners and the
+    // platform's light grey. Radius is therefore the load-bearing assertion.
+    const geometry = await driver.executeScript(`
+      return Array.from(document.querySelectorAll('.controls .filter')).map(b => {
+        const s = getComputedStyle(b);
+        return { label: b.textContent.trim(), radius: s.borderTopLeftRadius };
+      });
+    `);
+    assert.equal(geometry.length, 5, `Expected 5 filter buttons, found ${geometry.length}`);
+    for (const btn of geometry) {
+      assert.equal(btn.radius, '999px', `Filter "${btn.label}" lost its pill radius (got ${btn.radius}); the base .filter rule is not being applied`);
+    }
+  });
+
+  await t.test('React idle filters use dark-mode surface, text and border tokens', async () => {
+    // Land in dark mode first (localStorage is shared with the main dashboard).
+    const currentTheme = await driver.executeScript('return document.documentElement.getAttribute("data-theme");');
+    if (currentTheme !== 'dark') {
+      await clickThemeToggle();
+    }
+
+    const probe = await driver.executeScript(`
+      const cs = getComputedStyle(document.documentElement);
+      const token = name => cs.getPropertyValue(name).trim();
+      const idle = Array.from(document.querySelectorAll('.filter'))
+        .filter(b => !b.classList.contains('active'));
+      const sample = idle[0];
+      const s = sample ? getComputedStyle(sample) : null;
+      return {
+        theme: document.documentElement.getAttribute('data-theme'),
+        wrapLightMode: document.querySelector('.wrap').classList.contains('light-mode'),
+        idleCount: idle.length,
+        tokens: {
+          panelRaised: token('--panel-raised'),
+          textMuted: token('--text-muted'),
+          line: token('--line')
+        },
+        actual: s ? {
+          background: s.backgroundColor,
+          color: s.color,
+          border: s.borderTopColor
+        } : null
+      };
+    `);
+
+    assert.equal(probe.theme, 'dark', `Expected dark theme, got ${probe.theme}`);
+    assert.equal(probe.wrapLightMode, false, '.wrap must not carry light-mode while the theme is dark');
+    assert.ok(probe.idleCount >= 4, `Expected at least 4 idle filters, found ${probe.idleCount}`);
+    assert.ok(probe.actual, 'No idle filter button found to inspect');
+
+    const hexToRgb = (hex) => {
+      const m = /^#?([0-9a-f]{6})$/i.exec(hex);
+      if (!m) return null;
+      const int = parseInt(m[1], 16);
+      return `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
+    };
+
+    const expectedBg = hexToRgb(probe.tokens.panelRaised);
+    const expectedColor = hexToRgb(probe.tokens.textMuted);
+    const expectedBorder = hexToRgb(probe.tokens.line);
+
+    assert.ok(expectedBg, `Could not parse --panel-raised token: ${probe.tokens.panelRaised}`);
+    assert.ok(expectedColor, `Could not parse --text-muted token: ${probe.tokens.textMuted}`);
+    assert.ok(expectedBorder, `Could not parse --line token: ${probe.tokens.line}`);
+
+    assert.equal(probe.actual.background, expectedBg, 'Idle filter background must follow --panel-raised, not the browser default');
+    assert.equal(probe.actual.color, expectedColor, 'Idle filter text must follow --text-muted');
+    assert.equal(probe.actual.border, expectedBorder, 'Idle filter border must follow --line');
+  });
+
+  await t.test('React active filter paints its category accent', async () => {
+    const readActive = () => driver.executeScript(`
+      const cs = getComputedStyle(document.documentElement);
+      const active = document.querySelector('.filter.active');
+      if (!active) return null;
+      const s = getComputedStyle(active);
+      return {
+        label: active.textContent.trim(),
+        dot: s.getPropertyValue('--dot').trim(),
+        background: s.backgroundColor,
+        news: cs.getPropertyValue('--news').trim(),
+        papers: cs.getPropertyValue('--papers').trim()
+      };
+    `);
+
+    const clickByLabel = async (label) => {
+      await driver.executeScript(`
+        const btn = Array.from(document.querySelectorAll('.controls .filter'))
+          .find(b => b.textContent.trim() === ${JSON.stringify(label)});
+        if (btn) btn.click();
+      `);
+      await sleep(300);
+    };
+
+    const hexToRgb = (hex) => {
+      const m = /^#?([0-9a-f]{6})$/i.exec(hex);
+      if (!m) return null;
+      const int = parseInt(m[1], 16);
+      return `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
+    };
+
+    await clickByLabel('News');
+    let active = await readActive();
+    assert.ok(active, 'No .filter.active element after selecting News');
+    assert.equal(active.label, 'News', `Expected News to be active, got ${active.label}`);
+    assert.equal(active.dot, active.news, 'Active News filter --dot must resolve to the --news accent');
+
+    // Compare while News is still the active button; re-read after switching.
+    const expectedNews = hexToRgb(active.news);
+    if (expectedNews) {
+      assert.equal(active.background, expectedNews, 'Active News filter background must paint the category accent');
+    }
+
+    await clickByLabel('AI papers');
+    active = await readActive();
+    assert.ok(active, 'No .filter.active element after selecting AI papers');
+    assert.equal(active.label, 'AI papers', `Expected AI papers to be active, got ${active.label}`);
+    assert.equal(active.dot, active.papers, 'Active AI papers filter --dot must resolve to the --papers accent');
+
+    const expectedPapers = hexToRgb(active.papers);
+    if (expectedPapers) {
+      assert.equal(active.background, expectedPapers, 'Active AI papers filter background must paint the category accent');
+    }
+  });
+
+  await t.test('React "All" filter carries a valid accent', async () => {
+    // CAT_COLOR previously had no "all" key, so React dropped the inline
+    // --dot and the button fell through to the var(--dot, var(--news))
+    // default. An empty --dot is the regression signal.
+    await driver.executeScript(`
+      const btn = Array.from(document.querySelectorAll('.controls .filter'))
+        .find(b => b.textContent.trim() === 'All');
+      if (btn) btn.click();
+    `);
+    await sleep(300);
+
+    const all = await driver.executeScript(`
+      const active = document.querySelector('.filter.active');
+      if (!active) return null;
+      const s = getComputedStyle(active);
+      return {
+        label: active.textContent.trim(),
+        inlineStyle: active.getAttribute('style') || '',
+        dot: s.getPropertyValue('--dot').trim(),
+        background: s.backgroundColor
+      };
+    `);
+
+    assert.ok(all, 'No .filter.active element after selecting All');
+    assert.equal(all.label, 'All', `Expected All to be active, got ${all.label}`);
+    assert.ok(all.dot.length > 0, 'Active All filter has no --dot; CAT_COLOR is missing the "all" key');
+    assert.ok(all.inlineStyle.includes('--dot'), 'Active All filter is missing the inline --dot declaration');
+  });
+
+  await t.test('React filters remain usable after switching back to light mode', async () => {
+    await clickThemeToggle();
+
+    const light = await driver.executeScript(`
+      const cs = getComputedStyle(document.documentElement);
+      const idle = Array.from(document.querySelectorAll('.filter'))
+        .filter(b => !b.classList.contains('active'));
+      const sample = idle[0];
+      const s = sample ? getComputedStyle(sample) : null;
+      return {
+        theme: document.documentElement.getAttribute('data-theme'),
+        wrapLightMode: document.querySelector('.wrap').classList.contains('light-mode'),
+        wrapBackground: getComputedStyle(document.querySelector('.wrap')).backgroundColor,
+        panelRaised: cs.getPropertyValue('--panel-raised').trim(),
+        idleCount: idle.length,
+        actualBackground: s ? s.backgroundColor : null,
+        radius: s ? s.borderTopLeftRadius : null
+      };
+    `);
+
+    assert.equal(light.theme, 'light', `Expected light theme after toggling back, got ${light.theme}`);
+    assert.equal(light.wrapLightMode, true, '.wrap must carry light-mode while the theme is light');
+    assert.ok(light.idleCount >= 4, `Expected at least 4 idle filters in light mode, found ${light.idleCount}`);
+
+    const m = /^#?([0-9a-f]{6})$/i.exec(light.panelRaised);
+    assert.ok(m, `Could not parse --panel-raised token: ${light.panelRaised}`);
+    const int = parseInt(m[1], 16);
+    const expectedBg = `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
+
+    assert.equal(light.actualBackground, expectedBg, 'Idle filter background in light mode must follow the light --panel-raised token');
+    assert.equal(light.radius, '999px', 'Filter pills must keep their geometry in light mode');
+  });
+
+  await t.test('React dashboard reports no local resource failures', async () => {
+    const failures = await driver.executeScript(`
+      return Array.from(document.querySelectorAll('.grid .card')).length;
+    `);
+    assert.ok(failures > 0, 'React dashboard rendered no cards; its local data fetches may have failed');
+
+    const localFailures = await driver.executeScript(`
+      return window.performance.getEntriesByType('resource')
+        .filter(r => r.name.includes('/data/'))
+        .filter(r => r.duration === 0 && r.transferSize === 0)
+        .map(r => r.name);
+    `);
+    assert.equal(localFailures.length, 0, `React dashboard data fetches failed: ${JSON.stringify(localFailures)}`);
+
+    const reactPresent = await driver.executeScript('return typeof window.React !== "undefined" && typeof window.ReactDOM !== "undefined";');
+    assert.equal(reactPresent, true, 'React/ReactDOM globals missing; CDN assets did not load');
+  });
 });
