@@ -194,6 +194,8 @@ html[data-theme="dark"] body {
   border-color: var(--line);
   color: var(--text-muted);
 }
+
+.controls {
   display: flex;
   gap: .65rem;
   flex-wrap: wrap;
@@ -680,7 +682,7 @@ input:focus-visible {
   transition: width .08s linear;
   pointer-events: none;
 }
-\n
+
 .wrap.light-mode {
   --bg: #f4f6fa;
   --surface: #ffffff;
@@ -1148,7 +1150,7 @@ const CATEGORIES = [
   { key: 'reddit', label: 'Reddit' },
 ];
 const CAT_LABEL = { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' };
-const CAT_COLOR = { news: 'var(--news)', papers: 'var(--papers)', reviews: 'var(--reviews)', reddit: 'var(--reddit)' };
+const CAT_COLOR = { all: 'var(--news)', news: 'var(--news)', papers: 'var(--papers)', reviews: 'var(--reviews)', reddit: 'var(--reddit)' };
 
 function timeAgo(iso) {
   if (!iso) return '';
