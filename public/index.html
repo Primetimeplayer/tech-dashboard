@@ -4556,6 +4556,17 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   scroll-snap-align: start !important;
 }
 
+/* Titles stay readable: four wrapped lines, ellipsis only when a headline
+   still overflows, so short headlines are never cut and long ones cannot
+   stretch the carousel. */
+.latest-card h3 {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 4 !important;
+  line-clamp: 4 !important;
+  overflow: hidden !important;
+}
+
 .latest-nav {
   display: flex;
   align-items: center;
@@ -4762,6 +4773,65 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   #filters {
     transition: none !important;
   }
+}
+</style>
+
+<!-- CARD DESIGN — CONTEXTUAL CHIPS + READABILITY -->
+<!-- Last in <head> on purpose; earlier blocks include an inert
+     <style media="not all"> sheet, so source order is not the cascade. -->
+<style id="card-design">
+/* Contextual chips sit under the headline and stay secondary to it.
+   The category label above remains the primary, text-based indicator. */
+.card .card-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 2px;
+}
+
+.card .card-chips .chip {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 2px 8px;
+
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  white-space: nowrap;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text-muted);
+}
+
+.card .card-chips .chip-subject {
+  color: var(--papers);
+}
+
+/* Keep the Hardware badge in the same chip language without changing its
+   markup, class or wording; the amber now comes from the theme token. */
+.card .hw-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+
+  width: fit-content;
+  margin: 0 0 8px !important;
+  padding: 2px 8px !important;
+
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  line-height: 1.5;
+
+  border: 1px solid var(--hardware) !important;
+  border-radius: 999px !important;
+  background: var(--panel) !important;
+  color: var(--hardware) !important;
 }
 </style>
 </head>
@@ -5402,6 +5472,29 @@ initAuth();
     return HARDWARE_KEYWORDS.some((kw) => text.includes(kw));
   }
 
+  // Contextual chips come only from fields the feed actually provides.
+  // Papers carry arXiv subject codes; everything else is already labelled
+  // by the category/source meta line, so no chip is invented for it.
+  function arxivSubject(categories) {
+    if (!Array.isArray(categories)) return '';
+    for (const entry of categories) {
+      if (typeof entry !== 'string') continue;
+      const code = entry.trim();
+      if (code.length <= 12 && /^[a-z-]+(\.[a-z-]+)?\.[A-Z]{2}$/.test(code)) return code;
+    }
+    return '';
+  }
+
+  function buildCardChips(item) {
+    if (!item || typeof item !== 'object') return [];
+    const chips = [];
+    if (item.category === 'papers') {
+      const subject = arxivSubject(item.categories);
+      if (subject) chips.push({ text: subject, kind: 'subject' });
+    }
+    return chips;
+  }
+
   function populateSources() {
     // Group sources by category for easier scanning
     const byCategory = { news: [], papers: [], reviews: [], reddit: [] };
@@ -5561,17 +5654,18 @@ initAuth();
       const hw = isHardware(item);
       const saved = !!savedMap[item.link];
       const note = saved ? (savedMap[item.link].note || '') : '';
+      const chips = buildCardChips(item);
       return `
       <article class="card ${item.category}${hw ? ' is-hardware' : ''}" data-idx="${idx}">
         ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
         <div class="card-meta">
-          <span class="cat-label">${catLabel(item.category)}</span>
-          <span>·</span>
-          <span>${escapeHtml(item.source || '')}</span>
+          <span class="cat-label">${escapeHtml(catLabel(item.category) || '')}</span>
+          ${item.source ? `<span>·</span><span>${escapeHtml(item.source)}</span>` : ''}
           <span>·</span>
           <span>${timeAgo(item.published)}</span>
         </div>
         <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
+        ${chips.length ? `<div class="card-chips">${chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
         ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
         <div class="card-actions">

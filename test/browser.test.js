@@ -271,6 +271,14 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       } catch {
         // Process termination best-effort
       }
+      try {
+        // geckodriver does not reliably honour SIGTERM. While it stays alive
+        // the ChildProcess handle keeps Node's event loop open, so
+        // `node --test` never exits even though every test has finished.
+        geckoProcess.kill('SIGKILL');
+      } catch {
+        // Forced termination best-effort
+      }
     }
     if (httpServer) {
       try {
@@ -804,6 +812,327 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     const restored = await readTheme();
     assert.equal(restored.theme, 'light', 'Theme must be restored to light');
     assert.equal(restored.btnBg, light.btnBg, 'Control surface must return to the light theme value');
+  });
+
+  await t.test('cards render titles, metadata, links and actions as before', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(`
+      document.querySelector('.filter[data-cat="all"]').click();
+    `);
+    await sleep(400);
+
+    const cards = await driver.executeScript(`
+      const list = Array.from(document.querySelectorAll('#feed .card'));
+      return {
+        count: list.length,
+        sample: list.slice(0, 6).map(c => {
+          const link = c.querySelector('h2 a');
+          return {
+            hasTitle: !!(c.querySelector('h2') && c.querySelector('h2').textContent.trim()),
+            hasMeta: !!c.querySelector('.card-meta'),
+            metaText: c.querySelector('.card-meta').textContent.replace(/\\s+/g, ' ').trim(),
+            href: link ? link.href : null,
+            protocolOk: link ? /^https?:/.test(link.getAttribute('href') || '') : false,
+            target: link ? link.getAttribute('target') : null,
+            rel: link ? link.getAttribute('rel') : null,
+            hasActions: c.querySelectorAll('.card-actions button').length,
+            categoryClass: c.className
+          };
+        })
+      };
+    `);
+
+    assert.ok(cards.count > 0, 'Feed cards must render');
+    for (const card of cards.sample) {
+      assert.ok(card.hasTitle, 'Each card must keep a title');
+      assert.ok(card.hasMeta && card.metaText.length > 0, 'Each card must keep its category metadata');
+      assert.ok(card.protocolOk, 'Card links must stay http(s) links');
+      assert.equal(card.target, '_blank', 'Card links must keep target=_blank');
+      assert.match(card.rel, /noopener/, 'Card links must keep rel=noopener');
+      assert.equal(card.hasActions, 2, 'Each card must keep its save and share actions');
+    }
+
+    const danglingSeparators = cards.sample.filter(c => /·\s*·|\|\s*·|·\s*\|/.test(c.metaText));
+    assert.equal(
+      danglingSeparators.length,
+      0,
+      `Card metadata must not render empty separators, saw ${JSON.stringify(cards.sample.map(c => c.metaText))}`
+    );
+  });
+
+  await t.test('cards show contextual chips only for data that provides them', async () => {
+    await driver.setWindowRect(1280, 900);
+
+    // News cards carry no subject data: no chip may be invented for them.
+    const newsChips = await driver.executeScript(`
+      document.querySelector('.filter[data-cat="news"]').click();
+      return new Promise(resolve => setTimeout(() => resolve({
+        cards: document.querySelectorAll('#feed .card').length,
+        withChipRow: document.querySelectorAll('#feed .card .card-chips').length,
+        chips: document.querySelectorAll('#feed .card .card-chips .chip').length
+      }), 300));
+    `);
+    assert.ok(newsChips.cards > 0, 'Expected news cards');
+    assert.equal(newsChips.withChipRow, 0, 'Cards without subject data must not render a chip row');
+    assert.equal(newsChips.chips, 0, 'Cards without subject data must not render chips');
+
+    // Paper subject data is read from the fixture in Node and handed to the
+    // page as a script argument. The card assertions therefore depend on the
+    // checked-in data file only, never on an in-page HTTP request.
+    const papersFixture = JSON.parse(fs.readFileSync(path.join(PUBLIC_DIR, 'data', 'papers.json'), 'utf8'));
+    const paperSubjects = (papersFixture.items || []).map(item => [
+      item.title,
+      Array.isArray(item.categories) ? item.categories : []
+    ]);
+
+    // Papers carry arXiv subject codes: exactly one chip, matching the data.
+    const papers = await driver.executeScript(`
+      const byTitle = new Map(arguments[0]);
+      document.querySelector('.filter[data-cat="papers"]').click();
+      return new Promise(resolve => setTimeout(() => {
+        const cards = Array.from(document.querySelectorAll('#feed .card'));
+        resolve(cards.map(c => {
+          const title = c.querySelector('h2').textContent.trim();
+          const categories = byTitle.get(title) || [];
+          return {
+            title: title.slice(0, 40),
+            chips: Array.from(c.querySelectorAll('.card-chips .chip')).map(ch => ch.textContent.trim()),
+            expected: categories.length ? (categories[0] || '') : '',
+            hasSubjectClass: c.classList.contains('papers'),
+            categoryLabel: c.querySelector('.cat-label').textContent.trim()
+          };
+        }));
+      }, 300));
+    `, [paperSubjects]);
+
+    assert.ok(papers.length > 0, 'Expected paper cards');
+    for (const card of papers) {
+      assert.ok(card.hasSubjectClass, 'Paper cards must keep their category class');
+      assert.ok(card.categoryLabel.length > 0, 'Category label must remain text, not only a chip');
+      assert.ok(card.chips.length <= 1, `Cards must stay restrained, found ${card.chips.length} chips`);
+      if (card.chips.length) {
+        assert.match(card.chips[0], /^[a-z-]+(\.[a-z-]+)?\.[A-Z]{2}$/, 'Chip must be a real arXiv subject code');
+        assert.equal(card.chips[0], card.expected, `Chip must match the item's own subject data (${card.title})`);
+      }
+    }
+
+    await driver.executeScript(`document.querySelector('.filter[data-cat="all"]').click();`);
+    await sleep(300);
+  });
+
+  await t.test('chips are readable in both light and dark themes', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(`document.querySelector('.filter[data-cat="papers"]').click();`);
+    await sleep(400);
+
+    const readChips = () => driver.executeScript(`
+      const root = getComputedStyle(document.documentElement);
+      const chips = Array.from(document.querySelectorAll('#feed .card .card-chips .chip'));
+      const badges = Array.from(document.querySelectorAll('#feed .card .hw-badge'));
+      const describe = (el) => {
+        const s = getComputedStyle(el);
+        return { color: s.color, background: s.backgroundColor, border: s.borderTopColor, text: el.textContent.trim() };
+      };
+      return {
+        theme: document.documentElement.getAttribute('data-theme'),
+        papersToken: root.getPropertyValue('--papers').trim(),
+        lineToken: root.getPropertyValue('--line').trim(),
+        panelToken: root.getPropertyValue('--panel').trim(),
+        chip: chips.length ? describe(chips[0]) : null,
+        badge: badges.length ? describe(badges[0]) : null
+      };
+    `);
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','light');");
+    await sleep(200);
+    const light = await readChips();
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','dark');");
+    await sleep(200);
+    const dark = await readChips();
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','light');");
+    await sleep(150);
+
+    assert.equal(light.theme, 'light');
+    assert.ok(light.chip, 'Expected at least one chip to inspect');
+    assert.notEqual(dark.chip.color, light.chip.color, 'Chip text must change with the theme');
+    assert.notEqual(dark.chip.background, light.chip.background, 'Chip surface must change with the theme');
+    assert.notEqual(dark.chip.border, light.chip.border, 'Chip border must change with the theme');
+    assert.notEqual(light.chip.color, light.papersToken.toLowerCase(), 'Chip colour must come from a theme token, not a literal');
+
+    const toRgb = (hex) => {
+      const clean = hex.trim().replace('#', '');
+      const full = clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean;
+      const n = parseInt(full, 16);
+      return `rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})`;
+    };
+    assert.equal(dark.chip.color, toRgb(dark.papersToken), 'Dark chip must use the dark --papers token');
+    assert.equal(light.chip.border, toRgb(light.lineToken), 'Light chip border must use the --line token');
+    assert.equal(dark.chip.background, toRgb(dark.panelToken), 'Dark chip surface must use the --panel token');
+  });
+
+  await t.test('Hardware chip still marks hardware cards after the restyle', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(`document.querySelector('.filter[data-cat="all"]').click();`);
+    await sleep(300);
+
+    const beforeToggle = await driver.executeScript(`
+      return { total: document.querySelectorAll('#feed .card').length, badges: document.querySelectorAll('#feed .card .hw-badge').length };
+    `);
+    assert.ok(beforeToggle.total > 0, 'Expected cards before the hardware filter');
+    assert.ok(
+      beforeToggle.badges < beforeToggle.total,
+      'Only hardware-related cards should carry the Hardware chip'
+    );
+
+    const hwEl = await driver.findElement('#hwToggle');
+    await driver.click(hwEl);
+    await sleep(500);
+
+    const filtered = await driver.executeScript(`
+      const cards = Array.from(document.querySelectorAll('#feed .card'));
+      return {
+        total: cards.length,
+        badges: cards.filter(c => c.querySelector('.hw-badge')).length,
+        hardwareClass: cards.filter(c => c.classList.contains('is-hardware')).length,
+        badgeText: cards.length && cards[0].querySelector('.hw-badge') ? cards[0].querySelector('.hw-badge').textContent.trim() : null,
+        allLinksPresent: cards.every(c => !!c.querySelector('h2 a')),
+        pressed: document.getElementById('hwToggle').getAttribute('aria-pressed')
+      };
+    `);
+
+    assert.ok(filtered.total > 0, 'Hardware filter must show results');
+    assert.equal(filtered.badges, filtered.total, 'Every hardware-filtered card must keep its Hardware chip');
+    assert.equal(filtered.hardwareClass, filtered.total, 'Hardware-filtered cards must keep the is-hardware class');
+    assert.match(filtered.badgeText, /Hardware/i, 'Hardware chip must keep its wording');
+    assert.equal(filtered.pressed, 'true', 'Hardware toggle must report pressed state');
+    assert.ok(filtered.allLinksPresent, 'Filtered cards must keep working links');
+
+    await driver.click(hwEl);
+    await sleep(400);
+  });
+
+  await t.test('cards render without images and stay readable', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(`document.querySelector('.filter[data-cat="all"]').click();`);
+    await sleep(400);
+
+    const media = await driver.executeScript(`
+      const cards = Array.from(document.querySelectorAll('#feed .card'));
+      return {
+        cards: cards.length,
+        images: document.querySelectorAll('#feed .card img').length,
+        backgrounds: cards.filter(c => getComputedStyle(c).backgroundImage !== 'none').length,
+        titles: cards.filter(c => c.querySelector('h2') && c.querySelector('h2').textContent.trim()).length,
+        heights: cards.slice(0, 6).map(c => Math.round(c.getBoundingClientRect().height))
+      };
+    `);
+
+    assert.ok(media.cards > 0, 'Expected cards');
+    assert.equal(media.images, 0, 'No card images may be introduced; the feed has no reliable image field');
+    assert.equal(media.backgrounds, 0, 'Cards must not depend on remote background images');
+    assert.equal(media.titles, media.cards, 'Every card must keep readable title text without an image');
+  });
+
+  await t.test('Latest Stories titles stay readable without breaking the carousel', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(300);
+
+    const titles = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      const cards = Array.from(row.querySelectorAll('.latest-card'));
+      const headings = cards.map(c => c.querySelector('h3'));
+      const first = headings[0];
+      const style = getComputedStyle(first);
+      const lineHeight = parseFloat(style.lineHeight) || 1;
+      const original = first.textContent;
+      const baselineHeight = first.offsetHeight;
+      const probeText = new Array(40).join('Extended headline used to measure the clamp ');
+      first.textContent = probeText;
+      const longHeight = first.offsetHeight;
+      const longLines = Math.round((longHeight / lineHeight) * 10) / 10;
+      first.textContent = original;
+
+      // Same text in an unclamped twin, so the clamp is measured against
+      // what the headline would occupy if it were never truncated. This
+      // works on any engine: no vendor display value is involved. Every
+      // override must win the cascade, because the card stylesheet applies
+      // the clamp with !important.
+      const probe = first.cloneNode(true);
+      const off = (prop, value) => probe.style.setProperty(prop, value, 'important');
+      probe.textContent = probeText;
+      off('position', 'absolute');
+      off('visibility', 'hidden');
+      off('pointer-events', 'none');
+      off('display', 'block');
+      off('overflow', 'visible');
+      off('height', 'auto');
+      off('max-height', 'none');
+      off('-webkit-line-clamp', 'none');
+      off('line-clamp', 'none');
+      off('-webkit-box-orient', 'horizontal');
+      off('width', first.clientWidth + 'px');
+      off('font-family', style.fontFamily);
+      off('font-size', style.fontSize);
+      off('font-weight', style.fontWeight);
+      off('line-height', style.lineHeight);
+      off('letter-spacing', style.letterSpacing);
+      first.parentNode.appendChild(probe);
+      const naturalLines = Math.round((probe.getBoundingClientRect().height / lineHeight) * 10) / 10;
+      probe.remove();
+
+      const rect = row.getBoundingClientRect();
+      const fullyVisible = cards.filter(c => {
+        const b = c.getBoundingClientRect();
+        return b.left >= rect.left - 1 && b.right <= rect.right + 1;
+      }).length;
+
+      return {
+        cardCount: cards.length,
+        fullyVisible: fullyVisible,
+        baselineLines: Math.round((baselineHeight / lineHeight) * 10) / 10,
+        longLines: longLines,
+        naturalLines: naturalLines,
+        overflow: style.overflow,
+        maxHeight: style.maxHeight,
+        clippedNow: headings.filter(h => h.scrollHeight > h.clientHeight + 1).length,
+        sectionHeight: Math.round(document.querySelector('.latest').getBoundingClientRect().height),
+        rowOverflow: getComputedStyle(row).overflowX,
+        rowSnap: getComputedStyle(row).scrollSnapType
+      };
+    `);
+
+    assert.ok(titles.cardCount > 0, 'Latest Stories must render cards');
+    // The clamp is a rendering behaviour, not a vendor-prefixed declaration.
+    // Firefox resolves display: -webkit-box / -webkit-line-clamp to its own
+    // internal values, so asserting on the computed display string or on
+    // webkitBoxOrient/-webkit-line-clamp tests the engine, not the design.
+    // Instead the title is measured: it wraps, it is allowed four lines, and
+    // a headline that would need more is truncated by an overflow:hidden box
+    // rather than growing the card.
+    assert.equal(titles.overflow, 'hidden', 'A very long headline must be clipped by an overflow:hidden box instead of stretching the card');
+    assert.ok(titles.maxHeight === 'none' || titles.maxHeight === '', 'The title must not be capped by a fixed max-height; the clamp is what limits it');
+    assert.ok(
+      titles.baselineLines >= 1 && titles.baselineLines <= 4,
+      `A real headline must occupy at most the four allowed lines, measured ${titles.baselineLines}`
+    );
+    assert.ok(
+      titles.naturalLines > titles.longLines,
+      `A long headline must be truncated, but it measured the same ${titles.longLines} lines unclamped (${titles.naturalLines})`
+    );
+    assert.ok(
+      titles.longLines > 1 && titles.longLines <= 4,
+      `A long headline must expand to several lines but never more than four, measured ${titles.longLines}`
+    );
+    assert.equal(titles.clippedNow, 0, 'Current Latest titles must not be clipped at all');
+    assert.ok(
+      titles.fullyVisible >= 4 && titles.fullyVisible <= 5,
+      `Desktop must still show 4-5 complete cards, measured ${titles.fullyVisible}`
+    );
+    assert.ok(titles.sectionHeight <= 260, `Latest Stories must stay compact, measured ${titles.sectionHeight}px`);
+    assert.equal(titles.rowOverflow, 'auto', 'Latest Stories must keep native horizontal scrolling');
+    assert.match(titles.rowSnap, /x/, 'Latest Stories must keep scroll snapping');
   });
 
   await t.test('renders Recent Items and enforces XSS protection', async () => {
