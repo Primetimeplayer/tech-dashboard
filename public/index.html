@@ -3111,7 +3111,8 @@ body.dark .card.is-hardware {
 
 #hwToggle:hover,
 #savedToggle:hover,
-#syncSettingsBtn:hover {
+#syncSettingsBtn:hover,
+#digestsNav:hover {
   background: var(--skeleton) !important;
   border-color: var(--line) !important;
   color: var(--text) !important;
@@ -4639,6 +4640,17 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
       </svg>
       <span>Settings</span>
     </button>
+
+    <a class="filter sidebar-item" id="digestsNav" href="digests.html"
+       style="text-decoration: none;">
+      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
+        <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
+        <path d="M10 6v10"/>
+      </svg>
+      <span>Digests</span>
+    </a>
+
        <div class="sidebar-recents">
   <div class="sidebar-heading">RECENTS</div>
   <div id="recentArticles"></div>
