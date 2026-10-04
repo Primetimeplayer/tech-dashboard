@@ -757,20 +757,30 @@ input:focus-visible {
   border-color: #dce2ec;
 }
 
+/* The .filter and .filter.active rules above already use the theme tokens
+   (--panel-raised, --line, --text-muted, --text, --dot). These overrides were
+   the only rules that painted the category buttons in light gray/white on
+   dark mode: they forced light hex values on top of the tokens whenever
+   .wrap.light-mode is present. Re-point them at the theme tokens so the
+   buttons follow the same light/dark switch as the other React controls.
+   In dark mode .wrap.light-mode is absent, so the theme tokens from
+   html[data-theme="dark"] (or the native prefers-color-scheme fallback)
+   paint these buttons correctly. */
+
 .wrap.light-mode .filter {
-  color: #425067;
-  border-color: #d1d9e5;
+  color: var(--text-muted);
+  border-color: var(--line);
 }
 
 .wrap.light-mode .filter.active {
-  color: #172033;
+  color: var(--text);
 }
 
 .wrap.light-mode .search-wrap input,
 .wrap.light-mode .sort-select {
   background: transparent;
   color: #172033;
-  border-color: #d1d9e5;
+  border-color: #d1d95e;
 }
 
 .wrap.light-mode .clear-filters,
@@ -820,8 +830,9 @@ input:focus-visible {
 }
 
 .wrap.light-mode .filter.active {
-  background: #f2ad3e;
-  color: #172033;
+  background: var(--dot, var(--news));
+  color: var(--text);
+  border-color: transparent;
 }
 
 
