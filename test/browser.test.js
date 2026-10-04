@@ -177,6 +177,36 @@ class WebDriverClient {
     return await this.request('POST', `/session/${this.sessionId}/element/${elementId}/click`, {});
   }
 
+  // W3C actions: used where element click cannot express the intent
+  // (e.g. clicking a full-screen backdrop next to an overlaid drawer).
+  async performActions(actions) {
+    return await this.request('POST', `/session/${this.sessionId}/actions`, { actions });
+  }
+
+  async pointerClickAt(x, y) {
+    return await this.performActions([{
+      type: 'pointer',
+      id: 'mouse',
+      parameters: { pointerType: 'mouse' },
+      actions: [
+        { type: 'pointerMove', duration: 0, x, y },
+        { type: 'pointerDown', button: 0 },
+        { type: 'pointerUp', button: 0 }
+      ]
+    }]);
+  }
+
+  async pressKey(key) {
+    return await this.performActions([{
+      type: 'key',
+      id: 'keyboard',
+      actions: [
+        { type: 'keyDown', value: key },
+        { type: 'keyUp', value: key }
+      ]
+    }]);
+  }
+
   async clear(elementId) {
     return await this.request('POST', `/session/${this.sessionId}/element/${elementId}/clear`, {});
   }
@@ -208,6 +238,10 @@ class WebDriverClient {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+// geckodriver's W3C key actions accept WebDriver key codes, not key names.
+const KEY_ESCAPE = String.fromCharCode(0xe00c);
+const KEY_TAB = String.fromCharCode(0xe004);
 
 const hasGecko = checkBinary('geckodriver');
 const hasFirefox = checkBinary('firefox');
@@ -825,6 +859,424 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     // Clean up recents localStorage
     await driver.executeScript('localStorage.removeItem("techDashboardRecents");');
     await driver.refresh();
+    await sleep(300);
+  });
+
+  await t.test('desktop sidebar renders the expected navigation', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(`
+      try { localStorage.removeItem('techDashboardRecents'); } catch (e) {}
+    `);
+    await driver.refresh();
+    for (let i = 0; i < 50; i++) {
+      const cards = await driver.executeScript('return document.querySelectorAll("#feed .card").length;');
+      if (cards > 0) break;
+      await sleep(100);
+    }
+    await sleep(200);
+
+    const sidebar = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const rect = filters.getBoundingClientRect();
+      return {
+        visible: rect.width > 0 && rect.height > 0,
+        width: Math.round(rect.width),
+        headings: Array.from(filters.querySelectorAll('.sidebar-section > .sidebar-heading')).map(h => h.textContent.trim()),
+        items: Array.from(filters.querySelectorAll('.sidebar-item')).map(el => ({
+          id: el.id || el.dataset.cat || '',
+          text: el.textContent.trim()
+        })),
+        menuToggle: getComputedStyle(document.getElementById('menuToggle')).display,
+        backdrop: getComputedStyle(document.getElementById('sidebarBackdrop')).display,
+        drawerHead: getComputedStyle(document.querySelector('.sidebar-drawer-head')).display,
+        accountSection: !!document.querySelector('.sidebar-section.sidebar-account #syncSettingsBtn'),
+        docOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth
+      };
+    `);
+
+    assert.ok(sidebar.visible, 'Sidebar must be visible on desktop');
+    assert.ok(sidebar.width >= 180, `Sidebar should keep its desktop width, measured ${sidebar.width}px`);
+    assert.ok(
+      sidebar.headings.includes('TOPICS') && sidebar.headings.includes('LIBRARY'),
+      `Sidebar should keep its TOPICS and LIBRARY groups, found ${JSON.stringify(sidebar.headings)}`
+    );
+    assert.ok(sidebar.headings.includes('ACCOUNT'), 'Log in should live in its own ACCOUNT group');
+    const ids = sidebar.items.map(i => i.id);
+    for (const expected of ['all', 'news', 'papers', 'reviews', 'reddit', 'hwToggle', 'savedToggle', 'digestsNav', 'syncSettingsBtn']) {
+      assert.ok(ids.includes(expected), `Sidebar must expose navigation item "${expected}", found ${JSON.stringify(ids)}`);
+    }
+    assert.ok(sidebar.accountSection, 'Log in button must be grouped under ACCOUNT, not mixed into the content filters');
+    assert.equal(sidebar.menuToggle, 'none', 'Mobile menu control must stay hidden on desktop');
+    assert.equal(sidebar.backdrop, 'none', 'Drawer backdrop must stay hidden on desktop');
+    assert.equal(sidebar.drawerHead, 'none', 'Drawer header must stay hidden on desktop');
+    assert.equal(sidebar.docOverflow, false, 'Desktop sidebar must not cause horizontal overflow');
+  });
+
+  await t.test('Home stays the active sidebar item on load', async () => {
+    const state = await driver.executeScript(`
+      const all = document.querySelector('.filter[data-cat="all"]');
+      const others = Array.from(document.querySelectorAll('.filter[data-cat]')).filter(b => b.dataset.cat !== 'all');
+      return {
+        homePressed: all.getAttribute('aria-pressed'),
+        otherPressed: others.map(b => b.getAttribute('aria-pressed')),
+        homeBg: getComputedStyle(all).backgroundColor,
+        idleBg: getComputedStyle(others[0]).backgroundColor
+      };
+    `);
+
+    assert.equal(state.homePressed, 'true', 'Home must be pressed by default');
+    assert.ok(state.otherPressed.every(p => p === 'false'), 'No other category may be active on load');
+    assert.notEqual(state.homeBg, state.idleBg, 'Active Home item must remain visually distinct from idle items');
+  });
+
+  await t.test('Digests navigation link is present and usable', async () => {
+    const digests = await driver.executeScript(`
+      const el = document.getElementById('digestsNav');
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        tag: el.tagName,
+        href: el.getAttribute('href'),
+        label: el.textContent.trim(),
+        visible: rect.width > 0 && rect.height > 0,
+        inViewport: rect.left >= -1 && rect.right <= document.documentElement.clientWidth + 1
+      };
+    `);
+
+    assert.ok(digests, '#digestsNav must exist in the sidebar');
+    assert.equal(digests.tag, 'A', 'Digests entry must be a real link');
+    assert.match(digests.href, /digests\.html$/, 'Digests link must point at digests.html');
+    assert.match(digests.label, /Digests/i, 'Digests link must be labelled');
+    assert.ok(digests.visible && digests.inViewport, 'Digests link must be visible on desktop');
+  });
+
+  await t.test('empty RECENT group is hidden instead of looking unfinished', async () => {
+    await driver.executeScript(`try { localStorage.removeItem('techDashboardRecents'); } catch (e) {}`);
+    await driver.refresh();
+    for (let i = 0; i < 50; i++) {
+      const cards = await driver.executeScript('return document.querySelectorAll("#feed .card").length;');
+      if (cards > 0) break;
+      await sleep(100);
+    }
+    await sleep(200);
+
+    const empty = await driver.executeScript(`
+      const section = document.getElementById('recentSection');
+      return {
+        stored: localStorage.getItem('techDashboardRecents'),
+        recentItems: document.querySelectorAll('#recentArticles .recent-item').length,
+        display: getComputedStyle(section).display,
+        height: Math.round(section.getBoundingClientRect().height)
+      };
+    `);
+
+    assert.ok(!empty.stored || empty.stored === '[]', 'Test must start with no stored recents');
+    assert.equal(empty.recentItems, 0, 'No recent items should be rendered without stored data');
+    assert.equal(empty.display, 'none', 'Empty RECENT group must be hidden rather than shown empty');
+
+    // Recents must still appear once real items exist (no fake content added).
+    await driver.executeScript(`
+      localStorage.setItem('techDashboardRecents', JSON.stringify([
+        { title: 'Sidebar regression story', url: 'https://example.com/sidebar-regression' }
+      ]));
+    `);
+    await driver.refresh();
+    for (let i = 0; i < 50; i++) {
+      const cards = await driver.executeScript('return document.querySelectorAll("#feed .card").length;');
+      if (cards > 0) break;
+      await sleep(100);
+    }
+    await sleep(200);
+
+    const populated = await driver.executeScript(`
+      const section = document.getElementById('recentSection');
+      return {
+        recentItems: document.querySelectorAll('#recentArticles .recent-item').length,
+        display: getComputedStyle(section).display,
+        text: section.textContent
+      };
+    `);
+
+    assert.equal(populated.recentItems, 1, 'A single stored recent must render exactly one item');
+    assert.notEqual(populated.display, 'none', 'RECENT group must appear when it has content');
+    assert.match(populated.text, /Sidebar regression story/, 'RECENT group must show the stored title');
+
+    await driver.executeScript(`try { localStorage.removeItem('techDashboardRecents'); } catch (e) {}`);
+    await driver.refresh();
+    for (let i = 0; i < 50; i++) {
+      const cards = await driver.executeScript('return document.querySelectorAll("#feed .card").length;');
+      if (cards > 0) break;
+      await sleep(100);
+    }
+    await sleep(200);
+  });
+
+  await t.test('mobile drawer starts closed and does not obscure the page', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(400);
+
+    const closed = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      const toggle = document.getElementById('menuToggle');
+      const search = document.getElementById('search');
+      const fRect = filters.getBoundingClientRect();
+      const sRect = search.getBoundingClientRect();
+      const viewport = document.documentElement.clientWidth;
+      return {
+        open: document.body.classList.contains('sidebar-open'),
+        expanded: toggle.getAttribute('aria-expanded'),
+        controls: toggle.getAttribute('aria-controls'),
+        toggleVisible: getComputedStyle(toggle).display !== 'none',
+        visibility: getComputedStyle(filters).visibility,
+        drawerRight: Math.round(fRect.right),
+        backdropDisplay: getComputedStyle(backdrop).display,
+        searchInsideViewport: sRect.left >= -1 && sRect.right <= viewport + 1,
+        docOverflow: document.documentElement.scrollWidth > viewport,
+        searchInteractive: !document.querySelector('.row2').inert
+      };
+    `);
+
+    assert.equal(closed.open, false, 'Drawer must start closed');
+    assert.equal(closed.expanded, 'false', 'Menu control must report collapsed state');
+    assert.equal(closed.controls, 'filters', 'Menu control must reference the drawer it toggles');
+    assert.ok(closed.toggleVisible, 'Menu control must be available on mobile');
+    assert.equal(closed.visibility, 'hidden', 'Closed drawer must be hidden from view and focus');
+    assert.ok(closed.drawerRight <= 1, `Closed drawer must sit off-screen, right edge at ${closed.drawerRight}px`);
+    assert.equal(closed.backdropDisplay, 'none', 'Backdrop must not block the page while closed');
+    assert.ok(closed.searchInsideViewport, 'Search must sit inside the viewport while the drawer is closed');
+    assert.equal(closed.docOverflow, false, 'Mobile layout must not overflow horizontally');
+    assert.ok(closed.searchInteractive, 'Search must stay interactive while the drawer is closed');
+  });
+
+  await t.test('mobile drawer opens from the menu control and covers the page with a backdrop', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.executeScript(`
+      if (document.body.classList.contains('sidebar-open')) document.getElementById('sidebarClose').click();
+    `);
+    await sleep(200);
+
+    const toggleEl = await driver.findElement('#menuToggle');
+    assert.ok(toggleEl, '#menuToggle must exist');
+    await driver.click(toggleEl);
+    await sleep(400);
+
+    const open = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      const fRect = filters.getBoundingClientRect();
+      const bRect = backdrop.getBoundingClientRect();
+      const viewport = document.documentElement.clientWidth;
+      const navIds = Array.from(filters.querySelectorAll('.sidebar-item')).map(el => el.id || el.dataset.cat);
+      return {
+        open: document.body.classList.contains('sidebar-open'),
+        expanded: document.getElementById('menuToggle').getAttribute('aria-expanded'),
+        visibility: getComputedStyle(filters).visibility,
+        onScreen: fRect.left >= -1 && fRect.right <= viewport + 1,
+        backdropTag: backdrop.tagName,
+        backdropDisplay: getComputedStyle(backdrop).display,
+        backdropLabel: (backdrop.getAttribute('aria-label') || '').trim(),
+        backdropCovers: bRect.width >= viewport - 1 && bRect.height >= document.documentElement.clientHeight - 1,
+        mainInert: document.querySelector('main').inert,
+        footerInert: document.querySelector('footer').inert,
+        searchInert: document.querySelector('.row2').inert,
+        navIds,
+        digestsVisible: document.getElementById('digestsNav').getBoundingClientRect().width > 0,
+        accountVisible: document.getElementById('syncSettingsBtn').getBoundingClientRect().width > 0,
+        docOverflow: document.documentElement.scrollWidth > viewport
+      };
+    `);
+
+    assert.equal(open.open, true, 'Menu control must open the drawer');
+    assert.equal(open.expanded, 'true', 'Menu control must report expanded state');
+    assert.equal(open.visibility, 'visible', 'Open drawer must be visible');
+    assert.ok(open.onScreen, 'Open drawer must sit fully inside the viewport');
+    assert.equal(open.backdropTag, 'BUTTON', 'Backdrop must be a real button');
+    assert.equal(open.backdropDisplay, 'block', 'Backdrop must be shown while the drawer is open');
+    assert.ok(open.backdropLabel.length > 0, 'Backdrop must carry an accessible label');
+    assert.ok(open.backdropCovers, 'Backdrop must cover the page behind the drawer');
+    assert.ok(open.mainInert && open.footerInert && open.searchInert, 'Page content behind the drawer must be inert while open');
+    assert.ok(open.digestsVisible && open.accountVisible, 'Drawer must keep every navigation destination reachable');
+    assert.ok(open.navIds.includes('digestsNav') && open.navIds.includes('syncSettingsBtn'), 'Drawer must keep all existing nav links');
+    assert.equal(open.docOverflow, false, 'Open drawer must not cause horizontal page overflow');
+
+    await driver.executeScript("document.getElementById('sidebarClose').click();");
+    await sleep(300);
+  });
+
+  await t.test('drawer close button, backdrop click, and Escape all close it', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.executeScript(`
+      if (document.body.classList.contains('sidebar-open')) document.getElementById('sidebarClose').click();
+    `);
+    await sleep(200);
+
+    const drawerState = () => driver.executeScript(`
+      return {
+        open: document.body.classList.contains('sidebar-open'),
+        expanded: document.getElementById('menuToggle').getAttribute('aria-expanded'),
+        visibility: getComputedStyle(document.getElementById('filters')).visibility,
+        backdrop: getComputedStyle(document.getElementById('sidebarBackdrop')).display,
+        focusId: document.activeElement ? document.activeElement.id : '',
+        mainInert: document.querySelector('main').inert
+      };
+    `);
+
+    // 1. Close button.
+    let toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(350);
+    assert.equal((await drawerState()).open, true, 'Drawer must be open before the close-button check');
+
+    const closeEl = await driver.findElement('#sidebarClose');
+    assert.ok(closeEl, '#sidebarClose must exist inside the drawer');
+    await driver.click(closeEl);
+    await sleep(400);
+    let state = await drawerState();
+    assert.equal(state.open, false, 'Close button must close the drawer');
+    assert.equal(state.expanded, 'false', 'Menu control must report collapsed after close button');
+    assert.equal(state.visibility, 'hidden', 'Drawer must be hidden after close button');
+    assert.equal(state.backdrop, 'none', 'Backdrop must be removed after close button');
+    assert.equal(state.mainInert, false, 'Page content must become interactive again');
+    assert.equal(state.focusId, 'menuToggle', 'Focus must return to the menu control after closing');
+
+    // 2. Backdrop click, outside the drawer.
+    toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(350);
+    assert.equal((await drawerState()).open, true, 'Drawer must be open before the backdrop check');
+
+    const viewport = await driver.executeScript('return { w: window.innerWidth, h: window.innerHeight };');
+    await driver.pointerClickAt(Math.round(viewport.w - 24), Math.round(viewport.h - 60));
+    await sleep(400);
+    state = await drawerState();
+    assert.equal(state.open, false, 'Clicking the backdrop must close the drawer');
+    assert.equal(state.visibility, 'hidden', 'Drawer must be hidden after a backdrop click');
+
+    // 3. Escape.
+    toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(350);
+    assert.equal((await drawerState()).open, true, 'Drawer must be open before the Escape check');
+
+    await driver.pressKey(KEY_ESCAPE);
+    await sleep(400);
+    state = await drawerState();
+    assert.equal(state.open, false, 'Escape must close the drawer');
+    assert.equal(state.expanded, 'false', 'Menu control must report collapsed after Escape');
+    assert.equal(state.visibility, 'hidden', 'Drawer must be hidden after Escape');
+    assert.equal(state.mainInert, false, 'Page content must be interactive again after Escape');
+  });
+
+  await t.test('drawer renders correctly in both light and dark themes', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.executeScript(`
+      if (document.body.classList.contains('sidebar-open')) document.getElementById('sidebarClose').click();
+    `);
+    await sleep(200);
+
+    const toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(350);
+
+    const readDrawer = () => driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const close = document.getElementById('sidebarClose');
+      const filtersStyle = getComputedStyle(filters);
+      const closeStyle = getComputedStyle(close);
+      return {
+        theme: document.documentElement.getAttribute('data-theme'),
+        surface: filtersStyle.backgroundColor,
+        border: filtersStyle.borderRightColor,
+        closeSurface: closeStyle.backgroundColor,
+        closeBorder: closeStyle.borderTopColor,
+        closeColor: closeStyle.color,
+        shadow: filtersStyle.boxShadow
+      };
+    `);
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','light');");
+    await sleep(200);
+    const light = await readDrawer();
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','dark');");
+    await sleep(200);
+    const dark = await readDrawer();
+
+    assert.equal(light.theme, 'light');
+    assert.equal(dark.theme, 'dark');
+    assert.notEqual(dark.surface, light.surface, 'Drawer surface must follow the theme');
+    assert.notEqual(dark.border, light.border, 'Drawer border must follow the theme');
+    assert.notEqual(dark.closeColor, light.closeColor, 'Drawer close control must stay legible in dark mode');
+    assert.equal(dark.closeSurface, dark.surface, 'Drawer controls must reuse the theme surface');
+    assert.equal(dark.closeBorder, dark.border, 'Drawer controls must reuse the theme border');
+    assert.notEqual(dark.shadow, 'none', 'Open drawer must be visually distinct from the page');
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme','light');");
+    await sleep(150);
+    const restored = await readDrawer();
+    assert.equal(restored.surface, light.surface, 'Drawer surface must return to the light theme value');
+
+    await driver.executeScript("document.getElementById('sidebarClose').click();");
+    await sleep(300);
+  });
+
+  await t.test('drawer controls are keyboard reachable with a visible focus ring', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.executeScript(`
+      if (document.body.classList.contains('sidebar-open')) document.getElementById('sidebarClose').click();
+    `);
+    await sleep(200);
+
+    const toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(350);
+    assert.equal(
+      await driver.executeScript('return document.body.classList.contains("sidebar-open");'),
+      true,
+      'Drawer must be open before the keyboard traversal check'
+    );
+
+    const seen = [];
+    let closeFocused = false;
+    for (let i = 0; i < 12 && !closeFocused; i++) {
+      const current = await driver.executeScript(
+        'return document.activeElement ? (document.activeElement.id || document.activeElement.tagName) : "";'
+      );
+      seen.push(current);
+      if (current === 'sidebarClose') { closeFocused = true; break; }
+      await driver.pressKey(KEY_TAB);
+      await sleep(120);
+    }
+
+    assert.ok(closeFocused, `Tab must reach the drawer close control, traversal was ${JSON.stringify(seen)}`);
+
+    const focusRing = await driver.executeScript(`
+      const el = document.activeElement;
+      const style = getComputedStyle(el);
+      return {
+        id: el.id,
+        tag: el.tagName,
+        focusVisible: el.matches(':focus-visible'),
+        outlineWidth: parseFloat(style.outlineWidth) || 0,
+        outlineStyle: style.outlineStyle
+      };
+    `);
+
+    assert.equal(focusRing.tag, 'BUTTON', 'Keyboard focus must land on a real button');
+    assert.ok(focusRing.focusVisible, 'Drawer control must register as keyboard-focused (:focus-visible)');
+    assert.ok(
+      focusRing.outlineWidth >= 1 && focusRing.outlineStyle !== 'none',
+      'Keyboard-focused drawer control must show a visible focus ring'
+    );
+
+    await driver.pressKey(KEY_ESCAPE);
+    await sleep(300);
+    await driver.setWindowRect(1280, 900);
     await sleep(300);
   });
 

@@ -4620,6 +4620,150 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   .latest-nav-btn { transition: none !important; }
 }
 </style>
+
+<!-- SIDEBAR NAVIGATION — DESKTOP GROUPING + MOBILE DRAWER -->
+<!-- Last in <head> on purpose; earlier blocks include an inert
+     <style media="not all"> sheet, so source order is not the cascade. -->
+<style id="sidebar-navigation">
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.menu-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.menu-toggle:focus-visible,
+.sidebar-drawer-close:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(15, 23, 32, 0.45);
+  cursor: pointer;
+}
+
+.sidebar-drawer-head {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+#filters .sidebar-drawer-head .sidebar-heading {
+  padding: 0 !important;
+}
+
+.sidebar-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.sidebar-drawer-close svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Account sits apart from the content groups; recents stays pinned last. */
+#filters .sidebar-account {
+  margin-top: 20px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+/* An empty RECENT group should not read as an unfinished section. */
+#filters .sidebar-recents:has(#recentArticles:empty) {
+  display: none !important;
+}
+
+@media (max-width: 800px) {
+  body.sidebar-open {
+    overflow: hidden !important;
+  }
+
+  .menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .sidebar-backdrop {
+    display: none !important;
+  }
+
+  body.sidebar-open .sidebar-backdrop {
+    display: block !important;
+  }
+
+  #filters {
+    display: flex !important;
+    top: 0 !important;
+    width: 264px !important;
+    max-width: 84vw !important;
+    padding: 14px 10px 18px !important;
+    z-index: 1200 !important;
+
+    transform: translateX(-100%) !important;
+    visibility: hidden !important;
+    box-shadow: none !important;
+
+    transition: transform 200ms ease, visibility 0s linear 200ms !important;
+  }
+
+  body.sidebar-open #filters {
+    transform: none !important;
+    visibility: visible !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 32, 0.22) !important;
+    transition: transform 200ms ease, visibility 0s !important;
+  }
+
+  .sidebar-drawer-head {
+    display: flex !important;
+  }
+
+  #filters .sidebar-item {
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #filters {
+    transition: none !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -4636,6 +4780,9 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
       <div class="mast-right">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
         <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a> <a href="app-react.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">⚛ React</a>
         <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
@@ -4647,9 +4794,18 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   </div>
 </div>
 
+<button type="button" class="sidebar-backdrop" id="sidebarBackdrop" tabindex="-1" aria-label="Close navigation menu"></button>
+
 <div class="wrap">
   <div class="controls">
   <div class="filters" id="filters">
+
+  <div class="sidebar-drawer-head">
+    <div class="sidebar-heading">Navigation</div>
+    <button type="button" class="sidebar-drawer-close" id="sidebarClose" aria-label="Close navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
 
   <div class="sidebar-home">
     <button class="filter sidebar-item" data-cat="all" aria-pressed="true">
@@ -4726,9 +4882,24 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
       <span>Saved</span>
     </button>
 
+    <a class="filter sidebar-item" id="digestsNav" href="digests.html"
+       style="text-decoration: none;">
+      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
+        <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
+        <path d="M10 6v10"/>
+      </svg>
+      <span>Digests</span>
+    </a>
+
+  </div>
+
+  <div class="sidebar-section sidebar-account">
+    <div class="sidebar-heading">ACCOUNT</div>
+
     <button class="filter sidebar-item" id="syncSettingsBtn"
             title="Optional: sync saved items across devices"
-            aria-label="Sync settings">
+            aria-label="Log in to sync saved stories">
       <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
         <path d="M12 3v3"/>
         <path d="M12 18v3"/>
@@ -4740,23 +4911,13 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
         <path d="m17.7 8.1 2.1-2.1"/>
         <circle cx="12" cy="12" r="4"/>
       </svg>
-      <span>Settings</span>
+      <span>Log in</span>
     </button>
+  </div>
 
-    <a class="filter sidebar-item" id="digestsNav" href="digests.html"
-       style="text-decoration: none;">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
-        <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
-        <path d="M10 6v10"/>
-      </svg>
-      <span>Digests</span>
-    </a>
-
-       <div class="sidebar-recents">
-  <div class="sidebar-heading">RECENTS</div>
-  <div id="recentArticles"></div>
-</div>
+  <div class="sidebar-section sidebar-recents" id="recentSection">
+    <div class="sidebar-heading">RECENTS</div>
+    <div id="recentArticles"></div>
   </div>
 
 </div>
@@ -5098,7 +5259,7 @@ async function logoutAccount() {
   const accountBtn = document.getElementById('syncSettingsBtn');
 
   if (accountBtn) {
-    accountBtn.textContent = 'Log in';
+    setAccountLabel('Log in');
     accountBtn.title = 'Sign in with Google';
   }
 
@@ -5115,7 +5276,7 @@ async function initAuth() {
 
   if (authState.authenticated) {
     if (accountBtn) {
-      accountBtn.textContent = 'Log out';
+      setAccountLabel('Log out');
       accountBtn.title = authState.user?.email || 'Log out';
     }
 
@@ -5127,10 +5288,20 @@ async function initAuth() {
     }
   } else {
     if (accountBtn) {
-      accountBtn.textContent = 'Log in';
+      setAccountLabel('Log in');
       accountBtn.title = 'Sign in with Google';
     }
   }
+}
+
+// Keeps the account icon and updates only its visible/accessible label.
+function setAccountLabel(label) {
+  const btn = document.getElementById('syncSettingsBtn');
+  if (!btn) return;
+  const text = btn.querySelector('span');
+  if (text) text.textContent = label;
+  else btn.textContent = label;
+  btn.setAttribute('aria-label', label === 'Log out' ? 'Log out of your account' : 'Log in to sync saved stories');
 }
 
 document.getElementById('syncSettingsBtn').addEventListener('click', () => {
@@ -5487,6 +5658,46 @@ initAuth();
     activeFilter = btn.dataset.cat;
     visibleCount = PAGE_SIZE;
     render();
+    if (document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
+  });
+
+  // --- Sidebar drawer (mobile navigation) ---
+  const menuToggleEl = document.getElementById('menuToggle');
+  const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
+  const sidebarCloseEl = document.getElementById('sidebarClose');
+  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, main, footer'));
+  let sidebarInertSnapshot = null;
+
+  function setSidebarOpen(open) {
+    document.body.classList.toggle('sidebar-open', open);
+    if (menuToggleEl) menuToggleEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+    // Keep the page behind the drawer from receiving pointer or keyboard input.
+    if (open) {
+      if (!sidebarInertSnapshot) {
+        sidebarInertSnapshot = sidebarBehindTargets.map((el) => [el, el.inert]);
+        sidebarBehindTargets.forEach((el) => { el.inert = true; });
+      }
+    } else if (sidebarInertSnapshot) {
+      sidebarInertSnapshot.forEach(([el, wasInert]) => { el.inert = wasInert; });
+      sidebarInertSnapshot = null;
+      if (menuToggleEl && filtersEl.contains(document.activeElement)) menuToggleEl.focus();
+    }
+  }
+
+  if (menuToggleEl) {
+    menuToggleEl.addEventListener('click', () => {
+      setSidebarOpen(!document.body.classList.contains('sidebar-open'));
+    });
+  }
+  [sidebarBackdropEl, sidebarCloseEl].forEach((el) => {
+    if (el) el.addEventListener('click', () => setSidebarOpen(false));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('sidebar-open')) {
+      setSidebarOpen(false);
+      if (menuToggleEl) menuToggleEl.focus();
+    }
   });
   hwToggleEl.addEventListener('click', () => {
     hardwareOnly = !hardwareOnly;
