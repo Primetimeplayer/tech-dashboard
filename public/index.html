@@ -4518,6 +4518,108 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 }
 
 </style>
+
+<!-- LATEST STORIES — COMPACT CAROUSEL -->
+<!-- Placed last in <head> on purpose: the earlier style stack contains inert
+     blocks (e.g. <style media="not all">) so source order is not the cascade.
+     Mobile keeps native touch scrolling; controls are hidden on narrow screens. -->
+<style id="latest-stories-carousel">
+.latest {
+  --latest-per-view: 4;
+  --latest-gap: 8px;
+  --latest-nav-size: 28px;
+}
+
+.latest-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 0 1px 8px !important;
+}
+
+.latest-label > h2 {
+  margin: 0 !important;
+}
+
+.latest-row {
+  gap: var(--latest-gap) !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+}
+
+.latest-card {
+  flex: 0 0 calc((100% - (var(--latest-per-view) - 1) * var(--latest-gap)) / var(--latest-per-view)) !important;
+  width: calc((100% - (var(--latest-per-view) - 1) * var(--latest-gap)) / var(--latest-per-view)) !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  scroll-snap-align: start !important;
+}
+
+.latest-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.latest-nav-btn {
+  width: var(--latest-nav-size);
+  height: var(--latest-nav-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--panel-raised);
+  color: var(--text-muted);
+  font: inherit;
+  transition: background 120ms ease, color 120ms ease, opacity 120ms ease;
+}
+
+.latest-nav-btn svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.latest-nav-btn:hover:not(:disabled) {
+  background: var(--skeleton);
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.latest-nav-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.latest-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (min-width: 1440px) {
+  .latest { --latest-per-view: 5; }
+}
+
+@media (max-width: 1100px) {
+  .latest { --latest-per-view: 3; }
+}
+
+@media (max-width: 800px) {
+  .latest { --latest-per-view: 2; }
+  .latest-nav { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .latest-nav-btn { transition: none !important; }
+}
+</style>
 </head>
 <body>
 
@@ -4682,6 +4784,14 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
     <div class="latest-label">
   <h2>Latest Stories</h2>
   <span>10 newest available</span>
+  <div class="latest-nav">
+    <button type="button" class="latest-nav-btn" id="latestPrev" aria-label="Previous stories" aria-controls="latestRow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="latest-nav-btn" id="latestNext" aria-label="Next stories" aria-controls="latestRow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
+    </button>
+  </div>
 </div>
     <div class="latest-row" id="latestRow"></div>
   </div>
@@ -4728,6 +4838,8 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   const resultCountEl = document.getElementById('resultCount');
   const latestSectionEl = document.getElementById('latestSection');
   const latestRowEl = document.getElementById('latestRow');
+  const latestPrevEl = document.getElementById('latestPrev');
+  const latestNextEl = document.getElementById('latestNext');
   const hwToggleEl = document.getElementById('hwToggle');
   const savedToggleEl = document.getElementById('savedToggle');
   const errorBannerEl = document.getElementById('errorBanner');
@@ -5158,7 +5270,31 @@ initAuth();
         <h3>${escapeHtml(item.title)}</h3>
       </a>
     `).join('');
+    syncLatestNav();
   }
+
+  // --- Latest Stories carousel controls ---
+  // Prev/next drive the existing horizontal scroll container (no autoplay).
+  function syncLatestNav() {
+    if (!latestRowEl || !latestPrevEl || !latestNextEl) return;
+    const max = latestRowEl.scrollWidth - latestRowEl.clientWidth;
+    latestPrevEl.disabled = latestRowEl.scrollLeft <= 1;
+    latestNextEl.disabled = max <= 1 || latestRowEl.scrollLeft >= max - 1;
+  }
+
+  function scrollLatest(dir) {
+    const card = latestRowEl && latestRowEl.querySelector('.latest-card');
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(latestRowEl).gap) || 0;
+    const step = card.getBoundingClientRect().width + gap;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    latestRowEl.scrollBy({ left: dir * step, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  latestPrevEl.addEventListener('click', () => scrollLatest(-1));
+  latestNextEl.addEventListener('click', () => scrollLatest(1));
+  latestRowEl.addEventListener('scroll', syncLatestNav, { passive: true });
+  window.addEventListener('resize', syncLatestNav);
 
   function buildShareText(item) {
     const hook = item.whyItMatters || item.summary || '';

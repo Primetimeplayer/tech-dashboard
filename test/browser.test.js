@@ -422,6 +422,356 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(cardsValid, 'All cards in #latestRow must have non-empty category and title elements');
   });
 
+  await t.test('Latest Stories renders a visible strip of story cards', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+
+    const state = await driver.executeScript(`
+      const section = document.getElementById('latestSection');
+      const row = document.getElementById('latestRow');
+      const cards = Array.from(row.querySelectorAll('.latest-card'));
+      return {
+        hidden: section.hidden,
+        cardCount: cards.length,
+        allHaveContent: cards.every(c => {
+          const cat = c.querySelector('.cat');
+          const h3 = c.querySelector('h3');
+          return cat && cat.textContent.trim() && h3 && h3.textContent.trim();
+        }),
+        rowVisible: row.getBoundingClientRect().height > 0,
+        sectionHeight: document.querySelector('.latest').getBoundingClientRect().height
+      };
+    `);
+
+    assert.equal(state.hidden, false, 'Latest Stories section must be visible once cards exist');
+    assert.ok(state.cardCount > 1, `Expected multiple Latest Stories cards, found ${state.cardCount}`);
+    assert.ok(state.allHaveContent, 'Every Latest Stories card needs a category line and a title');
+    assert.ok(state.rowVisible, 'Latest Stories row must be rendered with a non-zero height');
+    assert.ok(
+      state.sectionHeight > 60 && state.sectionHeight <= 260,
+      `Latest Stories must stay compact, measured ${state.sectionHeight}px`
+    );
+  });
+
+  await t.test('Latest Stories desktop shows complete cards instead of clipped ones', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(300);
+
+    const layout = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      row.scrollLeft = 0;
+      const cards = Array.from(row.querySelectorAll('.latest-card'));
+      const rr = row.getBoundingClientRect();
+      const cs = getComputedStyle(row);
+      const rects = cards.map(c => c.getBoundingClientRect());
+      const fullyVisible = rects.filter(b => b.left >= rr.left - 1 && b.right <= rr.right + 1).length;
+      const partiallyVisible = rects.filter(b =>
+        b.right > rr.left + 1 && b.left < rr.right - 1 && !(b.left >= rr.left - 1 && b.right <= rr.right + 1)
+      ).length;
+      return {
+        overflowX: cs.overflowX,
+        snap: cs.scrollSnapType,
+        fullyVisible,
+        partiallyVisible,
+        cardWidth: Math.round(rects[0].width),
+        clientWidth: row.clientWidth,
+        scrollWidth: row.scrollWidth,
+        cardCount: cards.length
+      };
+    `);
+
+    assert.equal(layout.overflowX, 'auto', 'Latest Stories must keep a native horizontal scroll container');
+    assert.match(layout.snap, /x/, 'Latest Stories must keep horizontal scroll snapping');
+    assert.ok(
+      layout.fullyVisible >= 4 && layout.fullyVisible <= 5,
+      `Expected 4-5 fully visible cards on desktop, measured ${layout.fullyVisible}`
+    );
+    assert.equal(layout.partiallyVisible, 0, 'Desktop must not show partially clipped cards at the scroll start');
+    assert.ok(layout.scrollWidth > layout.clientWidth, 'Latest Stories must remain horizontally scrollable');
+    assert.ok(layout.cardCount > layout.fullyVisible, 'Expected more cards than fit, so navigation is meaningful');
+    assert.ok(
+      layout.cardWidth >= 190 && layout.cardWidth <= layout.clientWidth / 3,
+      `Card width ${layout.cardWidth}px should stay near the current size, not shrink or balloon`
+    );
+  });
+
+  await t.test('Latest Stories prev/next controls are labelled buttons', async () => {
+    const controls = await driver.executeScript(`
+      const read = id => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        return {
+          tag: el.tagName,
+          type: el.getAttribute('type'),
+          label: (el.getAttribute('aria-label') || '').trim(),
+          controls: el.getAttribute('aria-controls'),
+          svgHidden: !!el.querySelector('svg[aria-hidden="true"]')
+        };
+      };
+      const btn = document.getElementById('latestNext');
+      btn.focus();
+      const focus = { activeId: document.activeElement.id, tag: document.activeElement.tagName };
+      btn.blur();
+      return { prev: read('latestPrev'), next: read('latestNext'), focus };
+    `);
+
+    for (const [name, info] of Object.entries(controls)) {
+      if (name === 'focus') continue;
+      assert.ok(info, `#latest${name === 'prev' ? 'Prev' : 'Next'} must exist`);
+      assert.equal(info.tag, 'BUTTON', `#latest${name} must be a real button`);
+      assert.equal(info.type, 'button', `#latest${name} must not submit a form`);
+      assert.ok(info.label.length > 0, `#latest${name} needs an accessible label`);
+      assert.equal(info.controls, 'latestRow', `#latest${name} must reference the scroll container it controls`);
+      assert.ok(info.svgHidden, `#latest${name} icon must be hidden from assistive technology`);
+    }
+
+    assert.match(controls.prev.label, /previous/i, 'Previous control label must describe its action');
+    assert.match(controls.next.label, /next/i, 'Next control label must describe its action');
+    assert.equal(controls.focus.tag, 'BUTTON', 'Next control must be focusable');
+    assert.equal(controls.focus.activeId, 'latestNext', 'Next control must receive keyboard focus');
+  });
+
+  await t.test('Latest Stories next control is operable from the keyboard', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+    await driver.executeScript('const r = document.getElementById("latestRow"); r.scrollLeft = 0;');
+    await sleep(200);
+
+    // Reach the controls with real Tab presses so :focus-visible applies.
+    const searchEl = await driver.findElement('#search');
+    assert.ok(searchEl, '#search must exist to start keyboard traversal');
+    await driver.sendKeys(searchEl, '');
+
+    let focusedId = null;
+    for (let i = 0; i < 12 && focusedId !== 'latestNext'; i++) {
+      await driver.sendKeys(searchEl, '\uE004'); // Tab
+      focusedId = await driver.executeScript('return document.activeElement ? document.activeElement.id : null;');
+    }
+    assert.equal(focusedId, 'latestNext', 'Tab must reach the Latest Stories next control');
+
+    const focusStyle = await driver.executeScript(`
+      const el = document.activeElement;
+      const cs = getComputedStyle(el);
+      return {
+        tag: el.tagName,
+        focusVisible: el.matches(':focus-visible'),
+        outlineWidth: parseFloat(cs.outlineWidth) || 0,
+        outlineStyle: cs.outlineStyle
+      };
+    `);
+    assert.equal(focusStyle.tag, 'BUTTON', 'Keyboard focus must land on a button');
+    assert.ok(focusStyle.focusVisible, 'Keyboard focus must register as :focus-visible');
+    assert.ok(
+      focusStyle.outlineWidth >= 1 && focusStyle.outlineStyle !== 'none',
+      'Keyboard-focused control must show a visible focus ring'
+    );
+
+    const before = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+    const nextEl = await driver.findElement('#latestNext');
+    await driver.sendKeys(nextEl, '\uE007'); // Enter activates a focused button
+    await sleep(500);
+    const after = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(after > before, `Enter must scroll the strip forward (before ${before}, after ${after})`);
+
+    // Leave focus out of the strip for the following subtests.
+    await driver.executeScript('document.getElementById("latestRow").scrollLeft = 0;');
+    await sleep(200);
+  });
+
+  await t.test('Latest Stories next and previous controls move the scroll position', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+    await driver.executeScript('const r = document.getElementById("latestRow"); r.scrollLeft = 0;');
+    await sleep(200);
+
+    const cardWidth = await driver.executeScript(
+      'return Math.round(document.querySelector("#latestRow .latest-card").getBoundingClientRect().width);'
+    );
+    assert.ok(cardWidth > 0, 'Expected a measurable card width');
+
+    const nextEl = await driver.findElement('#latestNext');
+    const start = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+    await driver.click(nextEl);
+    await sleep(600);
+    const afterNext = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(afterNext > start, `Clicking next must scroll forward (before ${start}, after ${afterNext})`);
+    assert.ok(
+      afterNext <= cardWidth * 1.5,
+      `A single next click should advance roughly one card (${cardWidth}px), moved ${afterNext}px`
+    );
+
+    const prevEl = await driver.findElement('#latestPrev');
+    await driver.click(prevEl);
+    await sleep(600);
+    const afterPrev = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(afterPrev < afterNext, `Clicking previous must scroll back (before ${afterNext}, after ${afterPrev})`);
+  });
+
+  await t.test('Latest Stories controls disable at the start and the end of the list', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+
+    const atStart = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      row.scrollLeft = 0;
+      const prev = document.getElementById('latestPrev');
+      const next = document.getElementById('latestNext');
+      return {
+        scrollLeft: row.scrollLeft,
+        prevDisabled: prev.disabled,
+        nextDisabled: next.disabled,
+        prevOpacity: parseFloat(getComputedStyle(prev).opacity),
+        nextOpacity: parseFloat(getComputedStyle(next).opacity)
+      };
+    `);
+
+    assert.equal(atStart.scrollLeft, 0, 'Strip starts at the beginning');
+    assert.equal(atStart.prevDisabled, true, 'Previous must be disabled at the beginning');
+    assert.equal(atStart.nextDisabled, false, 'Next must be enabled at the beginning');
+    assert.ok(
+      atStart.prevOpacity < atStart.nextOpacity,
+      'Disabled previous must be visually de-emphasized relative to next'
+    );
+
+    const atEnd = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      row.scrollLeft = row.scrollWidth;
+      return new Promise(resolve => setTimeout(() => resolve({
+        scrollLeft: row.scrollLeft,
+        max: row.scrollWidth - row.clientWidth,
+        prevDisabled: document.getElementById('latestPrev').disabled,
+        nextDisabled: document.getElementById('latestNext').disabled,
+        nextOpacity: parseFloat(getComputedStyle(document.getElementById('latestNext')).opacity)
+      }), 400));
+    `);
+
+    assert.ok(atEnd.max > 0, 'Strip must be scrollable');
+    assert.ok(atEnd.scrollLeft >= atEnd.max - 2, 'Strip should reach its maximum scroll offset');
+    assert.equal(atEnd.nextDisabled, true, 'Next must be disabled at the end');
+    assert.equal(atEnd.prevDisabled, false, 'Previous must be enabled at the end');
+    assert.ok(atEnd.nextOpacity < 1, 'Disabled next must be visually de-emphasized');
+
+    const restored = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      row.scrollLeft = 0;
+      return new Promise(resolve => setTimeout(() => resolve({
+        prevDisabled: document.getElementById('latestPrev').disabled,
+        nextDisabled: document.getElementById('latestNext').disabled
+      }), 400));
+    `);
+    assert.equal(restored.prevDisabled, true, 'Returning home must disable previous again');
+    assert.equal(restored.nextDisabled, false, 'Returning home must re-enable next');
+  });
+
+  await t.test('Latest Stories stays usable and touch-scrollable on mobile', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(400);
+
+    const mobile = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      const nav = document.querySelector('.latest-nav');
+      const cards = Array.from(row.querySelectorAll('.latest-card'));
+      const rr = row.getBoundingClientRect();
+      const fully = cards.filter(c => {
+        const b = c.getBoundingClientRect();
+        return b.left >= rr.left - 1 && b.right <= rr.right + 1;
+      }).length;
+      const before = row.scrollLeft;
+      row.scrollLeft = 200;
+      const after = row.scrollLeft;
+      row.scrollLeft = before;
+      return {
+        navDisplay: getComputedStyle(nav).display,
+        overflowX: getComputedStyle(row).overflowX,
+        snap: getComputedStyle(row).scrollSnapType,
+        docOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        cardCount: cards.length,
+        fullyVisible: fully,
+        cardWidth: Math.round(cards[0].getBoundingClientRect().width),
+        scrolled: after > before,
+        rowFitsViewport: rr.left >= -1 && rr.right <= document.documentElement.clientWidth + 1
+      };
+    `);
+
+    assert.equal(mobile.navDisplay, 'none', 'Prev/next controls must not crowd the narrow layout');
+    assert.equal(mobile.overflowX, 'auto', 'Mobile must keep native horizontal scrolling');
+    assert.match(mobile.snap, /x/, 'Mobile must keep scroll snapping for touch scrolling');
+    assert.equal(mobile.docOverflow, false, 'Mobile layout must not cause page-level horizontal overflow');
+    assert.ok(mobile.cardCount > 1, 'Mobile must still render story cards');
+    assert.ok(mobile.fullyVisible >= 1, 'Mobile must show at least one complete card');
+    assert.ok(mobile.scrolled, 'Mobile strip must be natively scrollable');
+    assert.ok(mobile.rowFitsViewport, 'Mobile strip must stay inside the viewport');
+
+    await driver.setWindowRect(1280, 900);
+    await sleep(300);
+    const resized = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      row.scrollLeft = 0;
+      return new Promise(resolve => setTimeout(() => resolve({
+        navDisplay: getComputedStyle(document.querySelector('.latest-nav')).display,
+        prevDisabled: document.getElementById('latestPrev').disabled,
+        nextDisabled: document.getElementById('latestNext').disabled,
+        scrollLeft: row.scrollLeft
+      }), 400));
+    `);
+    assert.notEqual(resized.navDisplay, 'none', 'Controls must return on wider viewports');
+    assert.equal(resized.prevDisabled, true, 'Resize back to desktop must disable previous at the start');
+    assert.equal(resized.nextDisabled, false, 'Resize back to desktop must leave next enabled');
+  });
+
+  await t.test('Latest Stories controls follow the active light/dark theme', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+
+    const readTheme = () => driver.executeScript(`
+      const card = document.querySelector('#latestRow .latest-card');
+      const btn = document.getElementById('latestNext');
+      const cardStyle = getComputedStyle(card);
+      const btnStyle = getComputedStyle(btn);
+      return {
+        theme: document.documentElement.getAttribute('data-theme'),
+        cardBg: cardStyle.backgroundColor,
+        cardBorder: cardStyle.borderTopColor,
+        btnBg: btnStyle.backgroundColor,
+        btnBorder: btnStyle.borderTopColor,
+        btnColor: btnStyle.color,
+        headingColor: getComputedStyle(document.querySelector('.latest-label h2')).color
+      };
+    `);
+
+    const lightTheme = await driver.executeScript(
+      "document.documentElement.setAttribute('data-theme','light'); return true;"
+    );
+    assert.ok(lightTheme);
+    await sleep(200);
+    const light = await readTheme();
+
+    const themeToggleEl = await driver.findElement('#themeToggle');
+    await driver.click(themeToggleEl);
+    await sleep(300);
+    const dark = await readTheme();
+
+    assert.equal(light.theme, 'light');
+    assert.equal(dark.theme, 'dark', 'Theme toggle must switch to dark');
+    assert.notEqual(dark.cardBg, light.cardBg, 'Latest Stories card surface must change in dark mode');
+    assert.notEqual(dark.cardBorder, light.cardBorder, 'Latest Stories card border must change in dark mode');
+    assert.notEqual(dark.headingColor, light.headingColor, 'Latest Stories heading must remain legible in dark mode');
+    assert.equal(dark.btnBg, dark.cardBg, 'Controls must reuse the theme surface token');
+    assert.equal(dark.btnBorder, dark.cardBorder, 'Controls must reuse the theme border token');
+    assert.notEqual(dark.btnColor, light.btnColor, 'Control icon color must change with the theme');
+
+    // Restore light for the remaining subtests.
+    const toggleAgain = await driver.findElement('#themeToggle');
+    await driver.click(toggleAgain);
+    await sleep(300);
+    const restored = await readTheme();
+    assert.equal(restored.theme, 'light', 'Theme must be restored to light');
+    assert.equal(restored.btnBg, light.btnBg, 'Control surface must return to the light theme value');
+  });
+
   await t.test('renders Recent Items and enforces XSS protection', async () => {
     const safeTitle = 'Safe Test Recent Story';
     const safeUrl = 'https://example.com/safe-story';
