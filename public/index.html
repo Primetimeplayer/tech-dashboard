@@ -455,6 +455,63 @@ padding: 1.5rem; }
   .icon-btn.active { color: var(--saved); border-color: var(--saved); }
   .icon-btn.copied { color: var(--live); border-color: var(--live); }
 
+  /* Save toggle: one-shot confirmation so the state change is not conveyed
+     by colour alone. Reduced-motion users keep the colour + label change. */
+  .save-pulse { animation: save-pulse 1.1s ease-out; }
+  @keyframes save-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(197, 109, 171, 0.45); transform: translateY(0); }
+    45%  { box-shadow: 0 0 0 7px rgba(197, 109, 171, 0); transform: translateY(-3px); }
+    100% { box-shadow: 0 0 0 0 rgba(197, 109, 171, 0); transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .save-pulse { animation: none; } }
+
+  /* Share confirmation toast. Injected next to the trigger with role="status"
+     and removed after SHARE_FEEDBACK_MS, so it never lingers in the DOM. */
+  .card-actions { flex-wrap: wrap; }
+  .share-feedback {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    max-width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    margin-left: 0.5rem;
+    box-shadow: 0 8px 20px rgba(23, 33, 43, 0.12);
+    animation: share-fade 1.6s ease-out forwards;
+    pointer-events: none;
+  }
+  .share-feedback.is-error { border-color: var(--reddit); }
+  @keyframes share-fade {
+    0%   { opacity: 1; transform: translateY(0); }
+    10%  { opacity: 1; transform: translateY(-3px); }
+    90%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .share-feedback { animation: none; } }
+
+  /* Filter controls: source + time range, plus a reset that only appears while
+     something is actually narrowed down. */
+  .clear-filters {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    min-height: 40px;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .clear-filters:hover { color: var(--text); border-color: var(--reddit); }
+  .clear-filters[hidden] { display: none !important; }
+
   .note-box { margin-top: 0.6rem; }
   .note-box textarea {
     width: 100%; min-height: 52px; resize: vertical;
@@ -1558,9 +1615,7 @@ select {
   color: #80868b;
 }
 
-.result-count {
-  display: none !important;
-}
+/* Result count is live feedback for the source/time/category filters. */
 /* =========================================================
    SEARCH BAR
    ========================================================= */
@@ -3199,22 +3254,7 @@ body.dark .card.is-hardware {
 #filters .sidebar-section:first-of-type .sidebar-item:hover {
   background: var(--skeleton) !important;
 }
-#sourceFilter,
-#dateFilter,
-label[for="sourceFilter"],
-label[for="dateFilter"] {
-  display: none !important;
-}
-#filters .sidebar-section:first-of-type .sidebar-item:hover {
-  background: var(--skeleton) !important;
-}
-
-#sourceFilter,
-#dateFilter,
-label[for="sourceFilter"],
-label[for="dateFilter"] {
-  display: none !important;
-}/* RECENTS */
+/* RECENTS */
 #filters .sidebar-recents {
   margin-top: auto !important;
   padding-top: 9px !important;
@@ -4911,6 +4951,29 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   color: var(--hardware) !important;
 }
 </style>
+<style id="focus-visibility">
+/* Deliberately the last stylesheet in the document: it wins ties against the
+   earlier "outline: none" polish rules (`.controls select:focus`,
+   `.row2 .search-row input`, `#search`) that would otherwise hide the keyboard
+   focus ring. !important is required because those rules use it too, and the
+   ring colour is the themed token so it reads in both light and dark mode. */
+#search:focus-visible,
+.controls select:focus-visible,
+.row2 select:focus-visible,
+.row2 .search-row input:focus-visible,
+.clear-filters:focus-visible {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Dark mode repaints these surfaces with its own higher-specificity rules, so
+   the light-theme blue focus border is lost there. Re-point it at the token
+   instead of touching the light-theme treatment. */
+:root[data-theme="dark"] .controls select:focus,
+:root[data-theme="dark"] .row2 .search-row:focus-within {
+  border-color: var(--focus) !important;
+}
+</style>
 </head>
 <body>
 
@@ -5081,6 +5144,7 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
         <option value="today">Today</option>
         <option value="week">This week</option>
       </select>
+      <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
       <div class="search-row">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <label for="search" class="visually-hidden">Search headlines and summaries</label>
@@ -5158,6 +5222,7 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   const loadMoreWrapEl = document.getElementById('loadMoreWrap');
   const loadMoreBtnEl = document.getElementById('loadMoreBtn');
   const searchHintEl = document.getElementById('searchHint');
+  const clearFiltersEl = document.getElementById('clearFilters');
 
   const AUTO_REFRESH_MS = 5 * 60 * 1000;
   const LATEST_WINDOW_MS = 12 * 60 * 60 * 1000;
@@ -5463,8 +5528,28 @@ document.getElementById('syncSettingsBtn').addEventListener('click', () => {
   }
 });
 
+  // render() rebuilds the cards, so the button that was clicked is gone by the
+  // time we return. Re-apply the confirmation to its replacement — and hand
+  // keyboard focus back — so a save toggle never looks like it did nothing.
+  function flashSaveButton(link, giveFocus) {
+    const btn = Array.from(feedEl.querySelectorAll('.save-btn'))
+      .find((b) => b.dataset.link === link);
+    if (!btn) {
+      // The card left the feed (un-saving inside the Saved view); keep focus
+      // on the control that governs that view instead of dropping it.
+      if (giveFocus) savedToggleEl.focus({ preventScroll: true });
+      return;
+    }
+    btn.classList.add('save-pulse');
+    btn.addEventListener('animationend', () => btn.classList.remove('save-pulse'), { once: true });
+    if (giveFocus) btn.focus({ preventScroll: true });
+  }
+
 async function toggleSave(link) {
   const wasSaved = !!savedMap[link];
+  const active = document.activeElement;
+  const hadFocus = !!(active && active.classList && active.classList.contains('save-btn') &&
+    active.dataset.link === link);
 
   if (wasSaved) {
     delete savedMap[link];
@@ -5478,6 +5563,7 @@ async function toggleSave(link) {
 
   persistSaved(savedMap);
   render();
+  flashSaveButton(link, hadFocus);
 
   if (!authReady || !authState.authenticated) return;
 
@@ -5501,6 +5587,7 @@ async function toggleSave(link) {
 
     persistSaved(savedMap);
     render();
+    flashSaveButton(link, hadFocus);
   }
 }
 
@@ -5646,24 +5733,84 @@ initAuth();
     return `${item.title}${hook ? ' — ' + hook : ''} ${item.link}`.trim();
   }
 
-  async function copyText(text, btn) {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (e) {
-      // fallback for older browsers / non-secure contexts
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e2) {}
-      document.body.removeChild(ta);
+  // The toast lives exactly this long, then is removed from the DOM so a stale
+  // confirmation can never be announced or read again.
+  const SHARE_FEEDBACK_MS = 1600;
+
+  const SHARE_OK = 'Link copied. Share it anywhere.';
+  const SHARE_FAIL = 'Copy failed. Select the link and copy it manually.';
+
+  // Report the outcome of a share attempt next to the button that triggered it.
+  // role="status" makes both success and failure a polite live-region
+  // announcement, so the result is not conveyed by colour or icon alone.
+  function showShareFeedback(btn, message, ok) {
+    if (btn._shareFeedback) {
+      clearTimeout(btn._shareFeedbackTimer);
+      btn._shareFeedback.remove();
+      btn._shareFeedback = null;
     }
-    const original = btn.textContent;
-    btn.textContent = '✓ Copied';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+
+    const fb = document.createElement('span');
+    fb.className = 'share-feedback' + (ok ? '' : ' is-error');
+    fb.setAttribute('role', 'status');
+    fb.setAttribute('aria-live', 'polite');
+    fb.setAttribute('aria-atomic', 'true');
+    fb.textContent = message;
+    btn.insertAdjacentElement('afterend', fb);
+
+    btn._shareFeedback = fb;
+    btn._shareFeedbackTimer = setTimeout(() => {
+      fb.remove();
+      if (btn._shareFeedback === fb) btn._shareFeedback = null;
+    }, SHARE_FEEDBACK_MS);
+  }
+
+  // Returns whether the copy really happened, so callers report the truth
+  // instead of assuming success and hiding a failure from the user.
+  async function writeToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) {
+        // Permission denied or insecure context: try the legacy path below.
+      }
+    }
+
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  async function copyText(text, btn) {
+    // Captured once per button so a second click still restores the real label.
+    if (!btn.dataset.shareLabel) btn.dataset.shareLabel = btn.textContent;
+
+    const copied = await writeToClipboard(text);
+    clearTimeout(btn._labelTimer);
+
+    if (copied) {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      btn._labelTimer = setTimeout(() => {
+        btn.textContent = btn.dataset.shareLabel;
+        btn.classList.remove('copied');
+      }, SHARE_FEEDBACK_MS);
+      showShareFeedback(btn, SHARE_OK, true);
+    } else {
+      btn.textContent = btn.dataset.shareLabel;
+      btn.classList.remove('copied');
+      showShareFeedback(btn, SHARE_FAIL, false);
+    }
   }
 
   function getFilteredItems() {
@@ -5702,6 +5849,43 @@ initAuth();
     });
   }
 
+  // True when anything narrows the feed away from its default, unfiltered view.
+  // The reset control is only offered in that case.
+  function hasActiveFilters() {
+    return activeFilter !== 'all' ||
+      activeSource !== 'all' ||
+      activeDate !== 'all' ||
+      savedOnly ||
+      hardwareOnly ||
+      !!searchTerm.trim();
+  }
+
+  // One reset for every filter control: sidebar categories, the source and time
+  // selects, the Hardware/Saved toggles and the search box, all back to their
+  // initial state so the feed returns to exactly what it showed on load.
+  function resetFilters() {
+    activeFilter = 'all';
+    activeSource = 'all';
+    activeDate = 'all';
+    hardwareOnly = false;
+    savedOnly = false;
+    searchTerm = '';
+    visibleCount = PAGE_SIZE;
+    clearTimeout(searchTimer);
+
+    filtersEl.querySelectorAll('.filter[data-cat]').forEach((b) => {
+      b.setAttribute('aria-pressed', b.dataset.cat === 'all' ? 'true' : 'false');
+    });
+    hwToggleEl.setAttribute('aria-pressed', 'false');
+    savedToggleEl.setAttribute('aria-pressed', 'false');
+    sourceFilterEl.value = 'all';
+    dateFilterEl.value = 'all';
+    searchEl.value = '';
+    searchHintEl.style.display = document.activeElement === searchEl ? 'none' : '';
+
+    render();
+  }
+
   function render() {
     const items = getFilteredItems();
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
@@ -5716,10 +5900,13 @@ initAuth();
       errorBannerEl.classList.remove('visible');
     }
 
-    // No matching items: show a clear, friendly empty state. The message
-    // doubles as the answer to "did the app work?" there were simply no
-    // results for the current filters. A subtle hint points back to the
-    // controls without inventing a reset button the UI does not offer.
+    // The reset control only exists while something is actually narrowed down,
+    // so the default, unfiltered view stays exactly what it was before.
+    clearFiltersEl.hidden = !hasActiveFilters();
+
+    // No matching items: reuse the page's existing empty state instead of
+    // leaving a blank grid. The message doubles as the answer to "did the app
+    // work?" — there were simply no results for the current filters.
     if (!items.length) {
       feedEl.style.display = 'none';
       skeletonEl.style.display = 'none';
@@ -5758,7 +5945,7 @@ initAuth();
         ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
         ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
         <div class="card-actions">
-          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}">${saved ? '★ Saved' : '☆ Save'}</button>
+          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
           <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
         </div>
         ${saved ? `
@@ -5904,6 +6091,11 @@ initAuth();
   });
   sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
   dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
+  clearFiltersEl.addEventListener('click', () => {
+    resetFilters();
+    // Keep focus somewhere useful: the control the user just used is gone.
+    sourceFilterEl.focus();
+  });
 
   // Debounced search
   searchEl.addEventListener('input', (e) => {
@@ -5912,13 +6104,21 @@ initAuth();
     searchTimer = setTimeout(() => { visibleCount = PAGE_SIZE; render(); }, SEARCH_DEBOUNCE_MS);
   });
 
-  // Keyboard shortcut: "/" to focus search
+  // Keyboard shortcut: "/" to focus search — but never while the user is typing
+  // into a field or an editable surface, where "/" is real content.
   document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement !== searchEl && !e.target.matches('input, textarea, select')) {
-      e.preventDefault();
-      searchEl.focus();
-      searchHintEl.style.display = 'none';
-    }
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (document.activeElement === searchEl) return;
+
+    const target = e.target;
+    const editable = target && (target.isContentEditable ||
+      (target.closest && target.closest('[contenteditable]:not([contenteditable="false"])')));
+    if (editable) return;
+    if (target && target.matches && target.matches('input, textarea, select')) return;
+
+    e.preventDefault();
+    searchEl.focus();
+    searchHintEl.style.display = 'none';
   });
   searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
   searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });

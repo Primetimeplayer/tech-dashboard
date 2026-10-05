@@ -449,6 +449,405 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(restoredCount, initialCount, 'Clearing search input must restore full card count');
   });
 
+  // Puts every filter control back to its on-load state so each filter test
+  // starts from a known, unfiltered baseline.
+  const RESET_FILTERS_SCRIPT = `
+    const applySelect = (id, value) => {
+      const el = document.getElementById(id);
+      if (el.value !== value) {
+        el.value = value;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    };
+    document.querySelector('.filter[data-cat="all"]').click();
+    applySelect('sourceFilter', 'all');
+    applySelect('dateFilter', 'all');
+    if (document.getElementById('hwToggle').getAttribute('aria-pressed') === 'true') document.getElementById('hwToggle').click();
+    if (document.getElementById('savedToggle').getAttribute('aria-pressed') === 'true') document.getElementById('savedToggle').click();
+    const searchBox = document.getElementById('search');
+    if (searchBox.value) {
+      searchBox.value = '';
+      searchBox.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  `;
+
+  const pickSource = `
+    const sel = document.getElementById('sourceFilter');
+    return Array.from(sel.options).map(o => o.value).find(v => v !== 'all');
+  `;
+
+  await t.test('source and time-range filters narrow the feed and Clear filters restores it', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(250);
+
+    const controls = await driver.executeScript(`
+      return {
+        sourceDisplay: getComputedStyle(document.getElementById('sourceFilter')).display,
+        dateDisplay: getComputedStyle(document.getElementById('dateFilter')).display,
+        sourceOptions: document.getElementById('sourceFilter').options.length,
+        dateOptions: Array.from(document.getElementById('dateFilter').options).map(o => o.value),
+        clearHidden: document.getElementById('clearFilters').hidden,
+        baseline: document.querySelectorAll('#feed .card').length
+      };
+    `);
+
+    assert.notEqual(controls.sourceDisplay, 'none', 'Source filter must be visible to the user');
+    assert.notEqual(controls.dateDisplay, 'none', 'Time-range filter must be visible to the user');
+    assert.ok(controls.sourceOptions > 1, `Source filter must be populated, found ${controls.sourceOptions} options`);
+    assert.deepEqual(controls.dateOptions, ['all', 'today', 'week'], 'Time range must offer any time / today / this week');
+    assert.equal(controls.clearHidden, true, 'Clear filters must stay hidden while nothing is filtered');
+    assert.ok(controls.baseline > 0, 'Feed must render cards before filtering');
+
+    const narrowedSource = await driver.executeScript(pickSource);
+    const narrowed = await driver.executeScript(`
+      const source = arguments[0];
+      const sel = document.getElementById('sourceFilter');
+      sel.value = source;
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+      return new Promise(resolve => setTimeout(() => resolve({
+        source,
+        clearHidden: document.getElementById('clearFilters').hidden,
+        count: document.querySelectorAll('#feed .card').length,
+        allMatch: Array.from(document.querySelectorAll('#feed .card .card-meta'))
+          .every(meta => meta.textContent.includes(source))
+      }), 150));
+    `, [narrowedSource]);
+
+    assert.equal(narrowed.clearHidden, false, 'Clear filters must appear once a source filter is active');
+    assert.ok(narrowed.count > 0, 'A source chosen from the data must still have results');
+    assert.ok(narrowed.count <= controls.baseline, 'Source filtering must not add cards');
+    assert.equal(narrowed.allMatch, true, 'Every rendered card must belong to the selected source');
+
+    const timeRange = await driver.executeScript(`
+      const sel = document.getElementById('dateFilter');
+      const read = value => new Promise(resolve => {
+        sel.value = value;
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+        setTimeout(() => resolve({
+          value,
+          cards: document.querySelectorAll('#feed .card').length,
+          empty: !!document.querySelector('#feed .empty')
+        }), 150);
+      });
+      return (async () => [await read('today'), await read('week'), await read('all')])();
+    `);
+
+    assert.ok(timeRange[0].cards <= timeRange[1].cards, 'Today must be a subset of this week');
+    assert.ok(timeRange[1].cards <= timeRange[2].cards, 'This week must be a subset of any time');
+    assert.equal(timeRange[2].empty, false, 'The unfiltered time range must not show the empty state');
+
+    // Narrow again, then reset through the visible control.
+    await driver.executeScript(`
+      const source = arguments[0];
+      const sel = document.getElementById('sourceFilter');
+      sel.value = source;
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+    `, [await driver.executeScript(pickSource)]);
+    await sleep(200);
+
+    const clearEl = await driver.findElement('#clearFilters');
+    await driver.click(clearEl);
+    await sleep(300);
+
+    const restored = await driver.executeScript(`
+      return {
+        clearHidden: document.getElementById('clearFilters').hidden,
+        source: document.getElementById('sourceFilter').value,
+        date: document.getElementById('dateFilter').value,
+        cards: document.querySelectorAll('#feed .card').length,
+        allPressed: document.querySelector('.filter[data-cat="all"]').getAttribute('aria-pressed'),
+        hwPressed: document.getElementById('hwToggle').getAttribute('aria-pressed'),
+        savedPressed: document.getElementById('savedToggle').getAttribute('aria-pressed')
+      };
+    `);
+
+    assert.equal(restored.clearHidden, true, 'Clear filters must hide itself once nothing is filtered');
+    assert.equal(restored.source, 'all', 'Reset must restore the source filter');
+    assert.equal(restored.date, 'all', 'Reset must restore the time-range filter');
+    assert.equal(restored.allPressed, 'true', 'Reset must restore the active category');
+    assert.equal(restored.hwPressed, 'false', 'Reset must clear the Hardware toggle');
+    assert.equal(restored.savedPressed, 'false', 'Reset must clear the Saved toggle');
+    assert.equal(restored.cards, controls.baseline, 'Reset must restore the original card count');
+  });
+
+  await t.test('a filter combination with no matches falls back to the existing empty state', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(250);
+
+    const emptySource = await driver.executeScript(pickSource);
+    const empty = await driver.executeScript(`
+      const sel = document.getElementById('sourceFilter');
+      sel.value = arguments[0];
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+      const searchBox = document.getElementById('search');
+      searchBox.value = 'zzzz-no-headline-can-ever-match-this-zzzz';
+      searchBox.dispatchEvent(new Event('input', { bubbles: true }));
+      return new Promise(resolve => setTimeout(() => {
+        const msg = document.querySelector('#feed .empty');
+        resolve({
+          cards: document.querySelectorAll('#feed .card').length,
+          message: msg ? msg.textContent.trim() : '',
+          messageVisible: msg ? getComputedStyle(msg).display !== 'none' : false,
+          clearHidden: document.getElementById('clearFilters').hidden,
+          count: document.getElementById('resultCount').textContent
+        });
+      }, 400));
+    `, [emptySource]);
+
+    assert.equal(empty.cards, 0, 'No cards may render when nothing matches');
+    assert.match(empty.message, /Nothing matches/i, 'Zero results must reuse the existing empty state');
+    assert.equal(empty.messageVisible, true, 'The empty state must actually be shown');
+    assert.equal(empty.clearHidden, false, 'Clear filters must be offered when a filter yields nothing');
+    assert.match(empty.count, /^0 of /, 'Result count must report zero matches');
+
+    const clearEl = await driver.findElement('#clearFilters');
+    await driver.click(clearEl);
+    await sleep(300);
+
+    const restored = await driver.executeScript(`
+      return {
+        cards: document.querySelectorAll('#feed .card').length,
+        empty: !!document.querySelector('#feed .empty'),
+        search: document.getElementById('search').value,
+        clearHidden: document.getElementById('clearFilters').hidden
+      };
+    `);
+
+    assert.ok(restored.cards > 0, 'Clearing the filters must bring the feed back');
+    assert.equal(restored.empty, false, 'The empty state must go away once results exist');
+    assert.equal(restored.search, '', 'Clear filters must also clear the search box');
+    assert.equal(restored.clearHidden, true, 'Clear filters must hide itself after resetting');
+  });
+
+  await t.test('save toggle exposes its pressed state and confirms the change immediately', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(250);
+
+    const before = await driver.executeScript(`
+      const btn = document.querySelector('#feed .save-btn');
+      if (!btn) return null;
+      const cs = getComputedStyle(btn);
+      return {
+        link: btn.dataset.link,
+        pressed: btn.getAttribute('aria-pressed'),
+        label: btn.textContent.trim(),
+        color: cs.color,
+        background: cs.backgroundColor
+      };
+    `);
+    assert.ok(before, 'Feed must render a save button');
+    assert.equal(before.pressed, 'false', 'An unsaved card must report aria-pressed="false"');
+    assert.match(before.label, /Save/, 'Unsaved card must show the Save label');
+
+    await driver.executeScript(`document.querySelector('#feed .save-btn').click();`);
+    await sleep(120);
+
+    const after = await driver.executeScript(`
+      const link = arguments[0];
+      const btn = Array.from(document.querySelectorAll('#feed .save-btn')).find(b => b.dataset.link === link);
+      if (!btn) return null;
+      const cs = getComputedStyle(btn);
+      return {
+        pressed: btn.getAttribute('aria-pressed'),
+        label: btn.textContent.trim(),
+        active: btn.classList.contains('active'),
+        pulsing: btn.classList.contains('save-pulse'),
+        color: cs.color,
+        background: cs.backgroundColor
+      };
+    `, [before.link]);
+
+    assert.ok(after, 'The card must still render its save button after toggling');
+    assert.equal(after.pressed, 'true', 'Saving must flip aria-pressed to "true"');
+    assert.match(after.label, /Saved/, 'Saving must update the label');
+    assert.equal(after.active, true, 'Saving must apply the active visual state');
+    assert.equal(after.pulsing, true, 'Saving must play the one-shot confirmation animation');
+    assert.notEqual(after.color, before.color, 'Active save state must change the button colour');
+    assert.notEqual(after.background, before.background, 'Active save state must change the button surface');
+
+    // Put the saved item back so later tests start from a clean library.
+    await driver.executeScript(`
+      const link = arguments[0];
+      const btn = Array.from(document.querySelectorAll('#feed .save-btn')).find(b => b.dataset.link === link);
+      if (btn) btn.click();
+    `, [before.link]);
+    await sleep(150);
+
+    const restored = await driver.executeScript(`
+      const link = arguments[0];
+      const btn = Array.from(document.querySelectorAll('#feed .save-btn')).find(b => b.dataset.link === link);
+      return btn ? btn.getAttribute('aria-pressed') : null;
+    `, [before.link]);
+    assert.equal(restored, 'false', 'Un-saving must return aria-pressed to "false"');
+  });
+
+  await t.test('share reports the copy result through a self-clearing status message', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(250);
+
+    const hasShare = await driver.executeScript(`return !!document.querySelector('#feed .share-btn');`);
+    assert.equal(hasShare, true, 'Feed must render a share button');
+
+    await driver.executeScript(`document.querySelector('#feed .share-btn').click();`);
+    await sleep(300);
+
+    const feedback = await driver.executeScript(`
+      const fb = document.querySelector('#feed .share-feedback');
+      if (!fb) return null;
+      const btn = fb.previousElementSibling;
+      return {
+        role: fb.getAttribute('role'),
+        live: fb.getAttribute('aria-live'),
+        atomic: fb.getAttribute('aria-atomic'),
+        message: fb.textContent.trim(),
+        parentIsActions: fb.parentElement.classList.contains('card-actions'),
+        buttonLabel: btn ? btn.textContent.trim() : ''
+      };
+    `);
+
+    assert.ok(feedback, 'Sharing must surface immediate feedback');
+    assert.equal(feedback.role, 'status', 'Share feedback must be announced as a status message');
+    assert.equal(feedback.live, 'polite', 'Share feedback must use a polite live region');
+    assert.equal(feedback.parentIsActions, true, 'Share feedback must sit next to the button that triggered it');
+    assert.match(
+      feedback.message,
+      /^(Link copied\. Share it anywhere\.|Copy failed\. Select the link and copy it manually\.)$/,
+      `Share feedback must state the actual outcome, saw "${feedback.message}"`
+    );
+    assert.notEqual(feedback.buttonLabel, '', 'The share button must keep a readable label');
+
+    await sleep(1400);
+    const cleared = await driver.executeScript(`return document.querySelectorAll('#feed .share-feedback').length;`);
+    assert.equal(cleared, 0, 'Share feedback must clear itself instead of lingering');
+  });
+
+  await t.test('slash shortcut skips editable surfaces but still focuses search', async () => {
+    await driver.setWindowRect(1280, 900);
+
+    const result = await driver.executeScript(`
+      const searchBox = document.getElementById('search');
+      if (document.activeElement === searchBox) searchBox.blur();
+
+      const fire = el => el.dispatchEvent(new KeyboardEvent('keydown', {
+        key: '/', bubbles: true, cancelable: true
+      }));
+
+      const textarea = document.createElement('textarea');
+      textarea.id = 'slashTextareaProbe';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      fire(textarea);
+      const afterTextarea = document.activeElement.id;
+
+      const editable = document.createElement('div');
+      editable.id = 'slashEditableProbe';
+      editable.setAttribute('contenteditable', 'true');
+      document.body.appendChild(editable);
+      editable.focus();
+      fire(editable);
+      const afterEditable = document.activeElement.id;
+
+      const select = document.getElementById('sourceFilter');
+      select.focus();
+      fire(select);
+      const afterSelect = document.activeElement.id;
+
+      if (document.activeElement === searchBox) searchBox.blur();
+      const neutral = document.body;
+      fire(neutral);
+      const afterNeutral = document.activeElement.id;
+
+      textarea.remove();
+      editable.remove();
+      if (document.activeElement === searchBox) searchBox.blur();
+      return { afterTextarea, afterEditable, afterSelect, afterNeutral };
+    `);
+
+    assert.equal(result.afterTextarea, 'slashTextareaProbe', 'A focused textarea must keep focus when / is pressed');
+    assert.equal(result.afterEditable, 'slashEditableProbe', 'A contenteditable region must keep focus when / is pressed');
+    assert.equal(result.afterSelect, 'sourceFilter', 'A focused select must keep focus when / is pressed');
+    assert.equal(result.afterNeutral, 'search', 'A neutral page must still focus the search box on /');
+  });
+
+  await t.test('search and filter controls show a strong focus ring in both themes', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(250);
+
+    const originalTheme = await driver.executeScript(`
+      return document.documentElement.getAttribute('data-theme');
+    `);
+    const themes = [originalTheme, originalTheme === 'light' ? 'dark' : 'light'];
+    const report = [];
+
+    const probeFocus = async () => await driver.executeScript(`
+      const el = document.activeElement;
+      const cs = getComputedStyle(el);
+      return {
+        id: el.id,
+        tag: el.tagName,
+        focusVisible: el.matches(':focus-visible'),
+        width: parseFloat(cs.outlineWidth) || 0,
+        style: cs.outlineStyle,
+        color: cs.outlineColor
+      };
+    `);
+
+    for (const theme of themes) {
+      await driver.executeScript(`document.documentElement.setAttribute('data-theme', arguments[0]);`, [theme]);
+
+      const searchEl = await driver.findElement('#search');
+      await driver.sendKeys(searchEl, '');
+      await sleep(60);
+      const searchFocus = await probeFocus();
+
+      // Walk backwards from search until a filter select has keyboard focus.
+      let selectFocus = null;
+      for (let i = 0; i < 4; i++) {
+        await driver.performActions([{
+          type: 'key',
+          id: 'keyboard',
+          actions: [
+            { type: 'keyDown', value: String.fromCharCode(0xe008) }, // Shift
+            { type: 'keyDown', value: KEY_TAB },
+            { type: 'keyUp', value: KEY_TAB },
+            { type: 'keyUp', value: String.fromCharCode(0xe008) }
+          ]
+        }]);
+        await sleep(60);
+        const focused = await probeFocus();
+        if (focused.tag === 'SELECT') { selectFocus = focused; break; }
+      }
+
+      report.push({ theme, searchFocus, selectFocus });
+    }
+
+    await driver.executeScript(`
+      document.documentElement.setAttribute('data-theme', arguments[0]);
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    `, [originalTheme]);
+
+    for (const entry of report) {
+      const { theme, searchFocus, selectFocus } = entry;
+      assert.equal(searchFocus.focusVisible, true, `Search must be :focus-visible in ${theme} theme`);
+      assert.ok(
+        searchFocus.width >= 2 && searchFocus.style !== 'none',
+        `Search focus ring must be solid and at least 2px in ${theme} theme (got ${searchFocus.width}px ${searchFocus.style})`
+      );
+      assert.ok(selectFocus, `Keyboard focus must reach a filter select in ${theme} theme`);
+      assert.equal(selectFocus.focusVisible, true, `Filter select must be :focus-visible in ${theme} theme`);
+      assert.ok(
+        selectFocus.width >= 2 && selectFocus.style !== 'none',
+        `Filter select focus ring must be solid and at least 2px in ${theme} theme (got ${selectFocus.width}px ${selectFocus.style})`
+      );
+    }
+  });
+
   await t.test('renders Latest row with valid story cards', async () => {
     const latestCardsCount = await driver.executeScript('return document.querySelectorAll("#latestRow .latest-card").length;');
     assert.ok(latestCardsCount > 0, `Expected latest cards in #latestRow, found ${latestCardsCount}`);
