@@ -246,7 +246,11 @@ const KEY_TAB = String.fromCharCode(0xe004);
 const hasGecko = checkBinary('geckodriver');
 const hasFirefox = checkBinary('firefox');
 
-test('browser regression suite (headless Firefox + direct WebDriver)', { timeout: 60000 }, async (t) => {
+// Wall-clock budget for the whole suite (the subtests carry no individual
+// timeouts). It was 60s, which the suite already spent almost entirely before
+// the mobile-viewport regressions were added; 180s keeps headroom for slower
+// machines without skipping or shortening any test.
+test('browser regression suite (headless Firefox + direct WebDriver)', { timeout: 180000 }, async (t) => {
   if (!hasGecko || !hasFirefox) {
     t.skip(`Skipping browser tests: geckodriver (${hasGecko ? 'found' : 'missing'}), firefox (${hasFirefox ? 'found' : 'missing'})`);
     return;
@@ -1163,6 +1167,47 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(resized.nextDisabled, false, 'Resize back to desktop must leave next enabled');
   });
 
+  await t.test('Latest strip is sized for comfortable swiping at narrow widths', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(400);
+
+    const strip = await driver.executeScript(`
+      const row = document.getElementById('latestRow');
+      const cards = Array.from(row.querySelectorAll('.latest-card'));
+      const card = cards[0];
+      const cs = getComputedStyle(row);
+      const rr = row.getBoundingClientRect();
+      const cr = card.getBoundingClientRect();
+      return {
+        cardCount: cards.length,
+        cardWidth: Math.round(cr.width),
+        fullyVisible: cr.left >= rr.left - 1 && cr.right <= rr.right + 1,
+        snap: cs.scrollSnapType,
+        overscroll: cs.overscrollBehaviorX,
+        docOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        scrollable: row.scrollWidth > row.clientWidth
+      };
+    `);
+
+    assert.ok(strip.cardCount > 1, 'Narrow screens must keep every story card in the strip');
+    assert.ok(
+      strip.cardWidth >= 200,
+      `Cards must be readable at 390px (found ${strip.cardWidth}px wide)`
+    );
+    assert.ok(strip.fullyVisible, 'The first card must be fully visible without scrolling');
+    assert.match(strip.snap, /x/, 'Touch scrolling must keep scroll snapping');
+    assert.equal(
+      strip.overscroll,
+      'contain',
+      'Swiping the strip must not chain into page-level horizontal scroll'
+    );
+    assert.equal(strip.docOverflow, false, 'Narrow layout must not cause page-level horizontal overflow');
+    assert.ok(strip.scrollable, 'Strip must remain horizontally scrollable');
+
+    await driver.setWindowRect(1280, 900);
+    await sleep(300);
+  });
+
   await t.test('Latest Stories controls follow the active light/dark theme', async () => {
     await driver.setWindowRect(1280, 900);
     await sleep(200);
@@ -2006,6 +2051,138 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     await sleep(300);
     await driver.setWindowRect(1280, 900);
     await sleep(300);
+  });
+
+  await t.test('mobile drawer stays compact, keeps the feed visible, and swipes closed', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.executeScript(`
+      if (document.body.classList.contains('sidebar-open')) document.getElementById('sidebarClose').click();
+    `);
+    await sleep(200);
+
+    const toggleEl = await driver.findElement('#menuToggle');
+    await driver.click(toggleEl);
+    await sleep(400);
+
+    const compact = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      const fRect = filters.getBoundingClientRect();
+      const viewport = document.documentElement.clientWidth;
+      const color = getComputedStyle(backdrop).backgroundColor;
+      const match = color.match(/rgba?\\(([^)]+)\\)/);
+      const parts = match ? match[1].split(',').map(v => parseFloat(v)) : [];
+      const alpha = parts.length === 4 ? parts[3] : (parts.length === 3 ? 1 : 0);
+      const closeRect = document.getElementById('sidebarClose').getBoundingClientRect();
+      return {
+        viewport,
+        width: Math.round(fRect.width),
+        fraction: fRect.width / viewport,
+        visibleBeside: Math.round(viewport - fRect.right),
+        scrimAlpha: alpha,
+        closeWidth: Math.round(closeRect.width),
+        closeHeight: Math.round(closeRect.height)
+      };
+    `);
+
+    assert.ok(compact.width >= 200, `Drawer must stay usable, found ${compact.width}px`);
+    assert.ok(
+      compact.fraction <= 0.66,
+      `Drawer must not take over the viewport (occupies ${Math.round(compact.fraction * 100)}% of it)`
+    );
+    assert.ok(
+      compact.visibleBeside >= 100,
+      `Feed must stay visible beside the open drawer (${compact.visibleBeside}px uncovered)`
+    );
+    assert.ok(
+      compact.scrimAlpha > 0 && compact.scrimAlpha <= 0.4,
+      `Backdrop must stay light enough to read the page through (alpha ${compact.scrimAlpha})`
+    );
+    assert.ok(
+      compact.closeWidth >= 40 && compact.closeHeight >= 40,
+      `Close control must be a comfortable touch target (${compact.closeWidth}x${compact.closeHeight})`
+    );
+
+    // A mostly-vertical drag is a scroll gesture, not a dismissal.
+    const vertical = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const fire = (type, x, y) => {
+        const ev = new Event(type, { bubbles: true, cancelable: true });
+        ev.touches = [{ clientX: x, clientY: y }];
+        ev.changedTouches = [{ clientX: x, clientY: y }];
+        filters.dispatchEvent(ev);
+      };
+      fire('touchstart', 200, 300);
+      fire('touchend', 206, 430);
+      return document.body.classList.contains('sidebar-open');
+    `);
+    assert.equal(vertical, true, 'A vertical swipe must not dismiss the drawer');
+
+    // A left swipe dismisses it and hands the page back.
+    const swiped = await driver.executeScript(`
+      const filters = document.getElementById('filters');
+      const fire = (type, x, y) => {
+        const ev = new Event(type, { bubbles: true, cancelable: true });
+        ev.touches = [{ clientX: x, clientY: y }];
+        ev.changedTouches = [{ clientX: x, clientY: y }];
+        filters.dispatchEvent(ev);
+      };
+      fire('touchstart', 200, 300);
+      fire('touchend', 120, 312);
+      return new Promise(resolve => setTimeout(() => resolve({
+        open: document.body.classList.contains('sidebar-open'),
+        expanded: document.getElementById('menuToggle').getAttribute('aria-expanded'),
+        mainInert: document.querySelector('main').inert,
+        backdrop: getComputedStyle(document.getElementById('sidebarBackdrop')).display
+      }), 350));
+    `);
+
+    assert.equal(swiped.open, false, 'Swiping the drawer left must dismiss it');
+    assert.equal(swiped.expanded, 'false', 'Menu control must report collapsed after the swipe');
+    assert.equal(swiped.mainInert, false, 'Feed must become interactive again after the swipe');
+    assert.equal(swiped.backdrop, 'none', 'Backdrop must be removed after the swipe');
+  });
+
+  await t.test('search placeholder stays whole and readable on narrow screens', async () => {
+    await driver.setWindowRect(390, 844);
+    await sleep(350);
+
+    const narrow = await driver.executeScript(`
+      const el = document.getElementById('search');
+      if (document.activeElement === el) el.blur();
+      const cs = getComputedStyle(el);
+      const ctx = document.createElement('canvas').getContext('2d');
+      ctx.font = (cs.fontWeight || '400') + ' ' + cs.fontSize + ' ' + (cs.fontFamily || 'sans-serif');
+      const usable = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      return {
+        placeholder: el.placeholder,
+        fontSize: parseFloat(cs.fontSize),
+        measured: Math.ceil(ctx.measureText(el.placeholder).width),
+        usable: Math.round(usable)
+      };
+    `);
+
+    const wideText = 'Search headlines and summaries… (press / to focus)';
+    assert.ok(narrow.placeholder.length > 0, 'Narrow screens must keep a placeholder');
+    assert.notEqual(narrow.placeholder, wideText, 'Narrow screens must not use the wording that overflows');
+    assert.match(narrow.placeholder, /press \//, 'Narrow placeholder must keep the "/" shortcut hint');
+    assert.ok(narrow.fontSize >= 12, `Placeholder must stay readable (font-size ${narrow.fontSize}px)`);
+    assert.ok(
+      narrow.measured <= narrow.usable + 4,
+      `Placeholder must fit without truncation (needs ${narrow.measured}px, has ${narrow.usable}px)`
+    );
+
+    await driver.setWindowRect(1280, 900);
+    await sleep(350);
+    const wide = await driver.executeScript(`
+      return {
+        placeholder: document.getElementById('search').placeholder,
+        fontSize: parseFloat(getComputedStyle(document.getElementById('search')).fontSize)
+      };
+    `);
+    assert.equal(wide.placeholder, wideText, 'Desktop must keep the full placeholder wording');
+    assert.ok(wide.fontSize >= 14, `Desktop search typography must be unchanged (font-size ${wide.fontSize}px)`);
   });
 
   await t.test('renders responsive layouts without horizontal overflow', async () => {

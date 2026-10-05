@@ -4951,6 +4951,63 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   color: var(--hardware) !important;
 }
 </style>
+
+<!-- MOBILE COMFORT — compact drawer, touch-sized dismiss affordances, a
+     swipe-friendly Latest strip and a search placeholder that fits phones.
+     Placed after every other sheet (only focus-visibility follows) so it wins
+     ties against the older mobile rules; every rule is inside a narrow-screen
+     media query, so desktop rendering is untouched. -->
+<style id="mobile-comfort">
+@media (max-width: 800px) {
+  /* The drawer used to claim up to 84vw, leaving little of the feed beside it.
+     Cap it at a quarter-ish of the viewport (66vw on very small phones) so a
+     real slice of the page stays visible while it is open. */
+  #filters {
+    width: min(240px, 66vw) !important;
+    /* The drawer only scrolls vertically; horizontal gestures belong to
+       swipe-to-dismiss (see setSidebarOpen) instead of the browser. */
+    touch-action: pan-y;
+  }
+
+  /* A lighter scrim still marks the drawer as modal but keeps the page behind
+     it readable instead of swallowing it. */
+  .sidebar-backdrop {
+    background: rgba(15, 23, 32, 0.32);
+  }
+
+  /* The explicit close affordance gets a comfortable touch target. */
+  .sidebar-drawer-close {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  /* ~1.5 cards per view: one full, readable card plus a slice of the next as
+     a swipe cue, replacing two cramped 175px cards at phone widths. All cards
+     remain in the strip — nothing is removed to make it fit. */
+  .latest {
+    --latest-per-view: 1.5;
+  }
+
+  /* Swiping to the end of the strip must not rubber-band the page sideways. */
+  .latest-row {
+    overscroll-behavior-x: contain;
+  }
+
+  /* Tighter chrome and slightly smaller type so the placeholder is not cut
+     off mid-sentence (the wording itself is shortened in script below). */
+  .search-row {
+    padding: 0 12px !important;
+  }
+  #search {
+    font-size: 13px !important;
+  }
+  .search-hint {
+    margin-right: 0.4rem;
+  }
+}
+</style>
 <style id="focus-visibility">
 /* Deliberately the last stylesheet in the document: it wins ties against the
    earlier "outline: none" polish rules (`.controls select:focus`,
@@ -6077,6 +6134,25 @@ initAuth();
       if (menuToggleEl) menuToggleEl.focus();
     }
   });
+
+  // Touch: swipe left across the drawer to dismiss it, so the feed behind is
+  // one gesture away — no precise tap on the backdrop or the close icon needed.
+  // Vertical drags keep their default meaning (scrolling the drawer itself).
+  let swipeStart = null;
+  filtersEl.addEventListener('touchstart', (e) => {
+    swipeStart = null;
+    if (!document.body.classList.contains('sidebar-open') || e.touches.length !== 1) return;
+    swipeStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  filtersEl.addEventListener('touchend', (e) => {
+    if (!swipeStart) return;
+    const end = e.changedTouches[0];
+    const dx = end.clientX - swipeStart.x;
+    const dy = end.clientY - swipeStart.y;
+    swipeStart = null;
+    if (dx <= -50 && Math.abs(dy) <= Math.abs(dx)) setSidebarOpen(false);
+  }, { passive: true });
+  filtersEl.addEventListener('touchcancel', () => { swipeStart = null; }, { passive: true });
   hwToggleEl.addEventListener('click', () => {
     hardwareOnly = !hardwareOnly;
     hwToggleEl.setAttribute('aria-pressed', String(hardwareOnly));
@@ -6122,6 +6198,19 @@ initAuth();
   });
   searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
   searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });
+
+  // The desktop placeholder is too long for a phone and gets cut off
+  // mid-word. On narrow screens swap in a shorter wording that keeps the same
+  // guidance (including the "/" hint); the full text returns automatically
+  // as soon as the viewport is wide enough for it.
+  const searchPlaceholderWide = searchEl.placeholder;
+  const searchPlaceholderNarrow = 'Search headlines… (press /)';
+  const narrowSearchMq = window.matchMedia('(max-width: 560px)');
+  function syncSearchPlaceholder() {
+    searchEl.placeholder = narrowSearchMq.matches ? searchPlaceholderNarrow : searchPlaceholderWide;
+  }
+  syncSearchPlaceholder();
+  narrowSearchMq.addEventListener('change', syncSearchPlaceholder);
 
   // Load more button
   loadMoreBtnEl.addEventListener('click', () => {
