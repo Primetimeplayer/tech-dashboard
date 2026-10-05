@@ -852,6 +852,529 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     }
   });
 
+  // Shared browser-side helpers for the accessibility subtests below.
+  // resolveBg() walks up the DOM compositing semi-transparent layers, so the
+  // measured ratio is against the surface the text is actually painted on,
+  // not just the element's own background-color.
+  const COLOR_HELPERS = `
+    function lum(r, g, b) {
+      const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+      return f(r) * 0.2126 + f(g) * 0.7152 + f(b) * 0.0722;
+    }
+    function parseColor(str) {
+      const m = (str || '').match(/rgba?\\(([\\d.]+),\\s*([\\d.]+),\\s*([\\d.]+)(?:,\\s*([\\d.]+))?\\)/);
+      if (!m) return null;
+      return { r: +m[1], g: +m[2], b: +m[3], a: m[4] === undefined ? 1 : +m[4] };
+    }
+    function contrastOf(fg, bg) {
+      if (!fg || !bg) return null;
+      const a = lum(fg.r, fg.g, fg.b), b = lum(bg.r, bg.g, bg.b);
+      return Math.round(((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)) * 100) / 100;
+    }
+    function resolveBg(el, d) {
+      d = d || 0;
+      if (!el || d > 30) return { r: 255, g: 255, b: 255, a: 1 };
+      const bg = parseColor(getComputedStyle(el).backgroundColor);
+      if (!bg) return resolveBg(el.parentElement, d + 1);
+      if (bg.a >= 0.999) return bg;
+      if (bg.a <= 0.001) return resolveBg(el.parentElement, d + 1);
+      const p = resolveBg(el.parentElement, d + 1);
+      return {
+        r: Math.round(bg.r * bg.a + p.r * (1 - bg.a)),
+        g: Math.round(bg.g * bg.a + p.g * (1 - bg.a)),
+        b: Math.round(bg.b * bg.a + p.b * (1 - bg.a)),
+        a: 1
+      };
+    }
+    function probeText(sel) {
+      const el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      const bg = resolveBg(el);
+      return { fg: cs.color, bg: 'rgb(' + bg.r + ', ' + bg.g + ', ' + bg.b + ')', ratio: contrastOf(parseColor(cs.color), bg) };
+    }
+    function probeBorder(sel) {
+      const el = document.querySelector(sel);
+      if (!el) return null;
+      const cs = getComputedStyle(el);
+      const fg = parseColor(cs.borderTopColor);
+      const own = resolveBg(el);
+      const outside = resolveBg(el.parentElement);
+      return {
+        border: cs.borderTopColor,
+        own: contrastOf(fg, own),
+        outside: contrastOf(fg, outside),
+        width: parseFloat(cs.borderTopWidth) || 0
+      };
+    }
+  `;
+
+  // A programmatic focus() only lands :focus-visible when the last real input
+  // was a keypress, so the focus subtest nudges the keyboard first.
+  const KEYBOARD_NUDGE = [
+    { type: 'key', id: 'keyboard', actions: [
+      { type: 'keyDown', value: String.fromCharCode(0xe008) },
+      { type: 'keyUp', value: String.fromCharCode(0xe008) }
+    ] }
+  ];
+
+  await t.test('main feed renders visibly instead of the loading skeleton', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    const readState = await driver.executeScript(`
+      const feed = document.getElementById('feed');
+      const skel = document.getElementById('skeleton');
+      const card = document.querySelector('#feed .card');
+      const fr = feed.getBoundingClientRect();
+      const cr = card ? card.getBoundingClientRect() : { width: 0, height: 0 };
+      return {
+        cards: document.querySelectorAll('#feed .card').length,
+        feedDisplay: getComputedStyle(feed).display,
+        feedHeight: Math.round(fr.height),
+        skeletonDisplay: getComputedStyle(skel).display,
+        cardW: Math.round(cr.width),
+        cardH: Math.round(cr.height)
+      };
+    `);
+
+    assert.ok(readState.cards > 0, 'Feed must render cards once the data has loaded');
+    assert.notEqual(readState.feedDisplay, 'none', 'The feed must be visible after load, not left on display:none');
+    assert.ok(readState.feedHeight > 0, `The feed must occupy page height (got ${readState.feedHeight}px)`);
+    assert.equal(readState.skeletonDisplay, 'none', 'The loading skeleton must be hidden once cards are rendered');
+    assert.ok(readState.cardW > 0 && readState.cardH > 0, 'Cards must have a real box so they can be seen and focused');
+
+    await driver.executeScript(`document.querySelector('.filter[data-cat="papers"]').click();`);
+    await sleep(300);
+
+    const afterFilter = await driver.executeScript(`
+      const feed = document.getElementById('feed');
+      const skel = document.getElementById('skeleton');
+      return {
+        cards: document.querySelectorAll('#feed .card').length,
+        feedDisplay: getComputedStyle(feed).display,
+        skeletonDisplay: getComputedStyle(skel).display
+      };
+    `);
+
+    assert.ok(afterFilter.cards > 0, 'Filtering to a category must still render cards');
+    assert.notEqual(afterFilter.feedDisplay, 'none', 'Re-rendering must not leave the feed hidden');
+    assert.equal(afterFilter.skeletonDisplay, 'none', 'Re-rendering must not bring the skeleton back');
+
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(200);
+  });
+
+  await t.test('themed text meets WCAG AA contrast in light and dark modes', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    const originalTheme = await driver.executeScript("return document.documentElement.getAttribute('data-theme');");
+
+    const probe = async (theme) => {
+      await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [theme]);
+      await sleep(200);
+      return await driver.executeScript(COLOR_HELPERS + `
+        // Reddit has no items in the sample data, so inject a hidden probe
+        // card: a category accent nobody can currently see must still be
+        // compliant before Reddit data returns.
+        const injected = document.createElement('article');
+        injected.className = 'card reddit';
+        injected.style.display = 'none';
+        injected.innerHTML = '<div class="card-meta"><span class="cat-label">Probe</span></div>';
+        document.body.appendChild(injected);
+        const redditLabel = probeText('.card.reddit .cat-label');
+        injected.remove();
+
+        return {
+          theme: document.documentElement.getAttribute('data-theme'),
+          cardMeta: probeText('#feed .card-meta'),
+          metaSeparator: probeText('#feed .card-meta > span:nth-child(2)'),
+          metaTime: probeText('#feed .card-meta > span:last-child'),
+          metaThird: probeText('#feed .card-meta > span:nth-child(3)'),
+          catNews: probeText('#feed .card.news .cat-label'),
+          catPapers: probeText('#feed .card.papers .cat-label'),
+          catReviews: probeText('#feed .card.reviews .cat-label'),
+          catReddit: redditLabel,
+          resultCount: probeText('#resultCount'),
+          status: probeText('#status'),
+          tagline: probeText('.tagline'),
+          latestLabelCount: probeText('.latest-label > span'),
+          footer: probeText('footer'),
+          footerLink: probeText('footer a'),
+          clearFilters: probeText('#clearFilters'),
+          searchHint: probeText('.search-hint'),
+          cardTitle: probeText('#feed .card h2 a'),
+          cardSummary: probeText('#feed .card p'),
+          saveBtn: probeText('#feed .save-btn'),
+          shareBtn: probeText('#feed .share-btn'),
+          sidebarItem: probeText('.sidebar-item'),
+          sidebarHeading: probeText('.sidebar-heading'),
+          chip: probeText('#feed .chip'),
+          hwBadge: probeText('#feed .hw-badge'),
+          latestCat: probeText('.latest-card .cat'),
+          latestTitle: probeText('.latest-card h3')
+        };
+      `);
+    };
+
+    for (const theme of ['light', 'dark']) {
+      const report = await probe(theme);
+      assert.equal(report.theme, theme);
+      for (const [name, entry] of Object.entries(report)) {
+        if (name === 'theme' || !entry) continue;
+        assert.notEqual(entry.ratio, null, `${name} (${theme}): could not compute a ratio for ${entry.fg}`);
+        assert.ok(
+          entry.ratio >= 4.5,
+          `${name} (${theme}): contrast ${entry.ratio}:1 — ${entry.fg} on ${entry.bg} must meet AA 4.5:1`
+        );
+      }
+    }
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [originalTheme]);
+    await sleep(150);
+  });
+
+  await t.test('control boundaries keep 3:1 non-text contrast in both themes', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    const originalTheme = await driver.executeScript("return document.documentElement.getAttribute('data-theme');");
+
+    const probe = async (theme) => {
+      await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [theme]);
+      await sleep(200);
+      return await driver.executeScript(COLOR_HELPERS + `
+        return {
+          theme: document.documentElement.getAttribute('data-theme'),
+          sourceFilter: probeBorder('#sourceFilter'),
+          dateFilter: probeBorder('#dateFilter'),
+          searchRow: probeBorder('.row2 .search-row'),
+          clearFilters: probeBorder('#clearFilters'),
+          loadMore: probeBorder('#loadMoreBtn'),
+          themeToggle: probeBorder('#themeToggle'),
+          menuToggle: probeBorder('#menuToggle')
+        };
+      `);
+    };
+
+    for (const theme of ['light', 'dark']) {
+      const report = await probe(theme);
+      assert.equal(report.theme, theme);
+      for (const [name, entry] of Object.entries(report)) {
+        if (name === 'theme' || !entry) continue;
+        assert.ok(entry.width >= 1, `${name} (${theme}): needs a visible border (got ${entry.width}px ${entry.border})`);
+        const weakest = Math.min(entry.own, entry.outside);
+        assert.ok(
+          weakest >= 3,
+          `${name} (${theme}): border ${entry.border} is only ${weakest}:1 against its own surface (${entry.own}:1) or the page around it (${entry.outside}:1); control boundaries need 3:1`
+        );
+      }
+    }
+
+    await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [originalTheme]);
+    await sleep(150);
+  });
+
+  await t.test('every interactive control shows a keyboard focus ring in both themes', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    const originalTheme = await driver.executeScript("return document.documentElement.getAttribute('data-theme');");
+
+    // The controls the page actually shows: toolbar, sidebar, masthead,
+    // article cards, carousel arrows, and the "clear filters" pill (which only
+    // exists while something is filtered).
+    const DESKTOP_CONTROLS = [
+      '#search',
+      '.controls select',
+      '.row2 select',
+      '#clearFilters',
+      '.theme-toggle',
+      '#loadMoreBtn',
+      '.filter',
+      '.sidebar-item',
+      '.mast-right a',
+      '.latest-nav-btn:not([disabled])',
+      '#feed .card h2 a',
+      '#feed .save-btn',
+      '#feed .share-btn'
+    ];
+
+    const probeControls = async (selectors) => {
+      await driver.performActions(KEYBOARD_NUDGE);
+      await sleep(80);
+      return await driver.executeScript(`
+        const selectors = arguments[0];
+        const out = [];
+        for (const sel of selectors) {
+          const el = document.querySelector(sel);
+          if (!el) { out.push({ sel, present: false }); continue; }
+          const wasHidden = el.hidden === true;
+          if (wasHidden) el.hidden = false;
+          const restoreDisplay = getComputedStyle(el).display;
+          if (restoreDisplay === 'none') { el.style.display = 'inline-block'; }
+          el.focus();
+          const cs = getComputedStyle(el);
+          out.push({
+            sel,
+            present: true,
+            active: document.activeElement === el,
+            focusVisible: el.matches(':focus-visible'),
+            width: parseFloat(cs.outlineWidth) || 0,
+            style: cs.outlineStyle
+          });
+          el.blur();
+          if (wasHidden) el.hidden = true;
+          if (el.style.display) el.style.removeProperty('display');
+        }
+        return out;
+      `, [selectors]);
+    };
+
+    const assertRings = (results, theme, label) => {
+      assert.ok(results.length > 0, `${label}: nothing probed`);
+      for (const result of results) {
+        if (!result.present) continue;
+        assert.ok(result.active, `${label} (${theme}): ${result.sel} must receive keyboard focus`);
+        assert.equal(result.focusVisible, true, `${label} (${theme}): ${result.sel} must match :focus-visible`);
+        assert.ok(
+          result.style !== 'none' && result.width >= 2,
+          `${label} (${theme}): ${result.sel} focus ring must be solid and at least 2px (got ${result.width}px ${result.style})`
+        );
+      }
+    };
+
+    for (const theme of ['light', 'dark']) {
+      await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [theme]);
+      await sleep(200);
+      const results = await probeControls(DESKTOP_CONTROLS);
+      assertRings(results, theme, 'desktop controls');
+    }
+
+    // Mobile-only controls: the menu toggle, and the drawer close button that
+    // only exists once the navigation drawer is open.
+    await driver.setWindowRect(390, 844);
+    await sleep(300);
+    await driver.performActions(KEYBOARD_NUDGE);
+
+    const menuRing = await probeControls(['#menuToggle']);
+    assertRings(menuRing, 'dark', 'mobile menu toggle');
+
+    const menuToggleEl = await driver.findElement('#menuToggle');
+    assert.ok(menuToggleEl, '#menuToggle must exist on mobile');
+    await driver.click(menuToggleEl);
+    await sleep(350);
+
+    // The drawer was opened with a pointer click, so the browser is in "mouse"
+    // modality and a scripted focus() would not match :focus-visible. Walk the
+    // real Tab order instead — that is how a keyboard user reaches this button
+    // and it is the state the ring has to hold up in.
+    let closeRing = null;
+    for (let i = 0; i < 12 && !closeRing; i++) {
+      await driver.performActions([
+        { type: 'key', id: 'keyboard', actions: [
+          { type: 'keyDown', value: KEY_TAB },
+          { type: 'keyUp', value: KEY_TAB }
+        ] }
+      ]);
+      await sleep(60);
+      const reached = await driver.executeScript(`
+        const el = document.activeElement;
+        if (!el || el.id !== 'sidebarClose') return null;
+        const cs = getComputedStyle(el);
+        return {
+          sel: '#sidebarClose',
+          present: true,
+          active: true,
+          focusVisible: el.matches(':focus-visible'),
+          width: parseFloat(cs.outlineWidth) || 0,
+          style: cs.outlineStyle
+        };
+      `);
+      if (reached) closeRing = reached;
+    }
+    assert.ok(closeRing, 'Keyboard focus must reach the drawer close button');
+    assertRings([closeRing], 'dark', 'drawer close button');
+
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript("document.documentElement.setAttribute('data-theme', arguments[0]);", [originalTheme]);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(200);
+  });
+
+  await t.test('theme toggle exposes its state through its accessible name', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    // Earlier subtests set data-theme directly (which skips the toggle's own
+    // click handler), so the icon and its label can be a step behind the
+    // attribute. Two real clicks put both back in step and land on the same
+    // theme this test started in.
+    for (let i = 0; i < 2; i++) {
+      const syncEl = await driver.findElement('#themeToggle');
+      assert.ok(syncEl, '#themeToggle must exist');
+      await driver.click(syncEl);
+      await sleep(300);
+    }
+
+    const readToggle = await driver.executeScript(`
+      const btn = document.getElementById('themeToggle');
+      const theme = document.documentElement.getAttribute('data-theme');
+      const other = theme === 'light' ? 'dark' : 'light';
+      return {
+        theme,
+        label: (btn.getAttribute('aria-label') || '').trim(),
+        title: (btn.getAttribute('title') || '').trim(),
+        iconHidden: !!btn.querySelector('svg[aria-hidden="true"]'),
+        expected: 'Switch to ' + other + ' theme',
+        hasPressed: btn.hasAttribute('aria-pressed')
+      };
+    `);
+
+    assert.equal(readToggle.label, readToggle.expected, `Theme toggle in ${readToggle.theme} must name the theme it switches to`);
+    assert.equal(readToggle.title, readToggle.expected, 'Theme toggle tooltip must match its accessible name');
+    assert.equal(readToggle.iconHidden, true, 'The theme icon must be hidden from assistive technology');
+    assert.match(readToggle.label, /^(Switch to (light|dark) theme|Toggle light and dark theme)$/,
+      `Theme toggle must expose a readable state name (got "${readToggle.label}")`);
+
+    const toggleEl = await driver.findElement('#themeToggle');
+    assert.ok(toggleEl, '#themeToggle must exist');
+    await driver.click(toggleEl);
+    await sleep(350);
+
+    const afterClick = await driver.executeScript(`
+      const btn = document.getElementById('themeToggle');
+      const theme = document.documentElement.getAttribute('data-theme');
+      const other = theme === 'light' ? 'dark' : 'light';
+      return { theme, label: (btn.getAttribute('aria-label') || '').trim(), expected: 'Switch to ' + other + ' theme' };
+    `);
+
+    assert.notEqual(afterClick.theme, readToggle.theme, 'Clicking the toggle must switch the theme');
+    assert.equal(afterClick.label, afterClick.expected, `After switching to ${afterClick.theme} the label must name the theme it switches to`);
+
+    const toggleAgain = await driver.findElement('#themeToggle');
+    await driver.click(toggleAgain);
+    await sleep(350);
+
+    const restored = await driver.executeScript(`
+      const btn = document.getElementById('themeToggle');
+      return { theme: document.documentElement.getAttribute('data-theme'), label: (btn.getAttribute('aria-label') || '').trim() };
+    `);
+    assert.equal(restored.theme, readToggle.theme, 'Theme must be restored after the accessibility check');
+    assert.equal(restored.label, readToggle.label, 'Accessible name must return to its original value');
+  });
+
+  await t.test('heading structure has one h1 and no skipped levels', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    const report = await driver.executeScript(`
+      const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+      const visible = headings.filter(h => {
+        const cs = getComputedStyle(h);
+        return cs.display !== 'none' && cs.visibility !== 'hidden';
+      });
+      const outline = visible.map(h => ({ level: Number(h.tagName.slice(1)), text: (h.textContent || '').trim().slice(0, 60) }));
+      const noscriptH1 = document.querySelectorAll('noscript h1').length;
+      return { outline, noscriptH1, firstIsH1: outline.length > 0 && outline[0].level === 1 };
+    `);
+
+    assert.ok(report.outline.length > 0, 'Page must expose headings');
+    assert.ok(report.firstIsH1, `The first heading on the page must be the h1 wordmark (got level ${report.outline[0] && report.outline[0].level})`);
+    assert.equal(report.noscriptH1, 0,
+      'A second h1 inside <noscript> would still be parsed when scripting is off; the live document must have exactly one h1');
+
+    const h1s = report.outline.filter(h => h.level === 1);
+    assert.equal(h1s.length, 1, `Exactly one visible h1 is expected (found ${h1s.length}: ${h1s.map(h => h.text).join(' | ')})`);
+
+    for (let i = 1; i < report.outline.length; i++) {
+      const jump = report.outline[i].level - report.outline[i - 1].level;
+      assert.ok(
+        jump <= 1,
+        `Heading level jumps from h${report.outline[i - 1].level} ("${report.outline[i - 1].text}") to h${report.outline[i].level} ("${report.outline[i].text}")`
+      );
+    }
+
+    const sectionNames = report.outline.filter(h => h.level === 2).map(h => h.text);
+    assert.ok(sectionNames.some(t => /latest stories/i.test(t)), 'The Latest Stories section must carry an h2');
+    assert.ok(sectionNames.some(t => /top stories/i.test(t)), 'The main feed section must carry an h2');
+  });
+
+  await t.test('page stays responsive with every item rendered (no virtualization needed)', async () => {
+    await driver.setWindowRect(1280, 900);
+    await driver.executeScript(RESET_FILTERS_SCRIPT);
+    await sleep(300);
+
+    // Measured before deciding anything: with the sample data the whole feed
+    // is only 76 items, so the page renders every card directly. These bounds
+    // are deliberately loose — they exist to catch a real regression (an
+    // accidental full re-render per keystroke, a runaway DOM), not to encode
+    // the exact numbers measured today.
+    const perf = await driver.executeScript(`
+      return new Promise((resolve) => {
+        const feed = document.getElementById('feed');
+        const cardsAtStart = feed.querySelectorAll('.card').length;
+
+        const t0 = performance.now();
+        window.scrollTo(0, 0);
+        const scrollMs = performance.now() - t0;
+
+        const docHeight = document.documentElement.scrollHeight;
+        const nodes = document.getElementsByTagName('*').length;
+
+        // Expand the entire feed so the full-height page is what gets measured.
+        const expand = document.getElementById('loadMoreBtn');
+        if (expand) {
+          while (!expand.hidden && expand.offsetParent !== null) {
+            expand.click();
+            if (expand.hidden || expand.offsetParent === null) break;
+          }
+        }
+        const allCards = feed.querySelectorAll('.card').length;
+        const fullHeight = document.documentElement.scrollHeight;
+        const fullNodes = document.getElementsByTagName('*').length;
+
+        const t1 = performance.now();
+        window.scrollTo(0, fullHeight);
+        const scrollFullMs = performance.now() - t1;
+        window.scrollTo(0, 0);
+
+        // Restore the paginated state for the subtests that follow.
+        const allBtn = document.querySelector('.filter[data-cat="all"]');
+        if (allBtn) allBtn.click();
+
+        resolve({
+          cardsAtStart,
+          allCards,
+          docHeight,
+          fullHeight,
+          nodes,
+          fullNodes,
+          scrollMs: Math.round(scrollMs * 100) / 100,
+          scrollFullMs: Math.round(scrollFullMs * 100) / 100
+        });
+      });
+    `);
+
+    assert.ok(perf.allCards >= perf.cardsAtStart, 'Expanding the feed must not lose cards');
+    assert.ok(perf.fullHeight >= perf.docHeight, 'The fully expanded page cannot be shorter than the paginated one');
+    assert.ok(perf.fullNodes >= perf.nodes, 'Expanding the feed adds DOM nodes');
+
+    // Deliberately generous ceiling: 76 cards at roughly 300px each is well
+    // under this. It only trips if the page grows an order of magnitude or a
+    // scroll handler starts doing per-frame layout work.
+    assert.ok(perf.fullHeight < 60000, `Fully expanded page height ${perf.fullHeight}px is far beyond the expected range; re-check whether rendering needs work`);
+    assert.ok(perf.fullNodes < 6000, `Fully expanded DOM node count ${perf.fullNodes} is far beyond the expected range`);
+    assert.ok(perf.scrollFullMs < 500, `Scrolling the full page took ${perf.scrollFullMs}ms; scroll handling may be doing per-frame layout work`);
+  });
+
   await t.test('renders Latest row with valid story cards', async () => {
     const latestCardsCount = await driver.executeScript('return document.querySelectorAll("#latestRow .latest-card").length;');
     assert.ok(latestCardsCount > 0, `Expected latest cards in #latestRow, found ${latestCardsCount}`);

@@ -101,7 +101,9 @@
     --panel-raised: #FCFDFE;
     --line: #D3D9DF;
     --text: #17212B;
-    --text-muted: #66727D;
+    /* Was #66727D: only 4.35:1 on the --bg surface (footer, clear-filters,
+       search hint). #5F6B77 clears AA 4.5:1 on every light surface. */
+    --text-muted: #5F6B77;
     --input-bg: #FFFFFF;
     --news: #B9741E;
     --papers: #2A6FA3;
@@ -5008,12 +5010,103 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   }
 }
 </style>
+<style id="a11y-contrast">
+/* =========================================================
+   ACCESSIBILITY — COLOUR CONTRAST (WCAG 2.1 AA)
+   =========================================================
+   The Google-News-era rules earlier in this file hardcode light-theme
+   greys (#80868b, #dadce0, #5f6368, #303A43) and light-only category
+   accents (#1a73e8, #188038 …) that fail AA against the surface they
+   actually paint on — as low as 1.24:1 for .tagline in dark mode.
+   This block sits late in <head> (only #focus-visibility comes after)
+   so it wins ties. Every value below was checked against its real
+   background: 4.5:1 minimum for text, 3:1 for control boundaries. */
+
+/* ---------- Light theme: muted & meta text (was 1.37–4.37:1) ---------- */
+/* Card meta used #80868b (3.68:1) and its separator span #dadce0 (1.37:1)
+   on the white card surface. */
+:root:not([data-theme="dark"]) .card-meta { color: #5F6B77 !important; }
+:root:not([data-theme="dark"]) .card-meta > span:nth-child(2) { color: #5F6B77 !important; }
+:root:not([data-theme="dark"]) .card-meta > span:last-child { color: #5F6B77 !important; }
+/* The hardcoded reddit accent #ea4335 is 3.5:1 on white. */
+:root:not([data-theme="dark"]) .card.reddit .cat-label { color: #C5221F !important; }
+
+/* ---------- Dark theme: text still carrying its light-theme literal ---------- */
+/* .status is pinned to #5f6368 !important by the mobile block (2.37:1);
+   .result-count hardcodes it too (2.15:1). */
+:root[data-theme="dark"] .status,
+:root[data-theme="dark"] .result-count { color: #BDC1C6 !important; }
+/* .tagline and .latest-label carry a stray hardcoded #303A43 (1.24:1). */
+:root[data-theme="dark"] .tagline,
+:root[data-theme="dark"] .latest-label { color: #BDC1C6 !important; }
+/* Meta spans: #80868b gives 2.84:1, and the source span's #3c4043 is the
+   exact colour of the dark card (invisible). */
+:root[data-theme="dark"] .card-meta > span:nth-child(3),
+:root[data-theme="dark"] .card-meta > span:last-child { color: #BDC1C6 !important; }
+/* Category accents tuned for white cards fail on the #3c4043 dark card
+   (reviews #188038 measured 2.08:1). */
+:root[data-theme="dark"] .card.news .cat-label { color: #E8A33D !important; }
+:root[data-theme="dark"] .card.papers .cat-label { color: #8FBBE8 !important; }
+:root[data-theme="dark"] .card.reviews .cat-label { color: #D9A48C !important; }
+:root[data-theme="dark"] .card.reddit .cat-label { color: #8FB878 !important; }
+
+/* ---------- Control boundaries: 3:1 non-text contrast (WCAG 1.4.11) ----------
+   Input-like controls used --line (#d3d9df light / #3c4043 dark), below
+   3:1 against the surfaces they sit on. Pills whose visible text already
+   identifies them (.filter, .chip, .latest-nav-btn, drawer close) keep the
+   theme token — existing tests assert those reuse --line. */
+:root:not([data-theme="dark"]) .controls select,
+:root:not([data-theme="dark"]) .row2 select,
+:root:not([data-theme="dark"]) .row2 .search-row,
+:root:not([data-theme="dark"]) .clear-filters,
+:root:not([data-theme="dark"]) .load-more,
+:root:not([data-theme="dark"]) .theme-toggle,
+:root:not([data-theme="dark"]) .menu-toggle,
+:root:not([data-theme="dark"]) .note-box textarea {
+  border-color: #75828F !important;
+}
+:root[data-theme="dark"] .controls select,
+:root[data-theme="dark"] .row2 select,
+:root[data-theme="dark"] .row2 .search-row,
+:root[data-theme="dark"] .clear-filters,
+:root[data-theme="dark"] .load-more,
+:root[data-theme="dark"] .theme-toggle,
+:root[data-theme="dark"] .menu-toggle,
+:root[data-theme="dark"] .note-box textarea {
+  border-color: #80858A !important;
+}
+
+/* Keep the hover accents these controls used to flash; their bg/shadow
+   hover cues are untouched, but these three relied on border-colour. */
+:root:not([data-theme="dark"]) .theme-toggle:hover,
+:root:not([data-theme="dark"]) .load-more:hover,
+:root[data-theme="dark"] .theme-toggle:hover,
+:root[data-theme="dark"] .load-more:hover { border-color: var(--news) !important; }
+:root:not([data-theme="dark"]) .clear-filters:hover,
+:root[data-theme="dark"] .clear-filters:hover { border-color: var(--reddit) !important; }
+</style>
 <style id="focus-visibility">
 /* Deliberately the last stylesheet in the document: it wins ties against the
    earlier "outline: none" polish rules (`.controls select:focus`,
    `.row2 .search-row input`, `#search`) that would otherwise hide the keyboard
    focus ring. !important is required because those rules use it too, and the
    ring colour is the themed token so it reads in both light and dark mode. */
+
+/* Universal fallback: every interactive control gets a solid 2px themed
+   ring, so no scattered "outline: none !important" polish rule can silently
+   kill keyboard focus. Tuned rules below and .sidebar-item's inset -2px ring
+   still win by specificity; this only fills the gaps (card links, save/share
+   buttons, nav arrows, menu controls, textarea, [tabindex] targets). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 2px !important;
+}
+
 #search:focus-visible,
 .controls select:focus-visible,
 .row2 select:focus-visible,
@@ -5053,7 +5146,7 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
         <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a> <a href="app-react.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">⚛ React</a>
         <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
-          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
       </div>
     </div>
@@ -5203,7 +5296,7 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
       </select>
       <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
       <div class="search-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <label for="search" class="visually-hidden">Search headlines and summaries</label>
         <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
         <span class="search-hint" id="searchHint">/</span>
@@ -5318,9 +5411,16 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   }
   function setThemeIcon(theme) {
     const container = document.getElementById('themeToggle');
+    // Expose the toggle's state through its accessible name: the label
+    // always describes the theme you would switch TO, so the current theme
+    // is inferable by assistive technology (the icon alone conveys nothing).
+    const targetTheme = theme === 'light' ? 'dark' : 'light';
+    const actionLabel = `Switch to ${targetTheme} theme`;
+    container.setAttribute('aria-label', actionLabel);
+    container.setAttribute('title', actionLabel);
     container.innerHTML = theme === 'light'
-      ? '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-      : '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      ? '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   }
   function initTheme() {
     let saved = null;
@@ -5973,12 +6073,13 @@ initAuth();
       return;
     }
 
-    // The feed is only rendered from already-loaded data. While a data
-    // refetch is in flight (refresh()), the skeleton placeholder is shown
-    // so the feed screen never appears to snap open instantly. This block
-    // just ensures the feed stays hidden while the page redraws itself.
-    skeletonEl.style.display = 'grid';
-    feedEl.style.display = 'none';
+    // The feed is rendered from already-loaded data in one synchronous pass,
+    // so the skeleton is only needed while a refetch is in flight (refresh()
+    // turns it on at the start of every fetch). Flip both back here: the
+    // skeleton off, the grid on — otherwise the placeholders stay on screen
+    // and the freshly rendered cards never appear.
+    skeletonEl.style.display = 'none';
+    feedEl.style.display = 'grid';
     loadMoreWrapEl.style.display = 'none';
 
     const visible = items.slice(0, visibleCount);
@@ -6008,7 +6109,7 @@ initAuth();
         ${saved ? `
         <div class="note-box">
           <p class="note-label">Your note</p>
-          <textarea class="note-input" data-link="${escapeAttr(item.link)}" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+          <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
         </div>` : ''}
       </article>
     `;
@@ -6056,7 +6157,10 @@ initAuth();
   }
 
   async function refresh() {
-    const previous = skeletonEl.style.display;
+    // While the fetch is in flight the skeleton stands in for the feed.
+    // render() flips both back when the data lands, and the finally block
+    // guarantees the placeholders never outlive a refresh (restoring the
+    // previous value used to put the skeleton back on the very first load).
     skeletonEl.style.display = 'grid';
     feedEl.style.display = 'none';
     loadMoreWrapEl.style.display = 'none';
@@ -6080,7 +6184,7 @@ initAuth();
       statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;
       renderAll();
     } finally {
-      skeletonEl.style.display = previous;
+      skeletonEl.style.display = 'none';
     }
   }
 
