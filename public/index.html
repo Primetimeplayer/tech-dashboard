@@ -2893,7 +2893,10 @@ body.dark .filters {
 }
 
 html[data-theme="dark"] .controls select,
-body.dark .controls select {
+body.dark .controls select,
+/* Same dark surface for the hidden filter-state selects (end of <body>). */
+html[data-theme="dark"] #sourceFilter,
+html[data-theme="dark"] #dateFilter {
   background: var(--input-bg) !important;
   color: var(--text) !important;
   border-color: var(--line) !important;
@@ -5055,6 +5058,108 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   }
 }
 </style>
+
+<style id="header-search-uniform-feed">
+/* =========================================================
+   HEADER SEARCH + UNIFORM PAGE SURFACE
+   The search bar moved out of .row2 and now sits in the masthead directly
+   beside the Signal wordmark. Placed after #mobile-comfort so it wins ties
+   against the older toolbar rules; #a11y-contrast and #focus-visibility
+   still follow it and keep owning contrast/focus colours.
+   ========================================================= */
+
+.mast-row {
+  justify-content: flex-start !important;
+  gap: 14px !important;
+}
+
+/* Keep the right-hand controls pinned to the far edge while the search
+   hugs the wordmark. The auto margin only absorbs what the search leaves
+   over, so the control group stays right-aligned at every width. */
+.mast-right {
+  margin-left: auto !important;
+}
+
+.mast .search-row {
+  flex: 0 1 auto;
+  width: clamp(240px, 32vw, 460px);
+  min-width: 140px;
+  height: 40px;
+  min-height: 40px;
+  margin: 0;
+  align-self: center;
+}
+
+/* The old toolbar rules hardcoded a light-grey pill for the search; the
+   field no longer sits inside .row2, so dark mode needs its own surface. */
+:root[data-theme="dark"] .mast .search-row {
+  background: var(--input-bg) !important;
+}
+
+:root[data-theme="dark"] .mast .search-row:hover {
+  background: var(--panel) !important;
+}
+
+@media (max-width: 1100px) {
+  .mast .search-row { width: clamp(220px, 30vw, 360px); }
+}
+
+@media (max-width: 800px) {
+  .mast-row { gap: 10px !important; }
+  /* Tablet/phone: let the field grow into the free space (capped, so it
+     never becomes a full-width bar beside the icon buttons). */
+  .mast .search-row { flex: 1 1 auto; width: auto; min-width: 160px; max-width: 420px; }
+}
+
+@media (max-width: 560px) {
+  .mast-row { gap: 8px !important; }
+  /* On a phone the field takes whatever room is left beside the wordmark
+     and the two icon buttons, so it never pushes the header sideways. */
+  .mast .search-row { flex: 1 1 auto; width: auto; min-width: 96px; max-width: none; }
+}
+
+/* ---------- One uniform page background ---------- */
+
+/* The feed used to sit on its own translucent panel — background, border,
+   radius and a 24px inset — so the page had two surfaces. Drop the panel:
+   the page reads as one background and the cards align with the Latest
+   strip and the result count above them. */
+.grid {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-top: 8px !important;
+}
+
+/* ---------- Feed pulled up under the masthead ---------- */
+
+/* With the source/time/search controls gone, .row2 stays empty until a
+   filter is actually reset — it must not leave a band of dead space
+   between the header and the first row of content. */
+.row2 {
+  margin-top: 0 !important;
+}
+
+.result-count {
+  margin-top: 8px !important;
+}
+
+/* Mobile: .wrap already insets the page by 16px, so these extra inner
+   paddings only pushed the count, the reset pill, the section heading and
+   the Latest strip off the feed's content edge. */
+@media (max-width: 800px) {
+  .controls,
+  .result-count,
+  .latest-wrap,
+  .section-heading {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+</style>
+
 <style id="a11y-contrast">
 /* =========================================================
    ACCESSIBILITY — COLOUR CONTRAST (WCAG 2.1 AA)
@@ -5102,7 +5207,10 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
    theme token — existing tests assert those reuse --line. */
 :root:not([data-theme="dark"]) .controls select,
 :root:not([data-theme="dark"]) .row2 select,
-:root:not([data-theme="dark"]) .row2 .search-row,
+/* The hidden filter-state selects get the same compliant boundary colour. */
+:root:not([data-theme="dark"]) #sourceFilter,
+:root:not([data-theme="dark"]) #dateFilter,
+:root:not([data-theme="dark"]) .mast .search-row,
 :root:not([data-theme="dark"]) .clear-filters,
 :root:not([data-theme="dark"]) .load-more,
 :root:not([data-theme="dark"]) .theme-toggle,
@@ -5112,7 +5220,9 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 }
 :root[data-theme="dark"] .controls select,
 :root[data-theme="dark"] .row2 select,
-:root[data-theme="dark"] .row2 .search-row,
+:root[data-theme="dark"] #sourceFilter,
+:root[data-theme="dark"] #dateFilter,
+:root[data-theme="dark"] .mast .search-row,
 :root[data-theme="dark"] .clear-filters,
 :root[data-theme="dark"] .load-more,
 :root[data-theme="dark"] .theme-toggle,
@@ -5133,7 +5243,7 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 <style id="focus-visibility">
 /* Deliberately the last stylesheet in the document: it wins ties against the
    earlier "outline: none" polish rules (`.controls select:focus`,
-   `.row2 .search-row input`, `#search`) that would otherwise hide the keyboard
+   `.mast .search-row input`, `#search`) that would otherwise hide the keyboard
    focus ring. !important is required because those rules use it too, and the
    ring colour is the themed token so it reads in both light and dark mode. */
 
@@ -5155,7 +5265,7 @@ textarea:focus-visible,
 #search:focus-visible,
 .controls select:focus-visible,
 .row2 select:focus-visible,
-.row2 .search-row input:focus-visible,
+.mast .search-row input:focus-visible,
 .clear-filters:focus-visible {
   outline: 2px solid var(--focus) !important;
   outline-offset: 2px !important;
@@ -5165,7 +5275,7 @@ textarea:focus-visible,
    the light-theme blue focus border is lost there. Re-point it at the token
    instead of touching the light-theme treatment. */
 :root[data-theme="dark"] .controls select:focus,
-:root[data-theme="dark"] .row2 .search-row:focus-within {
+:root[data-theme="dark"] .mast .search-row:focus-within {
   border-color: var(--focus) !important;
 }
 </style>
@@ -5184,6 +5294,12 @@ textarea:focus-visible,
   <div class="wrap">
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
+      <div class="search-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="search" class="visually-hidden">Search headlines and summaries</label>
+        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <span class="search-hint" id="searchHint">/</span>
+      </div>
       <div class="mast-right">
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -5331,21 +5447,7 @@ textarea:focus-visible,
 
 </div>
     <div class="row2">
-      <label for="sourceFilter" class="visually-hidden">Filter by source</label>
-      <select id="sourceFilter"><option value="all">All sources</option></select>
-      <label for="dateFilter" class="visually-hidden">Filter by date</label>
-      <select id="dateFilter">
-        <option value="all">Any time</option>
-        <option value="today">Today</option>
-        <option value="week">This week</option>
-      </select>
       <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
-      <div class="search-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
-        <span class="search-hint" id="searchHint">/</span>
-      </div>
     </div>
   </div>
   <p class="result-count" id="resultCount"></p>
@@ -5394,6 +5496,24 @@ textarea:focus-visible,
   <footer>
     Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes live only in this browser (<code>localStorage</code>) — they won't follow you to another device. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
   </footer>
+</div>
+
+<!-- Hidden filter state holders. The "All sources" / "Any time" selects are no
+     longer rendered as toolbar controls (the header search replaced that
+     row), but the feed's filtering logic and its regression suite still read
+     and drive them, so the elements stay in the DOM. They are clipped out of
+     sight and removed from sequential focus navigation (tabindex="-1"), so
+     they never appear on screen and no Tab press can land on them, while the
+     feed can still focus them programmatically when it needs to. -->
+<div class="visually-hidden">
+  <label for="sourceFilter">Filter by source</label>
+  <select id="sourceFilter" tabindex="-1"><option value="all">All sources</option></select>
+  <label for="dateFilter">Filter by date</label>
+  <select id="dateFilter" tabindex="-1">
+    <option value="all">Any time</option>
+    <option value="today">Today</option>
+    <option value="week">This week</option>
+  </select>
 </div>
 
 <script>
@@ -5866,6 +5986,11 @@ initAuth();
   }
 
   function populateSources() {
+    // The source/time selects are hidden state holders at the end of <body>
+    // (no longer toolbar controls), but the filter logic still reads them,
+    // so they stay populated.
+    if (!sourceFilterEl) return;
+
     // Group sources by category for easier scanning
     const byCategory = { news: [], papers: [], reviews: [], reddit: [] };
     const sources = [...new Set(allItems.map((i) => i.source).filter(Boolean))].sort();
@@ -6080,8 +6205,8 @@ initAuth();
     });
     hwToggleEl.setAttribute('aria-pressed', 'false');
     savedToggleEl.setAttribute('aria-pressed', 'false');
-    sourceFilterEl.value = 'all';
-    dateFilterEl.value = 'all';
+    if (sourceFilterEl) sourceFilterEl.value = 'all';
+    if (dateFilterEl) dateFilterEl.value = 'all';
     searchEl.value = '';
     searchHintEl.style.display = document.activeElement === searchEl ? 'none' : '';
 
@@ -6249,7 +6374,9 @@ initAuth();
   const menuToggleEl = document.getElementById('menuToggle');
   const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
   const sidebarCloseEl = document.getElementById('sidebarClose');
-  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, main, footer'));
+  // The search bar now lives in the masthead, so it is listed alongside the
+  // toolbar row: everything the drawer covers must stop taking input.
+  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, .mast .search-row, main, footer'));
   let sidebarInertSnapshot = null;
 
   function setSidebarOpen(open) {
@@ -6314,12 +6441,14 @@ initAuth();
     visibleCount = PAGE_SIZE;
     render();
   });
-  sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
-  dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
+  if (sourceFilterEl) sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
+  if (dateFilterEl) dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
   clearFiltersEl.addEventListener('click', () => {
     resetFilters();
-    // Keep focus somewhere useful: the control the user just used is gone.
-    sourceFilterEl.focus();
+    // Keep focus somewhere useful: the source/time selects are hidden state
+    // holders now, so park focus on the search field instead of an
+    // invisible control.
+    searchEl.focus();
   });
 
   // Debounced search

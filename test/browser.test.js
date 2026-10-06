@@ -810,23 +810,23 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       await sleep(60);
       const searchFocus = await probeFocus();
 
-      // Walk backwards from search until a filter select has keyboard focus.
-      let selectFocus = null;
-      for (let i = 0; i < 4; i++) {
-        await driver.performActions([{
-          type: 'key',
-          id: 'keyboard',
-          actions: [
-            { type: 'keyDown', value: String.fromCharCode(0xe008) }, // Shift
-            { type: 'keyDown', value: KEY_TAB },
-            { type: 'keyUp', value: KEY_TAB },
-            { type: 'keyUp', value: String.fromCharCode(0xe008) }
-          ]
-        }]);
-        await sleep(60);
-        const focused = await probeFocus();
-        if (focused.tag === 'SELECT') { selectFocus = focused; break; }
-      }
+      // The hidden filter selects are deliberately out of the tab order
+      // (tabindex="-1"), so keyboard traversal no longer lands on them. Nudge
+      // the keyboard first — a scripted focus() only matches :focus-visible
+      // when the last real input was a keypress — then focus the select
+      // directly and read its ring.
+      await driver.performActions([{
+        type: 'key',
+        id: 'keyboard',
+        actions: [
+          { type: 'keyDown', value: String.fromCharCode(0xe008) }, // Shift
+          { type: 'keyUp', value: String.fromCharCode(0xe008) }
+        ]
+      }]);
+      await sleep(60);
+      await driver.executeScript('document.getElementById("sourceFilter").focus();');
+      await sleep(60);
+      const selectFocus = await probeFocus();
 
       report.push({ theme, searchFocus, selectFocus });
     }
@@ -843,7 +843,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         searchFocus.width >= 2 && searchFocus.style !== 'none',
         `Search focus ring must be solid and at least 2px in ${theme} theme (got ${searchFocus.width}px ${searchFocus.style})`
       );
-      assert.ok(selectFocus, `Keyboard focus must reach a filter select in ${theme} theme`);
+      assert.ok(selectFocus, `A filter select must be present to measure its focus ring in ${theme} theme`);
       assert.equal(selectFocus.focusVisible, true, `Filter select must be :focus-visible in ${theme} theme`);
       assert.ok(
         selectFocus.width >= 2 && selectFocus.style !== 'none',
@@ -1506,13 +1506,18 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     await sleep(200);
 
     // Reach the controls with real Tab presses so :focus-visible applies.
+    // The search bar now sits in the masthead beside Signal, so traversal
+    // crosses the header controls and the sidebar first: 13 Tabs to reach
+    // the next control (latestPrev is disabled at the scroll start, so it is
+    // skipped). The keys go through key actions — element sendKeys re-focuses
+    // #search on every call, which would restart traversal each time.
     const searchEl = await driver.findElement('#search');
     assert.ok(searchEl, '#search must exist to start keyboard traversal');
     await driver.sendKeys(searchEl, '');
 
     let focusedId = null;
-    for (let i = 0; i < 12 && focusedId !== 'latestNext'; i++) {
-      await driver.sendKeys(searchEl, '\uE004'); // Tab
+    for (let i = 0; i < 13 && focusedId !== 'latestNext'; i++) {
+      await driver.pressKey(KEY_TAB);
       focusedId = await driver.executeScript('return document.activeElement ? document.activeElement.id : null;');
     }
     assert.equal(focusedId, 'latestNext', 'Tab must reach the Latest Stories next control');
