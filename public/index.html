@@ -4982,6 +4982,51 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
     width: 40px;
     height: 40px;
   }
+
+  /* --- News feed: one card column that fills the screen ---
+     A feed card is a two-column grid on wide screens — the story on the
+     left, a 180px action rail on the right. Below 800px the cards are
+     narrow (the feed is a single column there), so that rail was subtracted
+     from an already small card and left the headline and summary a ~36px
+     text column, breaking them to roughly one word per line. Collapse the
+     card to one column; the action buttons already sit under the story
+     below 900px, so only the track definition needs overriding. */
+  main .grid .card {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+
+  /* The lead card spans two grid tracks on desktop. In the single-column
+     mobile feed that span conjures a second, near-empty implicit column and
+     squeezes the cards beside it down to a few pixels wide. */
+  main .grid .card:first-child {
+    grid-column: span 1;
+  }
+
+  /* The same minmax(340px, 1fr) floor made the loading skeleton wider than
+     a phone screen, which scrolled the whole page sideways while data was
+     still arriving. */
+  main .skeleton-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  main .skeleton-grid .skeleton-card:first-child {
+    grid-column: span 1;
+    min-height: 220px;
+  }
+
+  /* Give the cards back the room the gutters were taking: .wrap already
+     insets the page 16px, so main's own 16px inset only narrowed the feed,
+     and the feed frame's 24px inset left a fifth of a 390px screen empty. */
+  main {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  main .grid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 @media (max-width: 700px) {
