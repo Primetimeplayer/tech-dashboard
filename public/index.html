@@ -4228,8 +4228,9 @@ body > .mast + .wrap {
 }
 
 #search:focus {
-  border-color: var(--news) !important;
-  box-shadow: 0 0 0 3px rgba(232,163,61,.10) !important;
+  /* Focus ring is on the container (.mast .searchrow:focus-within), not the input. */
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 /* ---------- RESULTS COUNT ---------- */
@@ -5081,13 +5082,27 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 }
 
 .mast .search-row {
-  flex: 0 1 auto;
-  width: clamp(240px, 32vw, 460px);
-  min-width: 140px;
-  height: 40px;
-  min-height: 40px;
+  /* Desktop: the field takes every pixel the masthead has left over, so it
+     runs up to (and nearly touches) the Digests button instead of stopping
+     short with a dead gap. */
+  flex: 1 1 auto;
+  width: auto;
+  max-width: none;
+  min-width: 240px;/* Exactly the Digests/React pill height so the header reads as one row of
+   same-height controls. */
+  height: 34px;
+  min-height: 34px;
   margin: 0;
   align-self: center;
+}
+
+/* The field is only 34px tall now, so the input's original 0.72rem vertical
+   padding would make it overflow the pill. Keep the horizontal padding and
+   let the line box centre itself. */
+.mast .search-row #search {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 0 !important;
 }
 
 /* The old toolbar rules hardcoded a light-grey pill for the search; the
@@ -5098,10 +5113,6 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 
 :root[data-theme="dark"] .mast .search-row:hover {
   background: var(--panel) !important;
-}
-
-@media (max-width: 1100px) {
-  .mast .search-row { width: clamp(220px, 30vw, 360px); }
 }
 
 @media (max-width: 800px) {
@@ -5156,6 +5167,23 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
   .section-heading {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+/* ---------- Phone feed: edge-to-edge posts ---------- */
+
+/* On phones the story feed scrolls like a social timeline — each post uses
+   the full width of the screen instead of sitting between gutters. Only the
+   feed column widens: the page frame keeps its 16px gutter and the header,
+   Latest strip, drawer and every card style stay exactly as they are. */
+@media (max-width: 560px) {
+  main {
+    width: auto !important;
+    /* Older mobile rules cap main at 100% of the gutter-inset column, which
+       would leave the widened feed short on the right edge. */
+    max-width: none !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
   }
 }
 </style>
@@ -5262,10 +5290,22 @@ textarea:focus-visible,
   outline-offset: 2px !important;
 }
 
-#search:focus-visible,
+/* The search no longer draws a square outline around its bare <input>:
+   the ring belongs to the whole rounded field, so a click or a Tab lights
+   up the entire pill. The inner input keeps no outline of its own, which
+   has to beat the universal input:focus-visible fallback above (hence the
+   ID and !important). */
+#search:focus-visible {
+  outline: none !important;
+}
+
+.mast .search-row:focus-within {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 2px !important;
+}
+
 .controls select:focus-visible,
 .row2 select:focus-visible,
-.mast .search-row input:focus-visible,
 .clear-filters:focus-visible {
   outline: 2px solid var(--focus) !important;
   outline-offset: 2px !important;

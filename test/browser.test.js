@@ -808,7 +808,25 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       const searchEl = await driver.findElement('#search');
       await driver.sendKeys(searchEl, '');
       await sleep(60);
-      const searchFocus = await probeFocus();
+      // The search paints its ring on the whole rounded field, not on the
+      // bare <input> inside it, so measure the container while confirming
+      // the input itself draws no outline.
+      const searchFocus = await driver.executeScript(`
+        const input = document.getElementById('search');
+        const box = input.closest('.search-row');
+        const boxStyle = getComputedStyle(box);
+        const inputStyle = getComputedStyle(input);
+        return {
+          id: box.className,
+          tag: box.tagName,
+          focusVisible: input.matches(':focus-visible'),
+          width: parseFloat(boxStyle.outlineWidth) || 0,
+          style: boxStyle.outlineStyle,
+          color: boxStyle.outlineColor,
+          inputWidth: parseFloat(inputStyle.outlineWidth) || 0,
+          inputStyle: inputStyle.outlineStyle
+        };
+      `);
 
       // The hidden filter selects are deliberately out of the tab order
       // (tabindex="-1"), so keyboard traversal no longer lands on them. Nudge
@@ -841,7 +859,11 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       assert.equal(searchFocus.focusVisible, true, `Search must be :focus-visible in ${theme} theme`);
       assert.ok(
         searchFocus.width >= 2 && searchFocus.style !== 'none',
-        `Search focus ring must be solid and at least 2px in ${theme} theme (got ${searchFocus.width}px ${searchFocus.style})`
+        `The rounded search field must show a solid focus ring of at least 2px in ${theme} theme (got ${searchFocus.width}px ${searchFocus.style})`
+      );
+      assert.ok(
+        searchFocus.inputStyle === 'none' || searchFocus.inputWidth === 0,
+        `The inner search input must not draw its own square outline in ${theme} theme (got ${searchFocus.inputWidth}px ${searchFocus.inputStyle})`
       );
       assert.ok(selectFocus, `A filter select must be present to measure its focus ring in ${theme} theme`);
       assert.equal(selectFocus.focusVisible, true, `Filter select must be :focus-visible in ${theme} theme`);
@@ -1118,8 +1140,12 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
           if (wasHidden) el.hidden = false;
           const restoreDisplay = getComputedStyle(el).display;
           if (restoreDisplay === 'none') { el.style.display = 'inline-block'; }
+          // The search field paints its ring on the rounded container rather
+          // than the bare input, so read the ring from the container while
+          // still focusing the input that receives keyboard focus.
+          const ringEl = el.id === 'search' ? el.closest('.search-row') : el;
           el.focus();
-          const cs = getComputedStyle(el);
+          const cs = getComputedStyle(ringEl);
           out.push({
             sel,
             present: true,
