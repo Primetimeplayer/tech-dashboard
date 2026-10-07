@@ -2018,28 +2018,31 @@ select {
 }
 /* FINAL CONTENT LAYOUT */
 
-.controls {
-  margin-left: 220px !important;
-  max-width: 1050px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  box-sizing: border-box !important;
-}
+/* Desktop: horizontal nav replaces left sidebar; content expands to full width */
+@media (min-width: 801px) {
+  .controls {
+    margin-left: 0 !important;
+    max-width: 1050px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
 
-.result-count {
-  margin-left: 220px !important;
-  max-width: 1050px !important;
-  padding-left: 24px !important;
-  box-sizing: border-box !important;
-}
+  .result-count {
+    margin-left: 0 !important;
+    max-width: 1050px !important;
+    padding-left: 24px !important;
+    box-sizing: border-box !important;
+  }
 
-main {
-  margin-left: 220px !important;
- max-width: none !important;
- width: calc(100% - 220px) !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  box-sizing: border-box !important;
+  main {
+    margin-left: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
 }
 /* FINAL SIDEBAR */
 
@@ -3128,12 +3131,12 @@ body.dark .card.is-hardware {
 #filters {
   position: fixed !important;
   left: 0 !important;
-  top: 64px !important;
+  top: 0 !important;
   right: auto !important;
   bottom: 0 !important;
-  width: 220px !important;
-  height: auto !important;
-  padding: 18px 10px !important;
+  width: 264px !important;
+  height: 100vh !important;
+  padding: 14px 10px 18px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
@@ -3142,7 +3145,16 @@ body.dark .card.is-hardware {
   border-right: 1px solid var(--line) !important;
   box-sizing: border-box !important;
   overflow-y: auto !important;
-  z-index: 1000 !important;
+  z-index: 1200 !important;
+  transform: translateX(-100%) !important;
+  visibility: hidden !important;
+  transition: transform 200ms ease, visibility 0s linear 200ms !important;
+}
+
+body.sidebar-open #filters {
+  transform: none !important;
+  visibility: visible !important;
+  transition: transform 200ms ease, visibility 0s !important;
 }
 
 #filters .sidebar-home,
@@ -3213,14 +3225,6 @@ body.dark .card.is-hardware {
   background-color: var(--focus);
 }
 
-/* Cancel the earlier individual fixed positioning */
-#hwToggle,
-#savedToggle,
-#syncSettingsBtn {
-  position: static !important;
-  right: auto !important;
-  top: auto !important;
-}
 #hwToggle,
 #savedToggle,
 #syncSettingsBtn {
@@ -3298,8 +3302,241 @@ body.dark .card.is-hardware {
   pointer-events: none;
 }
 
+/* =========================================================
+   HORIZONTAL NAVIGATION BAR (Desktop)
+   Replaces the left sidebar with a clean, compact horizontal nav
+   directly under the header — Google News-inspired, not literal.
+   ========================================================= */
 
+@media (min-width: 801px) {
+  /* Horizontal nav container sits between header and content */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: sticky;
+    top: 64px;
+    z-index: 100;
+  }
 
+  .top-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .top-nav-section {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .top-nav-section+.top-nav-section {
+    margin-left: 24px;
+  }
+
+  .top-nav-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--line);
+    flex-shrink: 0;
+    margin: 0 12px;
+  }
+
+  .top-nav-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 0 12px 0 0;
+    margin-right: 4px;
+  }
+
+  .top-nav-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    height: 36px;
+    min-width: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 150ms ease, color 150ms ease;
+    white-space: nowrap;
+  }
+
+  .top-nav-item:hover {
+    background: var(--skeleton);
+    color: var(--text);
+  }
+
+  .top-nav-item.active {
+    background: var(--skeleton);
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .top-nav-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: var(--focus);
+    border-radius: 2px;
+  }
+
+  .top-nav-item[data-cat]:not([data-cat="all"]) {
+    color: var(--text-muted);
+  }
+
+  .top-nav-item[data-cat="news"] { color: var(--news); }
+  .top-nav-item[data-cat="papers"] { color: var(--papers); }
+  .top-nav-item[data-cat="reviews"] { color: var(--reviews); }
+  .top-nav-item[data-cat="reddit"] { color: var(--reddit); }
+
+  .top-nav-item .nav-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Hide drawer-only elements on desktop */
+  .sidebar-drawer-head {
+    display: none !important;
+  }
+
+  .sidebar-backdrop {
+    display: none !important;
+  }
+
+  #menuToggle {
+    display: none !important;
+  }
+
+  /* Recent items styling for horizontal nav */
+  #recentArticles {
+    display: flex;
+    gap: 4px;
+  }
+
+  #recentArticles .recent-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    height: 28px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 150ms ease, color 150ms ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+
+  #recentArticles .recent-item:hover {
+    background: var(--skeleton);
+    color: var(--text);
+  }
+
+  .recent-empty {
+    display: none;
+  }
+}
+
+/* Mobile: keep existing drawer behavior */
+@media (max-width: 800px) {
+  body.sidebar-open {
+    overflow: hidden !important;
+  }
+
+  .menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .sidebar-backdrop {
+    display: block !important;
+  }
+
+  #filters {
+    display: flex !important;
+    top: 0 !important;
+    width: 264px !important;
+    max-width: 84vw !important;
+    padding: 14px 10px 18px !important;
+    z-index: 1200 !important;
+
+    transform: translateX(-100%) !important;
+    visibility: hidden !important;
+    box-shadow: none !important;
+
+    transition: transform 200ms ease, visibility 0s linear 200ms !important;
+  }
+
+  body.sidebar-open #filters {
+    transform: none !important;
+    visibility: visible !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 32, 0.22) !important;
+    transition: transform 200ms ease, visibility 0s !important;
+  }
+
+  .sidebar-drawer-head {
+    display: flex !important;
+  }
+
+  #filters .sidebar-item {
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #filters {
+    transition: none !important;
+  }
+}
+
+/* Hide #filters entirely on desktop (mobile drawer only) */
+@media (min-width: 801px) {
+  #filters {
+    display: none !important;
+  }
+}
+
+/* Remove the 220px left margin on desktop since we have horizontal nav now */
+@media (min-width: 801px) {
+  .controls,
+  .result-count,
+  .latest-wrap,
+  .section-heading {
+    margin-left: 0 !important;
+    padding-left: 24px !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding-left: 24px !important;
+    width: 100% !important;
+  }
+}
 
 /* MODERN NEWS CARD UI */
 .card {
@@ -5368,128 +5605,128 @@ textarea:focus-visible,
     </button>
   </div>
 
-  <div class="sidebar-home">
-    <button class="filter sidebar-item" data-cat="all" aria-pressed="true">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-       <path d="M4 10.5 12 4l8 6.5"/>
-       <path d="M6.5 9.5V20h11V9.5"/>
-       <path d="M9.5 20v-5h5v5"/>
-      </svg>
-      <span>Home</span>
-    </button>
-
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-heading">TOPICS</div>
-
-    <button class="filter sidebar-item" data-cat="news" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-      <path d="M5 6h14v12H5z"/>
-<path d="M8 9h8"/>
-<path d="M8 12h5"/>
-<path d="M8 15h7"/>
-      </svg>
-      <span>Technology</span>
-    </button>
-
-    <button class="filter sidebar-item" data-cat="papers" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-      <path d="M7 4h10v16H7z"/>
-<path d="M10 8h4"/>
-<path d="M10 12h4"/>
-<path d="M10 16h3"/>
-      </svg>
-      <span>AI &amp; Research</span>
-    </button>
-
-    <button class="filter sidebar-item" data-cat="reviews" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="m12 4 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 4z"/>
-      </svg>
-      <span>Reviews</span>
-    </button>
-
-    <button class="filter sidebar-item" data-cat="reddit" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M5 8h14v9H5z"/>
-        <path d="M8 12h.01"/>
-        <path d="M16 12h.01"/>
-        <path d="M9 15c1.7 1 4.3 1 6 0"/>
-        <path d="M12 8V5"/>
-        <circle cx="12" cy="4" r="1"/>
-      </svg>
-      <span>Community</span>
-    </button>
-  </div>
-
-  <div class="sidebar-section">
-    <div class="sidebar-heading">LIBRARY</div>
-
-    <button class="filter sidebar-item toggle-hw" id="hwToggle" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M7 4h10v16H7z"/>
-        <path d="M9 7h6"/>
-        <path d="M9 11h6"/>
-        <path d="M9 15h6"/>
-      </svg>
-      <span>Hardware</span>
-    </button>
-
-    <button class="filter sidebar-item toggle-saved" id="savedToggle" aria-pressed="false">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M6 4h12v17l-6-3.5L6 21z"/>
-      </svg>
-      <span>Saved</span>
-    </button>
-
-    <a class="filter sidebar-item" id="digestsNav" href="digests.html"
-       style="text-decoration: none;">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
-        <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
-        <path d="M10 6v10"/>
-      </svg>
-      <span>Digests</span>
-    </a>
-
-  </div>
-
-  <div class="sidebar-section sidebar-account">
-    <div class="sidebar-heading">ACCOUNT</div>
-
-    <button class="filter sidebar-item" id="syncSettingsBtn"
-            title="Optional: sync saved items across devices"
-            aria-label="Log in to sync saved stories">
-      <svg class="sidebar-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M12 3v3"/>
-        <path d="M12 18v3"/>
-        <path d="m4.2 6 2.1 2.1"/>
-        <path d="m17.7 15.9 2.1 2.1"/>
-        <path d="M3 12h3"/>
-        <path d="M18 12h3"/>
-        <path d="m4.2 18 2.1-2.1"/>
-        <path d="m17.7 8.1 2.1-2.1"/>
-        <circle cx="12" cy="12" r="4"/>
-      </svg>
-      <span>Log in</span>
-    </button>
-  </div>
-
-  <div class="sidebar-section sidebar-recents" id="recentSection">
-    <div class="sidebar-heading">RECENTS</div>
-    <div id="recentArticles"></div>
-    <div class="recent-empty">
-      <p class="recent-empty-label">No recent items yet</p>
-      <p class="recent-empty-note">Previously opened articles are listed here so you can jump back to them. Bookmark any story to keep it within reach, and your saved items show under the <strong>★ Saved</strong> filter.</p>
-    </div>
-  </div>
-
 </div>
     <div class="row2">
       <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
     </div>
   </div>
+
+  <!-- Desktop horizontal navigation bar -->
+  <nav class="top-nav" id="topNav" aria-label="Main navigation">
+    <div class="top-nav-section">
+      <span class="top-nav-label">HOME</span>
+      <button class="top-nav-item active" data-cat="all" aria-pressed="true">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+         <path d="M4 10.5 12 4l8 6.5"/>
+         <path d="M6.5 9.5V20h11V9.5"/>
+         <path d="M9.5 20v-5h5v5"/>
+        </svg>
+        Home
+      </button>
+    </div>
+
+    <div class="top-nav-divider"></div>
+
+    <div class="top-nav-section">
+      <span class="top-nav-label">TOPICS</span>
+      <button class="top-nav-item" data-cat="news" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M5 6h14v12H5z"/>
+<path d="M8 9h8"/>
+<path d="M8 12h5"/>
+<path d="M8 15h7"/>
+        </svg>
+        Technology
+      </button>
+      <button class="top-nav-item" data-cat="papers" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M7 4h10v16H7z"/>
+<path d="M10 8h4"/>
+<path d="M10 12h4"/>
+<path d="M10 16h3"/>
+        </svg>
+        AI &amp; Research
+      </button>
+      <button class="top-nav-item" data-cat="reviews" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="m12 4 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 4z"/>
+        </svg>
+        Reviews
+      </button>
+      <button class="top-nav-item" data-cat="reddit" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M5 8h14v9H5z"/>
+          <path d="M8 12h.01"/>
+          <path d="M16 12h.01"/>
+          <path d="M9 15c1.7 1 4.3 1 6 0"/>
+          <path d="M12 8V5"/>
+          <circle cx="12" cy="4" r="1"/>
+        </svg>
+        Community
+      </button>
+    </div>
+
+    <div class="top-nav-divider"></div>
+
+    <div class="top-nav-section">
+      <span class="top-nav-label">LIBRARY</span>
+      <button class="top-nav-item toggle-hw" id="hwToggle" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M7 4h10v16H7z"/>
+          <path d="M9 7h6"/>
+          <path d="M9 11h6"/>
+          <path d="M9 15h6"/>
+        </svg>
+        Hardware
+      </button>
+      <button class="top-nav-item toggle-saved" id="savedToggle" aria-pressed="false">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M6 4h12v17l-6-3.5L6 21z"/>
+        </svg>
+        Saved
+      </button>
+      <a class="top-nav-item" id="digestsNav" href="digests.html">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
+          <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
+          <path d="M10 6v10"/>
+        </svg>
+        Digests
+      </a>
+    </div>
+
+    <div class="top-nav-divider"></div>
+
+    <div class="top-nav-section">
+      <span class="top-nav-label">ACCOUNT</span>
+      <button class="top-nav-item" id="syncSettingsBtn"
+              title="Optional: sync saved items across devices"
+              aria-label="Log in to sync saved stories">
+        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M12 3v3"/>
+          <path d="M12 18v3"/>
+          <path d="m4.2 6 2.1 2.1"/>
+          <path d="m17.7 15.9 2.1 2.1"/>
+          <path d="M3 12h3"/>
+          <path d="M18 12h3"/>
+          <path d="m4.2 18 2.1-2.1"/>
+          <path d="m17.7 8.1 2.1-2.1"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+        Log in
+      </button>
+    </div>
+
+    <div class="top-nav-divider"></div>
+
+    <div class="top-nav-section">
+      <span class="top-nav-label">RECENTS</span>
+      <div id="recentArticles"></div>
+      <div class="recent-empty">
+        <p class="recent-empty-label">No recent items yet</p>
+      </div>
+    </div>
+  </nav>
   <p class="result-count" id="resultCount"></p>
 
 <div class="wrap latest-wrap">
@@ -6399,16 +6636,21 @@ initAuth();
   }
 
   // --- Event listeners ---
-  filtersEl.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter[data-cat]');
+  // Listen for filter clicks on both the mobile drawer (#filters) and the
+  // desktop horizontal nav (.top-nav).
+  function handleFilterClick(e) {
+    const btn = e.target.closest('.filter[data-cat], .top-nav-item[data-cat]');
     if (!btn) return;
-    filtersEl.querySelectorAll('.filter[data-cat]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    const container = btn.classList.contains('filter') ? filtersEl : document.getElementById('topNav');
+    container.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
     btn.setAttribute('aria-pressed', 'true');
     activeFilter = btn.dataset.cat;
     visibleCount = PAGE_SIZE;
     render();
     if (document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
-  });
+  }
+  filtersEl.addEventListener('click', handleFilterClick);
+  document.getElementById('topNav').addEventListener('click', handleFilterClick);
 
   // --- Sidebar drawer (mobile navigation) ---
   const menuToggleEl = document.getElementById('menuToggle');
