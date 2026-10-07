@@ -1477,8 +1477,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(layout.overflowX, 'auto', 'Latest Stories must keep a native horizontal scroll container');
     assert.match(layout.snap, /x/, 'Latest Stories must keep horizontal scroll snapping');
     assert.ok(
-      layout.fullyVisible >= 4 && layout.fullyVisible <= 5,
-      `Expected 4-5 fully visible cards on desktop, measured ${layout.fullyVisible}`
+      layout.fullyVisible >= 6 && layout.fullyVisible <= 6,
+      `Expected 6 fully visible cards on desktop, measured ${layout.fullyVisible}`
     );
     assert.equal(layout.partiallyVisible, 0, 'Desktop must not show partially clipped cards at the scroll start');
     assert.ok(layout.scrollWidth > layout.clientWidth, 'Latest Stories must remain horizontally scrollable');
@@ -2125,8 +2125,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     );
     assert.equal(titles.clippedNow, 0, 'Current Latest titles must not be clipped at all');
     assert.ok(
-      titles.fullyVisible >= 4 && titles.fullyVisible <= 5,
-      `Desktop must still show 4-5 complete cards, measured ${titles.fullyVisible}`
+      titles.fullyVisible >= 6 && titles.fullyVisible <= 6,
+      `Desktop must still show 6 complete cards, measured ${titles.fullyVisible}`
     );
     assert.ok(titles.sectionHeight <= 260, `Latest Stories must stay compact, measured ${titles.sectionHeight}px`);
     assert.equal(titles.rowOverflow, 'auto', 'Latest Stories must keep native horizontal scrolling');
