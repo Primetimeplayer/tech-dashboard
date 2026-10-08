@@ -1442,8 +1442,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(state.allHaveContent, 'Every Latest Stories card needs a category line and a title');
     assert.ok(state.rowVisible, 'Latest Stories row must be rendered with a non-zero height');
     assert.ok(
-      state.sectionHeight > 60,
-      `Latest Stories must render a vertical list, measured ${state.sectionHeight}px`
+      state.sectionHeight > 60 && state.sectionHeight <= 260,
+      `Latest Stories must stay compact, measured ${state.sectionHeight}px`
     );
   });
 
@@ -1459,12 +1459,14 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       const cs = getComputedStyle(row);
       const rects = cards.map(c => c.getBoundingClientRect());
       const fullyVisible = rects.filter(b => b.left >= rr.left - 1 && b.right <= rr.right + 1).length;
-      const stacked = rects.every((b, i) => i === 0 || b.top >= rects[i - 1].bottom - 2);
+      const partiallyVisible = rects.filter(b =>
+        b.right > rr.left + 1 && b.left < rr.right - 1 && !(b.left >= rr.left - 1 && b.right <= rr.right + 1)
+      ).length;
       return {
         overflowX: cs.overflowX,
         snap: cs.scrollSnapType,
         fullyVisible,
-        stacked,
+        partiallyVisible,
         cardWidth: Math.round(rects[0].width),
         clientWidth: row.clientWidth,
         scrollWidth: row.scrollWidth,
@@ -1472,14 +1474,18 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       };
     `);
 
-    assert.notEqual(layout.overflowX, 'auto', 'Latest Stories must not be a horizontal scroller');
-    assert.doesNotMatch(layout.snap, /x/, 'Latest Stories must not snap sideways');
-    assert.equal(layout.fullyVisible, layout.cardCount, 'Every Latest card must use the full row width');
-    assert.equal(layout.stacked, true, 'Latest cards must stack in one vertical list');
-    assert.ok(layout.scrollWidth <= layout.clientWidth + 2, 'Latest Stories must not scroll horizontally');
+    assert.equal(layout.overflowX, 'auto', 'Latest Stories must keep a native horizontal scroll container');
+    assert.match(layout.snap, /x/, 'Latest Stories must keep horizontal scroll snapping');
     assert.ok(
-      layout.cardWidth >= layout.clientWidth - 4,
-      `Each card should span the row, measured ${layout.cardWidth}px of ${layout.clientWidth}px`
+      layout.fullyVisible >= 6 && layout.fullyVisible <= 6,
+      `Expected 6 fully visible cards on desktop, measured ${layout.fullyVisible}`
+    );
+    assert.equal(layout.partiallyVisible, 0, 'Desktop must not show partially clipped cards at the scroll start');
+    assert.ok(layout.scrollWidth > layout.clientWidth, 'Latest Stories must remain horizontally scrollable');
+    assert.ok(layout.cardCount > layout.fullyVisible, 'Expected more cards than fit, so navigation is meaningful');
+    assert.ok(
+      layout.cardWidth >= 190 && layout.cardWidth <= layout.clientWidth / 3,
+      `Card width ${layout.cardWidth}px should stay near the current size, not shrink or balloon`
     );
   });
 
@@ -1519,27 +1525,88 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(controls.focus.activeId, 'latestNext', 'Next control must receive keyboard focus');
   });
 
-  await t.test('Latest Stories list does not scroll sideways', async () => {
+  await t.test('Latest Stories next control is operable from the keyboard', async () => {
     await driver.setWindowRect(1280, 900);
     await sleep(200);
+    await driver.executeScript('const r = document.getElementById("latestRow"); r.scrollLeft = 0;');
+    await sleep(200);
 
-    const layout = await driver.executeScript(`
-      const row = document.getElementById('latestRow');
-      const cards = Array.from(row.querySelectorAll('.latest-card'));
-      const tops = cards.map(c => Math.round(c.getBoundingClientRect().top));
+    // Reach the controls with real Tab presses so :focus-visible applies.
+    // The search bar now sits in the masthead beside Signal, so traversal
+    // crosses the header controls and the sidebar first: 13 Tabs to reach
+    // the next control (latestPrev is disabled at the scroll start, so it is
+    // skipped). The keys go through key actions — element sendKeys re-focuses
+    // #search on every call, which would restart traversal each time.
+    const searchEl = await driver.findElement('#search');
+    assert.ok(searchEl, '#search must exist to start keyboard traversal');
+    await driver.sendKeys(searchEl, '');
+
+    let focusedId = null;
+    for (let i = 0; i < 13 && focusedId !== 'latestNext'; i++) {
+      await driver.pressKey(KEY_TAB);
+      focusedId = await driver.executeScript('return document.activeElement ? document.activeElement.id : null;');
+    }
+    assert.equal(focusedId, 'latestNext', 'Tab must reach the Latest Stories next control');
+
+    const focusStyle = await driver.executeScript(`
+      const el = document.activeElement;
+      const cs = getComputedStyle(el);
       return {
-        navDisplay: getComputedStyle(document.querySelector('.latest-nav')).display,
-        overflowX: getComputedStyle(row).overflowX,
-        scrollWidth: row.scrollWidth,
-        clientWidth: row.clientWidth,
-        rows: new Set(tops).size,
-        cardCount: cards.length
+        tag: el.tagName,
+        focusVisible: el.matches(':focus-visible'),
+        outlineWidth: parseFloat(cs.outlineWidth) || 0,
+        outlineStyle: cs.outlineStyle
       };
     `);
+    assert.equal(focusStyle.tag, 'BUTTON', 'Keyboard focus must land on a button');
+    assert.ok(focusStyle.focusVisible, 'Keyboard focus must register as :focus-visible');
+    assert.ok(
+      focusStyle.outlineWidth >= 1 && focusStyle.outlineStyle !== 'none',
+      'Keyboard-focused control must show a visible focus ring'
+    );
 
-    assert.equal(layout.navDisplay, 'none', 'Previous and next arrows must stay hidden');
-    assert.ok(layout.scrollWidth <= layout.clientWidth + 2, 'The list must not scroll horizontally');
-    assert.equal(layout.rows, layout.cardCount, 'Each story must sit on its own row');
+    const before = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+    const nextEl = await driver.findElement('#latestNext');
+    await driver.sendKeys(nextEl, '\uE007'); // Enter activates a focused button
+    await sleep(500);
+    const after = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(after > before, `Enter must scroll the strip forward (before ${before}, after ${after})`);
+
+    // Leave focus out of the strip for the following subtests.
+    await driver.executeScript('document.getElementById("latestRow").scrollLeft = 0;');
+    await sleep(200);
+  });
+
+  await t.test('Latest Stories next and previous controls move the scroll position', async () => {
+    await driver.setWindowRect(1280, 900);
+    await sleep(200);
+    await driver.executeScript('const r = document.getElementById("latestRow"); r.scrollLeft = 0;');
+    await sleep(200);
+
+    const cardWidth = await driver.executeScript(
+      'return Math.round(document.querySelector("#latestRow .latest-card").getBoundingClientRect().width);'
+    );
+    assert.ok(cardWidth > 0, 'Expected a measurable card width');
+
+    const nextEl = await driver.findElement('#latestNext');
+    const start = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+    await driver.click(nextEl);
+    await sleep(600);
+    const afterNext = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(afterNext > start, `Clicking next must scroll forward (before ${start}, after ${afterNext})`);
+    assert.ok(
+      afterNext <= cardWidth * 1.5,
+      `A single next click should advance roughly one card (${cardWidth}px), moved ${afterNext}px`
+    );
+
+    const prevEl = await driver.findElement('#latestPrev');
+    await driver.click(prevEl);
+    await sleep(600);
+    const afterPrev = await driver.executeScript('return document.getElementById("latestRow").scrollLeft;');
+
+    assert.ok(afterPrev < afterNext, `Clicking previous must scroll back (before ${afterNext}, after ${afterPrev})`);
   });
 
   await t.test('Latest Stories controls disable at the start and the end of the list', async () => {
@@ -1560,9 +1627,13 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       };
     `);
 
-    assert.equal(atStart.scrollLeft, 0, 'The list has no horizontal offset');
-    assert.equal(atStart.prevDisabled, true, 'Previous stays disabled without a sideways scroller');
-    assert.equal(atStart.nextDisabled, true, 'Next stays disabled without a sideways scroller');
+    assert.equal(atStart.scrollLeft, 0, 'Strip starts at the beginning');
+    assert.equal(atStart.prevDisabled, true, 'Previous must be disabled at the beginning');
+    assert.equal(atStart.nextDisabled, false, 'Next must be enabled at the beginning');
+    assert.ok(
+      atStart.prevOpacity < atStart.nextOpacity,
+      'Disabled previous must be visually de-emphasized relative to next'
+    );
 
     const atEnd = await driver.executeScript(`
       const row = document.getElementById('latestRow');
@@ -1576,9 +1647,11 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       }), 400));
     `);
 
-    assert.ok(atEnd.max <= 2, 'The list must not grow a horizontal scroll range');
-    assert.equal(atEnd.nextDisabled, true, 'Next must stay disabled');
-    assert.equal(atEnd.prevDisabled, true, 'Previous must stay disabled');
+    assert.ok(atEnd.max > 0, 'Strip must be scrollable');
+    assert.ok(atEnd.scrollLeft >= atEnd.max - 2, 'Strip should reach its maximum scroll offset');
+    assert.equal(atEnd.nextDisabled, true, 'Next must be disabled at the end');
+    assert.equal(atEnd.prevDisabled, false, 'Previous must be enabled at the end');
+    assert.ok(atEnd.nextOpacity < 1, 'Disabled next must be visually de-emphasized');
 
     const restored = await driver.executeScript(`
       const row = document.getElementById('latestRow');
@@ -1588,8 +1661,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         nextDisabled: document.getElementById('latestNext').disabled
       }), 400));
     `);
-    assert.equal(restored.prevDisabled, true, 'Previous stays disabled');
-    assert.equal(restored.nextDisabled, true, 'Next stays disabled');
+    assert.equal(restored.prevDisabled, true, 'Returning home must disable previous again');
+    assert.equal(restored.nextDisabled, false, 'Returning home must re-enable next');
   });
 
   await t.test('Latest Stories stays usable and touch-scrollable on mobile', async () => {
@@ -1623,13 +1696,13 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     `);
 
     assert.equal(mobile.navDisplay, 'none', 'Prev/next controls must not crowd the narrow layout');
-    assert.notEqual(mobile.overflowX, 'auto', 'Mobile must not keep a horizontal story scroller');
-    assert.doesNotMatch(mobile.snap, /x/, 'Mobile must not snap stories sideways');
+    assert.equal(mobile.overflowX, 'auto', 'Mobile must keep native horizontal scrolling');
+    assert.match(mobile.snap, /x/, 'Mobile must keep scroll snapping for touch scrolling');
     assert.equal(mobile.docOverflow, false, 'Mobile layout must not cause page-level horizontal overflow');
     assert.ok(mobile.cardCount > 1, 'Mobile must still render story cards');
-    assert.equal(mobile.fullyVisible, mobile.cardCount, 'Each mobile story card must fit the row width');
-    assert.equal(mobile.scrolled, false, 'The story list must not scroll sideways');
-    assert.ok(mobile.rowFitsViewport, 'Mobile list must stay inside the viewport');
+    assert.ok(mobile.fullyVisible >= 1, 'Mobile must show at least one complete card');
+    assert.ok(mobile.scrolled, 'Mobile strip must be natively scrollable');
+    assert.ok(mobile.rowFitsViewport, 'Mobile strip must stay inside the viewport');
 
     await driver.setWindowRect(1280, 900);
     await sleep(300);
@@ -1643,9 +1716,9 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         scrollLeft: row.scrollLeft
       }), 400));
     `);
-    assert.equal(resized.navDisplay, 'none', 'Sideways controls stay hidden on desktop too');
-    assert.equal(resized.prevDisabled, true, 'Previous stays disabled after resize');
-    assert.equal(resized.nextDisabled, true, 'Next stays disabled after resize');
+    assert.notEqual(resized.navDisplay, 'none', 'Controls must return on wider viewports');
+    assert.equal(resized.prevDisabled, true, 'Resize back to desktop must disable previous at the start');
+    assert.equal(resized.nextDisabled, false, 'Resize back to desktop must leave next enabled');
   });
 
   await t.test('Latest strip is sized for comfortable swiping at narrow widths', async () => {
@@ -1675,10 +1748,15 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       strip.cardWidth >= 200,
       `Cards must be readable at 390px (found ${strip.cardWidth}px wide)`
     );
-    assert.ok(strip.fullyVisible, 'The first card must be fully visible without sideways scrolling');
-    assert.doesNotMatch(strip.snap, /x/, 'The list must not snap sideways');
+    assert.ok(strip.fullyVisible, 'The first card must be fully visible without scrolling');
+    assert.match(strip.snap, /x/, 'Touch scrolling must keep scroll snapping');
+    assert.equal(
+      strip.overscroll,
+      'contain',
+      'Swiping the strip must not chain into page-level horizontal scroll'
+    );
     assert.equal(strip.docOverflow, false, 'Narrow layout must not cause page-level horizontal overflow');
-    assert.equal(strip.scrollable, false, 'The list must not scroll horizontally');
+    assert.ok(strip.scrollable, 'Strip must remain horizontally scrollable');
 
     await driver.setWindowRect(1280, 900);
     await sleep(300);
@@ -1721,6 +1799,9 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.notEqual(dark.cardBg, light.cardBg, 'Latest Stories card surface must change in dark mode');
     assert.notEqual(dark.cardBorder, light.cardBorder, 'Latest Stories card border must change in dark mode');
     assert.notEqual(dark.headingColor, light.headingColor, 'Latest Stories heading must remain legible in dark mode');
+    assert.equal(dark.btnBg, dark.cardBg, 'Controls must reuse the theme surface token');
+    assert.equal(dark.btnBorder, dark.cardBorder, 'Controls must reuse the theme border token');
+    assert.notEqual(dark.btnColor, light.btnColor, 'Control icon color must change with the theme');
 
     // Restore light for the remaining subtests.
     const toggleAgain = await driver.findElement('#themeToggle');
@@ -2043,10 +2124,13 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       `A long headline must expand to several lines but never more than four, measured ${titles.longLines}`
     );
     assert.equal(titles.clippedNow, 0, 'Current Latest titles must not be clipped at all');
-    assert.equal(titles.fullyVisible, titles.cardCount, 'Every Latest card must fit the row width');
-    assert.ok(titles.sectionHeight > 60, `Latest Stories must render as a list, measured ${titles.sectionHeight}px`);
-    assert.notEqual(titles.rowOverflow, 'auto', 'Latest Stories must not keep a horizontal scroller');
-    assert.doesNotMatch(titles.rowSnap, /x/, 'Latest Stories must not snap sideways');
+    assert.ok(
+      titles.fullyVisible >= 6 && titles.fullyVisible <= 6,
+      `Desktop must still show 6 complete cards, measured ${titles.fullyVisible}`
+    );
+    assert.ok(titles.sectionHeight <= 260, `Latest Stories must stay compact, measured ${titles.sectionHeight}px`);
+    assert.equal(titles.rowOverflow, 'auto', 'Latest Stories must keep native horizontal scrolling');
+    assert.match(titles.rowSnap, /x/, 'Latest Stories must keep scroll snapping');
   });
 
   await t.test('renders Recent Items and enforces XSS protection', async () => {
