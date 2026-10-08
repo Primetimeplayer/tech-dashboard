@@ -5605,6 +5605,184 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 :root:not([data-theme="dark"]) .clear-filters:hover,
 :root[data-theme="dark"] .clear-filters:hover { border-color: var(--reddit) !important; }
 </style>
+<style id="nav-row-and-latest-width">
+/* Latest Stories was width: calc(100% - 220px), so the strip stopped short of
+   the feed. The nav sat in a 1050px white bar and wrapped onto a second row.
+   Desktop: one transparent text-and-emoji row, and a full-width Latest strip
+   aligned with the feed. Mobile keeps the drawer column. */
+@media (min-width: 801px) {
+  .controls {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #filters {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  #filters .top-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 2px !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 4px 24px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: static !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+  }
+
+  #filters .top-nav::-webkit-scrollbar { display: none; }
+
+  #filters .top-nav-section,
+  #filters #recentArticles {
+    display: contents !important;
+  }
+
+  #filters .top-nav-label,
+  #filters .top-nav-divider,
+  #filters .recent-empty {
+    display: none !important;
+  }
+
+  #filters .top-nav-item,
+  #filters #hwToggle,
+  #filters #savedToggle,
+  #filters #syncSettingsBtn,
+  #filters #digestsNav {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 8px 12px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: var(--text-muted) !important;
+    font: 500 14px/1.2 var(--font-sans, 'Space Grotesk', sans-serif) !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+  }
+
+  #filters .top-nav-item:hover,
+  #filters #hwToggle:hover,
+  #filters #savedToggle:hover,
+  #filters #syncSettingsBtn:hover,
+  #filters #digestsNav:hover,
+  #filters .top-nav-item.active,
+  #filters .top-nav-item[aria-pressed="true"] {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: var(--text) !important;
+  }
+
+  #filters .top-nav-item[aria-pressed="true"] {
+    font-weight: 650 !important;
+    box-shadow: inset 0 -2px 0 currentColor !important;
+  }
+
+  #filters .top-nav-item.active::after { content: none !important; }
+
+  #filters .nav-emoji {
+    font-size: 15px;
+    line-height: 1;
+    flex: none;
+  }
+
+  #filters #recentArticles .recent-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    max-width: 160px !important;
+    height: auto !important;
+    padding: 8px 12px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: var(--text-muted) !important;
+    white-space: nowrap !important;
+  }
+
+  #filters #recentArticles .recent-item:hover {
+    background: transparent !important;
+    color: var(--text) !important;
+  }
+
+  .wrap.latest-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .latest,
+  .latest-row {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 800px) {
+  #filters .nav-emoji {
+    font-size: 16px;
+    line-height: 1;
+    flex: none;
+  }
+
+  #filters #hwToggle,
+  #filters #savedToggle,
+  #filters #syncSettingsBtn {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #filters #hwToggle[aria-pressed="true"],
+  #filters #savedToggle[aria-pressed="true"] {
+    background: var(--skeleton) !important;
+  }
+}
+</style>
 <style id="focus-visibility">
 /* Deliberately the last stylesheet in the document: it wins ties against the
    earlier "outline: none" polish rules (`.controls select:focus`,
@@ -5709,38 +5887,19 @@ textarea:focus-visible,
     <div class="top-nav-section">
       <span class="top-nav-label">TOPICS</span>
       <button class="top-nav-item" data-cat="news" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M5 6h14v12H5z"/>
-<path d="M8 9h8"/>
-<path d="M8 12h5"/>
-<path d="M8 15h7"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">📰</span>
         Technology
       </button>
       <button class="top-nav-item" data-cat="papers" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M7 4h10v16H7z"/>
-<path d="M10 8h4"/>
-<path d="M10 12h4"/>
-<path d="M10 16h3"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">🔬</span>
         AI &amp; Research
       </button>
       <button class="top-nav-item" data-cat="reviews" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="m12 4 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 4z"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">⭐</span>
         Reviews
       </button>
       <button class="top-nav-item" data-cat="reddit" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M5 8h14v9H5z"/>
-          <path d="M8 12h.01"/>
-          <path d="M16 12h.01"/>
-          <path d="M9 15c1.7 1 4.3 1 6 0"/>
-          <path d="M12 8V5"/>
-          <circle cx="12" cy="4" r="1"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">💬</span>
         Community
       </button>
     </div>
@@ -5750,26 +5909,15 @@ textarea:focus-visible,
     <div class="top-nav-section">
       <span class="top-nav-label">LIBRARY</span>
       <button class="top-nav-item toggle-hw" id="hwToggle" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M7 4h10v16H7z"/>
-          <path d="M9 7h6"/>
-          <path d="M9 11h6"/>
-          <path d="M9 15h6"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">💻</span>
         Hardware
       </button>
       <button class="top-nav-item toggle-saved" id="savedToggle" aria-pressed="false">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M6 4h12v17l-6-3.5L6 21z"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">🔖</span>
         Saved
       </button>
       <a class="top-nav-item" id="digestsNav" href="digests.html">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M10 6c-1.8-1.4-4-2-6.5-2H3v10h.5c2.5 0 4.7.6 6.5 2"/>
-          <path d="M10 6c1.8-1.4 4-2 6.5-2H17v10h-.5c-2.5 0-4.7.6-6.5 2"/>
-          <path d="M10 6v10"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">🧵</span>
         Digests
       </a>
     </div>
@@ -5781,17 +5929,7 @@ textarea:focus-visible,
       <button class="top-nav-item" id="syncSettingsBtn"
               title="Optional: sync saved items across devices"
               aria-label="Log in to sync saved stories">
-        <svg class="nav-icon" viewBox="0 0 20 20" aria-hidden="true">
-          <path d="M12 3v3"/>
-          <path d="M12 18v3"/>
-          <path d="m4.2 6 2.1 2.1"/>
-          <path d="m17.7 15.9 2.1 2.1"/>
-          <path d="M3 12h3"/>
-          <path d="M18 12h3"/>
-          <path d="m4.2 18 2.1-2.1"/>
-          <path d="m17.7 8.1 2.1-2.1"/>
-          <circle cx="12" cy="12" r="4"/>
-        </svg>
+        <span class="nav-emoji" aria-hidden="true">👤</span>
         <span class="account-label">Log in</span>
       </button>
     </div>
