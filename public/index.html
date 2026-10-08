@@ -5941,6 +5941,161 @@ main .grid .card,
   display: none !important;
 }
 </style>
+<style id="feed-row-and-toolbar">
+/* Main feed thumbnails are a fixed 100px square. Latest Stories keeps the
+   carousel rules above this sheet. */
+#feed .story-thumb {
+  width: 100px !important;
+  height: 100px !important;
+  flex: 0 0 100px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  align-self: flex-start !important;
+}
+
+#feed.compact-view .card p,
+#feed.compact-view .why {
+  display: none !important;
+}
+
+/* Navigation and the feed controls share one row. The mobile drawer stays a
+   fixed panel, so only the in-flow controls remain on the row there. */
+.controls {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 12px 0 !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 801px) {
+  #filters {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  #filters .top-nav {
+    width: auto !important;
+    max-width: none !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+  }
+
+  #filters .top-nav-item,
+  #filters #hwToggle,
+  #filters #savedToggle,
+  #filters #syncSettingsBtn,
+  #filters #digestsNav {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .controls {
+    display: block !important;
+    overflow-x: auto !important;
+  }
+
+  #filters {
+    position: fixed !important;
+  }
+}
+
+.controls > .row2 {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: max-content !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.row2 .search-row {
+  flex: 0 0 240px !important;
+  width: 240px !important;
+  min-width: 160px !important;
+  max-width: 240px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  overflow: hidden !important;
+}
+
+.row2 .search-row #search {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+:root:not([data-theme="dark"]) .row2 .search-row {
+  border: 1px solid #75828F !important;
+  background: #fff !important;
+}
+
+:root[data-theme="dark"] .row2 .search-row {
+  border: 1px solid #80858A !important;
+  background: var(--input-bg) !important;
+}
+
+.row2 .search-row:focus-within {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 2px !important;
+}
+
+.row2 .sort-select,
+.row2 .jump-latest,
+.row2 .view-toggle,
+.row2 .clear-filters {
+  flex: 0 0 auto !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  border-radius: 999px !important;
+  font: 500 14px/1 var(--font-sans, 'Space Grotesk', sans-serif) !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+.row2 .sort-select,
+.row2 .jump-latest,
+.row2 .view-toggle {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+:root:not([data-theme="dark"]) .row2 .sort-select,
+:root:not([data-theme="dark"]) .row2 .jump-latest,
+:root:not([data-theme="dark"]) .row2 .view-toggle {
+  border: 1px solid #75828F !important;
+}
+
+:root[data-theme="dark"] .row2 .sort-select,
+:root[data-theme="dark"] .row2 .jump-latest,
+:root[data-theme="dark"] .row2 .view-toggle {
+  border: 1px solid #80858A !important;
+}
+</style>
 </head>
 <body>
 
@@ -5956,12 +6111,6 @@ main .grid .card,
   <div class="wrap">
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
-      <div class="search-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
-        <span class="search-hint" id="searchHint">/</span>
-      </div>
       <div class="mast-right">
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -6053,6 +6202,19 @@ main .grid .card,
   </nav>
   </div>
     <div class="row2">
+      <div class="search-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="search" class="visually-hidden">Search headlines and summaries</label>
+        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <span class="search-hint" id="searchHint">/</span>
+      </div>
+      <label for="sortOrder" class="visually-hidden">Sort stories</label>
+      <select id="sortOrder" class="sort-select">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+      <button type="button" id="jumpLatest" class="jump-latest">Latest</button>
+      <button type="button" id="viewToggle" class="view-toggle" aria-pressed="false">Compact view</button>
       <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
     </div>
   </div>
@@ -6145,11 +6307,21 @@ main .grid .card,
   const loadMoreBtnEl = document.getElementById('loadMoreBtn');
   const searchHintEl = document.getElementById('searchHint');
   const clearFiltersEl = document.getElementById('clearFilters');
+  const sortOrderEl = document.getElementById('sortOrder');
+  const jumpLatestEl = document.getElementById('jumpLatest');
+  const viewToggleEl = document.getElementById('viewToggle');
 
   const AUTO_REFRESH_MS = 5 * 60 * 1000;
   const LATEST_WINDOW_MS = 12 * 60 * 60 * 1000;
   const PAGE_SIZE = 18;
   const SEARCH_DEBOUNCE_MS = 150;
+  let sortOrder = 'newest';
+  let compactView = false;
+  try { compactView = localStorage.getItem('signal-view') === 'compact'; } catch (e) {}
+  if (viewToggleEl) {
+    viewToggleEl.setAttribute('aria-pressed', compactView ? 'true' : 'false');
+    viewToggleEl.textContent = compactView ? 'Comfortable view' : 'Compact view';
+  }
 
   const SUN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
   const MOON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
@@ -6632,10 +6804,10 @@ initAuth();
     return /^https?:\/\//i.test(url) ? url : '';
   }
 
-  function storyThumb(item) {
+  function storyThumb(item, width = 120, height = 80) {
     const url = storyImageUrl(item);
     if (!url) return '';
-    return `<img class="story-thumb" src="${escapeAttr(url)}" alt="" width="120" height="80" loading="lazy" decoding="async">`;
+    return `<img class="story-thumb" src="${escapeAttr(url)}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async">`;
   }
 
   function storyByline(item) {
@@ -6825,6 +6997,7 @@ initAuth();
       activeDate !== 'all' ||
       savedOnly ||
       hardwareOnly ||
+      sortOrder !== 'newest' ||
       !!searchTerm.trim();
   }
 
@@ -6850,12 +7023,19 @@ initAuth();
     if (dateFilterEl) dateFilterEl.value = 'all';
     searchEl.value = '';
     searchHintEl.style.display = document.activeElement === searchEl ? 'none' : '';
+    sortOrder = 'newest';
+    if (sortOrderEl) sortOrderEl.value = 'newest';
 
     render();
   }
 
   function render() {
-    const items = getFilteredItems();
+    feedEl.classList.toggle('compact-view', compactView);
+    const items = getFilteredItems().slice().sort((a, b) => {
+      const da = new Date(a.published || 0).getTime() || 0;
+      const db = new Date(b.published || 0).getTime() || 0;
+      return sortOrder === 'oldest' ? da - db : db - da;
+    });
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
     resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
@@ -6923,7 +7103,7 @@ initAuth();
             <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
           </div>` : ''}
         </div>
-        ${storyThumb(item)}
+        ${storyThumb(item, 100, 100)}
       </article>
     `;
     }).join('');
@@ -7024,9 +7204,9 @@ initAuth();
   const menuToggleEl = document.getElementById('menuToggle');
   const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
   const sidebarCloseEl = document.getElementById('sidebarClose');
-  // The search bar now lives in the masthead, so it is listed alongside the
-  // toolbar row: everything the drawer covers must stop taking input.
-  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, .mast .search-row, main, footer'));
+  // Search now sits in the toolbar row beside the nav. That row, the feed,
+  // and the footer stop taking input while the drawer is open.
+  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, main, footer'));
   let sidebarInertSnapshot = null;
 
   function setSidebarOpen(open) {
@@ -7093,6 +7273,37 @@ initAuth();
   });
   if (sourceFilterEl) sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
   if (dateFilterEl) dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
+  if (sortOrderEl) {
+    sortOrderEl.addEventListener('change', () => {
+      sortOrder = sortOrderEl.value === 'oldest' ? 'oldest' : 'newest';
+      visibleCount = PAGE_SIZE;
+      render();
+    });
+  }
+  if (jumpLatestEl) {
+    jumpLatestEl.addEventListener('click', () => {
+      sortOrder = 'newest';
+      if (sortOrderEl) sortOrderEl.value = 'newest';
+      visibleCount = PAGE_SIZE;
+      render();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const behavior = reduce ? 'auto' : 'smooth';
+      if (latestSectionEl && !latestSectionEl.hidden) {
+        latestSectionEl.scrollIntoView({ behavior, block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior });
+      }
+    });
+  }
+  if (viewToggleEl) {
+    viewToggleEl.addEventListener('click', () => {
+      compactView = !compactView;
+      try { localStorage.setItem('signal-view', compactView ? 'compact' : 'comfortable'); } catch (e) {}
+      viewToggleEl.setAttribute('aria-pressed', compactView ? 'true' : 'false');
+      viewToggleEl.textContent = compactView ? 'Comfortable view' : 'Compact view';
+      render();
+    });
+  }
   clearFiltersEl.addEventListener('click', () => {
     resetFilters();
     // Keep focus somewhere useful: the source/time selects are hidden state
