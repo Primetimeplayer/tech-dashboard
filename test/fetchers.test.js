@@ -10,6 +10,7 @@ import { runReviewsFetcher } from '../scripts/fetch-reviews.js';
 import { runRedditFetcher } from '../scripts/fetch-reddit.js';
 import { runPapersFetcher } from '../scripts/fetch-papers.js';
 import { excerpt } from '../scripts/lib/excerpt.js';
+import { storyImage } from '../scripts/lib/story-image.js';
 
 const FIXED_TIME = '2025-01-02T03:04:05.000Z';
 const TEST_OPTIONS = { now: () => new Date(FIXED_TIME) };
@@ -211,6 +212,28 @@ test('excerpts keep short text and only ellipsize real cutoffs', () => {
   assert.ok(cut.length < long.length);
   assert.equal(cut.includes('alpha'), true);
   assert.equal(cut.slice(0, -1).endsWith(' '), false);
+});
+
+test('story images keep http(s) pictures and drop everything else', () => {
+  assert.equal(storyImage({}), '');
+  assert.equal(storyImage({ thumbnail: 'self' }), '');
+  assert.equal(storyImage({ thumbnail: 'javascript:alert(1)' }), '');
+  assert.equal(
+    storyImage({ enclosure: { url: 'https://cdn.example/a.jpg', type: 'image/jpeg' } }),
+    'https://cdn.example/a.jpg'
+  );
+  assert.equal(
+    storyImage({ enclosure: { url: 'https://cdn.example/audio.mp3', type: 'audio/mpeg' } }),
+    ''
+  );
+  assert.equal(
+    storyImage({ 'media:thumbnail': { $: { url: 'https://cdn.example/thumb.jpg' } } }),
+    'https://cdn.example/thumb.jpg'
+  );
+  assert.equal(
+    storyImage({ content: '<p>Hi</p><img src="https://cdn.example/body.jpg&amp;w=80" alt="">' }),
+    'https://cdn.example/body.jpg&w=80'
+  );
 });
 
 test('papers writes a valid mocked arXiv response', async (t) => {

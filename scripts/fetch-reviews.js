@@ -7,11 +7,21 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { excerpt } from './lib/excerpt.js';
+import { storyImage } from './lib/story-image.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reviews.json');
 
-const parser = new Parser({ timeout: 10000, headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' } });
+const parser = new Parser({
+  timeout: 10000,
+  headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' },
+  customFields: {
+    item: [
+      ['media:content', 'media:content', { keepArray: true }],
+      ['media:thumbnail', 'media:thumbnail'],
+    ],
+  },
+});
 
 // Section-specific feeds tend to be cleaner than filtering a firehose feed
 // by keyword. Swap in whatever outlets you actually read.
@@ -29,13 +39,17 @@ function cleanSummary(raw = '') {
 async function fetchFeed(feed, parseFeed) {
   try {
     const parsed = await parseFeed(feed);
-    return parsed.items.slice(0, ITEMS_PER_FEED).map((item) => ({
-      source: feed.name,
-      title: item.title?.trim() ?? '(untitled)',
-      link: item.link,
-      published: item.pubDate ?? item.isoDate ?? null,
-      summary: cleanSummary(item.contentSnippet ?? item.content ?? ''),
-    }));
+    return parsed.items.slice(0, ITEMS_PER_FEED).map((item) => {
+      const image = storyImage(item);
+      return {
+        source: feed.name,
+        title: item.title?.trim() ?? '(untitled)',
+        link: item.link,
+        published: item.pubDate ?? item.isoDate ?? null,
+        summary: cleanSummary(item.contentSnippet ?? item.content ?? ''),
+        ...(image ? { image } : {}),
+      };
+    });
   } catch (err) {
     console.error(`[fetch-reviews] Failed to fetch ${feed.name}: ${err.message}`);
     return null;

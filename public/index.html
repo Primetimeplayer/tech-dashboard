@@ -5834,6 +5834,113 @@ textarea:focus-visible,
   border-color: var(--focus) !important;
 }
 </style>
+<style id="story-rows">
+/* One vertical list of horizontal story cards. Text on the left, a fixed
+   thumbnail on the right. No image in the feed item means no thumbnail, and
+   the text uses the full row. Later than the stacked grid and carousel rules. */
+main .grid,
+#feed.grid {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: none !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+main .grid .card,
+#feed .card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  background: var(--panel, #fff) !important;
+  border: 1px solid var(--line, #e5e7eb) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06) !important;
+  grid-column: auto !important;
+}
+
+.story-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 6px;
+}
+
+.story-copy h2,
+.story-copy h3 {
+  margin: 0 !important;
+}
+
+.story-byline {
+  margin-top: auto;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.story-thumb {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--skeleton, #eee);
+}
+
+#latestRow.latest-row {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
+  scroll-snap-type: none !important;
+}
+
+#latestRow .latest-card {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  flex: none !important;
+  height: auto !important;
+  scroll-snap-align: none !important;
+  padding: 14px 16px !important;
+  border: 1px solid var(--line, #e5e7eb) !important;
+  border-radius: 12px !important;
+  background: var(--panel, #fff) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06) !important;
+  text-decoration: none !important;
+}
+
+.latest-nav {
+  display: none !important;
+}
+</style>
 </head>
 <body>
 
@@ -6519,6 +6626,26 @@ initAuth();
     if ([...sourceFilterEl.options].some((o) => o.value === current)) sourceFilterEl.value = current;
   }
 
+  function storyImageUrl(item) {
+    const raw = item && (item.image || item.imageUrl || item.thumbnail) || '';
+    const url = String(raw).replace(/&amp;/g, '&').trim();
+    return /^https?:\/\//i.test(url) ? url : '';
+  }
+
+  function storyThumb(item) {
+    const url = storyImageUrl(item);
+    if (!url) return '';
+    return `<img class="story-thumb" src="${escapeAttr(url)}" alt="" width="120" height="80" loading="lazy" decoding="async">`;
+  }
+
+  function storyByline(item) {
+    const when = timeAgo(item.published);
+    const author = Array.isArray(item.authors) && item.authors.length
+      ? item.authors.slice(0, 2).join(', ')
+      : (item.author || '');
+    return [when, author].filter(Boolean).join(' · ');
+  }
+
   function renderLatest() {
     const latest = allItems
       .filter((i) => i.published && !Number.isNaN(new Date(i.published).getTime()))
@@ -6534,9 +6661,13 @@ initAuth();
       latestCountEl.textContent = latest.length === 1 ? '1 newest story' : `${latest.length} newest stories`;
     }
     latestRowEl.innerHTML = latest.map((item) => `
-      <a class="latest-card ${item.category}" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
-        <div class="cat">${catLabel(item.category)} · ${timeAgo(item.published)}</div>
-        <h3>${escapeHtml(item.title)}</h3>
+      <a class="latest-card story-row ${item.category}" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
+        <span class="story-copy">
+          <span class="cat">${escapeHtml(catLabel(item.category) || '')}${item.source ? ` · ${escapeHtml(item.source)}` : ''}</span>
+          <h3>${escapeHtml(item.title)}</h3>
+          <span class="story-byline">${escapeHtml(storyByline(item))}</span>
+        </span>
+        ${storyThumb(item)}
       </a>
     `).join('');
     syncLatestNav();
@@ -6770,27 +6901,29 @@ initAuth();
       const note = saved ? (savedMap[item.link].note || '') : '';
       const chips = buildCardChips(item);
       return `
-      <article class="card ${item.category}${hw ? ' is-hardware' : ''}" data-idx="${idx}">
-        ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
-        <div class="card-meta">
-          <span class="cat-label">${escapeHtml(catLabel(item.category) || '')}</span>
-          ${item.source ? `<span>·</span><span>${escapeHtml(item.source)}</span>` : ''}
-          <span>·</span>
-          <span>${timeAgo(item.published)}</span>
+      <article class="card story-row ${item.category}${hw ? ' is-hardware' : ''}" data-idx="${idx}">
+        <div class="story-copy">
+          ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          <div class="card-meta">
+            <span class="cat-label">${escapeHtml(catLabel(item.category) || '')}</span>
+            ${item.source ? `<span>·</span><span>${escapeHtml(item.source)}</span>` : ''}
+          </div>
+          <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
+          ${chips.length ? `<div class="card-chips">${chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
+          ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
+          <div class="story-byline">${escapeHtml(storyByline(item))}</div>
+          <div class="card-actions">
+            <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
+            <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
+          </div>
+          ${saved ? `
+          <div class="note-box">
+            <p class="note-label">Your note</p>
+            <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+          </div>` : ''}
         </div>
-        <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
-        ${chips.length ? `<div class="card-chips">${chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
-        ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
-        ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
-        <div class="card-actions">
-          <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
-          <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
-        </div>
-        ${saved ? `
-        <div class="note-box">
-          <p class="note-label">Your note</p>
-          <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
-        </div>` : ''}
+        ${storyThumb(item)}
       </article>
     `;
     }).join('');

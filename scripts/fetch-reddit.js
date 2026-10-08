@@ -8,6 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { excerpt } from './lib/excerpt.js';
+import { storyImage } from './lib/story-image.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reddit.json');
@@ -28,13 +29,22 @@ async function fetchSubreddit(sub, request) {
     const json = await res.json();
     return (json.data?.children ?? [])
       .filter((c) => !c.data.stickied)
-      .map((c) => ({
-        source: `r/${sub}`,
-        title: c.data.title,
-        link: `https://reddit.com${c.data.permalink}`,
-        published: new Date(c.data.created_utc * 1000).toISOString(),
-        summary: cleanText(c.data.selftext) || `${c.data.ups} upvotes · ${c.data.num_comments} comments`,
-      }));
+      .map((c) => {
+        const image = storyImage({
+          thumbnail: c.data.thumbnail,
+          enclosure: c.data.preview?.images?.[0]?.source?.url
+            ? { url: c.data.preview.images[0].source.url, type: 'image/jpeg' }
+            : null,
+        });
+        return {
+          source: `r/${sub}`,
+          title: c.data.title,
+          link: `https://reddit.com${c.data.permalink}`,
+          published: new Date(c.data.created_utc * 1000).toISOString(),
+          summary: cleanText(c.data.selftext) || `${c.data.ups} upvotes · ${c.data.num_comments} comments`,
+          ...(image ? { image } : {}),
+        };
+      });
   } catch (err) {
     console.error(`[fetch-reddit] Failed to fetch r/${sub}: ${err.message}`);
     return null;
