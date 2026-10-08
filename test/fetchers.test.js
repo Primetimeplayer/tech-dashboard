@@ -9,6 +9,7 @@ import { runNewsFetcher } from '../scripts/fetch-news.js';
 import { runReviewsFetcher } from '../scripts/fetch-reviews.js';
 import { runRedditFetcher } from '../scripts/fetch-reddit.js';
 import { runPapersFetcher } from '../scripts/fetch-papers.js';
+import { excerpt } from '../scripts/lib/excerpt.js';
 
 const FIXED_TIME = '2025-01-02T03:04:05.000Z';
 const TEST_OPTIONS = { now: () => new Date(FIXED_TIME) };
@@ -71,6 +72,7 @@ test('news writes parsed fixture data after a successful feed request', async (t
   assert.equal(result.items[0].title, 'Fixture article');
   assert.equal(result.items[0].category, 'news');
   assert.equal(result.items[0].link, 'https://fixture.example/articles/one');
+  assert.equal(result.items[0].summary, 'A short fixture description.');
 });
 
 test('reviews preserves existing output when every feed request fails', async (t) => {
@@ -166,6 +168,49 @@ test('Reddit writes successful mocked posts and filters stickied posts', async (
   assert.equal(result.items[0].source, 'r/fixture');
   assert.equal(result.items[0].title, 'Fixture Reddit post');
   assert.equal(result.items[0].link, 'https://reddit.com/r/fixture/comments/one');
+  assert.equal(result.items[0].summary, 'A deterministic post body.');
+});
+
+test('Reddit uses the vote line when a post has no body', async (t) => {
+  const outputPath = await createOutput(t, 'reddit.json');
+
+  await runRedditFetcher({
+    ...TEST_OPTIONS,
+    outputPath,
+    subreddits: ['fixture'],
+    request: async () => ({
+      ok: true,
+      json: async () => ({
+        data: {
+          children: [{
+            data: {
+              stickied: false,
+              title: 'Link post',
+              permalink: '/r/fixture/comments/link',
+              created_utc: 1735732800,
+              selftext: '   ',
+              ups: 10,
+              num_comments: 2,
+            },
+          }],
+        },
+      }),
+    }),
+  });
+
+  const result = await readJson(outputPath);
+  assert.equal(result.items[0].summary, '10 upvotes · 2 comments');
+});
+
+test('excerpts keep short text and only ellipsize real cutoffs', () => {
+  assert.equal(excerpt(''), '');
+  assert.equal(excerpt('Hello world.'), 'Hello world.');
+  const long = 'alpha '.repeat(80).trim();
+  const cut = excerpt(long, 40);
+  assert.ok(cut.endsWith('…'));
+  assert.ok(cut.length < long.length);
+  assert.equal(cut.includes('alpha'), true);
+  assert.equal(cut.slice(0, -1).endsWith(' '), false);
 });
 
 test('papers writes a valid mocked arXiv response', async (t) => {
@@ -191,6 +236,7 @@ test('papers writes a valid mocked arXiv response', async (t) => {
   assert.equal(result.items[0].link, 'https://arxiv.org/abs/2501.00001');
   assert.deepEqual(result.items[0].authors, ['Example Author']);
   assert.deepEqual(result.items[0].categories, ['cs.AI']);
+  assert.equal(result.items[0].summary, 'A deterministic paper abstract for fetcher tests.');
 });
 
 test('papers preserves existing output after an HTTP/API failure', async (t) => {

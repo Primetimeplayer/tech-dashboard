@@ -3523,10 +3523,101 @@ body.sidebar-open #filters {
   }
 }
 
-/* Hide #filters entirely on desktop (mobile drawer only) */
+/* Desktop keeps the same nav in normal flow. Mobile uses #filters as the drawer. */
 @media (min-width: 801px) {
   #filters {
-    display: none !important;
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    transform: none !important;
+    visibility: visible !important;
+    z-index: auto !important;
+  }
+}
+
+.mast-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 801px) {
+  #filters .top-nav {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 4px;
+  }
+}
+
+@media (max-width: 800px) {
+  #filters .top-nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    width: 100%;
+    padding: 0;
+    position: static;
+    overflow: visible;
+  }
+  #filters .top-nav-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+  #filters .top-nav-divider { display: none; }
+  #filters .top-nav-label {
+    font-family: var(--font-sans, 'Space Grotesk', sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 12px 14px 4px;
+  }
+  #filters .top-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font: 500 14px/1 var(--font-sans, 'Space Grotesk', sans-serif);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #filters .top-nav-item[aria-pressed="true"] {
+    background: var(--skeleton);
+    font-weight: 600;
+  }
+  #filters .nav-icon { width: 16px; height: 16px; flex: none; }
+  #filters #recentArticles { display: flex; flex-direction: column; }
+  #filters .recent-item {
+    display: block;
+    padding: 8px 14px;
+    color: var(--text-muted);
+    font-size: 13px;
+    text-decoration: none;
   }
 }
 
@@ -5590,7 +5681,7 @@ textarea:focus-visible,
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <a href="digests.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">📰 Digests</a> <a href="app-react.html" style="font-family:'Space Grotesk',sans-serif;font-size:0.8rem;color:#303A43;text-decoration:none;border:1px solid #C4CBD1;border-radius:999px;padding:0.4rem 0.85rem;">⚛ React</a>
+        <a class="mast-link" href="digests.html">Digests</a> <a class="mast-link" href="app-react.html">React</a>
         <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -5613,13 +5704,6 @@ textarea:focus-visible,
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-
-</div>
-    <div class="row2">
-      <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
-    </div>
-  </div>
-
   <!-- Desktop horizontal navigation bar -->
   <nav class="top-nav" id="topNav" aria-label="Main navigation">
     <div class="top-nav-section">
@@ -5708,7 +5792,7 @@ textarea:focus-visible,
           <path d="m17.7 8.1 2.1-2.1"/>
           <circle cx="12" cy="12" r="4"/>
         </svg>
-        Log in
+        <span class="account-label">Log in</span>
       </button>
     </div>
 
@@ -5722,13 +5806,19 @@ textarea:focus-visible,
       </div>
     </div>
   </nav>
+  </div>
+    <div class="row2">
+      <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
+    </div>
+  </div>
+
   <p class="result-count" id="resultCount"></p>
 
 <div class="wrap latest-wrap">
   <div class="latest" id="latestSection" hidden>
     <div class="latest-label">
   <h2>Latest Stories</h2>
-  <span>18 newest available</span>
+  <span id="latestCount">Newest stories</span>
   <div class="latest-nav">
     <button type="button" class="latest-nav-btn" id="latestPrev" aria-label="Previous stories" aria-controls="latestRow">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
@@ -5766,7 +5856,7 @@ textarea:focus-visible,
   </main>
 
   <footer>
-    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes live only in this browser (<code>localStorage</code>) — they won't follow you to another device. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
+    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
   </footer>
 </div>
 
@@ -6108,9 +6198,13 @@ async function initAuth() {
 function setAccountLabel(label) {
   const btn = document.getElementById('syncSettingsBtn');
   if (!btn) return;
-  const text = btn.querySelector('span');
-  if (text) text.textContent = label;
-  else btn.textContent = label;
+  let textNode = btn.querySelector('.account-label');
+  if (!textNode) {
+    textNode = document.createElement('span');
+    textNode.className = 'account-label';
+    btn.appendChild(textNode);
+  }
+  textNode.textContent = label;
   btn.setAttribute('aria-label', label === 'Log out' ? 'Log out of your account' : 'Log in to sync saved stories');
 }
 
@@ -6144,6 +6238,7 @@ async function toggleSave(link) {
   const active = document.activeElement;
   const hadFocus = !!(active && active.classList && active.classList.contains('save-btn') &&
     active.dataset.link === link);
+  const previous = wasSaved ? { ...savedMap[link] } : null;
 
   if (wasSaved) {
     delete savedMap[link];
@@ -6171,10 +6266,7 @@ async function toggleSave(link) {
     console.error('Saved Story update failed:', e.message);
 
     if (wasSaved) {
-      savedMap[link] = {
-        savedAt: new Date().toISOString(),
-        note: '',
-      };
+      savedMap[link] = previous;
     } else {
       delete savedMap[link];
     }
@@ -6293,8 +6385,16 @@ initAuth();
     const latest = allItems
       .filter((i) => i.published && !Number.isNaN(new Date(i.published).getTime()))
       .slice(0, 10);
-    if (!latest.length) { latestSectionEl.hidden = true; return; }
+    const latestCountEl = document.getElementById('latestCount');
+    if (!latest.length) {
+      latestSectionEl.hidden = true;
+      if (latestCountEl) latestCountEl.textContent = '';
+      return;
+    }
     latestSectionEl.hidden = false;
+    if (latestCountEl) {
+      latestCountEl.textContent = latest.length === 1 ? '1 newest story' : `${latest.length} newest stories`;
+    }
     latestRowEl.innerHTML = latest.map((item) => `
       <a class="latest-card ${item.category}" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
         <div class="cat">${catLabel(item.category)} · ${timeAgo(item.published)}</div>
@@ -6472,8 +6572,8 @@ initAuth();
     visibleCount = PAGE_SIZE;
     clearTimeout(searchTimer);
 
-    filtersEl.querySelectorAll('.filter[data-cat]').forEach((b) => {
-      b.setAttribute('aria-pressed', b.dataset.cat === 'all' ? 'true' : 'false');
+    document.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => {
+      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter && activeFilter !== 'all' ? 'true' : 'false');
     });
     hwToggleEl.setAttribute('aria-pressed', 'false');
     savedToggleEl.setAttribute('aria-pressed', 'false');
@@ -6563,7 +6663,8 @@ initAuth();
     });
     feedEl.querySelectorAll('.share-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const item = allItems.find((i) => i.link === btn.dataset.link);
+        const item = allItems.find((i) => i.link === btn.dataset.link)
+          || getFilteredItems().find((i) => i.link === btn.dataset.link);
         if (item) copyText(buildShareText(item), btn);
       });
     });
@@ -6645,7 +6746,8 @@ initAuth();
     if (document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
   }
   filtersEl.addEventListener('click', handleFilterClick);
-  document.getElementById('topNav').addEventListener('click', handleFilterClick);
+  const topNavEl = document.getElementById('topNav');
+  if (topNavEl && !filtersEl.contains(topNavEl)) topNavEl.addEventListener('click', handleFilterClick);
 
   // --- Sidebar drawer (mobile navigation) ---
   const menuToggleEl = document.getElementById('menuToggle');
@@ -6759,7 +6861,7 @@ initAuth();
   // guidance (including the "/" hint); the full text returns automatically
   // as soon as the viewport is wide enough for it.
   const searchPlaceholderWide = searchEl.placeholder;
-  const searchPlaceholderNarrow = 'Search headlines… (press /)';
+  const searchPlaceholderNarrow = 'Search';
   const narrowSearchMq = window.matchMedia('(max-width: 560px)');
   function syncSearchPlaceholder() {
     searchEl.placeholder = narrowSearchMq.matches ? searchPlaceholderNarrow : searchPlaceholderWide;
@@ -6773,10 +6875,49 @@ initAuth();
     render();
   });
 
+
+  const HASH_FILTERS = {
+    technology: 'news',
+    news: 'news',
+    ai: 'papers',
+    papers: 'papers',
+    reviews: 'reviews',
+    community: 'reddit',
+    reddit: 'reddit',
+  };
+
+  function syncCategoryPressed() {
+    document.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => {
+      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter && activeFilter !== 'all' ? 'true' : 'false');
+    });
+    hwToggleEl.setAttribute('aria-pressed', String(hardwareOnly));
+    savedToggleEl.setAttribute('aria-pressed', String(savedOnly));
+  }
+
+  function applyHash(renderNow) {
+    const hash = (location.hash || '').replace(/^#/, '').toLowerCase();
+    if (!hash) return;
+    if (hash === 'all' || hash === 'home') {
+      activeFilter = 'all';
+      hardwareOnly = false;
+      savedOnly = false;
+    } else if (HASH_FILTERS[hash]) {
+      activeFilter = HASH_FILTERS[hash];
+    }
+    if (hash === 'hardware') hardwareOnly = true;
+    if (hash === 'saved') savedOnly = true;
+    visibleCount = PAGE_SIZE;
+    syncCategoryPressed();
+    if (renderNow) render();
+    if (hash === 'settings') document.getElementById('syncSettingsBtn')?.focus();
+  }
+
   setInterval(renderAll, 60 * 1000);
   setInterval(refresh, AUTO_REFRESH_MS);
 
+  applyHash(false);
   refresh();
+  window.addEventListener('hashchange', () => applyHash(true));
   window.addEventListener('scroll', function () {
   if (window.scrollY > 80) {
     document.body.classList.add('search-scrolled');

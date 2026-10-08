@@ -9,6 +9,7 @@ import { parseStringPromise } from 'xml2js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { excerpt } from './lib/excerpt.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'papers.json');
@@ -77,7 +78,7 @@ export async function runPapersFetcher({
 
   const papers = entries.map((entry) => ({
     title: clean(entry.title?.[0]),
-    summary: clean(entry.summary?.[0]).slice(0, 400).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…'),
+    summary: excerpt(clean(entry.summary?.[0]), 400),
     link: entry.id?.[0],
     published: entry.published?.[0],
     authors: (entry.author ?? []).map((a) => a.name?.[0]).filter(Boolean),

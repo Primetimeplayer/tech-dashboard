@@ -630,6 +630,9 @@ a:focus-visible {
     if (inList) html += '</ul>';
     return html;
   }
+  function escapeHtml(text = '') {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
   function inline(text) {
     return text
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -667,7 +670,7 @@ a:focus-visible {
           <button class="btn" id="toggleThread">🧵 Show thread version</button>
         </div>
         <div class="thread-box" id="threadBox">
-          ${(data.thread || []).map((t, i) => `<div class="thread-item"><span class="n">${i + 1}/</span>${t}</div>`).join('')}
+          ${(data.thread || []).map((t, i) => `<div class="thread-item"><span class="n">${i + 1}/</span>${escapeHtml(t)}</div>`).join('')}
           <div class="actions"><button class="btn" id="copyThread">📋 Copy thread</button></div>
         </div>
         <div class="digest-body">${renderMarkdown(data.markdown)}</div>

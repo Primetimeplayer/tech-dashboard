@@ -149,7 +149,7 @@ async function requireUser(request, env) {
     FROM sessions
     JOIN users ON users.id = sessions.user_id
     WHERE sessions.id_hash = ?
-      AND sessions.expires_at > CURRENT_TIMESTAMP
+      AND datetime(sessions.expires_at) > datetime('now')
   `)
     .bind(sessionHash)
     .first();
@@ -432,7 +432,7 @@ async function handleAuthExchange(request, env) {
     FROM auth_codes
     JOIN users ON users.id = auth_codes.user_id
     WHERE auth_codes.code_hash = ?
-      AND auth_codes.expires_at > CURRENT_TIMESTAMP
+      AND datetime(auth_codes.expires_at) > datetime('now')
   `)
     .bind(codeHash)
     .first();

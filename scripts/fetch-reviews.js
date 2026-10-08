@@ -6,6 +6,7 @@ import Parser from 'rss-parser';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { excerpt } from './lib/excerpt.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reviews.json');
@@ -22,7 +23,7 @@ const FEEDS = [
 const ITEMS_PER_FEED = 10;
 
 function cleanSummary(raw = '') {
-  return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
+  return excerpt(raw, 240);
 }
 
 async function fetchFeed(feed, parseFeed) {

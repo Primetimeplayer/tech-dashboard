@@ -7,6 +7,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { excerpt } from './lib/excerpt.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reddit.json');
@@ -16,7 +17,7 @@ const POSTS_PER_SUB = 8;
 const USER_AGENT = 'personal-tech-dashboard/1.0 (by u/your-username)';
 
 function cleanText(raw = '') {
-  return raw.replace(/\s+/g, ' ').trim().slice(0, 240).replace(/\s+\S*$/, '').replace(/\s+$/, '').trim().replace(/[.,;:!?]$/, '').trim().concat('…');
+  return excerpt(raw, 240);
 }
 
 async function fetchSubreddit(sub, request) {

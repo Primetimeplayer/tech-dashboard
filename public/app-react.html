@@ -1156,6 +1156,7 @@ const CAT_COLOR = { all: 'var(--news)', news: 'var(--news)', papers: 'var(--pape
 function timeAgo(iso) {
   if (!iso) return '';
   const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+  if (mins < 1) return 'just now';
   if (mins < 60) return `${mins}m ago`;
   const hrs = Math.floor(mins / 60);
   if (hrs < 24) return `${hrs}h ago`;
@@ -1179,7 +1180,7 @@ function Card({ item }) {
       <div className="card-meta">
         <span className="cat">{CAT_LABEL[item.category]}</span> · {item.source} · {timeAgo(item.published)}
       </div>
-      <h2><a href={item.link} target="_blank" rel="noopener">{item.title}</a></h2>
+      <h2><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a></h2>
       {item.summary && <p>{item.summary}</p>}
     </article>
   );
