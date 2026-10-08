@@ -2827,25 +2827,39 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(mounted, 'app-react.html did not render 5 category .filter buttons within timeout');
 
     const labels = await driver.executeScript(`
-      return Array.from(document.querySelectorAll('.controls .filter'))
+      return Array.from(document.querySelectorAll('.category-nav .nav-label'))
         .map(b => b.textContent.trim());
     `);
     assert.deepEqual(labels, ['All', 'News', 'AI papers', 'Reviews', 'Reddit'], `Unexpected filter labels: ${JSON.stringify(labels)}`);
   });
 
-  await t.test('React filter buttons keep pill geometry (guards swallowed .filter rule)', async () => {
-    // If the base .filter rule is ever dropped by CSS parse-error recovery,
-    // buttons silently fall back to the UA default: square corners and the
-    // platform's light grey. Radius is therefore the load-bearing assertion.
+  await t.test('React category nav is one transparent row', async () => {
     const geometry = await driver.executeScript(`
-      return Array.from(document.querySelectorAll('.controls .filter')).map(b => {
-        const s = getComputedStyle(b);
-        return { label: b.textContent.trim(), radius: s.borderTopLeftRadius };
-      });
+      const nav = document.querySelector('.category-nav');
+      const navStyle = getComputedStyle(nav);
+      return {
+        wrap: navStyle.flexWrap,
+        overflowX: navStyle.overflowX,
+        items: Array.from(nav.querySelectorAll('.filter')).map(b => {
+          const s = getComputedStyle(b);
+          return {
+            label: b.querySelector('.nav-label').textContent.trim(),
+            radius: s.borderTopLeftRadius,
+            background: s.backgroundColor,
+            borderWidth: s.borderTopWidth,
+            shadow: s.boxShadow
+          };
+        })
+      };
     `);
-    assert.equal(geometry.length, 5, `Expected 5 filter buttons, found ${geometry.length}`);
-    for (const btn of geometry) {
-      assert.equal(btn.radius, '999px', `Filter "${btn.label}" lost its pill radius (got ${btn.radius}); the base .filter rule is not being applied`);
+    assert.equal(geometry.wrap, 'nowrap', 'Category nav must stay on one row');
+    assert.equal(geometry.overflowX, 'auto', 'Category nav must scroll horizontally instead of wrapping');
+    assert.equal(geometry.items.length, 5, `Expected 5 filter buttons, found ${geometry.items.length}`);
+    for (const btn of geometry.items) {
+      assert.equal(btn.radius, '0px', `Filter "${btn.label}" should not use a pill or square tab`);
+      assert.equal(btn.background, 'rgba(0, 0, 0, 0)', `Filter "${btn.label}" background should be transparent`);
+      assert.equal(btn.borderWidth, '0px', `Filter "${btn.label}" should have no border`);
+      assert.equal(btn.shadow, 'none', `Filter "${btn.label}" should have no box shadow`);
     }
   });
 
@@ -2875,7 +2889,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         actual: s ? {
           background: s.backgroundColor,
           color: s.color,
-          border: s.borderTopColor
+          borderWidth: s.borderTopWidth,
+          shadow: s.boxShadow
         } : null
       };
     `);
@@ -2892,29 +2907,27 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       return `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
     };
 
-    const expectedBg = hexToRgb(probe.tokens.panelRaised);
     const expectedColor = hexToRgb(probe.tokens.textMuted);
-    const expectedBorder = hexToRgb(probe.tokens.line);
 
-    assert.ok(expectedBg, `Could not parse --panel-raised token: ${probe.tokens.panelRaised}`);
     assert.ok(expectedColor, `Could not parse --text-muted token: ${probe.tokens.textMuted}`);
-    assert.ok(expectedBorder, `Could not parse --line token: ${probe.tokens.line}`);
 
-    assert.equal(probe.actual.background, expectedBg, 'Idle filter background must follow --panel-raised, not the browser default');
+    assert.equal(probe.actual.background, 'rgba(0, 0, 0, 0)', 'Idle filter background must stay transparent');
     assert.equal(probe.actual.color, expectedColor, 'Idle filter text must follow --text-muted');
-    assert.equal(probe.actual.border, expectedBorder, 'Idle filter border must follow --line');
+    assert.equal(probe.actual.borderWidth, '0px', 'Idle filter must not draw a tab border');
+    assert.equal(probe.actual.shadow, 'none', 'Idle filter must not draw a tab shadow');
   });
 
-  await t.test('React active filter paints its category accent', async () => {
+  await t.test('React active filter stays transparent and keeps its accent token', async () => {
     const readActive = () => driver.executeScript(`
       const cs = getComputedStyle(document.documentElement);
       const active = document.querySelector('.filter.active');
       if (!active) return null;
       const s = getComputedStyle(active);
       return {
-        label: active.textContent.trim(),
+        label: active.querySelector('.nav-label').textContent.trim(),
         dot: s.getPropertyValue('--dot').trim(),
         background: s.backgroundColor,
+        shadow: s.boxShadow,
         news: cs.getPropertyValue('--news').trim(),
         papers: cs.getPropertyValue('--papers').trim()
       };
@@ -2922,18 +2935,11 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
 
     const clickByLabel = async (label) => {
       await driver.executeScript(`
-        const btn = Array.from(document.querySelectorAll('.controls .filter'))
-          .find(b => b.textContent.trim() === ${JSON.stringify(label)});
+        const btn = Array.from(document.querySelectorAll('.category-nav .filter'))
+          .find(b => b.querySelector('.nav-label').textContent.trim() === ${JSON.stringify(label)});
         if (btn) btn.click();
       `);
       await sleep(300);
-    };
-
-    const hexToRgb = (hex) => {
-      const m = /^#?([0-9a-f]{6})$/i.exec(hex);
-      if (!m) return null;
-      const int = parseInt(m[1], 16);
-      return `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
     };
 
     await clickByLabel('News');
@@ -2943,10 +2949,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(active.dot, active.news, 'Active News filter --dot must resolve to the --news accent');
 
     // Compare while News is still the active button; re-read after switching.
-    const expectedNews = hexToRgb(active.news);
-    if (expectedNews) {
-      assert.equal(active.background, expectedNews, 'Active News filter background must paint the category accent');
-    }
+    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active News filter must stay transparent');
+    assert.equal(active.shadow, 'none', 'Active News filter must not use a tab shadow');
 
     await clickByLabel('AI papers');
     active = await readActive();
@@ -2954,10 +2958,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(active.label, 'AI papers', `Expected AI papers to be active, got ${active.label}`);
     assert.equal(active.dot, active.papers, 'Active AI papers filter --dot must resolve to the --papers accent');
 
-    const expectedPapers = hexToRgb(active.papers);
-    if (expectedPapers) {
-      assert.equal(active.background, expectedPapers, 'Active AI papers filter background must paint the category accent');
-    }
+    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active AI papers filter must stay transparent');
+    assert.equal(active.shadow, 'none', 'Active AI papers filter must not use a tab shadow');
   });
 
   await t.test('React "All" filter carries a valid accent', async () => {
@@ -2965,8 +2967,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     // --dot and the button fell through to the var(--dot, var(--news))
     // default. An empty --dot is the regression signal.
     await driver.executeScript(`
-      const btn = Array.from(document.querySelectorAll('.controls .filter'))
-        .find(b => b.textContent.trim() === 'All');
+      const btn = Array.from(document.querySelectorAll('.category-nav .filter'))
+        .find(b => b.querySelector('.nav-label').textContent.trim() === 'All');
       if (btn) btn.click();
     `);
     await sleep(300);
@@ -2976,7 +2978,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       if (!active) return null;
       const s = getComputedStyle(active);
       return {
-        label: active.textContent.trim(),
+        label: active.querySelector('.nav-label').textContent.trim(),
         inlineStyle: active.getAttribute('style') || '',
         dot: s.getPropertyValue('--dot').trim(),
         background: s.backgroundColor
@@ -3013,13 +3015,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(light.wrapLightMode, true, '.wrap must carry light-mode while the theme is light');
     assert.ok(light.idleCount >= 4, `Expected at least 4 idle filters in light mode, found ${light.idleCount}`);
 
-    const m = /^#?([0-9a-f]{6})$/i.exec(light.panelRaised);
-    assert.ok(m, `Could not parse --panel-raised token: ${light.panelRaised}`);
-    const int = parseInt(m[1], 16);
-    const expectedBg = `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
-
-    assert.equal(light.actualBackground, expectedBg, 'Idle filter background in light mode must follow the light --panel-raised token');
-    assert.equal(light.radius, '999px', 'Filter pills must keep their geometry in light mode');
+    assert.equal(light.actualBackground, 'rgba(0, 0, 0, 0)', 'Idle filter background in light mode must stay transparent');
+    assert.equal(light.radius, '0px', 'Filters must not regain a pill or square tab in light mode');
   });
 
   await t.test('React dashboard reports no local resource failures', async () => {

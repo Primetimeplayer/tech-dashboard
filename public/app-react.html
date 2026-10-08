@@ -1134,6 +1134,75 @@ input:focus-visible {
   }
 }
 
+/* Category navigation — one transparent row, Google News style.
+   Later than the pill .filter rules so it wins, including the light-mode
+   overrides that repaint active filters as filled accent tabs. */
+.category-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  margin: 14px 0 4px;
+  padding: 0;
+  overflow-x: auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  scrollbar-width: none;
+}
+
+.category-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.category-nav .filter,
+.wrap.light-mode .category-nav .filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text-muted);
+  font: 500 14px/1.2 var(--font-sans);
+  white-space: nowrap;
+  transform: none;
+  text-decoration: none;
+}
+
+.category-nav .filter:hover,
+.wrap.light-mode .category-nav .filter:hover {
+  background: rgba(127, 127, 127, 0.12);
+  border: 0;
+  box-shadow: none;
+  color: var(--text);
+  transform: none;
+}
+
+.category-nav .filter.active,
+.wrap.light-mode .category-nav .filter.active {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  transform: none;
+}
+
+.category-nav .nav-emoji {
+  font-size: 15px;
+  line-height: 1;
+}
+
 </style>
 </head>
 <body>
@@ -1144,14 +1213,34 @@ input:focus-visible {
 const { useState, useEffect, useMemo } = React;
 
 const CATEGORIES = [
-  { key: 'all', label: 'All' },
-  { key: 'news', label: 'News' },
-  { key: 'papers', label: 'AI papers' },
-  { key: 'reviews', label: 'Reviews' },
-  { key: 'reddit', label: 'Reddit' },
+  { key: 'all', label: 'All', emoji: '✦' },
+  { key: 'news', label: 'News', emoji: '📰' },
+  { key: 'papers', label: 'AI papers', emoji: '🔬' },
+  { key: 'reviews', label: 'Reviews', emoji: '⭐' },
+  { key: 'reddit', label: 'Reddit', emoji: '💬' },
 ];
 const CAT_LABEL = { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' };
 const CAT_COLOR = { all: 'var(--news)', news: 'var(--news)', papers: 'var(--papers)', reviews: 'var(--reviews)', reddit: 'var(--reddit)' };
+
+function CategoryNav({ category, onSelect }) {
+  return (
+    <nav className="category-nav" aria-label="Categories">
+      {CATEGORIES.map((c) => (
+        <button
+          key={c.key}
+          type="button"
+          className={`filter ${category === c.key ? 'active' : ''}`}
+          style={{ '--dot': CAT_COLOR[c.key] }}
+          aria-pressed={category === c.key}
+          onClick={() => onSelect(c.key)}
+        >
+          <span className="nav-emoji" aria-hidden="true">{c.emoji}</span>
+          <span className="nav-label">{c.label}</span>
+        </button>
+      ))}
+    </nav>
+  );
+}
 
 function timeAgo(iso) {
   if (!iso) return '';
@@ -1305,6 +1394,7 @@ function App() {
           </div>
         </div>
       </header>
+      <CategoryNav category={category} onSelect={setCategory} />
 <div className="results-bar">
   <div>
     <span className="results-label">YOUR FEED</span>
@@ -1327,16 +1417,6 @@ function App() {
   </span>
 </div>
       <div className="controls">
-        {CATEGORIES.map((c) => (
-          <button
-            key={c.key}
-            className={`filter ${category === c.key ? 'active' : ''}`}
-            style={{ '--dot': CAT_COLOR[c.key] }}
-            onClick={() => setCategory(c.key)}
-          >
-            {c.label}
-          </button>
-        ))}
         <div className="search-wrap">
           <input
             id="search"
