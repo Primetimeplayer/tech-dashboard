@@ -14,11 +14,16 @@ const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'reviews.json');
 
 const parser = new Parser({
   timeout: 10000,
-  headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' },
+  headers: {
+    'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)',
+    'Cache-Control': 'no-cache, max-age=0',
+    'Pragma': 'no-cache',
+  },
   customFields: {
     item: [
       ['media:content', 'media:content', { keepArray: true }],
       ['media:thumbnail', 'media:thumbnail'],
+      ['description', 'description'],
     ],
   },
 });
@@ -27,7 +32,7 @@ const parser = new Parser({
 // by keyword. Swap in whatever outlets you actually read.
 const FEEDS = [
   { name: 'Engadget Reviews', url: 'https://www.engadget.com/rss.xml' },
-  { name: 'The Verge Reviews', url: 'https://www.theverge.com/reviews/rss/index.xml' },
+  { name: 'The Verge Reviews', url: 'https://www.theverge.com/rss/reviews/index.xml' },
 ];
 
 const ITEMS_PER_FEED = 10;

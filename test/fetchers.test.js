@@ -234,6 +234,10 @@ test('story images keep http(s) pictures and drop everything else', () => {
     storyImage({ content: '<p>Hi</p><img src="https://cdn.example/body.jpg&amp;w=80" alt="">' }),
     'https://cdn.example/body.jpg&w=80'
   );
+  assert.equal(
+    storyImage({ description: '<img src="https://cdn.example/d.jpg?a=1&#038;b=2">' }),
+    'https://cdn.example/d.jpg?a=1&b=2'
+  );
 });
 
 test('papers writes a valid mocked arXiv response', async (t) => {

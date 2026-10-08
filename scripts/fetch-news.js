@@ -14,11 +14,18 @@ const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'news.json');
 
 const parser = new Parser({
   timeout: 10000,
-  headers: { 'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)' },
+  headers: {
+    'User-Agent': 'signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)',
+    // Ask every feed for a fresh copy. A query-string cache buster 404s on
+    // some publishers, so the request headers carry the TTL instead.
+    'Cache-Control': 'no-cache, max-age=0',
+    'Pragma': 'no-cache',
+  },
   customFields: {
     item: [
       ['media:content', 'media:content', { keepArray: true }],
       ['media:thumbnail', 'media:thumbnail'],
+      ['description', 'description'],
     ],
   },
 });

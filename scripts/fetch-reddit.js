@@ -24,7 +24,14 @@ function cleanText(raw = '') {
 async function fetchSubreddit(sub, request) {
   const url = `https://www.reddit.com/r/${sub}/top/.json?limit=${POSTS_PER_SUB}&t=day`;
   try {
-    const res = await request(url, { headers: { 'User-Agent': USER_AGENT } });
+    const res = await request(url, {
+      headers: {
+        'User-Agent': USER_AGENT,
+        'Cache-Control': 'no-cache, max-age=0',
+        'Pragma': 'no-cache',
+      },
+      signal: AbortSignal.timeout(15000),
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     return (json.data?.children ?? [])

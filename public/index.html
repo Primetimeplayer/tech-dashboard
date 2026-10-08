@@ -6603,7 +6603,7 @@ initAuth();
 
   function storyImageUrl(item) {
     const raw = item && (item.image || item.imageUrl || item.thumbnail) || '';
-    const url = String(raw).replace(/&amp;/g, '&').trim();
+    const url = String(raw).replace(/&amp;|&#0*38;|&#x0*26;/gi, '&').trim();
     return /^https?:\/\//i.test(url) ? url : '';
   }
 
@@ -6930,7 +6930,10 @@ initAuth();
 
   async function loadJSON(file, category, mapFn) {
     try {
-      const res = await fetch(`data/${file}?_=${Date.now()}`);
+      const res = await fetch(`data/${file}?_=${Date.now()}`, {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
+      });
       if (!res.ok) throw new Error(`${file}: ${res.status}`);
       const data = await res.json();
       return (data.items || []).map((raw) => ({ ...mapFn(raw), category }));

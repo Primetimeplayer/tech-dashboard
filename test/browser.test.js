@@ -2018,9 +2018,26 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
 
     const media = await driver.executeScript(`
       const cards = Array.from(document.querySelectorAll('#feed .card'));
+      const thumbs = cards.map(card => {
+        const img = card.querySelector('img');
+        if (!img) return null;
+        const cs = getComputedStyle(img);
+        const box = img.getBoundingClientRect();
+        const copy = card.querySelector('.story-copy');
+        const copyBox = copy ? copy.getBoundingClientRect() : null;
+        return {
+          src: img.getAttribute('src') || '',
+          width: Math.round(box.width),
+          height: Math.round(box.height),
+          fit: cs.objectFit,
+          radius: cs.borderRadius,
+          rightOfText: !copyBox || box.left >= copyBox.right - 2
+        };
+      }).filter(Boolean);
       return {
         cards: cards.length,
-        images: document.querySelectorAll('#feed .card img').length,
+        images: thumbs.length,
+        thumbs,
         backgrounds: cards.filter(c => getComputedStyle(c).backgroundImage !== 'none').length,
         titles: cards.filter(c => c.querySelector('h2') && c.querySelector('h2').textContent.trim()).length,
         heights: cards.slice(0, 6).map(c => Math.round(c.getBoundingClientRect().height))
@@ -2028,7 +2045,15 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     `);
 
     assert.ok(media.cards > 0, 'Expected cards');
-    assert.equal(media.images, 0, 'Cards without an image URL must not render a thumbnail');
+    assert.ok(media.images <= media.cards, 'A card must not render more than one thumbnail');
+    for (const thumb of media.thumbs) {
+      assert.match(thumb.src, /^https?:\/\//, 'Thumbnail src must be an http(s) image URL');
+      assert.equal(thumb.width, 100, 'Feed thumbnail must be 100px wide');
+      assert.equal(thumb.height, 100, 'Feed thumbnail must be 100px tall');
+      assert.equal(thumb.fit, 'cover', 'Feed thumbnail must use object-fit: cover');
+      assert.equal(thumb.radius, '8px', 'Feed thumbnail must use an 8px corner radius');
+      assert.equal(thumb.rightOfText, true, 'Feed thumbnail must sit to the right of the story text');
+    }
     assert.equal(media.backgrounds, 0, 'Cards must not depend on remote background images');
     assert.equal(media.titles, media.cards, 'Every card must keep readable title text without an image');
   });

@@ -2,7 +2,11 @@ const HTTP_URL = /^https?:\/\//i;
 
 function cleanUrl(value) {
   if (!value) return '';
-  const url = String(value).replace(/&amp;/g, '&').trim();
+  const url = String(value)
+    .replace(/&amp;/gi, '&')
+    .replace(/&#0*38;/g, '&')
+    .replace(/&#x0*26;/gi, '&')
+    .trim();
   return HTTP_URL.test(url) ? url : '';
 }
 
@@ -35,7 +39,9 @@ export function storyImage(item = {}) {
   const thumb = fromMedia(item['media:thumbnail'] || item.mediaThumbnail || item.thumbnail);
   if (thumb) return thumb;
 
-  const html = `${item['content:encoded'] || ''} ${item.content || ''}`;
+  const html = [item['content:encoded'], item.content, item.description, item.summary]
+    .filter((part) => typeof part === 'string')
+    .join(' ');
   const match = html.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i);
   return match ? cleanUrl(match[1]) : '';
 }
