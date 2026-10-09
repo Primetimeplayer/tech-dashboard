@@ -7212,18 +7212,13 @@ footer,
   }
 
   .mast-row {
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     row-gap: 0 !important;
   }
 
   .mast .search-row {
-    order: 5 !important;
-    flex: 1 0 100% !important;
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    margin-top: 8px !important;
+    display: none !important;
   }
 
   #filters .drawer-categories {
@@ -7235,6 +7230,270 @@ footer,
 
   #filters {
     overflow-y: auto !important;
+  }
+}
+</style>
+<style id="search-menus">
+/* Phones keep a compact search icon beside the item count. The same #search
+   field stays in the mast on wider screens and opens as a full-width overlay
+   below 768px. Region and language keep their native <select> values and
+   show a floating card menu instead of the browser list. */
+.result-meta {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  margin-top: 8px !important;
+}
+
+.result-meta .result-count {
+  margin: 0 !important;
+  width: auto !important;
+  flex: 0 1 auto !important;
+}
+
+.search-toggle {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #202124;
+  cursor: pointer;
+}
+
+.search-toggle svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.search-toggle[aria-expanded="true"] {
+  background-color: #e0e7ff;
+  border-color: #6366f1;
+  color: #4338ca;
+}
+
+.search-overlay[hidden] {
+  display: none !important;
+}
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.search-overlay-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.search-overlay .search-row {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: 44px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.search-overlay .search-row input {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  font-size: 16px !important;
+}
+
+.locale-field {
+  width: auto !important;
+  height: auto !important;
+  min-height: 34px !important;
+}
+
+.locale-trigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid #6366f1 !important;
+  background-color: #e0e7ff !important;
+  color: #4338ca !important;
+  cursor: pointer !important;
+  font: inherit !important;
+}
+
+.locale-trigger .locale-icon {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: 16px !important;
+  height: 16px !important;
+  transform: none !important;
+  flex: 0 0 auto !important;
+}
+
+.locale-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.locale-controls select.locale-native {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.locale-menu {
+  position: fixed;
+  z-index: 260;
+  min-width: 220px;
+  max-height: min(320px, 60vh);
+  overflow: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  padding: 6px;
+}
+
+.locale-menu[hidden] {
+  display: none !important;
+}
+
+.locale-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: #202124;
+  text-align: left;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.3;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.locale-option:hover,
+.locale-option:focus {
+  background-color: #f3f4f6;
+  outline: none;
+}
+
+.locale-option.is-selected {
+  color: #4338ca;
+  font-weight: 600;
+}
+
+.locale-option.is-selected:hover,
+.locale-option.is-selected:focus {
+  background-color: #e0e7ff;
+}
+
+.locale-check {
+  flex: 0 0 auto;
+  width: 1em;
+  color: #4338ca;
+  font-weight: 700;
+}
+
+:root[data-theme="dark"] .search-toggle {
+  background: var(--panel, #292a2d);
+  border-color: var(--line, #3c4043);
+  color: var(--text, #e8eaed);
+}
+
+:root[data-theme="dark"] .search-toggle[aria-expanded="true"],
+:root[data-theme="dark"] .locale-trigger {
+  background-color: #312e81 !important;
+  border-color: #818cf8 !important;
+  color: #e0e7ff !important;
+}
+
+:root[data-theme="dark"] .search-overlay {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme="dark"] .search-overlay-bar,
+:root[data-theme="dark"] .locale-menu {
+  background: #292a2d;
+  border-color: #3c4043;
+  color: #e8eaed;
+}
+
+:root[data-theme="dark"] .search-overlay .search-row {
+  background: var(--input-bg, #292a2d) !important;
+  color: #e8eaed !important;
+  border-color: #3c4043 !important;
+}
+
+:root[data-theme="dark"] .locale-option {
+  color: #e8eaed;
+}
+
+:root[data-theme="dark"] .locale-option:hover,
+:root[data-theme="dark"] .locale-option:focus {
+  background-color: #3c4043;
+}
+
+:root[data-theme="dark"] .locale-option.is-selected {
+  color: #c7d2fe;
+}
+
+:root[data-theme="dark"] .locale-option.is-selected:hover,
+:root[data-theme="dark"] .locale-option.is-selected:focus {
+  background-color: #312e81;
+}
+
+:root[data-theme="dark"] .locale-check {
+  color: #c7d2fe;
+}
+
+@media (max-width: 767px) {
+  .search-toggle {
+    display: inline-flex !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-toggle,
+  .search-overlay {
+    display: none !important;
   }
 }
 </style>
@@ -7263,12 +7522,15 @@ footer,
         <button type="button" class="menu-toggle" id="menuToggle" data-i18n-aria="openMenu" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <a class="mast-link" href="digests.html" data-i18n="digests">Digests</a> <a class="mast-link" href="app-react.html">React</a>
+        <a class="mast-link" href="digests.html" data-i18n="digests">Digests</a>
         <div class="status" id="status">loading feed…</div>
         <div class="locale-controls" role="group" data-i18n-aria="localeGroup" aria-label="News region and language">
-          <label class="locale-field">
-            <svg class="locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.8 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.8-3.9-9s1.3-6.3 3.9-9z"/></svg>
-            <select id="regionSelect" data-i18n-aria="regionAria" data-i18n-title="regionAria" aria-label="News region" title="News region">
+          <div class="locale-field">
+            <button type="button" class="locale-trigger is-set" id="regionTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="regionMenu" aria-label="News region" title="News region">
+              <svg class="locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.8 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.8-3.9-9s1.3-6.3 3.9-9z"/></svg>
+              <span class="locale-badge" id="regionBadge">US</span>
+            </button>
+            <select id="regionSelect" class="locale-native" tabindex="-1" aria-hidden="true" data-i18n-aria="regionAria" data-i18n-title="regionAria" aria-label="News region" title="News region">
               <option value="US" data-i18n="regionUS">Worldwide / US</option>
               <option value="GB" data-i18n="regionGB">United Kingdom</option>
               <option value="INT" data-i18n="regionINT">Global / International</option>
@@ -7285,10 +7547,14 @@ footer,
               <option value="IT" data-i18n="regionIT">Italy</option>
               <option value="NL" data-i18n="regionNL">Netherlands</option>
             </select>
-          </label>
-          <label class="locale-field">
-            <svg class="locale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="1" y="16" fill="currentColor" font-size="13" font-family="sans-serif" font-weight="700">A</text><text x="11" y="17" fill="currentColor" font-size="12" font-family="sans-serif" font-weight="700">文</text></svg>
-            <select id="languageSelect" data-i18n-aria="languageAria" data-i18n-title="languageAria" aria-label="News language" title="News language">
+            <div class="locale-menu" id="regionMenu" role="listbox" hidden></div>
+          </div>
+          <div class="locale-field">
+            <button type="button" class="locale-trigger is-set" id="languageTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="languageMenu" aria-label="News language" title="News language">
+              <svg class="locale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="1" y="16" fill="currentColor" font-size="13" font-family="sans-serif" font-weight="700">A</text><text x="11" y="17" fill="currentColor" font-size="12" font-family="sans-serif" font-weight="700">文</text></svg>
+              <span class="locale-badge" id="languageBadge">EN</span>
+            </button>
+            <select id="languageSelect" class="locale-native" tabindex="-1" aria-hidden="true" data-i18n-aria="languageAria" data-i18n-title="languageAria" aria-label="News language" title="News language">
               <option value="en-US" data-i18n="langEn">English</option>
               <option value="es-419" data-i18n="langEs">Spanish</option>
               <option value="fr" data-i18n="langFr">French</option>
@@ -7301,7 +7567,8 @@ footer,
               <option value="it" data-i18n="langIt">Italian</option>
               <option value="nl" data-i18n="langNl">Dutch</option>
             </select>
-          </label>
+            <div class="locale-menu" id="languageMenu" role="listbox" hidden></div>
+          </div>
         </div>
         <button class="theme-toggle" id="themeToggle" data-i18n-aria="themeToggle" data-i18n-title="themeTitle" aria-label="Toggle light and dark theme" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -7310,6 +7577,10 @@ footer,
     </div>
     <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
   </div>
+</div>
+
+<div id="searchOverlay" class="search-overlay" hidden>
+  <div class="search-overlay-bar" id="searchOverlayBar"></div>
 </div>
 
 <button type="button" class="sidebar-backdrop" id="sidebarBackdrop" data-i18n-aria="closeMenu" tabindex="-1" aria-label="Close navigation menu"></button>
@@ -7389,7 +7660,12 @@ footer,
     </div>
   </div>
 
-  <p class="result-count" id="resultCount"></p>
+  <div class="result-meta">
+    <p class="result-count" id="resultCount"></p>
+    <button type="button" class="search-toggle" id="searchToggle" aria-expanded="false" aria-controls="searchOverlay" data-i18n-aria="searchLabel" data-i18n-title="searchLabel" aria-label="Search headlines and summaries" title="Search headlines and summaries">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+  </div>
 
 <div class="wrap latest-wrap">
   <div class="latest" id="latestSection" hidden>
@@ -7433,7 +7709,7 @@ footer,
   </main>
 
   <footer data-i18n="footer" data-i18n-html>
-    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
+    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Optional cross-device sync for saved items lives in <code>cloudflare-worker/</code>.
   </footer>
 </div>
 
@@ -7471,11 +7747,17 @@ footer,
     if (statusEl) {
       statusEl.textContent = statusClock ? `${t('updated')} ${statusClock}` : t('loading');
     }
+    syncLocaleMenus();
   }
   const skeletonEl = document.getElementById('skeleton');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
   const searchEl = document.getElementById('search');
+  const searchToggleEl = document.getElementById('searchToggle');
+  const searchOverlayEl = document.getElementById('searchOverlay');
+  const searchOverlayBarEl = document.getElementById('searchOverlayBar');
+  const searchRowEl = document.querySelector('.mast .search-row');
+  const searchAnchorEl = document.querySelector('.mast-right');
   const sourceFilterEl = document.getElementById('sourceFilter');
   const dateFilterEl = document.getElementById('dateFilter');
   const themeToggleEl = document.getElementById('themeToggle');
@@ -8810,7 +9092,17 @@ initAuth();
     if (el) el.addEventListener('click', () => setSidebarOpen(false));
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && document.body.classList.contains('sidebar-open')) {
+    if (e.key !== 'Escape') return;
+    if (document.body.classList.contains('search-open')) {
+      setSearchOpen(false);
+      if (searchToggleEl) searchToggleEl.focus();
+      return;
+    }
+    if (document.querySelector('.locale-menu:not([hidden])')) {
+      closeLocaleMenus(true);
+      return;
+    }
+    if (document.body.classList.contains('sidebar-open')) {
       setSidebarOpen(false);
       if (menuToggleEl) menuToggleEl.focus();
     }
@@ -8854,14 +9146,192 @@ initAuth();
   }
   if (regionSelectEl) regionSelectEl.addEventListener('change', onLocaleChange);
   if (languageSelectEl) languageSelectEl.addEventListener('change', onLocaleChange);
+
+  const LANG_BADGE = {
+    'en-US': 'EN',
+    'es-419': 'ES',
+    fr: 'FR',
+    de: 'DE',
+    ja: 'JA',
+    'pt-BR': 'PT',
+    hi: 'HI',
+    ko: 'KO',
+    'zh-CN': 'ZH',
+    it: 'IT',
+    nl: 'NL',
+  };
+
+  function localeBadge(select) {
+    if (!select) return '';
+    if (select.id === 'languageSelect') return LANG_BADGE[select.value] || String(select.value).slice(0, 2).toUpperCase();
+    return select.value || '';
+  }
+
+  function closeLocaleMenus(restoreFocus) {
+    document.querySelectorAll('.locale-menu').forEach((menu) => {
+      menu.hidden = true;
+    });
+    document.querySelectorAll('.locale-trigger').forEach((btn) => {
+      const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', 'false');
+      if (restoreFocus && wasOpen) btn.focus();
+    });
+  }
+
+  function placeLocaleMenu(trigger, menu) {
+    const rect = trigger.getBoundingClientRect();
+    menu.hidden = false;
+    const menuHeight = Math.min(menu.scrollHeight, Math.round(window.innerHeight * 0.6));
+    let top = rect.bottom + 6;
+    if (top + menuHeight > window.innerHeight - 8) top = Math.max(8, rect.top - menuHeight - 6);
+    menu.style.top = `${Math.round(top)}px`;
+    menu.style.right = `${Math.max(8, Math.round(window.innerWidth - rect.right))}px`;
+    menu.style.left = 'auto';
+  }
+
+  function renderLocaleMenu(select, menu) {
+    const current = select.value;
+    menu.replaceChildren();
+    Array.from(select.options).forEach((opt) => {
+      const selected = opt.value === current;
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = selected ? 'locale-option is-selected' : 'locale-option';
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', selected ? 'true' : 'false');
+      item.dataset.value = opt.value;
+      const label = document.createElement('span');
+      label.className = 'locale-option-label';
+      label.textContent = opt.textContent;
+      const mark = document.createElement('span');
+      mark.className = 'locale-check';
+      mark.setAttribute('aria-hidden', 'true');
+      mark.textContent = selected ? '✓' : '';
+      item.append(label, mark);
+      item.addEventListener('click', () => {
+        closeLocaleMenus(false);
+        if (select.value !== opt.value) {
+          select.value = opt.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        } else {
+          syncLocaleMenus();
+        }
+      });
+      menu.appendChild(item);
+    });
+  }
+
+  function syncLocaleMenus() {
+    [
+      ['regionSelect', 'regionMenu', 'regionBadge', 'regionTrigger'],
+      ['languageSelect', 'languageMenu', 'languageBadge', 'languageTrigger'],
+    ].forEach(([selectId, menuId, badgeId, triggerId]) => {
+      const select = document.getElementById(selectId);
+      const menu = document.getElementById(menuId);
+      const badge = document.getElementById(badgeId);
+      const trigger = document.getElementById(triggerId);
+      if (!select || !menu || !trigger) return;
+      if (badge) badge.textContent = localeBadge(select);
+      trigger.classList.add('is-set');
+      const label = select.getAttribute('aria-label') || '';
+      if (label) {
+        trigger.setAttribute('aria-label', label);
+        trigger.setAttribute('title', select.getAttribute('title') || label);
+      }
+      const open = trigger.getAttribute('aria-expanded') === 'true';
+      renderLocaleMenu(select, menu);
+      menu.hidden = !open;
+    });
+  }
+
+  function bindLocaleMenus() {
+    document.querySelectorAll('.locale-trigger').forEach((trigger) => {
+      const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+      if (!menu) return;
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = menu.hidden;
+        closeLocaleMenus(false);
+        if (!willOpen) return;
+        trigger.setAttribute('aria-expanded', 'true');
+        placeLocaleMenu(trigger, menu);
+        const selected = menu.querySelector('.is-selected');
+        if (selected) selected.focus();
+      });
+      menu.addEventListener('keydown', (e) => {
+        const items = Array.from(menu.querySelectorAll('.locale-option'));
+        const index = items.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const next = e.key === 'ArrowDown' ? Math.min(items.length - 1, index + 1) : Math.max(0, index - 1);
+          const target = items[index === -1 ? 0 : next];
+          if (target) target.focus();
+        }
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.locale-field')) closeLocaleMenus(false);
+    });
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.locale-trigger[aria-expanded="true"]').forEach((trigger) => {
+        const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (menu && !menu.hidden) placeLocaleMenu(trigger, menu);
+      });
+    });
+  }
+
+  function parkSearchRow() {
+    if (!searchRowEl || !searchAnchorEl) return;
+    if (searchRowEl.parentElement !== searchAnchorEl.parentElement) {
+      searchAnchorEl.parentElement.insertBefore(searchRowEl, searchAnchorEl);
+    }
+  }
+
+  function setSearchOpen(open) {
+    const narrow = window.matchMedia('(max-width: 767px)').matches;
+    const show = Boolean(open) && narrow;
+    document.body.classList.toggle('search-open', show);
+    if (searchToggleEl) searchToggleEl.setAttribute('aria-expanded', show ? 'true' : 'false');
+    if (searchOverlayEl) searchOverlayEl.hidden = !show;
+    if (show && searchOverlayBarEl && searchRowEl) {
+      searchOverlayBarEl.appendChild(searchRowEl);
+      searchEl.focus();
+      if (searchHintEl) searchHintEl.style.display = 'none';
+    } else {
+      parkSearchRow();
+    }
+  }
+
+  function bindMobileSearch() {
+    if (searchToggleEl) {
+      searchToggleEl.addEventListener('click', () => {
+        setSearchOpen(!document.body.classList.contains('search-open'));
+      });
+    }
+    if (searchOverlayEl) {
+      searchOverlayEl.addEventListener('click', (e) => {
+        if (e.target === searchOverlayEl) setSearchOpen(false);
+      });
+    }
+    const narrowQuery = window.matchMedia('(max-width: 767px)');
+    const onNarrowChange = () => {
+      if (!narrowQuery.matches) setSearchOpen(false);
+    };
+    if (narrowQuery.addEventListener) narrowQuery.addEventListener('change', onNarrowChange);
+    else if (narrowQuery.addListener) narrowQuery.addListener(onNarrowChange);
+  }
+
+  bindLocaleMenus();
+  bindMobileSearch();
   if (sourceFilterEl) sourceFilterEl.addEventListener('change', (e) => { activeSource = e.target.value; visibleCount = PAGE_SIZE; render(); });
   if (dateFilterEl) dateFilterEl.addEventListener('change', (e) => { activeDate = e.target.value; visibleCount = PAGE_SIZE; render(); });
   clearFiltersEl.addEventListener('click', () => {
     resetFilters();
     // Keep focus somewhere useful: the source/time selects are hidden state
     // holders now, so park focus on the search field instead of an
-    // invisible control.
-    searchEl.focus();
+    // invisible control. On a phone the field lives in the overlay.
+    if (window.matchMedia('(max-width: 767px)').matches) setSearchOpen(true);
+    else searchEl.focus();
   });
 
   // Debounced search
@@ -8884,8 +9354,11 @@ initAuth();
     if (target && target.matches && target.matches('input, textarea, select')) return;
 
     e.preventDefault();
-    searchEl.focus();
-    searchHintEl.style.display = 'none';
+    if (window.matchMedia('(max-width: 767px)').matches) setSearchOpen(true);
+    else {
+      searchEl.focus();
+      searchHintEl.style.display = 'none';
+    }
   });
   searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
   searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });

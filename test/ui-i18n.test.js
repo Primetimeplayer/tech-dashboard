@@ -27,6 +27,10 @@ test('every language translates the same dashboard labels', async () => {
   assert.equal(translate('de', 'updated'), 'aktualisiert');
   assert.equal(translate('nope', 'save'), 'Save');
   assert.equal(translate('fr', 'resultCount', { n: 2, m: 9 }), '2 sur 9 éléments');
+  for (const lang of expected) {
+    assert.equal(STRINGS[lang].footer.includes('app-react.html'), false, `${lang} footer still links to React`);
+    assert.equal(/react/i.test(STRINGS[lang].footer), false, `${lang} footer still mentions React`);
+  }
 });
 
 test('language changes translate the page without putting locale into the timestamp', async () => {
@@ -39,5 +43,16 @@ test('language changes translate the page without putting locale into the timest
   assert.doesNotMatch(html, /statusEl\.textContent = `[^`]*region/);
   assert.doesNotMatch(html, /statusEl\.textContent = `[^`]*language/);
   assert.match(html, /@media \(max-width: 767px\)[\s\S]*#topicBar \{\s*display: none !important;/);
-  assert.match(html, /@media \(max-width: 767px\)[\s\S]*\.mast \.search-row \{[\s\S]*width: 100% !important;[\s\S]*margin-top: 8px !important;/);
+  assert.match(html, /@media \(max-width: 767px\)[\s\S]*\.mast \.search-row \{\s*display: none !important;/);
+  assert.match(html, /id="searchToggle"/);
+  assert.match(html, /id="searchOverlay"/);
+  assert.match(html, /class="result-meta"/);
+  assert.match(html, /id="regionMenu"/);
+  assert.match(html, /id="languageMenu"/);
+  assert.match(html, /class="locale-trigger is-set"/);
+  assert.match(html, /box-shadow:\s*0 10px 25px -5px rgba\(0,\s*0,\s*0,\s*0\.1\), 0 8px 10px -6px rgba\(0,\s*0,\s*0,\s*0\.1\)/);
+  assert.match(html, /background-color:\s*#e0e7ff/);
+  assert.match(html, /background-color:\s*#f3f4f6/);
+  assert.equal(html.includes('app-react.html'), false);
+  assert.equal(html.includes('href="app-react.html"'), false);
 });

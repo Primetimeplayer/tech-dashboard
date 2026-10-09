@@ -2768,6 +2768,29 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     await driver.setWindowRect(390, 844);
     await sleep(350);
 
+    const placement = await driver.executeScript(`
+      const toggle = document.getElementById('searchToggle');
+      const count = document.getElementById('resultCount');
+      const meta = document.querySelector('.result-meta');
+      const toggleRect = toggle.getBoundingClientRect();
+      const countRect = count.getBoundingClientRect();
+      return {
+        grouped: !!(meta && meta.contains(toggle) && meta.contains(count)),
+        toggleShown: getComputedStyle(toggle).display !== 'none',
+        mastSearchHidden: getComputedStyle(document.querySelector('.mast .search-row')).display === 'none',
+        sameRow: Math.abs((toggleRect.top + toggleRect.height / 2) - (countRect.top + countRect.height / 2)) < 20,
+        gap: Math.round(toggleRect.left - countRect.right)
+      };
+    `);
+    assert.equal(placement.grouped, true, 'Search icon must sit in the result-count row');
+    assert.equal(placement.toggleShown, true, 'Search icon must be visible on a phone');
+    assert.equal(placement.mastSearchHidden, true, 'Mast search field must be collapsed on a phone');
+    assert.equal(placement.sameRow, true, 'Search icon must share a row with the item count');
+    assert.ok(placement.gap >= -1 && placement.gap < 40, `Search icon must sit directly beside the count (gap ${placement.gap}px)`);
+
+    await driver.executeScript(`document.getElementById('searchToggle').click();`);
+    await sleep(200);
+
     const narrow = await driver.executeScript(`
       const el = document.getElementById('search');
       if (document.activeElement === el) el.blur();
@@ -2775,15 +2798,21 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       const ctx = document.createElement('canvas').getContext('2d');
       ctx.font = (cs.fontWeight || '400') + ' ' + cs.fontSize + ' ' + (cs.fontFamily || 'sans-serif');
       const usable = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const overlay = document.getElementById('searchOverlay');
+      const bar = overlay.getBoundingClientRect();
       return {
         placeholder: el.placeholder,
         fontSize: parseFloat(cs.fontSize),
         measured: Math.ceil(ctx.measureText(el.placeholder).width),
-        usable: Math.round(usable)
+        usable: Math.round(usable),
+        overlayOpen: !overlay.hidden && document.body.classList.contains('search-open'),
+        fullWidth: bar.width >= document.documentElement.clientWidth - 2
       };
     `);
 
     const placeholderText = 'Search headlines';
+    assert.equal(narrow.overlayOpen, true, 'Search icon must open the overlay');
+    assert.equal(narrow.fullWidth, true, 'Phone search overlay must span the viewport');
     assert.equal(narrow.placeholder, placeholderText, 'Narrow screens use the Search headlines placeholder');
     assert.ok(narrow.fontSize >= 12, `Placeholder must stay readable (font-size ${narrow.fontSize}px)`);
     assert.ok(
@@ -2791,16 +2820,24 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       `Placeholder must fit without truncation (needs ${narrow.measured}px, has ${narrow.usable}px)`
     );
 
+    await driver.executeScript(`document.getElementById('searchToggle').click();`);
     await driver.setWindowRect(1280, 900);
     await sleep(350);
     const wide = await driver.executeScript(`
+      const row = document.querySelector('.mast .search-row');
       return {
         placeholder: document.getElementById('search').placeholder,
-        fontSize: parseFloat(getComputedStyle(document.getElementById('search')).fontSize)
+        fontSize: parseFloat(getComputedStyle(document.getElementById('search')).fontSize),
+        inMast: !!(row && row.contains(document.getElementById('search'))),
+        toggleHidden: getComputedStyle(document.getElementById('searchToggle')).display === 'none',
+        overlayHidden: document.getElementById('searchOverlay').hidden
       };
     `);
     assert.equal(wide.placeholder, placeholderText, 'Desktop uses the Search headlines placeholder');
     assert.ok(wide.fontSize >= 14, `Desktop search typography must be unchanged (font-size ${wide.fontSize}px)`);
+    assert.equal(wide.inMast, true, 'Desktop search must stay in the mast');
+    assert.equal(wide.toggleHidden, true, 'Desktop must hide the row-2 search icon');
+    assert.equal(wide.overlayHidden, true, 'Desktop search overlay must stay closed');
   });
 
   await t.test('renders responsive layouts without horizontal overflow', async () => {
@@ -2838,266 +2875,4 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.equal(resourceErrors.length, 0, `Local dashboard resources failed to load: ${JSON.stringify(resourceErrors)}`);
   });
 
-  // --- React dashboard (public/app-react.html) ---
-  //
-  // This page compiles JSX in the browser via babel-standalone and loads
-  // React/ReactDOM from cdnjs, so it only renders when those CDN assets are
-  // reachable. If they are not, the suite skips rather than reporting a pile
-  // of failures that have nothing to do with the app.
-  const reactUrl = `http://127.0.0.1:${serverInfo.port}/app-react.html`;
-  let reactReachable = true;
-  for (const asset of [
-    'https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js'
-  ]) {
-    try {
-      const res = await fetch(asset, { method: 'GET' });
-      if (!res.ok) reactReachable = false;
-    } catch {
-      reactReachable = false;
-    }
-  }
-
-  // React mounts asynchronously (CDN scripts + babel compile + data fetches),
-  // so every wait below polls for the filter bar rather than readyState.
-  const waitForReactFilters = async () => {
-    for (let i = 0; i < 100; i++) {
-      const count = await driver.executeScript('return document.querySelectorAll(".filter").length;');
-      if (count >= 5) return true;
-      await sleep(100);
-    }
-    return false;
-  };
-
-  // Switch themes through the real UI. Writing data-theme directly would
-  // desync it from React's lightMode state, leaving .wrap.light-mode stale.
-  const clickThemeToggle = async () => {
-    await driver.executeScript('document.querySelector(".theme-toggle").click();');
-    await sleep(400);
-  };
-
-  if (!reactReachable) {
-    await t.test('React dashboard requires reachable CDN assets', () => {
-      t.skip('Skipping app-react.html coverage: React/ReactDOM/babel-standalone could not be fetched from cdnjs.cloudflare.com');
-    });
-    return;
-  }
-
-  await t.test('React dashboard loads and renders its category filters', async () => {
-    await driver.navigate(reactUrl);
-
-    const mounted = await waitForReactFilters();
-    assert.ok(mounted, 'app-react.html did not render 5 category .filter buttons within timeout');
-
-    const labels = await driver.executeScript(`
-      return Array.from(document.querySelectorAll('.category-nav .nav-label'))
-        .map(b => b.textContent.trim());
-    `);
-    assert.deepEqual(labels, ['All News', 'Software & Dev', 'AI & Research', 'Chips & Silicon', 'Gaming & Consoles', 'Space & Rockets', 'Cybersecurity', 'Gadgets & Hardware'], `Unexpected filter labels: ${JSON.stringify(labels)}`);
-  });
-
-  await t.test('React category nav is one transparent row', async () => {
-    const geometry = await driver.executeScript(`
-      const nav = document.querySelector('.category-nav');
-      const navStyle = getComputedStyle(nav);
-      return {
-        wrap: navStyle.flexWrap,
-        overflowX: navStyle.overflowX,
-        items: Array.from(nav.querySelectorAll('.filter')).map(b => {
-          const s = getComputedStyle(b);
-          return {
-            label: b.querySelector('.nav-label').textContent.trim(),
-            radius: s.borderTopLeftRadius,
-            background: s.backgroundColor,
-            borderWidth: s.borderTopWidth,
-            shadow: s.boxShadow
-          };
-        })
-      };
-    `);
-    assert.equal(geometry.wrap, 'nowrap', 'Category nav must stay on one row');
-    assert.equal(geometry.overflowX, 'auto', 'Category nav must scroll horizontally instead of wrapping');
-    assert.equal(geometry.items.length, 8, `Expected 8 filter buttons, found ${geometry.items.length}`);
-    for (const btn of geometry.items) {
-      assert.equal(btn.radius, '0px', `Filter "${btn.label}" should not use a pill or square tab`);
-      assert.equal(btn.background, 'rgba(0, 0, 0, 0)', `Filter "${btn.label}" background should be transparent`);
-      assert.equal(btn.borderWidth, '0px', `Filter "${btn.label}" should have no border`);
-      assert.equal(btn.shadow, 'none', `Filter "${btn.label}" should have no box shadow`);
-    }
-  });
-
-  await t.test('React idle filters use dark-mode surface, text and border tokens', async () => {
-    // Land in dark mode first (localStorage is shared with the main dashboard).
-    const currentTheme = await driver.executeScript('return document.documentElement.getAttribute("data-theme");');
-    if (currentTheme !== 'dark') {
-      await clickThemeToggle();
-    }
-
-    const probe = await driver.executeScript(`
-      const cs = getComputedStyle(document.documentElement);
-      const token = name => cs.getPropertyValue(name).trim();
-      const idle = Array.from(document.querySelectorAll('.filter'))
-        .filter(b => !b.classList.contains('active'));
-      const sample = idle[0];
-      const s = sample ? getComputedStyle(sample) : null;
-      return {
-        theme: document.documentElement.getAttribute('data-theme'),
-        wrapLightMode: document.querySelector('.wrap').classList.contains('light-mode'),
-        idleCount: idle.length,
-        tokens: {
-          panelRaised: token('--panel-raised'),
-          textMuted: token('--text-muted'),
-          line: token('--line')
-        },
-        actual: s ? {
-          background: s.backgroundColor,
-          color: s.color,
-          borderWidth: s.borderTopWidth,
-          shadow: s.boxShadow
-        } : null
-      };
-    `);
-
-    assert.equal(probe.theme, 'dark', `Expected dark theme, got ${probe.theme}`);
-    assert.equal(probe.wrapLightMode, false, '.wrap must not carry light-mode while the theme is dark');
-    assert.ok(probe.idleCount >= 4, `Expected at least 4 idle filters, found ${probe.idleCount}`);
-    assert.ok(probe.actual, 'No idle filter button found to inspect');
-
-    const hexToRgb = (hex) => {
-      const m = /^#?([0-9a-f]{6})$/i.exec(hex);
-      if (!m) return null;
-      const int = parseInt(m[1], 16);
-      return `rgb(${(int >> 16) & 255}, ${(int >> 8) & 255}, ${int & 255})`;
-    };
-
-    const expectedColor = hexToRgb(probe.tokens.textMuted);
-
-    assert.ok(expectedColor, `Could not parse --text-muted token: ${probe.tokens.textMuted}`);
-
-    assert.equal(probe.actual.background, 'rgba(0, 0, 0, 0)', 'Idle filter background must stay transparent');
-    assert.equal(probe.actual.color, expectedColor, 'Idle filter text must follow --text-muted');
-    assert.equal(probe.actual.borderWidth, '0px', 'Idle filter must not draw a tab border');
-    assert.equal(probe.actual.shadow, 'none', 'Idle filter must not draw a tab shadow');
-  });
-
-  await t.test('React active filter stays transparent and keeps its accent token', async () => {
-    const readActive = () => driver.executeScript(`
-      const cs = getComputedStyle(document.documentElement);
-      const active = document.querySelector('.filter.active');
-      if (!active) return null;
-      const s = getComputedStyle(active);
-      return {
-        label: active.querySelector('.nav-label').textContent.trim(),
-        dot: s.getPropertyValue('--dot').trim(),
-        background: s.backgroundColor,
-        shadow: s.boxShadow,
-        news: cs.getPropertyValue('--news').trim(),
-        papers: cs.getPropertyValue('--papers').trim()
-      };
-    `);
-
-    const clickByLabel = async (label) => {
-      await driver.executeScript(`
-        const btn = Array.from(document.querySelectorAll('.category-nav .filter'))
-          .find(b => b.querySelector('.nav-label').textContent.trim() === ${JSON.stringify(label)});
-        if (btn) btn.click();
-      `);
-      await sleep(300);
-    };
-
-    await clickByLabel('Software & Dev');
-    let active = await readActive();
-    assert.ok(active, 'No .filter.active element after selecting Software & Dev');
-    assert.equal(active.label, 'Software & Dev', `Expected Software & Dev to be active, got ${active.label}`);
-    assert.equal(active.dot, active.news, 'Active Software & Dev filter --dot must resolve to the --news accent');
-
-    // Compare while Software & Dev is still the active button; re-read after switching.
-    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active Software & Dev filter must stay transparent');
-    assert.equal(active.shadow, 'none', 'Active Software & Dev filter must not use a tab shadow');
-
-    await clickByLabel('AI & Research');
-    active = await readActive();
-    assert.ok(active, 'No .filter.active element after selecting AI & Research');
-    assert.equal(active.label, 'AI & Research', `Expected AI & Research to be active, got ${active.label}`);
-    assert.equal(active.dot, active.papers, 'Active AI & Research filter --dot must resolve to the --papers accent');
-
-    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active AI & Research filter must stay transparent');
-    assert.equal(active.shadow, 'none', 'Active AI & Research filter must not use a tab shadow');
-  });
-
-  await t.test('React "All" filter carries a valid accent', async () => {
-    // CAT_COLOR previously had no "all" key, so React dropped the inline
-    // --dot and the button fell through to the var(--dot, var(--news))
-    // default. An empty --dot is the regression signal.
-    await driver.executeScript(`
-      const btn = Array.from(document.querySelectorAll('.category-nav .filter'))
-        .find(b => b.querySelector('.nav-label').textContent.trim() === 'All News');
-      if (btn) btn.click();
-    `);
-    await sleep(300);
-
-    const all = await driver.executeScript(`
-      const active = document.querySelector('.filter.active');
-      if (!active) return null;
-      const s = getComputedStyle(active);
-      return {
-        label: active.querySelector('.nav-label').textContent.trim(),
-        inlineStyle: active.getAttribute('style') || '',
-        dot: s.getPropertyValue('--dot').trim(),
-        background: s.backgroundColor
-      };
-    `);
-
-    assert.ok(all, 'No .filter.active element after selecting All');
-    assert.equal(all.label, 'All News', `Expected All News to be active, got ${all.label}`);
-    assert.ok(all.dot.length > 0, 'Active All filter has no --dot; CAT_COLOR is missing the "all" key');
-    assert.ok(all.inlineStyle.includes('--dot'), 'Active All filter is missing the inline --dot declaration');
-  });
-
-  await t.test('React filters remain usable after switching back to light mode', async () => {
-    await clickThemeToggle();
-
-    const light = await driver.executeScript(`
-      const cs = getComputedStyle(document.documentElement);
-      const idle = Array.from(document.querySelectorAll('.filter'))
-        .filter(b => !b.classList.contains('active'));
-      const sample = idle[0];
-      const s = sample ? getComputedStyle(sample) : null;
-      return {
-        theme: document.documentElement.getAttribute('data-theme'),
-        wrapLightMode: document.querySelector('.wrap').classList.contains('light-mode'),
-        wrapBackground: getComputedStyle(document.querySelector('.wrap')).backgroundColor,
-        panelRaised: cs.getPropertyValue('--panel-raised').trim(),
-        idleCount: idle.length,
-        actualBackground: s ? s.backgroundColor : null,
-        radius: s ? s.borderTopLeftRadius : null
-      };
-    `);
-
-    assert.equal(light.theme, 'light', `Expected light theme after toggling back, got ${light.theme}`);
-    assert.equal(light.wrapLightMode, true, '.wrap must carry light-mode while the theme is light');
-    assert.ok(light.idleCount >= 4, `Expected at least 4 idle filters in light mode, found ${light.idleCount}`);
-
-    assert.equal(light.actualBackground, 'rgba(0, 0, 0, 0)', 'Idle filter background in light mode must stay transparent');
-    assert.equal(light.radius, '0px', 'Filters must not regain a pill or square tab in light mode');
-  });
-
-  await t.test('React dashboard reports no local resource failures', async () => {
-    const failures = await driver.executeScript(`
-      return Array.from(document.querySelectorAll('.grid .card')).length;
-    `);
-    assert.ok(failures > 0, 'React dashboard rendered no cards; its local data fetches may have failed');
-
-    const localFailures = await driver.executeScript(`
-      return window.performance.getEntriesByType('resource')
-        .filter(r => r.name.includes('/data/'))
-        .filter(r => r.duration === 0 && r.transferSize === 0)
-        .map(r => r.name);
-    `);
-    assert.equal(localFailures.length, 0, `React dashboard data fetches failed: ${JSON.stringify(localFailures)}`);
-
-    const reactPresent = await driver.executeScript('return typeof window.React !== "undefined" && typeof window.ReactDOM !== "undefined";');
-    assert.equal(reactPresent, true, 'React/ReactDOM globals missing; CDN assets did not load');
-  });
 });
