@@ -6460,6 +6460,368 @@ main .grid {
   }
 }
 </style>
+<style id="topic-and-featured">
+/* Topics, search, sort, and view mode share one scrolling row.
+   The featured board sits under the hero and fills the page below Picks. */
+#topicBar {
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 8px;
+  padding: 3px 0;
+  /* Stops the scrolling topic row from widening the page on phones. */
+  contain: paint;
+}
+
+#topicBar .top-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  position: static !important;
+  scrollbar-width: thin;
+}
+
+#topicBar .top-nav-section {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 2px !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+#topicBar .top-nav-item,
+#topicBar .filter {
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  gap: 6px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 8px 12px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+}
+
+#topicBar .top-nav-item:hover,
+#topicBar .filter:hover {
+  background: rgba(127, 127, 127, 0.12) !important;
+  color: var(--text) !important;
+  transform: none !important;
+}
+
+#topicBar .top-nav-item[aria-pressed="true"],
+#topicBar .filter[aria-pressed="true"] {
+  background: transparent !important;
+  color: var(--text) !important;
+  font-weight: 650 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 6px !important;
+  box-shadow: none !important;
+}
+
+#topicBar .search-row {
+  flex: 0 0 220px !important;
+  width: 220px !important;
+  min-width: 0 !important;
+  max-width: 220px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  margin: 0 8px !important;
+  overflow: hidden !important;
+}
+
+#topicBar #search {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 6px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#topicBar .search-row:focus-within {
+  outline: 2px solid var(--focus) !important;
+  outline-offset: 2px !important;
+  border-color: var(--focus) !important;
+}
+
+#topicBar .nav-select {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+#topicBar .nav-select select,
+#topicBar #sortOrder {
+  height: 36px !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 22px 0 8px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--text-muted) !important;
+  font: 500 14px/1.2 var(--font-sans) !important;
+  white-space: nowrap !important;
+}
+
+#topicBar .nav-select select:hover,
+#topicBar .nav-select select:focus,
+#topicBar #sortOrder:hover,
+#topicBar #sortOrder:focus {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--text) !important;
+}
+
+#feed.grid,
+main .grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 28px !important;
+  width: 100% !important;
+  max-width: none !important;
+  grid-template-columns: none !important;
+}
+
+#feed .feed-top {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr) !important;
+  column-gap: 24px !important;
+  row-gap: 16px !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+#feed .feed-top:not(:has(.picks-col)) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#feed .featured-board {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+#feed .feature-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+#feed .feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#feed .more-stories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+#feed .card.feature-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+#feed .feature-media {
+  display: block;
+  min-width: 0;
+}
+
+#feed .feature-image {
+  display: block;
+  width: 100% !important;
+  height: 240px !important;
+  max-height: none !important;
+  aspect-ratio: 16 / 9;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  background: var(--skeleton, #eee);
+}
+
+#feed .feature-card h2 {
+  margin: 6px 0 0 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+#feed .feature-dek {
+  margin: 8px 0 0 !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  overflow: hidden !important;
+}
+
+#feed .card.follow-card:hover,
+#feed .card.pick-card:hover,
+#feed .card.story-row:hover,
+#feed .card.feature-card:hover,
+#feed .briefing-card:hover {
+  box-shadow: 0 10px 24px rgba(23, 33, 43, 0.1) !important;
+  transform: translateY(-2px) !important;
+}
+
+body.feed-compact #feed .feature-image {
+  height: 160px !important;
+}
+
+body.feed-compact #feed .feature-dek,
+body.feed-compact #feed .hero-dek {
+  display: none !important;
+}
+
+body.feed-compact #feed .card.feature-card,
+body.feed-compact #feed .card.pick-card,
+body.feed-compact #feed .card.story-row,
+body.feed-compact #feed .card.follow-card {
+  padding: 12px !important;
+}
+
+:root[data-theme="dark"] #feed .card.feature-card {
+  background: var(--panel, #292a2d) !important;
+  border-color: var(--line, #3c4043) !important;
+}
+
+:root[data-theme="dark"] #feed .feature-dek {
+  color: #bdc1c6 !important;
+}
+
+:root[data-theme="dark"] #feed .card.follow-card:hover,
+:root[data-theme="dark"] #feed .card.pick-card:hover,
+:root[data-theme="dark"] #feed .card.story-row:hover,
+:root[data-theme="dark"] #feed .card.feature-card:hover,
+:root[data-theme="dark"] #feed .briefing-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+:root[data-theme="dark"] #topicBar .search-row:focus-within {
+  border-color: var(--focus) !important;
+}
+
+@media (min-width: 801px) {
+  .controls {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+
+  #topicBar {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Categories scroll. Search, sort, and view stay on the same line. */
+  #topicBar .top-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #topicBar .top-nav-section {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: thin;
+  }
+
+  #topicBar .top-nav-section::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  #topicBar .top-nav-section::-webkit-scrollbar-thumb {
+    background: #dadce0;
+    border-radius: 4px;
+  }
+
+  #filters {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    align-self: stretch !important;
+  }
+
+  #filters .top-nav {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 800px) {
+  #feed .feed-top,
+  #feed .featured-board {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #topicBar .search-row {
+    flex-basis: 160px !important;
+    width: 160px !important;
+    min-width: 0 !important;
+    max-width: 160px !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -6475,12 +6837,6 @@ main .grid {
   <div class="wrap">
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
-      <div class="search-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
-        <span class="search-hint" id="searchHint">/</span>
-      </div>
       <div class="mast-right">
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -6500,6 +6856,37 @@ main .grid {
 
 <div class="wrap">
   <div class="controls">
+  <div class="topic-bar" id="topicBar">
+    <nav class="top-nav" id="topNav" aria-label="Topics">
+      <div class="top-nav-section">
+        <button type="button" class="filter top-nav-item" data-cat="all" aria-pressed="true"><span class="nav-emoji" aria-hidden="true">✦</span>All News</button>
+        <button type="button" class="filter top-nav-item" data-cat="software" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⌘</span>Software &amp; Dev</button>
+        <button type="button" class="filter top-nav-item" data-cat="papers" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🔬</span>AI &amp; Research</button>
+        <button type="button" class="filter top-nav-item" data-cat="chips" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">▣</span>Chips &amp; Silicon</button>
+        <button type="button" class="filter top-nav-item" data-cat="gaming" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🎮</span>Gaming &amp; Consoles</button>
+        <button type="button" class="filter top-nav-item" data-cat="space" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🚀</span>Space &amp; Rockets</button>
+        <button type="button" class="filter top-nav-item" data-cat="security" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🛡</span>Cybersecurity</button>
+        <button type="button" class="filter top-nav-item" data-cat="gadgets" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">📱</span>Gadgets &amp; Hardware</button>
+        <button type="button" class="filter top-nav-item" data-cat="news" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">📰</span>Technology</button>
+        <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⭐</span>Reviews</button>
+        <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">💬</span>Community</button>
+      </div>
+      <div class="search-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="search" class="visually-hidden">Search headlines and summaries</label>
+        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <span class="search-hint" id="searchHint">/</span>
+      </div>
+      <label class="nav-select">
+        <span class="visually-hidden">Sort stories</span>
+        <select id="sortOrder" aria-label="Sort stories">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </label>
+      <button type="button" id="viewMode" class="top-nav-item" aria-pressed="false">View: Comfortable</button>
+    </nav>
+  </div>
   <div class="filters" id="filters">
 
   <div class="sidebar-drawer-head">
@@ -6509,29 +6896,7 @@ main .grid {
     </button>
   </div>
   <!-- Desktop horizontal navigation bar -->
-  <nav class="top-nav" id="topNav" aria-label="Main navigation">
-    <div class="top-nav-section">
-      <span class="top-nav-label">TOPICS</span>
-      <button class="top-nav-item" data-cat="news" aria-pressed="false">
-        <span class="nav-emoji" aria-hidden="true">📰</span>
-        Technology
-      </button>
-      <button class="top-nav-item" data-cat="papers" aria-pressed="false">
-        <span class="nav-emoji" aria-hidden="true">🔬</span>
-        AI &amp; Research
-      </button>
-      <button class="top-nav-item" data-cat="reviews" aria-pressed="false">
-        <span class="nav-emoji" aria-hidden="true">⭐</span>
-        Reviews
-      </button>
-      <button class="top-nav-item" data-cat="reddit" aria-pressed="false">
-        <span class="nav-emoji" aria-hidden="true">💬</span>
-        Community
-      </button>
-    </div>
-
-    <div class="top-nav-divider"></div>
-
+  <nav class="top-nav" aria-label="Library">
     <div class="top-nav-section">
       <span class="top-nav-label">LIBRARY</span>
       <button class="top-nav-item toggle-hw" id="hwToggle" aria-pressed="false">
@@ -6664,14 +7029,25 @@ main .grid {
   const loadMoreBtnEl = document.getElementById('loadMoreBtn');
   const searchHintEl = document.getElementById('searchHint');
   const clearFiltersEl = document.getElementById('clearFilters');
+  const sortOrderEl = document.getElementById('sortOrder');
+  const viewModeEl = document.getElementById('viewMode');
 
-  const AUTO_REFRESH_MS = 5 * 60 * 1000;
+  const AUTO_REFRESH_MS = 300000;
   const LATEST_WINDOW_MS = 12 * 60 * 60 * 1000;
   const PAGE_SIZE = 18;
   const SEARCH_DEBOUNCE_MS = 150;
 
   const SUN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
   const MOON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+  const VERTICALS = {
+    software: ['software', 'developer', 'programming', 'github', 'linux', 'windows', 'open source', 'open-source', 'javascript', 'python'],
+    chips: ['chip', 'chips', 'silicon', 'semiconductor', 'nvidia', 'amd', 'intel', 'tsmc', 'gpu', 'cpu', 'qualcomm', 'wafer'],
+    gaming: ['game', 'games', 'gaming', 'console', 'playstation', 'xbox', 'nintendo', 'steam', 'esports'],
+    space: ['spacex', 'nasa', 'rocket', 'rockets', 'satellite', 'orbit', 'lunar', 'astronaut', 'apollo'],
+    security: ['security', 'cybersecurity', 'ransomware', 'vulnerability', 'malware', 'breach', 'encrypt', 'encryption'],
+    gadgets: ['laptop', 'smartphone', 'iphone', 'android', 'tablet', 'macbook', 'ipad', 'headphone', 'wearable', 'gadget'],
+  };
 
   const HARDWARE_KEYWORDS = [
     'gpu', 'cpu', 'chip', 'chipset', 'processor', 'silicon', 'semiconductor',
@@ -6688,6 +7064,8 @@ main .grid {
   let hardwareOnly = false;
   let savedOnly = false;
   let searchTerm = '';
+  let sortOrder = 'newest';
+  let compactView = false;
   let allItems = [];
   let visibleCount = PAGE_SIZE;
   let searchTimer = null;
@@ -7090,6 +7468,32 @@ initAuth();
     return HARDWARE_KEYWORDS.some((kw) => text.includes(kw));
   }
 
+  function matchesKeywords(item, words) {
+    const text = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+    return words.some((word) => {
+      const body = String(word).toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return new RegExp(`(?:^|[^a-z0-9])${body}(?:[^a-z0-9]|$)`).test(text);
+    });
+  }
+
+  function matchesVertical(item, filter) {
+    if (!filter || filter === 'all') return true;
+    if (filter === 'news' || filter === 'papers' || filter === 'reviews' || filter === 'reddit') {
+      return item.category === filter;
+    }
+    if (filter === 'gadgets') return isHardware(item) || matchesKeywords(item, VERTICALS.gadgets);
+    const words = VERTICALS[filter];
+    return words ? matchesKeywords(item, words) : item.category === filter;
+  }
+
+  function sortItems(list) {
+    return list.slice().sort((a, b) => {
+      const da = new Date(a.published || 0).getTime() || 0;
+      const db = new Date(b.published || 0).getTime() || 0;
+      return sortOrder === 'oldest' ? da - db : db - da;
+    });
+  }
+
   // Contextual chips come only from fields the feed actually provides.
   // Papers carry arXiv subject codes; everything else is already labelled
   // by the category/source meta line, so no chip is invented for it.
@@ -7416,7 +7820,7 @@ initAuth();
       : allItems;
 
     return baseItems.filter((i) => {
-      const matchesCat = activeFilter === 'all' || i.category === activeFilter;
+      const matchesCat = matchesVertical(i, activeFilter);
       const matchesSource = activeSource === 'all' || i.source === activeSource;
       const matchesDate = withinDateFilter(i.published, activeDate);
       const matchesTerm = !term ||
@@ -7453,21 +7857,21 @@ initAuth();
     visibleCount = PAGE_SIZE;
     clearTimeout(searchTimer);
 
-    document.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => {
-      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter && activeFilter !== 'all' ? 'true' : 'false');
-    });
     hwToggleEl.setAttribute('aria-pressed', 'false');
     savedToggleEl.setAttribute('aria-pressed', 'false');
     if (sourceFilterEl) sourceFilterEl.value = 'all';
     if (dateFilterEl) dateFilterEl.value = 'all';
     searchEl.value = '';
     searchHintEl.style.display = document.activeElement === searchEl ? 'none' : '';
+    document.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => {
+      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter ? 'true' : 'false');
+    });
 
     render();
   }
 
   function render() {
-    const items = getFilteredItems();
+    const items = sortItems(getFilteredItems());
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
     resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
@@ -7512,7 +7916,16 @@ initAuth();
     const pool = visible.slice(1).filter((item) => !usedLinks.has(item.link));
     const picks = pool.slice(0, 5);
     picks.forEach((item) => usedLinks.add(item.link));
-    const rest = pool.filter((item) => !usedLinks.has(item.link));
+    const featurePool = pool.filter((item) => !usedLinks.has(item.link));
+    const silicon = [];
+    const spaceItems = [];
+    const rest = [];
+    featurePool.forEach((item) => {
+      if (silicon.length < 2 && matchesKeywords(item, VERTICALS.chips)) silicon.push(item);
+      else if (spaceItems.length < 2 && matchesKeywords(item, VERTICALS.space)) spaceItems.push(item);
+      else rest.push(item);
+    });
+    silicon.concat(spaceItems).forEach((item) => usedLinks.add(item.link));
 
     const storyFields = (item) => {
       const saved = !!savedMap[item.link];
@@ -7573,6 +7986,29 @@ initAuth();
       </article>`;
     }).join('');
 
+    const featureCard = (item) => {
+      const fields = storyFields(item);
+      const image = storyImageUrl(item);
+      return `
+      <article class="card feature-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
+        ${image ? `<a class="feature-media" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="feature-image" src="${escapeAttr(image)}" alt=""></a>` : ''}
+        <div class="story-copy">
+          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${sourceLine(item)}
+          <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
+          ${cardMeta(item)}
+          ${fields.chips.length ? `<div class="card-chips">${fields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${item.summary ? `<p class="feature-dek">${escapeHtml(item.summary)}</p>` : ''}
+          ${cardActions(item, fields.saved, fields.note)}
+        </div>
+      </article>`;
+    };
+    const featureGroup = (title, group) => {
+      if (!group.length) return '';
+      return `<section class="feature-group"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="feature-list">${group.map(featureCard).join('')}</div></section>`;
+    };
+    const featured = featureGroup('Silicon & Hardware Spotlight', silicon) + featureGroup('Deep Space & Defense', spaceItems);
+
     const pickCards = picks.map((item) => {
       const fields = storyFields(item);
       return `
@@ -7590,15 +8026,18 @@ initAuth();
     }).join('');
 
     feedEl.innerHTML = `
-      <section class="briefing-col" aria-label="Your briefing">
-        <h2 class="feed-column-title">Your briefing</h2>
-        <div class="briefing-card">
-          ${hero}
-          ${followUps ? `<div class="follow-ups">${followUps}</div>` : ''}
-        </div>
-        ${rows}
-      </section>
-      ${pickCards ? `<aside class="picks-col" aria-label="Picks for you"><h2 class="feed-column-title">Picks for you</h2><div class="picks-list">${pickCards}</div></aside>` : ''}`;
+      <div class="feed-top">
+        <section class="briefing-col" aria-label="Your briefing">
+          <h2 class="feed-column-title">Your briefing</h2>
+          <div class="briefing-card">
+            ${hero}
+            ${followUps ? `<div class="follow-ups">${followUps}</div>` : ''}
+          </div>
+        </section>
+        ${pickCards ? `<aside class="picks-col" aria-label="Picks for you"><h2 class="feed-column-title">Picks for you</h2><div class="picks-list">${pickCards}</div></aside>` : ''}
+      </div>
+      ${featured ? `<div class="featured-board">${featured}</div>` : ''}
+      ${rows ? `<section class="more-stories" aria-label="More stories">${rows}</section>` : ''}`;
 
     // Wire up per-item data for share/save buttons
     feedEl.querySelectorAll('.save-btn').forEach((btn) => {
@@ -7631,7 +8070,7 @@ initAuth();
 
   async function loadJSON(file, category, mapFn) {
     try {
-      const res = await fetch(`data/${file}?_=${Date.now()}`, {
+      const res = await fetch(`data/${file}?_t=${Date.now()}`, {
         cache: 'no-store',
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
       });
@@ -7645,14 +8084,15 @@ initAuth();
     }
   }
 
-  async function refresh() {
-    // While the fetch is in flight the skeleton stands in for the feed.
-    // render() flips both back when the data lands, and the finally block
-    // guarantees the placeholders never outlive a refresh (restoring the
-    // previous value used to put the skeleton back on the very first load).
-    skeletonEl.style.display = 'grid';
-    feedEl.style.display = 'none';
-    loadMoreWrapEl.style.display = 'none';
+  async function refresh(options = {}) {
+    // The first load uses the skeleton. Later polls stay quiet so a
+    // 5-minute refresh does not blank the feed the reader is already on.
+    const quiet = options.quiet === true;
+    if (!quiet) {
+      skeletonEl.style.display = 'grid';
+      feedEl.style.display = 'none';
+      loadMoreWrapEl.style.display = 'none';
+    }
     try {
       fetchErrors = [];
       const [news, papers, reviews, reddit] = await Promise.all([
@@ -7688,6 +8128,7 @@ initAuth();
     btn.setAttribute('aria-pressed', 'true');
     activeFilter = btn.dataset.cat;
     visibleCount = PAGE_SIZE;
+    syncCategoryPressed();
     render();
     if (document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
   }
@@ -7701,7 +8142,7 @@ initAuth();
   const sidebarCloseEl = document.getElementById('sidebarClose');
   // The search bar lives in the masthead, so it is listed alongside the
   // toolbar row: everything the drawer covers must stop taking input.
-  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, .mast .search-row, main, footer'));
+  const sidebarBehindTargets = Array.from(document.querySelectorAll('.controls > .row2, .mast .search-row, #topicBar .search-row, main, footer'));
   let sidebarInertSnapshot = null;
 
   function setSidebarOpen(open) {
@@ -7821,6 +8262,28 @@ initAuth();
     render();
   });
 
+  function applyViewMode() {
+    document.body.classList.toggle('feed-compact', compactView);
+    if (!viewModeEl) return;
+    viewModeEl.setAttribute('aria-pressed', compactView ? 'true' : 'false');
+    viewModeEl.textContent = compactView ? 'View: Compact' : 'View: Comfortable';
+  }
+  try { compactView = localStorage.getItem('signal-view') === 'compact'; } catch (e) {}
+  applyViewMode();
+  if (viewModeEl) {
+    viewModeEl.addEventListener('click', () => {
+      compactView = !compactView;
+      try { localStorage.setItem('signal-view', compactView ? 'compact' : 'comfortable'); } catch (e) {}
+      applyViewMode();
+    });
+  }
+  if (sortOrderEl) {
+    sortOrderEl.addEventListener('change', () => {
+      sortOrder = sortOrderEl.value === 'oldest' ? 'oldest' : 'newest';
+      visibleCount = PAGE_SIZE;
+      render();
+    });
+  }
 
   const HASH_FILTERS = {
     technology: 'news',
@@ -7830,11 +8293,17 @@ initAuth();
     reviews: 'reviews',
     community: 'reddit',
     reddit: 'reddit',
+    software: 'software',
+    chips: 'chips',
+    gaming: 'gaming',
+    space: 'space',
+    security: 'security',
+    gadgets: 'gadgets',
   };
 
   function syncCategoryPressed() {
     document.querySelectorAll('.filter[data-cat], .top-nav-item[data-cat]').forEach((b) => {
-      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter && activeFilter !== 'all' ? 'true' : 'false');
+      b.setAttribute('aria-pressed', b.dataset.cat === activeFilter ? 'true' : 'false');
     });
     hwToggleEl.setAttribute('aria-pressed', String(hardwareOnly));
     savedToggleEl.setAttribute('aria-pressed', String(savedOnly));
@@ -7859,7 +8328,7 @@ initAuth();
   }
 
   setInterval(renderAll, 60 * 1000);
-  setInterval(refresh, AUTO_REFRESH_MS);
+  setInterval(() => refresh({ quiet: true }), AUTO_REFRESH_MS);
 
   applyHash(false);
   refresh();

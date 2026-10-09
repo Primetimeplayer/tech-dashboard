@@ -1387,14 +1387,50 @@ input:focus-visible {
 const { useState, useEffect, useMemo } = React;
 
 const CATEGORIES = [
-  { key: 'all', label: 'All', emoji: '✦' },
-  { key: 'news', label: 'News', emoji: '📰' },
-  { key: 'papers', label: 'AI papers', emoji: '🔬' },
-  { key: 'reviews', label: 'Reviews', emoji: '⭐' },
-  { key: 'reddit', label: 'Reddit', emoji: '💬' },
+  { key: 'all', label: 'All News', emoji: '✦' },
+  { key: 'software', label: 'Software & Dev', emoji: '⌘' },
+  { key: 'papers', label: 'AI & Research', emoji: '🔬' },
+  { key: 'chips', label: 'Chips & Silicon', emoji: '▣' },
+  { key: 'gaming', label: 'Gaming & Consoles', emoji: '🎮' },
+  { key: 'space', label: 'Space & Rockets', emoji: '🚀' },
+  { key: 'security', label: 'Cybersecurity', emoji: '🛡' },
+  { key: 'gadgets', label: 'Gadgets & Hardware', emoji: '📱' },
 ];
 const CAT_LABEL = { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' };
-const CAT_COLOR = { all: 'var(--news)', news: 'var(--news)', papers: 'var(--papers)', reviews: 'var(--reviews)', reddit: 'var(--reddit)' };
+const CAT_COLOR = {
+  all: 'var(--news)',
+  news: 'var(--news)',
+  software: 'var(--news)',
+  papers: 'var(--papers)',
+  chips: 'var(--reviews)',
+  gaming: 'var(--reddit)',
+  space: 'var(--news)',
+  security: 'var(--papers)',
+  gadgets: 'var(--reviews)',
+  reviews: 'var(--reviews)',
+  reddit: 'var(--reddit)',
+};
+const VERTICALS = {
+  software: ['software', 'developer', 'programming', 'github', 'linux', 'windows', 'open source', 'open-source', 'javascript', 'python'],
+  chips: ['chip', 'chips', 'silicon', 'semiconductor', 'nvidia', 'amd', 'intel', 'tsmc', 'gpu', 'cpu', 'qualcomm', 'wafer'],
+  gaming: ['game', 'games', 'gaming', 'console', 'playstation', 'xbox', 'nintendo', 'steam', 'esports'],
+  space: ['spacex', 'nasa', 'rocket', 'rockets', 'satellite', 'orbit', 'lunar', 'astronaut', 'apollo'],
+  security: ['security', 'cybersecurity', 'ransomware', 'vulnerability', 'malware', 'breach', 'encrypt', 'encryption'],
+  gadgets: ['laptop', 'smartphone', 'iphone', 'android', 'tablet', 'macbook', 'ipad', 'headphone', 'wearable', 'gadget', 'gpu', 'cpu', 'chip'],
+};
+function matchesKeywords(item, words) {
+  const text = `${item.title || ''} ${item.summary || ''}`.toLowerCase();
+  return words.some((word) => {
+    const body = String(word).toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(?:^|[^a-z0-9])${body}(?:[^a-z0-9]|$)`).test(text);
+  });
+}
+function matchesVertical(item, filter) {
+  if (!filter || filter === 'all') return true;
+  if (filter === 'news' || filter === 'papers' || filter === 'reviews' || filter === 'reddit') return item.category === filter;
+  const words = VERTICALS[filter];
+  return words ? matchesKeywords(item, words) : item.category === filter;
+}
 
 function CategoryNav({ category, onSelect }) {
   return (
@@ -1428,7 +1464,10 @@ function timeAgo(iso) {
 
 async function loadCategory(file, category, mapFn) {
   try {
-    const res = await fetch(`data/${file}?_=${Date.now()}`);
+    const res = await fetch(`data/${file}?_t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
+    });
     const data = await res.json();
     return (data.items || []).map((raw) => ({ ...mapFn(raw), category }));
   } catch (e) {
@@ -1497,7 +1536,8 @@ function App() {
   };
 
   useEffect(() => {
-    (async () => {
+    let cancelled = false;
+    const load = async () => {
       const [news, papers, reviews, reddit] = await Promise.all([
         loadCategory('news.json', 'news', (i) => i),
         loadCategory('papers.json', 'papers', (i) => ({
@@ -1507,18 +1547,25 @@ function App() {
         loadCategory('reviews.json', 'reviews', (i) => i),
         loadCategory('reddit.json', 'reddit', (i) => i),
       ]);
+      if (cancelled) return;
       const all = [...news, ...papers, ...reviews, ...reddit].sort(
         (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
       );
       setItems(all);
       setLastUpdated(new Date());
-    })();
+    };
+    load();
+    const timer = setInterval(load, 300000);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
   }, []);
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
     const results = items.filter((i) => {
-      const matchesCat = category === 'all' || i.category === category;
+      const matchesCat = matchesVertical(i, category);
       const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
       return matchesCat && matchesTerm;
     });

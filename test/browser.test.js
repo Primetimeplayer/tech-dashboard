@@ -2896,7 +2896,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       return Array.from(document.querySelectorAll('.category-nav .nav-label'))
         .map(b => b.textContent.trim());
     `);
-    assert.deepEqual(labels, ['All', 'News', 'AI papers', 'Reviews', 'Reddit'], `Unexpected filter labels: ${JSON.stringify(labels)}`);
+    assert.deepEqual(labels, ['All News', 'Software & Dev', 'AI & Research', 'Chips & Silicon', 'Gaming & Consoles', 'Space & Rockets', 'Cybersecurity', 'Gadgets & Hardware'], `Unexpected filter labels: ${JSON.stringify(labels)}`);
   });
 
   await t.test('React category nav is one transparent row', async () => {
@@ -2920,7 +2920,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     `);
     assert.equal(geometry.wrap, 'nowrap', 'Category nav must stay on one row');
     assert.equal(geometry.overflowX, 'auto', 'Category nav must scroll horizontally instead of wrapping');
-    assert.equal(geometry.items.length, 5, `Expected 5 filter buttons, found ${geometry.items.length}`);
+    assert.equal(geometry.items.length, 8, `Expected 8 filter buttons, found ${geometry.items.length}`);
     for (const btn of geometry.items) {
       assert.equal(btn.radius, '0px', `Filter "${btn.label}" should not use a pill or square tab`);
       assert.equal(btn.background, 'rgba(0, 0, 0, 0)', `Filter "${btn.label}" background should be transparent`);
@@ -3008,24 +3008,24 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       await sleep(300);
     };
 
-    await clickByLabel('News');
+    await clickByLabel('Software & Dev');
     let active = await readActive();
-    assert.ok(active, 'No .filter.active element after selecting News');
-    assert.equal(active.label, 'News', `Expected News to be active, got ${active.label}`);
-    assert.equal(active.dot, active.news, 'Active News filter --dot must resolve to the --news accent');
+    assert.ok(active, 'No .filter.active element after selecting Software & Dev');
+    assert.equal(active.label, 'Software & Dev', `Expected Software & Dev to be active, got ${active.label}`);
+    assert.equal(active.dot, active.news, 'Active Software & Dev filter --dot must resolve to the --news accent');
 
-    // Compare while News is still the active button; re-read after switching.
-    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active News filter must stay transparent');
-    assert.equal(active.shadow, 'none', 'Active News filter must not use a tab shadow');
+    // Compare while Software & Dev is still the active button; re-read after switching.
+    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active Software & Dev filter must stay transparent');
+    assert.equal(active.shadow, 'none', 'Active Software & Dev filter must not use a tab shadow');
 
-    await clickByLabel('AI papers');
+    await clickByLabel('AI & Research');
     active = await readActive();
-    assert.ok(active, 'No .filter.active element after selecting AI papers');
-    assert.equal(active.label, 'AI papers', `Expected AI papers to be active, got ${active.label}`);
-    assert.equal(active.dot, active.papers, 'Active AI papers filter --dot must resolve to the --papers accent');
+    assert.ok(active, 'No .filter.active element after selecting AI & Research');
+    assert.equal(active.label, 'AI & Research', `Expected AI & Research to be active, got ${active.label}`);
+    assert.equal(active.dot, active.papers, 'Active AI & Research filter --dot must resolve to the --papers accent');
 
-    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active AI papers filter must stay transparent');
-    assert.equal(active.shadow, 'none', 'Active AI papers filter must not use a tab shadow');
+    assert.equal(active.background, 'rgba(0, 0, 0, 0)', 'Active AI & Research filter must stay transparent');
+    assert.equal(active.shadow, 'none', 'Active AI & Research filter must not use a tab shadow');
   });
 
   await t.test('React "All" filter carries a valid accent', async () => {
@@ -3034,7 +3034,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     // default. An empty --dot is the regression signal.
     await driver.executeScript(`
       const btn = Array.from(document.querySelectorAll('.category-nav .filter'))
-        .find(b => b.querySelector('.nav-label').textContent.trim() === 'All');
+        .find(b => b.querySelector('.nav-label').textContent.trim() === 'All News');
       if (btn) btn.click();
     `);
     await sleep(300);
@@ -3052,7 +3052,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     `);
 
     assert.ok(all, 'No .filter.active element after selecting All');
-    assert.equal(all.label, 'All', `Expected All to be active, got ${all.label}`);
+    assert.equal(all.label, 'All News', `Expected All News to be active, got ${all.label}`);
     assert.ok(all.dot.length > 0, 'Active All filter has no --dot; CAT_COLOR is missing the "all" key');
     assert.ok(all.inlineStyle.includes('--dot'), 'Active All filter is missing the inline --dot declaration');
   });
