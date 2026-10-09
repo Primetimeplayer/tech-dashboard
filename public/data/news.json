@@ -1,7 +1,87 @@
 {
-  "updated": "2026-10-09T06:09:47.964Z",
+  "updated": "2026-10-09T12:08:59.959Z",
   "count": 46,
   "items": [
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Xona’s commercial GPS alternative is about to go live",
+      "link": "https://techcrunch.com/2026/10/09/xonas-commercial-gps-alternative-is-about-to-go-live/",
+      "published": "Fri, 09 Oct 2026 12:00:00 +0000",
+      "summary": "Xona's precision timing and navigation service will enter beta testing after SpaceX launches six satellites designed by the company."
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Dunking on Dating App Profiles Is Content Gold. People Are Getting Sick of It",
+      "link": "https://www.wired.com/story/dunking-on-dating-app-profiles-is-content-gold-people-are-getting-sick-of-it/",
+      "published": "Fri, 09 Oct 2026 11:00:00 +0000",
+      "summary": "Relationship coaches, TikTokers, and disgruntled singles alike frequently shame bad profiles, as more apps experiment with blocking screenshots.",
+      "image": "https://media.wired.com/photos/6abfeb50f31a481af95ad070/master/pass/culture_dating_app_shaming.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Best Mac Desktop to Buy (2026): Mac Mini, Mac Studio, or iMac?",
+      "link": "https://www.wired.com/story/best-mac-desktop/",
+      "published": "Fri, 09 Oct 2026 11:00:00 +0000",
+      "summary": "Apple’s Mac desktops have become some of the most sought-after computers this year, driven by surging interest in agentic AI. Here’s which model to buy depending on your use case.",
+      "image": "https://media.wired.com/photos/6ac201081f48c9ec501c8cc7/master/pass/Update%20best%20mac%20desktops%20102026%20top%20art%20SOURCE%20Amazon.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Battery-Powered Leaf Blowers (2026): Tested for Power, Battery Life, and Noise",
+      "link": "https://www.wired.com/story/best-battery-powered-leaf-blowers/",
+      "published": "Fri, 09 Oct 2026 10:10:00 +0000",
+      "summary": "It’s finally time to ditch the gas canister—I tested these cordless leaf blowers on gravel, wood chips, and even a 5-pound concrete paver.",
+      "image": "https://media.wired.com/photos/6ac69bd0cff4fa83959f96ee/master/pass/The%20Best%20Battery-Powered%20Leaf%20Blowers%20for%20Taking%20Back%20Your%20Weekend%20102026%20top%20art%20SOURCE%20Amazon.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Even ‘Law & Order’ Is Terrified of AI",
+      "link": "https://www.wired.com/story/even-law-and-order-is-terrified-of-ai/",
+      "published": "Fri, 09 Oct 2026 10:00:00 +0000",
+      "summary": "In its 26th season premiere, the procedural legal drama paints a damning picture of power-mad AI CEOs.",
+      "image": "https://media.wired.com/photos/6ac6842a2962a868125e6095/master/pass/Law-and-Order-Anti-AI-Culture-NUP_210197_00214.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "OpenAI doubles down on decision to fire three AI safety researchers",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1008604/openai-defends-decision-fire-safety-researchers",
+      "published": "2026-10-09T09:48:26.000Z",
+      "summary": "OpenAI is standing firm on its decision to fire three safety researchers after an investigation found they committed \"a significant breach of trust.\" In a post on X on Friday, the company said Jasmine Wang, Tomek Korbak and Mikita ⁠Balesni…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK155_OPEN_AI_CVirginia_C-1.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "A New Mexico Community Was a Place to Build a Life. Then a Hypersonic Missile Factory Showed Up",
+      "link": "https://www.wired.com/story/a-new-mexico-community-was-a-place-to-build-a-life-then-a-hypersonic-missile-factory-showed-up/",
+      "published": "Fri, 09 Oct 2026 09:30:00 +0000",
+      "summary": "Castelion—a next-generation defense tech company—is building a facility in Rio Rancho Estates that documents show could pose a major fire and chemical hazard to neighboring communities.",
+      "image": "https://media.wired.com/photos/6abd1e80dae3985b8f0ee44b/master/pass/093926-New%20Mexico%20Missle.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "America’s Hybrid Hype Has Hit the Used Market",
+      "link": "https://www.wired.com/story/america-hybrid-hype-has-hit-the-used-market/",
+      "published": "Fri, 09 Oct 2026 09:00:00 +0000",
+      "summary": "Demand is so high that some used cars are selling for more than new ones.",
+      "image": "https://media.wired.com/photos/6ac761317178fc1562f277f4/master/pass/2026_Toyota-RAV4-HEV-Limited_0001H.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Microsoft 365 Family subscribers will finally be able to share AI benefits",
+      "link": "https://www.theverge.com/news/1008581/microsoft-365-family-premium-shared-ai-features-storage-changes",
+      "published": "2026-10-09T07:14:32.000Z",
+      "summary": "Microsoft bundled its AI-powered Office features into Microsoft 365 Personal and Family subscriptions last year, but it only allowed the primary account holder to access the AI benefits. Now, Microsoft is about to let Microsoft 365 Family…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/m365premium.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
     {
       "source": "Wired",
       "category": "news",
@@ -55,60 +135,6 @@
       "published": "Fri, 09 Oct 2026 05:00:00 +0000",
       "summary": "Find the best Instacart promo code for massive savings in October 2026.",
       "image": "https://media.wired.com/photos/67b63b9079f27a355461c964/master/pass/WIRED-Coupons-R2_2.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Chewy Promo Codes: $20 Off October 2026",
-      "link": "https://www.wired.com/story/chewy-promo-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Explore Chewy coupon codes for $30 off, $20 off your first order of $49, 50% off pet food, and more October 2026 discounts.",
-      "image": "https://media.wired.com/photos/66ea077015aa1d8092e99428/master/pass/WIRED-Coupons-6.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "We-Vibe Discount Codes and Deals: Up to 60% Off",
-      "link": "https://www.wired.com/story/we-vibe-discount-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Save on We-Vibe, including app-controlled bestsellers and popular gift sets designed for couples, connection, and shared pleasure.",
-      "image": "https://media.wired.com/photos/67b63b98fb14553f0ebd9ffd/master/pass/WIRED-Coupons-R2_15.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "H&R Block Coupon: 25% Off DIY + Tax Pro Assist",
-      "link": "https://www.wired.com/story/hr-block-coupon/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Save over 25% when you opt for H&R Block’s free online offering, plus a tax pro review.",
-      "image": "https://media.wired.com/photos/66ea077015aa1d8092e99428/master/pass/WIRED-Coupons-6.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Herman Miller Promo Codes: 40% Off October 2026",
-      "link": "https://www.wired.com/story/herman-miller-promo-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Whether you’re looking for a Herman Miller promo code or discounts in their sale, here is how to save on the world's best ergonomic office furniture in October 2026.",
-      "image": "https://media.wired.com/photos/66ea03340e63ccab6b8add4b/master/pass/WIRED-Coupons-1.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "30% VistaPrint Coupon & Promo Codes | October 2026",
-      "link": "https://www.wired.com/story/vistaprint-coupon-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "From personalized gifts to business essentials, WIRED can help you save with our selection of VistaPrint promo codes.",
-      "image": "https://media.wired.com/photos/67b63b919468ebbf8f0cbc7a/master/pass/WIRED-Coupons-R2_9.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "ICE Agent at NYC Shooting Has History of Alleged Violence and Illegal Arrests",
-      "link": "https://www.wired.com/story/ice-agent-at-nyc-shooting-has-history-of-alleged-violence-and-illegal-arrests/",
-      "published": "Fri, 09 Oct 2026 04:46:11 +0000",
-      "summary": "Brenden Cuni, an ICE supervisor, has been accused of excessive force and tackling a pregnant woman to the ground. Several of his arrests were later found to be unlawful in federal court.",
-      "image": "https://media.wired.com/photos/6ac86cf153985a35c7b2ab41/master/pass/2298652701"
     },
     {
       "source": "TechCrunch",
@@ -279,24 +305,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/09/GettyImages-2294068904-1152x648.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Paramount is making a Cyberpunk 2077 film",
-      "link": "https://www.theverge.com/games/1008327/paramount-pictures-cyberpunk-2077-film-movie",
-      "published": "2026-10-08T19:14:03.000Z",
-      "summary": "Cyberpunk 2077 is heading to the big screen. Deadline reports that CD Projekt Red's popular sci-fi video game franchise is being adapted into a live-action film by Paramount Pictures. There's no details just yet on when the film might…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/cyberpunk2077screenshot.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Tim Cook says &#8216;I&#8217;m not meddling&#8217; in the new Apple CEO&#8217;s business",
-      "link": "https://www.theverge.com/news/1008279/apple-tim-cook-not-meddling-john-ternus-ceo",
-      "published": "2026-10-08T18:48:36.000Z",
-      "summary": "Tim Cook stepped down as Apple CEO in September, handing over the top job to former hardware chief John Ternus and taking an executive chairman role. Cook's still a visible representative of the company, having been recently photographed…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK468_APPLE_ANTITRUST_CVIRGINIA_D.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "An experimental tour-de-force: Entanglement between glass bead and light",
@@ -377,14 +385,6 @@
       "published": "Thu, 08 Oct 2026 16:32:46 +0000",
       "summary": "Amazon killed its app store, so Google Play it is.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/assets.aboutamazon-1152x648.png"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Natura’s $99 smart ring puts AI agents on your finger",
-      "link": "https://techcrunch.com/2026/10/08/naturas-smart-ring-puts-ai-agents-on-your-finger/",
-      "published": "Thu, 08 Oct 2026 16:00:00 +0000",
-      "summary": "Natura’s $99 Interface smart ring lets you summon AI agents with the press of a finger to complete tasks, capture thoughts, and control devices — while doubling as a health tracker."
     },
     {
       "source": "Ars Technica",

@@ -1,7 +1,55 @@
 {
-  "updated": "2026-10-09T06:09:48.839Z",
+  "updated": "2026-10-09T12:09:00.478Z",
   "count": 20,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "What to expect at Apple's 'Welcome home' event next week",
+      "link": "https://www.engadget.com/2281840/what-to-expect-at-apples-welcome-home-event-next-week/",
+      "published": "Fri, 09 Oct 2026 12:00:00 +0000",
+      "summary": "The company is reportedly rebooting its smart home ambitions with a smart display and a whole bunch of other accessories.",
+      "image": "https://www.engadget.com/img/gallery/what-to-expect-at-apples-welcome-home-event-next-week/l-intro-1791500260.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Anthropic now offers a free vulnerability-finding service for open-source software",
+      "link": "https://www.engadget.com/2282005/anthropic-offers-open-source-software-free-ai-security-checks/",
+      "published": "Fri, 09 Oct 2026 11:24:27 +0000",
+      "summary": "Anthropic is offering open-source projects a new way to check for vulnerabilities with its OSS Scanner.",
+      "image": "https://www.engadget.com/img/gallery/anthropic-now-offers-a-free-vulnerability-finding-service-for-open-source-software/l-intro-1791544973.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Netflix releases trailer for its miniseries about Sam Bankman-Fried's scandal-ridden crypto exchange",
+      "link": "https://www.engadget.com/2281997/netflix-the-altruists-sam-bankman-fried-trailer/",
+      "published": "Fri, 09 Oct 2026 10:54:19 +0000",
+      "summary": "Watch the trailer for Netflix's The Altruists, a mini-series about the rise and fall of cryptocurrency exchange FTX.",
+      "image": "https://www.engadget.com/img/gallery/netflix-releases-trailer-for-its-miniseries-about-sam-bankman-frieds-scandal-ridden-crypto-exchange/l-intro-1791543220.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Meta bans TikTok ads from its platforms in tit-for-tat row",
+      "link": "https://www.engadget.com/2281983/meta-bans-tiktok-ads/",
+      "published": "Fri, 09 Oct 2026 09:54:24 +0000",
+      "summary": "Meta has placed a complete ban on ads and marketing from TikTok's US minority owner, ByteDance.",
+      "image": "https://www.engadget.com/img/gallery/meta-bans-tiktok-ads/l-intro-1791539755.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "SpaceX wants to become a 'major mobile carrier' with low-band spectrum acquisition",
+      "link": "https://www.engadget.com/2281967/spacex-major-mobile-carrier-low-band-spectrum-acquisition/",
+      "published": "Fri, 09 Oct 2026 08:30:18 +0000",
+      "summary": "SpaceX has revealed its plans to become a major mobile carrier.",
+      "image": "https://www.engadget.com/img/gallery/spacex-wants-to-become-a-major-mobile-carrier-with-low-band-spectrum-acquisition/l-intro-1791534538.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Fired OpenAI safety researchers dispute their dismissals in open letter",
+      "link": "https://www.engadget.com/2281966/fired-openai-safety-researchers-dispute-their-dismissals-in-open-letter/",
+      "published": "Fri, 09 Oct 2026 08:25:18 +0000",
+      "summary": "Three OpenAI researchers said their firings may have a 'chilling' effect on employees.",
+      "image": "https://www.engadget.com/img/gallery/fired-openai-safety-researchers-dispute-their-dismissals-in-open-letter/l-intro-1791534127.jpg"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Apple reportedly plans touchscreen MacBook and iPad Mini launch for this month",
@@ -35,60 +83,12 @@
       "image": "https://www.engadget.com/img/gallery/anthropic-bans-sustained-and-needless-abusive-or-cruel-behavior-toward-its-ai-models/l-intro-1791494139.jpg"
     },
     {
-      "source": "Engadget Reviews",
-      "title": "Child safety group calls ChatGPT for Teens an unacceptable risk",
-      "link": "https://www.engadget.com/2281719/child-safety-group-calls-chatgpt-for-teens-an-unacceptable-risk/",
-      "published": "Thu, 08 Oct 2026 20:36:46 +0000",
-      "summary": "After extensive testing, Common Sense Media found the chatbot failed in five key areas.",
-      "image": "https://www.engadget.com/img/gallery/child-safety-group-calls-chatgpt-for-teens-an-unacceptable-risk/l-intro-1791491675.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Cyberpunk 2077 is the latest video game to get the movie treatment",
-      "link": "https://www.engadget.com/2281714/cyberpunk-2077-is-the-latest-video-game-to-get-the-movie-treatment/",
-      "published": "Thu, 08 Oct 2026 20:30:26 +0000",
-      "summary": "Paramount Pictures will develop the film and CD Projekt Red will produce.",
-      "image": "https://www.engadget.com/img/gallery/cyberpunk-2077-is-the-latest-video-game-to-get-the-movie-treatment/l-intro-1791490448.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Forza Horizon 6 is coming to PS5 on January 26",
-      "link": "https://www.engadget.com/2281683/forza-horizon-6-is-coming-to-ps5-on-january-26/",
-      "published": "Thu, 08 Oct 2026 20:08:45 +0000",
-      "summary": "The racing game's first expansion will also be available early next year.",
-      "image": "https://www.engadget.com/img/gallery/forza-horizon-6-is-coming-to-ps5-on-january-26/l-intro-1791490042.jpg"
-    },
-    {
       "source": "The Verge Reviews",
       "title": "Microsoft’s new Windows Search is exactly what Windows 11 needs",
       "link": "https://www.theverge.com/news/1008320/microsoft-windows-search-overhaul-windows-11",
       "published": "2026-10-08T19:30:21.000Z",
       "summary": "Windows Search has been one of the most frustrating parts of Windows 11, and now Microsoft is addressing this with a significant overhaul. A new redesigned Windows Search is now in testing that is much faster, more capable, and a lot more…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/windowssearch.png?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Google is doing away with Safety Signal on Pixel Watch",
-      "link": "https://www.engadget.com/2281591/google-is-doing-away-with-safety-signal-on-pixel-watch/",
-      "published": "Thu, 08 Oct 2026 19:16:12 +0000",
-      "summary": "Access to the emergency feature for LTE-connected wearables will end by December.",
-      "image": "https://www.engadget.com/img/gallery/google-is-doing-away-with-safety-signal-on-pixel-watch/l-intro-1791486727.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "The Atari 800XL hybrid gaming console is back after decades in obscurity",
-      "link": "https://www.engadget.com/2281551/the-atari-800xl-hybrid-gaming-console-is-back-after-decades-in-obscurity/",
-      "published": "Thu, 08 Oct 2026 18:51:28 +0000",
-      "summary": "This updated version connects via HDMI and comes with 25 built-in games.",
-      "image": "https://www.engadget.com/img/gallery/the-atari-800xl-hybrid-gaming-console-is-back-after-decades-in-obscurity/l-intro-1791485375.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "US suspends permanent residency program for Microsoft, Adobe and other tech companies",
-      "link": "https://www.engadget.com/2281503/us-suspends-permanent-residency-program-for-microsoft-adobe-and-other-tech-companies/",
-      "published": "Thu, 08 Oct 2026 18:23:00 +0000",
-      "summary": "Seven companies have been accused of fraud regarding the H-1B worker visas.",
-      "image": "https://www.engadget.com/img/gallery/us-suspends-permanent-residency-program-for-microsoft-adobe-and-other-tech-companies/l-intro-1791483571.jpg"
     },
     {
       "source": "The Verge Reviews",
