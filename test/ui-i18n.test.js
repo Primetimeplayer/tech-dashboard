@@ -38,7 +38,7 @@ test('language changes translate the page without putting locale into the timest
   assert.match(html, /src="ui-i18n\.js"/);
   assert.match(html, /function applyI18n\(/);
   assert.match(html, /applyI18n\(\);\s*refresh\(\);/);
-  assert.match(html, /statusClock = new Date\(\)\.toLocaleTimeString\('en-US'\)/);
+  assert.match(html, /statusClock = new Date\(savedAt \|\| Date\.now\(\)\)\.toLocaleTimeString\('en-US'\)/);
   assert.match(html, /\$\{t\('updated'\)\} \$\{statusClock\}/);
   assert.doesNotMatch(html, /statusEl\.textContent = `[^`]*region/);
   assert.doesNotMatch(html, /statusEl\.textContent = `[^`]*language/);

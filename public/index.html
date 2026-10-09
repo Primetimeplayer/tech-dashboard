@@ -7732,6 +7732,7 @@ footer,
 </div>
 
 <script src="ui-i18n.js"></script>
+<script src="feed-cache.js"></script>
 <script>
   const feedEl = document.getElementById('feed');
   let statusClock = '';
@@ -8914,6 +8915,51 @@ initAuth();
   const LOCALE_REGION_KEY = 'region';
   const LOCALE_LANGUAGE_KEY = 'language';
   let refreshSerial = 0;
+  let staticBuckets = null;
+  let paintedSignature = '';
+  const feedMemoryCache = new Map();
+
+  function readFeedCache(region, language) {
+    if (!window.SignalFeedCache) return null;
+    try {
+      return window.SignalFeedCache.read(localStorage, feedMemoryCache, region, language);
+    } catch (e) {
+      return window.SignalFeedCache.read(null, feedMemoryCache, region, language);
+    }
+  }
+
+  function writeFeedCache(region, language, items) {
+    if (!window.SignalFeedCache) return;
+    try {
+      window.SignalFeedCache.write(localStorage, feedMemoryCache, region, language, items);
+    } catch (e) {
+      window.SignalFeedCache.write(null, feedMemoryCache, region, language, items);
+    }
+  }
+
+  function feedSignature(items) {
+    return items.map((item) => `${item.category || ''}|${item.link || ''}|${item.title || ''}|${item.published || ''}`).join('\n');
+  }
+
+  function composeFeed(localized, buckets) {
+    const news = mergeNews(localized, buckets.news);
+    return [...news, ...buckets.papers, ...buckets.reviews, ...buckets.reddit]
+      .filter((item) => !isPromoItem(item))
+      .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
+  }
+
+  function applyFeed(items, serial, savedAt) {
+    if (serial !== refreshSerial) return;
+    const signature = feedSignature(items);
+    if (signature !== paintedSignature || feedEl.style.display !== 'grid') {
+      allItems = items;
+      paintedSignature = signature;
+      populateSources();
+      renderAll();
+    }
+    statusClock = new Date(savedAt || Date.now()).toLocaleTimeString('en-US');
+    statusEl.textContent = `${t('updated')} ${statusClock}`;
+  }
 
   function savedLocaleValue(key, select) {
     try {
@@ -8993,19 +9039,26 @@ initAuth();
   async function refresh(options = {}) {
     // The first load uses the skeleton. Later polls stay quiet so a
     // 5-minute refresh does not blank the feed the reader is already on.
-    // A region or language change is not quiet: the skeleton shows while the
-    // Google News RSS for that edition is fetched again.
+    // A region or language change paints a fresh cached edition immediately
+    // and lets the Google News request finish behind that.
     const quiet = options.quiet === true;
     const serial = ++refreshSerial;
     const locale = currentLocale();
-    if (!quiet) {
+    const cached = readFeedCache(locale.region, locale.language);
+    fetchErrors = [];
+    if (cached && staticBuckets) {
+      applyFeed(composeFeed(cached.items, staticBuckets), serial, cached.savedAt);
+    } else if (!quiet) {
       skeletonEl.style.display = 'grid';
       feedEl.style.display = 'none';
       loadMoreWrapEl.style.display = 'none';
     }
     try {
-      fetchErrors = [];
-      const [staticNews, papers, reviews, reddit, localized] = await Promise.all([
+      const localizedPromise = loadLocalizedNews(locale.region, locale.language).catch((err) => {
+        console.error('Localized news feed failed', err);
+        return null;
+      });
+      const [staticNews, papers, reviews, reddit] = await Promise.all([
         loadJSON('news.json', 'news', (i) => i),
         loadJSON('papers.json', 'papers', (i) => ({
           ...i,
@@ -9013,26 +9066,26 @@ initAuth();
         })),
         loadJSON('reviews.json', 'reviews', (i) => i),
         loadJSON('reddit.json', 'reddit', (i) => i),
-        loadLocalizedNews(locale.region, locale.language).catch((err) => {
-          console.error('Localized news feed failed', err);
-          return null;
-        }),
       ]);
-      if (serial !== refreshSerial) return;
-
-      if (!localized && (locale.region !== 'US' || locale.language !== 'en-US')) {
-        fetchErrors.push('google-news');
+      if (serial === refreshSerial) {
+        staticBuckets = { news: staticNews, papers, reviews, reddit };
+        if (cached) applyFeed(composeFeed(cached.items, staticBuckets), serial, cached.savedAt);
       }
 
-      const news = mergeNews(localized, staticNews);
-      allItems = [...news, ...papers, ...reviews, ...reddit]
-        .filter((item) => !isPromoItem(item))
-        .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
+      const localized = await localizedPromise;
+      if (localized) writeFeedCache(locale.region, locale.language, localized);
+      if (serial !== refreshSerial) return;
+      staticBuckets = { news: staticNews, papers, reviews, reddit };
 
-      populateSources();
-      statusClock = new Date().toLocaleTimeString('en-US');
-      statusEl.textContent = `${t('updated')} ${statusClock}`;
-      renderAll();
+      const newsItems = localized || (cached ? cached.items : null);
+      if (!newsItems && (locale.region !== 'US' || locale.language !== 'en-US')) {
+        fetchErrors.push('google-news');
+      }
+      applyFeed(
+        composeFeed(newsItems, staticBuckets),
+        serial,
+        localized ? Date.now() : (cached ? cached.savedAt : Date.now())
+      );
     } finally {
       if (serial === refreshSerial) skeletonEl.style.display = 'none';
     }
