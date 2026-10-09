@@ -7138,14 +7138,114 @@ body.feed-compact #feed .card.follow-card {
   border-color: var(--line, #24393A) !important;
 }
 </style>
+<style id="ui-i18n-layout">
+/* Translated labels stay inside the boxes they already occupy. Shrink and
+   ellipsis only when a translation is wider than the row; English that fits
+   keeps its content size. */
+#topicBar .top-nav-item,
+#topicBar .filter,
+.mast-link,
+.latest-label > h2,
+#latestCount,
+.section-heading h2,
+.feed-column-title,
+.hw-badge,
+.load-more,
+.clear-filters,
+.card-actions .icon-btn,
+.top-nav-label,
+.sidebar-heading,
+#status,
+.cat-label {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#topicBar .top-nav-item,
+#topicBar .filter {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+.latest-label > h2,
+#latestCount,
+.mast-link,
+.card-actions .icon-btn,
+.latest-card .cat,
+.result-count {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.latest-card .cat,
+.result-count {
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+footer,
+.tagline,
+.empty,
+.error-banner {
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+}
+
+#filters .drawer-categories {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  #topicBar {
+    display: none !important;
+  }
+
+  .mast,
+  .mast > .wrap,
+  .mast-row {
+    height: auto !important;
+    min-height: 64px !important;
+  }
+
+  .mast-row {
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    row-gap: 0 !important;
+  }
+
+  .mast .search-row {
+    order: 5 !important;
+    flex: 1 0 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-top: 8px !important;
+  }
+
+  #filters .drawer-categories {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 2px !important;
+  }
+
+  #filters {
+    overflow-y: auto !important;
+  }
+}
+</style>
 </head>
 <body>
 
 <noscript>
   <div class="mast"><div class="wrap">
     <h1 class="wordmark">Signal<span>.</span></h1>
-    <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
-    <p style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
+    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+    <p data-i18n="noscript" style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
   </div></div>
 </noscript>
 
@@ -7155,123 +7255,137 @@ body.feed-compact #feed .card.follow-card {
       <h1 class="wordmark">Signal<span>.</span></h1>
       <div class="search-row">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines" autocomplete="off">
+        <label for="search" class="visually-hidden" data-i18n="searchLabel">Search headlines and summaries</label>
+        <input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search headlines" autocomplete="off">
         <span class="search-hint" id="searchHint">/</span>
       </div>
       <div class="mast-right">
-        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
+        <button type="button" class="menu-toggle" id="menuToggle" data-i18n-aria="openMenu" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-        <a class="mast-link" href="digests.html">Digests</a> <a class="mast-link" href="app-react.html">React</a>
+        <a class="mast-link" href="digests.html" data-i18n="digests">Digests</a> <a class="mast-link" href="app-react.html">React</a>
         <div class="status" id="status">loading feed…</div>
-        <div class="locale-controls" role="group" aria-label="News region and language">
+        <div class="locale-controls" role="group" data-i18n-aria="localeGroup" aria-label="News region and language">
           <label class="locale-field">
             <svg class="locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.8 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.8-3.9-9s1.3-6.3 3.9-9z"/></svg>
-            <select id="regionSelect" aria-label="News region" title="News region">
-              <option value="US">Worldwide / US</option>
-              <option value="GB">United Kingdom</option>
-              <option value="INT">Global / International</option>
-              <option value="DE">Germany</option>
-              <option value="FR">France</option>
-              <option value="JP">Japan</option>
-              <option value="IN">India</option>
-              <option value="ES">Spain</option>
-              <option value="BR">Brazil</option>
-              <option value="MX">Mexico</option>
-              <option value="CA">Canada</option>
-              <option value="AU">Australia</option>
-              <option value="KR">South Korea</option>
-              <option value="IT">Italy</option>
-              <option value="NL">Netherlands</option>
+            <select id="regionSelect" data-i18n-aria="regionAria" data-i18n-title="regionAria" aria-label="News region" title="News region">
+              <option value="US" data-i18n="regionUS">Worldwide / US</option>
+              <option value="GB" data-i18n="regionGB">United Kingdom</option>
+              <option value="INT" data-i18n="regionINT">Global / International</option>
+              <option value="DE" data-i18n="regionDE">Germany</option>
+              <option value="FR" data-i18n="regionFR">France</option>
+              <option value="JP" data-i18n="regionJP">Japan</option>
+              <option value="IN" data-i18n="regionIN">India</option>
+              <option value="ES" data-i18n="regionES">Spain</option>
+              <option value="BR" data-i18n="regionBR">Brazil</option>
+              <option value="MX" data-i18n="regionMX">Mexico</option>
+              <option value="CA" data-i18n="regionCA">Canada</option>
+              <option value="AU" data-i18n="regionAU">Australia</option>
+              <option value="KR" data-i18n="regionKR">South Korea</option>
+              <option value="IT" data-i18n="regionIT">Italy</option>
+              <option value="NL" data-i18n="regionNL">Netherlands</option>
             </select>
           </label>
           <label class="locale-field">
             <svg class="locale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="1" y="16" fill="currentColor" font-size="13" font-family="sans-serif" font-weight="700">A</text><text x="11" y="17" fill="currentColor" font-size="12" font-family="sans-serif" font-weight="700">文</text></svg>
-            <select id="languageSelect" aria-label="News language" title="News language">
-              <option value="en-US">English</option>
-              <option value="es-419">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="ja">Japanese</option>
-              <option value="pt-BR">Portuguese</option>
-              <option value="hi">Hindi</option>
-              <option value="ko">Korean</option>
-              <option value="zh-CN">Chinese</option>
-              <option value="it">Italian</option>
-              <option value="nl">Dutch</option>
+            <select id="languageSelect" data-i18n-aria="languageAria" data-i18n-title="languageAria" aria-label="News language" title="News language">
+              <option value="en-US" data-i18n="langEn">English</option>
+              <option value="es-419" data-i18n="langEs">Spanish</option>
+              <option value="fr" data-i18n="langFr">French</option>
+              <option value="de" data-i18n="langDe">German</option>
+              <option value="ja" data-i18n="langJa">Japanese</option>
+              <option value="pt-BR" data-i18n="langPt">Portuguese</option>
+              <option value="hi" data-i18n="langHi">Hindi</option>
+              <option value="ko" data-i18n="langKo">Korean</option>
+              <option value="zh-CN" data-i18n="langZh">Chinese</option>
+              <option value="it" data-i18n="langIt">Italian</option>
+              <option value="nl" data-i18n="langNl">Dutch</option>
             </select>
           </label>
         </div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <button class="theme-toggle" id="themeToggle" data-i18n-aria="themeToggle" data-i18n-title="themeTitle" aria-label="Toggle light and dark theme" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
       </div>
     </div>
-    <p class="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
   </div>
 </div>
 
-<button type="button" class="sidebar-backdrop" id="sidebarBackdrop" tabindex="-1" aria-label="Close navigation menu"></button>
+<button type="button" class="sidebar-backdrop" id="sidebarBackdrop" data-i18n-aria="closeMenu" tabindex="-1" aria-label="Close navigation menu"></button>
 
 <div class="wrap">
   <div class="controls">
   <div class="topic-bar" id="topicBar">
-    <nav class="top-nav" id="topNav" aria-label="Topics">
+    <nav class="top-nav" id="topNav" data-i18n-aria="topics" aria-label="Topics">
       <div class="top-nav-section">
-        <button type="button" class="filter top-nav-item" data-cat="all" aria-pressed="true">All News</button>
-        <button type="button" class="filter top-nav-item" data-cat="software" aria-pressed="false">Software &amp; Dev</button>
-        <button type="button" class="filter top-nav-item" data-cat="papers" aria-pressed="false">AI &amp; Research</button>
-        <button type="button" class="filter top-nav-item" data-cat="chips" aria-pressed="false">Chips &amp; Silicon</button>
-        <button type="button" class="filter top-nav-item" data-cat="gaming" aria-pressed="false">Gaming &amp; Consoles</button>
-        <button type="button" class="filter top-nav-item" data-cat="space" aria-pressed="false">Space &amp; Rockets</button>
-        <button type="button" class="filter top-nav-item" data-cat="security" aria-pressed="false">Cybersecurity</button>
-        <button type="button" class="filter top-nav-item" data-cat="gadgets" aria-pressed="false">Gadgets &amp; Hardware</button>
-        <button type="button" class="filter top-nav-item" data-cat="news" aria-pressed="false">Technology</button>
-        <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false">Reviews</button>
-        <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false">Community</button>
+        <button type="button" class="filter top-nav-item" data-cat="all" data-i18n="catAll" aria-pressed="true">All News</button>
+        <button type="button" class="filter top-nav-item" data-cat="software" data-i18n="catSoftware" aria-pressed="false">Software &amp; Dev</button>
+        <button type="button" class="filter top-nav-item" data-cat="papers" data-i18n="catPapers" aria-pressed="false">AI &amp; Research</button>
+        <button type="button" class="filter top-nav-item" data-cat="chips" data-i18n="catChips" aria-pressed="false">Chips &amp; Silicon</button>
+        <button type="button" class="filter top-nav-item" data-cat="gaming" data-i18n="catGaming" aria-pressed="false">Gaming &amp; Consoles</button>
+        <button type="button" class="filter top-nav-item" data-cat="space" data-i18n="catSpace" aria-pressed="false">Space &amp; Rockets</button>
+        <button type="button" class="filter top-nav-item" data-cat="security" data-i18n="catSecurity" aria-pressed="false">Cybersecurity</button>
+        <button type="button" class="filter top-nav-item" data-cat="gadgets" data-i18n="catGadgets" aria-pressed="false">Gadgets &amp; Hardware</button>
+        <button type="button" class="filter top-nav-item" data-cat="news" data-i18n="catTechnology" aria-pressed="false">Technology</button>
+        <button type="button" class="filter top-nav-item" data-cat="reviews" data-i18n="catReviews" aria-pressed="false">Reviews</button>
+        <button type="button" class="filter top-nav-item" data-cat="reddit" data-i18n="catCommunity" aria-pressed="false">Community</button>
       </div>
     </nav>
   </div>
   <div class="filters" id="filters">
 
   <div class="sidebar-drawer-head">
-    <div class="sidebar-heading">Navigation</div>
-    <button type="button" class="sidebar-drawer-close" id="sidebarClose" aria-label="Close navigation menu">
+    <div class="sidebar-heading" data-i18n="navigation">Navigation</div>
+    <button type="button" class="sidebar-drawer-close" id="sidebarClose" data-i18n-aria="closeMenu" aria-label="Close navigation menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
   <!-- Desktop horizontal navigation bar -->
-  <nav class="top-nav" aria-label="Library">
+  <nav class="top-nav" data-i18n-aria="libraryNav" aria-label="Library">
+    <div class="top-nav-section drawer-categories">
+      <span class="top-nav-label" data-i18n="topics">Topics</span>
+      <button type="button" class="filter top-nav-item" data-cat="all" data-i18n="catAll" aria-pressed="true">All News</button>
+      <button type="button" class="filter top-nav-item" data-cat="software" data-i18n="catSoftware" aria-pressed="false">Software &amp; Dev</button>
+      <button type="button" class="filter top-nav-item" data-cat="papers" data-i18n="catPapers" aria-pressed="false">AI &amp; Research</button>
+      <button type="button" class="filter top-nav-item" data-cat="chips" data-i18n="catChips" aria-pressed="false">Chips &amp; Silicon</button>
+      <button type="button" class="filter top-nav-item" data-cat="gaming" data-i18n="catGaming" aria-pressed="false">Gaming &amp; Consoles</button>
+      <button type="button" class="filter top-nav-item" data-cat="space" data-i18n="catSpace" aria-pressed="false">Space &amp; Rockets</button>
+      <button type="button" class="filter top-nav-item" data-cat="security" data-i18n="catSecurity" aria-pressed="false">Cybersecurity</button>
+      <button type="button" class="filter top-nav-item" data-cat="gadgets" data-i18n="catGadgets" aria-pressed="false">Gadgets &amp; Hardware</button>
+      <button type="button" class="filter top-nav-item" data-cat="news" data-i18n="catTechnology" aria-pressed="false">Technology</button>
+      <button type="button" class="filter top-nav-item" data-cat="reviews" data-i18n="catReviews" aria-pressed="false">Reviews</button>
+      <button type="button" class="filter top-nav-item" data-cat="reddit" data-i18n="catCommunity" aria-pressed="false">Community</button>
+    </div>
     <div class="top-nav-section">
-      <span class="top-nav-label">LIBRARY</span>
+      <span class="top-nav-label" data-i18n="library">Library</span>
       <button class="top-nav-item toggle-hw" id="hwToggle" aria-pressed="false">
         <span class="nav-emoji" aria-hidden="true">💻</span>
-        Hardware
+        <span data-i18n="hardware">Hardware</span>
       </button>
       <button class="top-nav-item toggle-saved" id="savedToggle" aria-pressed="false">
         <span class="nav-emoji" aria-hidden="true">🔖</span>
-        Saved
+        <span data-i18n="saved">Saved</span>
       </button>
       <a class="top-nav-item" id="digestsNav" href="digests.html">
         <span class="nav-emoji" aria-hidden="true">🧵</span>
-        Digests
+        <span data-i18n="digests">Digests</span>
       </a>
     </div>
 
     <div class="top-nav-divider"></div>
 
     <div class="top-nav-section">
-      <span class="top-nav-label">RECENTS</span>
+      <span class="top-nav-label" data-i18n="recents">Recents</span>
       <div id="recentArticles"></div>
       <div class="recent-empty">
-        <p class="recent-empty-label">No recent items yet</p>
+        <p class="recent-empty-label" data-i18n="noRecents">No recent items yet</p>
       </div>
     </div>
   </nav>
   </div>
     <div class="row2">
-      <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
+      <button type="button" id="clearFilters" class="clear-filters" data-i18n="clearFilters" hidden>Clear filters</button>
     </div>
   </div>
 
@@ -7280,13 +7394,13 @@ body.feed-compact #feed .card.follow-card {
 <div class="wrap latest-wrap">
   <div class="latest" id="latestSection" hidden>
     <div class="latest-label">
-  <h2>Latest Stories</h2>
+  <h2 data-i18n="latestStories">Latest Stories</h2>
   <span id="latestCount">Newest stories</span>
   <div class="latest-nav">
-    <button type="button" class="latest-nav-btn" id="latestPrev" aria-label="Previous stories" aria-controls="latestRow">
+    <button type="button" class="latest-nav-btn" id="latestPrev" data-i18n-aria="prevStories" aria-label="Previous stories" aria-controls="latestRow">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
     </button>
-    <button type="button" class="latest-nav-btn" id="latestNext" aria-label="Next stories" aria-controls="latestRow">
+    <button type="button" class="latest-nav-btn" id="latestNext" data-i18n-aria="nextStories" aria-label="Next stories" aria-controls="latestRow">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
     </button>
   </div>
@@ -7297,7 +7411,7 @@ body.feed-compact #feed .card.follow-card {
 
   <div class="section-heading">
     <div class="section-heading-main">
-      <h2>Top stories</h2>
+      <h2 data-i18n="topStories">Top stories</h2>
     </div>
   </div>
 
@@ -7314,11 +7428,11 @@ body.feed-compact #feed .card.follow-card {
     </div>
     <div class="grid" id="feed" style="display:none;"></div>
     <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
-      <button class="load-more" id="loadMoreBtn">Show more</button>
+      <button class="load-more" id="loadMoreBtn" data-i18n="showMore">Show more</button>
     </div>
   </main>
 
-  <footer>
+  <footer data-i18n="footer" data-i18n-html>
     Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Also: an <a href="app-react.html">experimental React build</a> of the core view, and optional cross-device sync for saved items (see <code>cloudflare-worker/</code>).
   </footer>
 </div>
@@ -7331,18 +7445,33 @@ body.feed-compact #feed .card.follow-card {
      they never appear on screen and no Tab press can land on them, while the
      feed can still focus them programmatically when it needs to. -->
 <div class="visually-hidden">
-  <label for="sourceFilter">Filter by source</label>
-  <select id="sourceFilter" tabindex="-1"><option value="all">All sources</option></select>
-  <label for="dateFilter">Filter by date</label>
+  <label for="sourceFilter" data-i18n="filterBySource">Filter by source</label>
+  <select id="sourceFilter" tabindex="-1"><option value="all" data-i18n="allSources">All sources</option></select>
+  <label for="dateFilter" data-i18n="filterByDate">Filter by date</label>
   <select id="dateFilter" tabindex="-1">
-    <option value="all">Any time</option>
-    <option value="today">Today</option>
-    <option value="week">This week</option>
+    <option value="all" data-i18n="anyTime">Any time</option>
+    <option value="today" data-i18n="today">Today</option>
+    <option value="week" data-i18n="thisWeek">This week</option>
   </select>
 </div>
 
+<script src="ui-i18n.js"></script>
 <script>
   const feedEl = document.getElementById('feed');
+  let statusClock = '';
+  function t(key, vars) {
+    const select = document.getElementById('languageSelect');
+    const code = select && select.value ? select.value : 'en-US';
+    return window.SignalI18n.translate(code, key, vars);
+  }
+  function applyI18n() {
+    const select = document.getElementById('languageSelect');
+    const code = select && select.value ? select.value : 'en-US';
+    window.SignalI18n.apply(document, code);
+    if (statusEl) {
+      statusEl.textContent = statusClock ? `${t('updated')} ${statusClock}` : t('loading');
+    }
+  }
   const skeletonEl = document.getElementById('skeleton');
   const statusEl = document.getElementById('status');
   const filtersEl = document.getElementById('filters');
@@ -7636,8 +7765,8 @@ async function logoutAccount() {
   const accountBtn = document.getElementById('syncSettingsBtn');
 
   if (accountBtn) {
-    setAccountLabel('Log in');
-    accountBtn.title = 'Sign in with Google';
+    setAccountLabel('login');
+    accountBtn.title = t('signInGoogle');
   }
 
   render();
@@ -7653,8 +7782,8 @@ async function initAuth() {
 
   if (authState.authenticated) {
     if (accountBtn) {
-      setAccountLabel('Log out');
-      accountBtn.title = authState.user?.email || 'Log out';
+      setAccountLabel('logout');
+      accountBtn.title = authState.user?.email || t('logOut');
     }
 
     try {
@@ -7665,8 +7794,8 @@ async function initAuth() {
     }
   } else {
     if (accountBtn) {
-      setAccountLabel('Log in');
-      accountBtn.title = 'Sign in with Google';
+      setAccountLabel('login');
+      accountBtn.title = t('signInGoogle');
     }
   }
 }
@@ -7681,8 +7810,9 @@ function setAccountLabel(label) {
     textNode.className = 'account-label';
     btn.appendChild(textNode);
   }
-  textNode.textContent = label;
-  btn.setAttribute('aria-label', label === 'Log out' ? 'Log out of your account' : 'Log in to sync saved stories');
+  const mode = label === 'logout' || label === 'Log out' ? 'logout' : 'login';
+  textNode.textContent = mode === 'logout' ? t('logOut') : t('logIn');
+  btn.setAttribute('aria-label', mode === 'logout' ? t('logOutAccount') : t('logInSync'));
 }
 
 document.getElementById('syncSettingsBtn')?.addEventListener('click', () => {
@@ -7776,14 +7906,14 @@ initAuth();
     if (!iso) return '';
     const diffMs = Date.now() - new Date(iso).getTime();
     const mins = Math.floor(diffMs / 60000);
-    if (mins < 1) return 'just now';
-    if (mins < 60) return `${mins}m ago`;
+    if (mins < 1) return t('justNow');
+    if (mins < 60) return t('minsAgo', { n: mins });
     const hrs = Math.floor(mins / 60);
-    if (hrs < 24) return `${hrs}h ago`;
-    return `${Math.floor(hrs / 24)}d ago`;
+    if (hrs < 24) return t('hoursAgo', { n: hrs });
+    return t('daysAgo', { n: Math.floor(hrs / 24) });
   }
   function catLabel(cat) {
-    return { news: 'News', papers: 'AI paper', reviews: 'Review', reddit: 'Reddit' }[cat] || cat;
+    return { news: t('catNews'), papers: t('catPaper'), reviews: t('catReview'), reddit: t('catReddit') }[cat] || cat;
   }
   function escapeHtml(str = '') {
     return str.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -7869,11 +7999,11 @@ initAuth();
     });
 
     const current = sourceFilterEl.value;
-    let html = '<option value="all">All sources</option>';
-    const labels = { news: 'News', papers: 'AI Papers', reviews: 'Reviews', reddit: 'Reddit' };
+    let html = `<option value="all">${escapeHtml(t('allSources'))}</option>`;
+    const labels = { news: t('groupNews'), papers: t('groupPapers'), reviews: t('groupReviews'), reddit: t('groupReddit') };
     for (const cat of ['news', 'papers', 'reviews', 'reddit']) {
       if (byCategory[cat].length) {
-        html += `<optgroup label="${labels[cat]}">`;
+        html += `<optgroup label="${escapeAttr(labels[cat])}">`;
         byCategory[cat].forEach((s) => {
           html += `<option value="${escapeAttr(s)}">${escapeHtml(s)}</option>`;
         });
@@ -7991,13 +8121,13 @@ initAuth();
   function cardActions(item, saved, note) {
     return `
           <div class="card-actions">
-            <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
-            <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
+            <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? `★ ${escapeHtml(t('savedStar'))}` : `☆ ${escapeHtml(t('save'))}`}</button>
+            <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ ${escapeHtml(t('share'))}</button>
           </div>
           ${saved ? `
           <div class="note-box">
-            <p class="note-label">Your note</p>
-            <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+            <p class="note-label">${escapeHtml(t('yourNote'))}</p>
+            <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="${escapeAttr(t('yourNote'))}" placeholder="${escapeAttr(t('notePlaceholder'))}">${escapeHtml(note)}</textarea>
           </div>` : ''}`;
   }
 
@@ -8017,7 +8147,7 @@ initAuth();
     }
     latestSectionEl.hidden = false;
     if (latestCountEl) {
-      latestCountEl.textContent = latest.length === 1 ? '1 newest story' : `${latest.length} newest stories`;
+      latestCountEl.textContent = latest.length === 1 ? t('newestOne') : t('newestMany', { n: latest.length });
     }
     latestRowEl.innerHTML = latest.map((item) => `
       <a class="latest-card ${item.category}" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
@@ -8063,8 +8193,8 @@ initAuth();
   // confirmation can never be announced or read again.
   const SHARE_FEEDBACK_MS = 1600;
 
-  const SHARE_OK = 'Link copied. Share it anywhere.';
-  const SHARE_FAIL = 'Copy failed. Select the link and copy it manually.';
+  const SHARE_OK = () => t('shareOk');
+  const SHARE_FAIL = () => t('shareFail');
 
   // Report the outcome of a share attempt next to the button that triggered it.
   // role="status" makes both success and failure a polite live-region
@@ -8119,23 +8249,21 @@ initAuth();
 
   async function copyText(text, btn) {
     // Captured once per button so a second click still restores the real label.
-    if (!btn.dataset.shareLabel) btn.dataset.shareLabel = btn.textContent;
-
     const copied = await writeToClipboard(text);
     clearTimeout(btn._labelTimer);
 
     if (copied) {
-      btn.textContent = '✓ Copied';
+      btn.textContent = `✓ ${t('copied')}`;
       btn.classList.add('copied');
       btn._labelTimer = setTimeout(() => {
-        btn.textContent = btn.dataset.shareLabel;
+        btn.textContent = `⇪ ${t('share')}`;
         btn.classList.remove('copied');
       }, SHARE_FEEDBACK_MS);
-      showShareFeedback(btn, SHARE_OK, true);
+      showShareFeedback(btn, SHARE_OK(), true);
     } else {
-      btn.textContent = btn.dataset.shareLabel;
+      btn.textContent = `⇪ ${t('share')}`;
       btn.classList.remove('copied');
-      showShareFeedback(btn, SHARE_FAIL, false);
+      showShareFeedback(btn, SHARE_FAIL(), false);
     }
   }
 
@@ -8217,11 +8345,11 @@ initAuth();
     const items = sortItems(getFilteredItems());
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
-    resultCountEl.textContent = `${items.length} of ${allItems.length} items`;
+    resultCountEl.textContent = t('resultCount', { n: items.length, m: allItems.length });
 
     // Show/hide error banner
     if (fetchErrors.length) {
-      errorBannerEl.textContent = `Some sources couldn't be loaded (${fetchErrors.join(', ')}). Showing partial results.`;
+      errorBannerEl.textContent = t('errorPartial', { sources: fetchErrors.join(', ') });
       errorBannerEl.classList.add('visible');
     } else {
       errorBannerEl.classList.remove('visible');
@@ -8238,7 +8366,7 @@ initAuth();
       feedEl.style.display = 'none';
       skeletonEl.style.display = 'none';
       loadMoreWrapEl.style.display = 'none';
-      feedEl.innerHTML = '<div class="empty">Nothing matches. Try a different filter, source, date range, or search term.</div>';
+      feedEl.innerHTML = `<div class="empty">${escapeHtml(t('empty'))}</div>`;
       feedEl.style.display = 'block';
       return;
     }
@@ -8295,13 +8423,13 @@ initAuth();
       <article class="card hero-story ${lead.category}${leadFields.hw ? ' is-hardware' : ''}${leadImage ? '' : ' hero-story-text'}">
         ${leadImage ? `<a class="hero-media" href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="hero-thumb" src="${escapeAttr(leadImage)}" alt=""></a>` : ''}
         <div class="story-copy hero-copy">
-          ${leadFields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${leadFields.hw ? `<div class="hw-badge">⚡ ${escapeHtml(t('hardwareBadge'))}</div>` : ''}
           ${sourceLine(lead)}
           <h2><a href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(lead.title)}">${escapeHtml(lead.title)}</a></h2>
           ${cardMeta(lead)}
           ${leadFields.chips.length ? `<div class="card-chips">${leadFields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
           ${lead.summary ? `<p class="hero-dek">${escapeHtml(lead.summary)}</p>` : ''}
-          ${lead.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(lead.whyItMatters)}</div>` : ''}
+          ${lead.whyItMatters ? `<div class="why"><b>${escapeHtml(t('whyItMatters'))}</b>${escapeHtml(lead.whyItMatters)}</div>` : ''}
           ${cardActions(lead, leadFields.saved, leadFields.note)}
         </div>
       </article>`;
@@ -8311,7 +8439,7 @@ initAuth();
       return `
       <article class="card follow-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
         <div class="story-copy">
-          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${fields.hw ? `<div class="hw-badge">⚡ ${escapeHtml(t('hardwareBadge'))}</div>` : ''}
           ${sourceLine(item)}
           <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
           ${cardMeta(item)}
@@ -8326,7 +8454,7 @@ initAuth();
       return `
       <article class="card story-row ${item.category}${fields.hw ? ' is-hardware' : ''}">
         <div class="story-copy">
-          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${fields.hw ? `<div class="hw-badge">⚡ ${escapeHtml(t('hardwareBadge'))}</div>` : ''}
           ${sourceLine(item)}
           <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
           ${cardMeta(item)}
@@ -8350,9 +8478,9 @@ initAuth();
       return `<section class="${sectionClass}"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid ${colClass}">${cols}</div></section>`;
     };
     const lower = [
-      lowerSection('Silicon & Hardware Spotlight', silicon),
-      lowerSection('Deep Space & Defense', spaceItems),
-      lowerSection('More stories', rest, 'more-stories'),
+      lowerSection(t('silicon'), silicon),
+      lowerSection(t('deepSpace'), spaceItems),
+      lowerSection(t('moreStories'), rest, 'more-stories'),
     ].join('');
 
     const pickCards = picks.map((item) => {
@@ -8360,7 +8488,7 @@ initAuth();
       return `
       <article class="card pick-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
         <div class="story-copy">
-          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${fields.hw ? `<div class="hw-badge">⚡ ${escapeHtml(t('hardwareBadge'))}</div>` : ''}
           ${sourceLine(item)}
           <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
           ${cardMeta(item)}
@@ -8373,14 +8501,14 @@ initAuth();
 
     feedEl.innerHTML = `
       <div class="feed-top">
-        <section class="briefing-col" aria-label="Your briefing">
-          <h2 class="feed-column-title">Your briefing</h2>
+        <section class="briefing-col" aria-label="${escapeAttr(t('briefing'))}">
+          <h2 class="feed-column-title">${escapeHtml(t('briefing'))}</h2>
           <div class="briefing-card">
             ${hero}
             ${followUps ? `<div class="follow-ups">${followUps}</div>` : ''}
           </div>
         </section>
-        ${pickCards ? `<aside class="picks-col" aria-label="Picks for you"><h2 class="feed-column-title">Picks for you</h2><div class="picks-list">${pickCards}</div></aside>` : ''}
+        ${pickCards ? `<aside class="picks-col" aria-label="${escapeAttr(t('picks'))}"><h2 class="feed-column-title">${escapeHtml(t('picks'))}</h2><div class="picks-list">${pickCards}</div></aside>` : ''}
       </div>
       ${lower ? `<div class="lower-feed">${lower}</div>` : ''}`;
 
@@ -8393,7 +8521,7 @@ initAuth();
     const remaining = Math.max(0, items.length - visibleCount - balancedShown);
     if (remaining > 0) {
       loadMoreWrapEl.style.display = 'block';
-      loadMoreBtnEl.textContent = `Show more (${remaining} remaining)`;
+      loadMoreBtnEl.textContent = t('showMoreRemaining', { n: remaining });
     } else {
       loadMoreWrapEl.style.display = 'none';
     }
@@ -8485,7 +8613,7 @@ initAuth();
     if (loadMoreWrapEl && loadMoreBtnEl) {
       if (remaining > 0) {
         loadMoreWrapEl.style.display = 'block';
-        loadMoreBtnEl.textContent = `Show more (${remaining} remaining)`;
+        loadMoreBtnEl.textContent = t('showMoreRemaining', { n: remaining });
       } else {
         loadMoreWrapEl.style.display = 'none';
       }
@@ -8599,7 +8727,7 @@ initAuth();
         loadJSON('news.json', 'news', (i) => i),
         loadJSON('papers.json', 'papers', (i) => ({
           ...i,
-          source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ' et al.' : ''),
+          source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ` ${t('etAl')}` : ''),
         })),
         loadJSON('reviews.json', 'reviews', (i) => i),
         loadJSON('reddit.json', 'reddit', (i) => i),
@@ -8620,7 +8748,8 @@ initAuth();
         .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
 
       populateSources();
-      statusEl.textContent = `updated ${new Date().toLocaleTimeString('en-US')}`;
+      statusClock = new Date().toLocaleTimeString('en-US');
+      statusEl.textContent = `${t('updated')} ${statusClock}`;
       renderAll();
     } finally {
       if (serial === refreshSerial) skeletonEl.style.display = 'none';
@@ -8720,6 +8849,7 @@ initAuth();
   function onLocaleChange() {
     persistLocale();
     visibleCount = PAGE_SIZE;
+    applyI18n();
     refresh();
   }
   if (regionSelectEl) regionSelectEl.addEventListener('change', onLocaleChange);
@@ -8813,6 +8943,7 @@ initAuth();
 
   applyHash(false);
   applySavedLocale();
+  applyI18n();
   refresh();
   window.addEventListener('hashchange', () => applyHash(true));
   window.addEventListener('scroll', function () {
