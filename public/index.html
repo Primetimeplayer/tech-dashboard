@@ -5356,8 +5356,8 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
     overscroll-behavior-x: contain;
   }
 
-  /* Tighter chrome and slightly smaller type so the placeholder is not cut
-     off mid-sentence (the wording itself is shortened in script below). */
+  /* Tighter chrome and slightly smaller type so the placeholder stays inside
+     the field on a phone. */
   .search-row {
     padding: 0 12px !important;
   }
@@ -7181,12 +7181,11 @@ body.feed-compact #feed .card.follow-card {
       <div class="search-row">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <input id="search" type="search" placeholder="Search headlines" autocomplete="off">
         <span class="search-hint" id="searchHint">/</span>
       </div>
       <div class="locale-controls" role="group" aria-label="News region and language">
         <label class="locale-field">
-          <span class="locale-label">Region</span>
           <select id="regionSelect" aria-label="News region">
             <option value="US">Worldwide / US</option>
             <option value="GB">United Kingdom</option>
@@ -8787,19 +8786,6 @@ initAuth();
   });
   searchEl.addEventListener('focus', () => { searchHintEl.style.display = 'none'; });
   searchEl.addEventListener('blur', () => { if (!searchEl.value) searchHintEl.style.display = ''; });
-
-  // The desktop placeholder is too long for a phone and gets cut off
-  // mid-word. On narrow screens swap in a shorter wording that keeps the same
-  // guidance (including the "/" hint); the full text returns automatically
-  // as soon as the viewport is wide enough for it.
-  const searchPlaceholderWide = searchEl.placeholder;
-  const searchPlaceholderNarrow = 'Search';
-  const narrowSearchMq = window.matchMedia('(max-width: 560px)');
-  function syncSearchPlaceholder() {
-    searchEl.placeholder = narrowSearchMq.matches ? searchPlaceholderNarrow : searchPlaceholderWide;
-  }
-  syncSearchPlaceholder();
-  narrowSearchMq.addEventListener('change', syncSearchPlaceholder);
 
   // Load more button
   loadMoreBtnEl.addEventListener('click', () => {

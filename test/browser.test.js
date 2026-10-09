@@ -2783,10 +2783,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       };
     `);
 
-    const wideText = 'Search headlines and summaries… (press / to focus)';
-    assert.ok(narrow.placeholder.length > 0, 'Narrow screens must keep a placeholder');
-    assert.notEqual(narrow.placeholder, wideText, 'Narrow screens must not use the wording that overflows');
-    assert.match(narrow.placeholder, /press \//, 'Narrow placeholder must keep the "/" shortcut hint');
+    const placeholderText = 'Search headlines';
+    assert.equal(narrow.placeholder, placeholderText, 'Narrow screens use the Search headlines placeholder');
     assert.ok(narrow.fontSize >= 12, `Placeholder must stay readable (font-size ${narrow.fontSize}px)`);
     assert.ok(
       narrow.measured <= narrow.usable + 4,
@@ -2801,7 +2799,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         fontSize: parseFloat(getComputedStyle(document.getElementById('search')).fontSize)
       };
     `);
-    assert.equal(wide.placeholder, wideText, 'Desktop must keep the full placeholder wording');
+    assert.equal(wide.placeholder, placeholderText, 'Desktop uses the Search headlines placeholder');
     assert.ok(wide.fontSize >= 14, `Desktop search typography must be unchanged (font-size ${wide.fontSize}px)`);
   });
 
