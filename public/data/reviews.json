@@ -1,7 +1,55 @@
 {
-  "updated": "2026-10-09T12:09:00.478Z",
+  "updated": "2026-10-09T18:07:55.412Z",
   "count": 20,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Bose Lifestyle Ultra Soundbar review: A great home theater option all by itself",
+      "link": "https://www.engadget.com/2282487/bose-lifestyle-ultra-soundbar-review/",
+      "published": "Fri, 09 Oct 2026 18:00:00 +0000",
+      "summary": "Bose's latest soundbar pulls double duty as both a TV and music speaker. Plus, it doesn't need a separate subwoofer for adequate bass.",
+      "image": "https://www.engadget.com/img/gallery/bose-lifestyle-ultra-soundbar-review-a-great-home-theater-option-all-by-itself/l-intro-1791567301.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Intel is reportedly launching new CPUs on old sockets that support DDR4 memory",
+      "link": "https://www.engadget.com/2282431/intel-is-reportedly-launching-new-cpus-on-old-sockets-that-support-ddr4-memory/",
+      "published": "Fri, 09 Oct 2026 17:01:36 +0000",
+      "summary": "If you guessed the RAMpocalypse is involved...",
+      "image": "https://www.engadget.com/img/gallery/intel-is-reportedly-launching-new-cpus-on-old-sockets-that-support-ddr4-memory/l-intro-1791565172.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "What it's like to spend a night in a Pebble Flow EV RV",
+      "link": "https://www.engadget.com/2282389/pebble-flow-ev-rv-review/",
+      "published": "Fri, 09 Oct 2026 17:00:00 +0000",
+      "summary": "Staying in the tech-infused trailer can kind of feel like being in a spaceship - in a good way.",
+      "image": "https://www.engadget.com/img/gallery/what-its-like-to-spend-a-night-in-a-pebble-flow-ev-rv/l-intro-1791563636.jpg"
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "Instinct was the buzziest AI agent around — can it survive Muse?",
+      "link": "https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots",
+      "published": "2026-10-09T14:00:00.000Z",
+      "summary": "Instinct’s agent is always just a text away. Before there were cute little guys, there was Instinct. In August, the startup got its AI agent to market with an unusual playbook: invite-only, no marketing, and barely so much as a website…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/DSC04328_processed_1.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "A week with Googlebooks: four notes from our testing so far",
+      "link": "https://www.theverge.com/tech/1008563/googlebook-software-impressions-thoughts-roundtable",
+      "published": "2026-10-09T13:36:02.000Z",
+      "summary": "Software, software, software. | Photo: Antonio G. Di Benedetto / The Verge Google's new operating system is off to a rocky start. The five newly launched Googlebook laptops have hardware that ranges from great to excellent, but the…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268755_Google_event_HP_Googlebook_14_ADiBenedetto_0003.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Webb telescope detects galaxy origin of the farthest fast radio burst we've seen to date",
+      "link": "https://www.engadget.com/2282035/webb-telescope-detects-galaxy-origin-of-the-farthest-fast-radio-burst-weve-seen-to-date/",
+      "published": "Fri, 09 Oct 2026 12:28:24 +0000",
+      "summary": "Astronomers used the Webb telescope to see where the farthest fast radio burst we've ever seen had come from.",
+      "image": "https://www.engadget.com/img/gallery/webb-telescope-detects-galaxy-origin-of-the-farthest-fast-radio-burst-weve-seen-to-date/l-intro-1791548424.jpg"
+    },
     {
       "source": "Engadget Reviews",
       "title": "What to expect at Apple's 'Welcome home' event next week",
@@ -49,38 +97,6 @@
       "published": "Fri, 09 Oct 2026 08:25:18 +0000",
       "summary": "Three OpenAI researchers said their firings may have a 'chilling' effect on employees.",
       "image": "https://www.engadget.com/img/gallery/fired-openai-safety-researchers-dispute-their-dismissals-in-open-letter/l-intro-1791534127.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Apple reportedly plans touchscreen MacBook and iPad Mini launch for this month",
-      "link": "https://www.engadget.com/2281839/apple-reportedly-plans-touchscreen-macbook-and-ipad-mini-launch-for-this-month/",
-      "published": "Thu, 08 Oct 2026 23:26:35 +0000",
-      "summary": "The wait to (literally) get your hands on the tech may almost be over.",
-      "image": "https://www.engadget.com/img/gallery/apple-reportedly-plans-touchscreen-macbook-and-ipad-mini-launch-for-this-month/l-intro-1791501544.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "IDC: Worldwide PC shipments in Q3 fell 20 percent from last year",
-      "link": "https://www.engadget.com/2281788/idc-worldwide-pc-shipments-in-q3-fell-20-percent-from-last-year/",
-      "published": "Thu, 08 Oct 2026 21:50:20 +0000",
-      "summary": "\"With macro conditions worsening, the risk is that the outlook for the next few quarters gets worse before it gets better.\"",
-      "image": "https://www.engadget.com/img/gallery/idc-worldwide-pc-shipments-in-q3-fell-20-percent-from-last-year/l-intro-1791495665.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Alexa Tablet vs iPad Pro: How Amazon is keeping up with Apple",
-      "link": "https://www.engadget.com/2281782/alexa-tablet-vs-ipad-pro-amazon-apple-tablet-comparison/",
-      "published": "Thu, 08 Oct 2026 21:40:59 +0000",
-      "summary": "Amazon's latest and greatest tablet shares some key similarities to Apple's high-end iPads, but the devil is in the details.",
-      "image": "https://www.engadget.com/img/gallery/alexa-tablet-vs-ipad-pro-how-amazon-is-keeping-up-with-apple/l-intro-1791495275.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Anthropic bans 'sustained and needless abusive or cruel behavior' toward its AI models",
-      "link": "https://www.engadget.com/2281765/anthropic-bans-sustained-and-needless-abusive-or-cruel-behavior-toward-its-ai-models/",
-      "published": "Thu, 08 Oct 2026 21:17:24 +0000",
-      "summary": "The company is also tightening its election policy ahead of the midterms.",
-      "image": "https://www.engadget.com/img/gallery/anthropic-bans-sustained-and-needless-abusive-or-cruel-behavior-toward-its-ai-models/l-intro-1791494139.jpg"
     },
     {
       "source": "The Verge Reviews",
@@ -145,22 +161,6 @@
       "published": "2026-10-02T13:00:00.000Z",
       "summary": "Although I count the original Game Boy as one of my first tech obsessions, I still consider Nintendo’s Game Boy Advance to be my favorite console of all time thanks to its more comfortable horizontal design (for my big hands) and its…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/ayaneo1b.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge Reviews",
-      "title": "The Sonos Ace Ultra are the headphones Sonos should have made the first time",
-      "link": "https://www.theverge.com/tech/1002122/sonos-ace-ultra-headphones-review",
-      "published": "2026-09-30T13:00:00.000Z",
-      "summary": "The Ace Ultra look like the Ace, but they’re better on the inside. The original Sonos Ace headphones should have been a triumphant entry into a new product category. Instead, they were overshadowed by Sonos's disastrous app redesign. And…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268780_Sonos_Ace_Ultra_P_JHiggins_6.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge Reviews",
-      "title": "Nothing’s new flagship Headphone 1 Pro put you in the studio",
-      "link": "https://www.theverge.com/tech/1001797/nothings-headphone-1-pro-review",
-      "published": "2026-09-29T01:00:00.000Z",
-      "summary": "The Headphone 1 Pro flagship headphones keep Nothing’s aesthetic while adding some surprises. | Photo: John Higgins / The Verge Nothing has been on a bit of an audio tear this year, releasing the solid Headphone A and the surprisingly good…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268785_Nothing_pro_1_headphones_JHIGGINS_1.jpg?quality=90&strip=all&crop=0,0,100,100"
     }
   ]
 }

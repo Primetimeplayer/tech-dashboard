@@ -1,14 +1,228 @@
 {
-  "updated": "2026-10-09T12:08:59.959Z",
+  "updated": "2026-10-09T18:07:55.040Z",
   "count": 46,
   "items": [
     {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Amazon’s new Kindles appear to have a light leak problem",
+      "link": "https://www.theverge.com/tech/1008833/amazon-kindle-light-leak",
+      "published": "2026-10-09T17:25:39.000Z",
+      "summary": "Some users are reporting that the new Kindles have a light leak issue that is especially apparent when using dark mode. The latest base-model Kindles have a flush bezel that gives them a sleek appearance and looks great… as long as you…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/P1011582.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Microsoft tries to spark new life into Windows",
+      "link": "https://www.theverge.com/tech/1008801/microsoft-windows-surface-event-hybrid-ai-notepad",
+      "published": "2026-10-09T17:00:00.000Z",
+      "summary": "When Microsoft released Windows 11 five years ago, it felt like an operating system that was still being renovated, a work in progress. You'd think by now that those renovations would be complete, with Microsoft turning its attention to…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2299110674.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
       "source": "TechCrunch",
       "category": "news",
-      "title": "Xona’s commercial GPS alternative is about to go live",
-      "link": "https://techcrunch.com/2026/10/09/xonas-commercial-gps-alternative-is-about-to-go-live/",
-      "published": "Fri, 09 Oct 2026 12:00:00 +0000",
-      "summary": "Xona's precision timing and navigation service will enter beta testing after SpaceX launches six satellites designed by the company."
+      "title": "LumenUs helps automate tedious paperwork in times of grief",
+      "link": "https://techcrunch.com/2026/10/09/lumenus-helps-automate-tedious-paperwork-in-times-of-grief/",
+      "published": "Fri, 09 Oct 2026 17:00:00 +0000",
+      "summary": "\"The day your loved one passes away, you also get this honorary badge of a project manager for a project you had no idea about,\" said founder Sara Tashakorinia."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Amazon and others are done keeping data center deals secret. Is it enough to build trust?",
+      "link": "https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/",
+      "published": "Fri, 09 Oct 2026 16:56:42 +0000",
+      "summary": "Amazon says it will stop using NDAs when negotiating data center deals with local governments, following a similar move from Microsoft earlier this year. Secrecy has fueled community backlash against AI infrastructure, with opposition…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Frances Haugen hopes The Social Reckoning will inspire more whistleblowers",
+      "link": "https://www.theverge.com/policy/1008806/frances-haugen-social-reckoning-facebook-whistleblower",
+      "published": "2026-10-09T16:50:40.000Z",
+      "summary": "NEW YORK, NEW YORK - OCTOBER 04: Frances Haugen attends the Social Reckoning world premiere at Regal Union Square on October 04, 2026 in New York City. (Photo by Sean Zanni/Getty Images for Sony Pictures Entertainment) | Getty Images for…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2298625475.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Apple and LG leak shows new &#8216;tap to control&#8217; HomeKit features",
+      "link": "https://www.theverge.com/tech/1008812/apple-lg-homekit-tap-to-control-rumor",
+      "published": "2026-10-09T16:45:31.000Z",
+      "summary": "A post on X from \"pdfu,\" who has previously posted leaks and renders of suspected Apple features and LG smart home gear, shows new details of rumored Apple Home accessories from LG. According to the new leak, they could include an…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STKS495_Smart_Home_CVIRGINIA_E.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Danu Robotics’ fight to build a better recycling robot",
+      "link": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/",
+      "published": "Fri, 09 Oct 2026 16:45:00 +0000",
+      "summary": "For six years, Danu founder Amy Ma has been working on a better way to sort recyclable waste."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "We can’t help treating AI like it’s human. But should we?",
+      "link": "https://techcrunch.com/2026/10/09/we-cant-help-treating-ai-like-its-human-but-should-we/",
+      "published": "Fri, 09 Oct 2026 16:40:14 +0000",
+      "summary": "\"When we are drawn into even the most primitive exchanges with a relational artifact, we believe it cares for us,\" Dr. Sherry Turkle writes. \"And we are wired to care for it in return.\""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The DOJ Is Weighing Perjury Charges Against Cassidy Hutchinson",
+      "link": "https://www.wired.com/story/the-doj-is-weighing-perjury-charges-against-cassidy-hutchinson/",
+      "published": "Fri, 09 Oct 2026 16:09:08 +0000",
+      "summary": "The Justice Department is considering a perjury and obstruction-of-justice case against Cassidy Hutchinson, a former White House aide who testified against Donald Trump to the January 6 committee.",
+      "image": "https://media.wired.com/photos/6ac8ddd09e3491cd7012831f/master/pass/Cassidy%20Hutchinson.jpg"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Tesla renames ‘Full Self-Driving’ to ‘Tesla Assisted Driving’ in Europe",
+      "link": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
+      "published": "Fri, 09 Oct 2026 16:07:26 +0000",
+      "summary": "The name change is enough for Germany's transport minister to start advocating for Europe-wide adoption of the driver assistance software."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Remember Orkut? Its founder wants to bring it back",
+      "link": "https://techcrunch.com/2026/10/09/remember-orkut-its-founder-wants-to-bring-it-back/",
+      "published": "Fri, 09 Oct 2026 15:56:15 +0000",
+      "summary": "Orkut's founder is now taking aim at algorithms and AI-generated content."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "a16z’s Olivia Moore on the state of consumer AI",
+      "link": "https://techcrunch.com/2026/10/09/a16zs-olivia-moore-on-the-state-of-consumer-ai/",
+      "published": "Fri, 09 Oct 2026 15:43:33 +0000",
+      "summary": "Moore sees a huge opportunity in consumer AI, particularly if the industry can tap into revenue streams beyond just subscriptions and API charges."
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "YouTube, Meta, and Twitch won&#8217;t say if they&#8217;ll allow the US government to livestream an execution",
+      "link": "https://www.theverge.com/streaming/1008722/youtube-meta-twitch-government-execution-livestream",
+      "published": "2026-10-09T15:15:30.000Z",
+      "summary": "YouTube, Twitch, Meta, and X aren't saying whether they'll allow the US government to livestream an execution on their platforms. The four companies didn't respond to The Verge's requests for comment after an unnamed Pentagon official said…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2294930392.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The AI is in the computer",
+      "link": "https://www.theverge.com/podcast/1008707/amazon-alexa-tablet-googlebooks-apple-vergecast",
+      "published": "2026-10-09T15:10:12.000Z",
+      "summary": "It's gadget season, and a lot of companies are launching a lot of new products. But whether it's Microsoft dropping a high-end laptop, Amazon shipping a fancy Android tablet, or Apple diving headlong into the smart home, the actual…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/VRG_VST_100926_Site.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Automattic loses its interim CFO just weeks after boardroom shakeup",
+      "link": "https://techcrunch.com/2026/10/09/automattic-loses-its-interim-cfo-just-weeks-after-boardroom-shakeup/",
+      "published": "Fri, 09 Oct 2026 15:02:30 +0000",
+      "summary": "Automattic's interim chief financial officer Jeremy Klaperman has left the company less than a month after taking the role, TechCrunch has learned. Sources say his departure followed a demotion back to his previous position, marking…"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "I’m Still Convinced the iPod Was the Perfect Gadget",
+      "link": "https://www.wired.com/story/im-still-convinced-the-ipod-was-the-perfect-gadget/",
+      "published": "Fri, 09 Oct 2026 15:00:00 +0000",
+      "summary": "Apple’s original music player got many things right. Chief among them: It didn’t connect to the internet.",
+      "image": "https://media.wired.com/photos/6abdb2233241c89b6aaeb7ab/master/pass/Backchannel-iPod-Anniversary-Business-678384.jpg"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Beyond TechCrunch Disrupt 2026: The Side Events, Parties & Networking You Can’t Miss",
+      "link": "https://techcrunch.com/2026/10/09/beyond-techcrunch-disrupt-2026-the-side-events-parties-networking-you-cant-miss/",
+      "published": "Fri, 09 Oct 2026 14:42:34 +0000",
+      "summary": "TechCrunch Disrupt 2026 is just the beginning. From exclusive networking events and startup showcases to happy hours, dinners, and after-hours meetups, discover what’s happening across San Francisco during Disrupt Week, October 10–16. Find…"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "TechCrunch Disrupt 2026: Gamma’s Grant Lee, Engine’s Elia Wallen, and GV’s Crystal Huang on landing your first 1,000 customers",
+      "link": "https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-gammas-grant-lee-engines-elia-wallen-and-gvs-crystal-huang-on-landing-your-first-1000-customers/",
+      "published": "Fri, 09 Oct 2026 14:30:00 +0000",
+      "summary": "Leaders from Gamma, Engine, and Google Ventures join TechCrunch Disrupt 2026 to talk how to get your first customers. Register now to save up to $100. Grab a second pass at 50% off."
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Trump’s attempt to rename AI is looking awfully artificial",
+      "link": "https://www.theverge.com/policy/1008677/trump-super-intelligence-ai-rebranding",
+      "published": "2026-10-09T14:25:43.000Z",
+      "summary": "President Donald Trump has a knack for turning words against his enemies. His first successful presidential run was built on monikers like \"Little Marco\" and \"Crooked Hillary\"; he changed \"fake news\" from a phrase describing scammy media…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2297777001.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Instinct was the buzziest AI agent around — can it survive Muse?",
+      "link": "https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots",
+      "published": "2026-10-09T14:00:00.000Z",
+      "summary": "Instinct’s agent is always just a text away. Before there were cute little guys, there was Instinct. In August, the startup got its AI agent to market with an unusual playbook: invite-only, no marketing, and barely so much as a website…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/DSC04328_processed_1.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "TechCrunch Disrupt 2026 starts in 4 days — lock in your pass savings of up to $100 before prices rise",
+      "link": "https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-starts-in-4-days-lock-in-your-pass-savings-of-up-to-100-before-prices-rise/",
+      "published": "Fri, 09 Oct 2026 14:00:00 +0000",
+      "summary": "Four days until TechCrunch Disrupt 2026 starts, when 10,000 founders, investors, and tech leaders gather in San Francisco's Moscone West on October 13-15. Save up to $100 on your price. Plus, save 50% on a second pass of the same type."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Surveillance company Flock cuts staff as privacy backlash grows",
+      "link": "https://techcrunch.com/2026/10/09/surveillance-company-flock-cuts-staff-as-privacy-backlash-grows/",
+      "published": "Fri, 09 Oct 2026 13:40:36 +0000",
+      "summary": "Flock would not say if CEO Garrett Langley would take a pay cut following the reduction in workforce."
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "A week with Googlebooks: four notes from our testing so far",
+      "link": "https://www.theverge.com/tech/1008563/googlebook-software-impressions-thoughts-roundtable",
+      "published": "2026-10-09T13:36:02.000Z",
+      "summary": "Software, software, software. | Photo: Antonio G. Di Benedetto / The Verge Google's new operating system is off to a rocky start. The five newly launched Googlebook laptops have hardware that ranges from great to excellent, but the…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268755_Google_event_HP_Googlebook_14_ADiBenedetto_0003.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Microsoft barred from sponsoring foreign workers for US residency",
+      "link": "https://arstechnica.com/tech-policy/2026/10/trump-administration-targets-microsoft-in-new-immigration-crackdown/",
+      "published": "Fri, 09 Oct 2026 13:14:33 +0000",
+      "summary": "The US says Microsoft abused immigration rules; the company disputes the claim.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/microsoft-logo-lights-1152x648.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Meta is banning TikTok ads across its platforms",
+      "link": "https://www.theverge.com/tech/1008658/meta-tiktok-bytedance-ads-ban",
+      "published": "2026-10-09T13:12:45.000Z",
+      "summary": "Meta has banned ads from TikTok's Chinese parent company ByteDance across the US and several other countries as the rivalry between the major social media operators heats up, as reported earlier by Bloomberg. The ban, which went into…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK043_VRG_Illo_N_Barclay_1_Meta-1.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Rocket Report: A rare Falcon 9 scrub; is it just about Vulcan's time to shine?",
+      "link": "https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/",
+      "published": "Fri, 09 Oct 2026 11:00:57 +0000",
+      "summary": "\"I can say we’re weeks away from launching on Vulcan.\"",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/04/55092272338_83965929d0_o-1152x648-1776275319.jpg"
     },
     {
       "source": "Wired",
@@ -38,6 +252,15 @@
       "image": "https://media.wired.com/photos/6ac69bd0cff4fa83959f96ee/master/pass/The%20Best%20Battery-Powered%20Leaf%20Blowers%20for%20Taking%20Back%20Your%20Weekend%20102026%20top%20art%20SOURCE%20Amazon.jpg"
     },
     {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Volkswagen's replacement for the ID.4 crossover is here",
+      "link": "https://arstechnica.com/cars/2026/10/volkswagens-replacement-for-the-id-4-crossover-is-here/",
+      "published": "Fri, 09 Oct 2026 10:00:59 +0000",
+      "summary": "The new EV’s digital cockpit can mimic instrument displays from VWs of old.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/DB2026AU00895-1152x648.jpg"
+    },
+    {
       "source": "Wired",
       "category": "news",
       "title": "Even ‘Law & Order’ Is Terrified of AI",
@@ -45,15 +268,6 @@
       "published": "Fri, 09 Oct 2026 10:00:00 +0000",
       "summary": "In its 26th season premiere, the procedural legal drama paints a damning picture of power-mad AI CEOs.",
       "image": "https://media.wired.com/photos/6ac6842a2962a868125e6095/master/pass/Law-and-Order-Anti-AI-Culture-NUP_210197_00214.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "OpenAI doubles down on decision to fire three AI safety researchers",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1008604/openai-defends-decision-fire-safety-researchers",
-      "published": "2026-10-09T09:48:26.000Z",
-      "summary": "OpenAI is standing firm on its decision to fire three safety researchers after an investigation found they committed \"a significant breach of trust.\" In a post on X on Friday, the company said Jasmine Wang, Tomek Korbak and Mikita ⁠Balesni…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK155_OPEN_AI_CVirginia_C-1.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "Wired",
@@ -72,24 +286,6 @@
       "published": "Fri, 09 Oct 2026 09:00:00 +0000",
       "summary": "Demand is so high that some used cars are selling for more than new ones.",
       "image": "https://media.wired.com/photos/6ac761317178fc1562f277f4/master/pass/2026_Toyota-RAV4-HEV-Limited_0001H.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Microsoft 365 Family subscribers will finally be able to share AI benefits",
-      "link": "https://www.theverge.com/news/1008581/microsoft-365-family-premium-shared-ai-features-storage-changes",
-      "published": "2026-10-09T07:14:32.000Z",
-      "summary": "Microsoft bundled its AI-powered Office features into Microsoft 365 Personal and Family subscriptions last year, but it only allowed the primary account holder to access the AI benefits. Now, Microsoft is about to let Microsoft 365 Family…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/m365premium.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "TurboTax Full Service Coupons This October 2026",
-      "link": "https://www.wired.com/story/turbotax-coupon/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Tax season doesn’t have to be stressful. Score 10% off full service expert on federal tax filings and more exclusive TurboTax discount codes on WIRED.",
-      "image": "https://media.wired.com/photos/66ea076fca863bb4c1028b64/master/pass/WIRED-Coupons-11.jpg"
     },
     {
       "source": "Wired",
@@ -128,41 +324,6 @@
       "image": "https://media.wired.com/photos/67b63b919468ebbf8f0cbc7b/master/pass/WIRED-Coupons-R2_6.png"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Instacart Promo Code: $15 Off | October 2026",
-      "link": "https://www.wired.com/story/instacart-promo/code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Find the best Instacart promo code for massive savings in October 2026.",
-      "image": "https://media.wired.com/photos/67b63b9079f27a355461c964/master/pass/WIRED-Coupons-R2_2.png"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "President Trump awards Big Tech donors with nation’s highest science prizes",
-      "link": "https://techcrunch.com/2026/10/08/president-trump-awards-big-tech-donors-with-nations-highest-science-prizes/",
-      "published": "Thu, 08 Oct 2026 22:33:59 +0000",
-      "summary": "Together, the awardees have donated nearly $6 billion to efforts tied to Trump and his administration."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "US plans livestream of execution by firing squad",
-      "link": "https://www.theverge.com/tech/1008530/us-government-livestream-execution-firing-squad-fort-hood",
-      "published": "2026-10-08T22:32:04.000Z",
-      "summary": "The United States' execution of the Fort Hood shooter will be livestreamed, anonymous officials from the Defense Department told the BBC and Associated Press. The planned execution of Nidal Hasan, the former US Army major convicted of…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2298331635.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Anthropic launches free AI security scans for open-source projects",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner",
-      "published": "2026-10-08T21:53:51.000Z",
-      "summary": "Anthropic's offering to help open-source projects track down security vulnerabilities with a new service called OSS Scanner. It says open-source projects that opt-in will get \"thorough, periodic security scans by our strongest models at no…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKB364_CLAUDE_2_C_96d15c.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "SpaceX calls for better coordination in orbit after near-misses with Starlink",
@@ -170,32 +331,6 @@
       "published": "Thu, 08 Oct 2026 21:37:32 +0000",
       "summary": "\"These led to conjunctions of tens of meters to hundreds of meters. Way too close to comfort.\"",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/starshipflight14_deploy-1152x648-1791410362.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "SpaceX announces plan to become a ‘major mobile carrier’",
-      "link": "https://www.theverge.com/science/1008467/spacex-announces-plan-to-become-a-major-mobile-carrier",
-      "published": "2026-10-08T21:23:31.000Z",
-      "summary": "SpaceX has acquired a portfolio of low-band spectrum licenses - a move the company says \"will pave the way\" for its Starlink Mobile service to become a \"major\" US carrier. When the Federal Communications Commission signs off on the deal…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/STKB355_SPACEX_C.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "AMD will bring FSR 4 to handhelds by the end of 2026",
-      "link": "https://www.theverge.com/games/1008353/amd-will-bring-fsr-4-to-handhelds-by-the-end-of-2026",
-      "published": "2026-10-08T21:01:18.000Z",
-      "summary": "It's already possible to get AMD's framerate-enhancing FSR 4 boost on handhelds as old as the Steam Deck - but in June, AMD reserved the right to disappoint handheld gamers by not officially bringing FSR 4 to older handhelds. Now, AMD…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/257996_ROG_Xbox_Ally_and_Xbox_Ally_X_AKrales_0127.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Pretend you’re sitting at Elizabeth Holmes’ desk on this weirdly detailed website",
-      "link": "https://techcrunch.com/2026/10/08/pretend-youre-sitting-at-elizabeth-holmes-desk-on-this-weirdly-detailed-website/",
-      "published": "Thu, 08 Oct 2026 21:00:00 +0000",
-      "summary": "With over a thousand emails, slides, texts, and documents from the United States v. Elizabeth Holmes trial, Extend engineer Bo Lau created a website that simulates what it might have been like to rifle through the Theranos founder's desk."
     },
     {
       "source": "Ars Technica",
@@ -216,15 +351,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/trump-mobile-1152x648-1791486838.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Apple will reportedly debut its first touchscreen MacBook in three weeks",
-      "link": "https://www.theverge.com/tech/1008422/apple-macbook-pro-touchscreen-ipad-mini-rumor",
-      "published": "2026-10-08T20:32:21.000Z",
-      "summary": "Apple is set to introduce a new MacBook Pro with a touchscreen and an updated iPad Mini \"on or around\" October 27th, Bloomberg reports. If true, that would put the event just two weeks after the October 13th event Apple announced today…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/268395_Apple_MacBook_Pro_16_M5_Max_ADiBenedetto_0005.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Feds get ready to rewrite car headlight rules",
@@ -243,23 +369,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/hamilton2-1152x648-1791480892.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "California is trying to shut down robot vs. human cage matches",
-      "link": "https://www.theverge.com/tech/1008401/california-shut-down-rek-fighting-robot-company-human",
-      "published": "2026-10-08T20:06:56.000Z",
-      "summary": "The California State Athletic Commission sent a cease-and-desist letter to a startup that hosted a match between a human and a robot last month, as reported by The New York Times. The fight, which took place on September 18th, pitted a…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/Screenshot-2026-10-08-at-4.18.11-PM.png?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Fired OpenAI safety researchers dispute misconduct claims, warn of chilling effect",
-      "link": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/",
-      "published": "Thu, 08 Oct 2026 20:04:26 +0000",
-      "summary": "Three fired OpenAI safety researchers dispute allegations of mishandling sensitive information, warning in an open letter that their dismissals are creating a chilling effect on the company’s AI safety culture."
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Let's Encrypt cuts certificate lifetimes to 64 days starting February 2027",
@@ -269,15 +378,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2021/08/getty-security-privacy-1152x648-1736892649.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "ICE detainees in Georgia used the facility’s video calling software to expose the conditions inside",
-      "link": "https://www.theverge.com/report/1008342/folkston-georgia-ice-detention-hunger-strike-video",
-      "published": "2026-10-08T19:45:00.000Z",
-      "summary": "Detainees are seen in a yard at the Folkston ICE Processing Center on September 9, 2025, in Folkston, Georgia. (Photo by ELIJAH NOUVELAGE/AFP via Getty Images) | AFP via Getty Images Four men detained at an ICE detention center in rural…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2233996808.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Driver wins $76 after ALPR led to bogus traffic stop, drug searches",
@@ -285,15 +385,6 @@
       "published": "Thu, 08 Oct 2026 19:42:30 +0000",
       "summary": "Mass surveillance gets stupider.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/texas-flag-1152x648.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Microsoft’s new Windows Search is exactly what Windows 11 needs",
-      "link": "https://www.theverge.com/news/1008320/microsoft-windows-search-overhaul-windows-11",
-      "published": "2026-10-08T19:30:21.000Z",
-      "summary": "Windows Search has been one of the most frustrating parts of Windows 11, and now Microsoft is addressing this with a significant overhaul. A new redesigned Windows Search is now in testing that is much faster, more capable, and a lot more…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/windowssearch.png?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "Ars Technica",
@@ -312,97 +403,6 @@
       "published": "Thu, 08 Oct 2026 18:45:23 +0000",
       "summary": "Getting a glass bead to act like a quantum object by entangling it with light.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2258360221-1152x648.jpg"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Watch the trailer for ‘The Altruists,’ Netflix’s show about the FTX scandal",
-      "link": "https://techcrunch.com/2026/10/08/watch-the-trailer-for-the-altruists-netflixs-show-about-the-ftx-scandal/",
-      "published": "Thu, 08 Oct 2026 18:30:00 +0000",
-      "summary": "A fictionalized Sam Bankman-Fried is coming to your TV screen on November 19."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Ben Affleck is an AI nerd, and the internet is impressed",
-      "link": "https://techcrunch.com/2026/10/08/ben-affleck-is-an-ai-nerd-and-the-internet-is-impressed/",
-      "published": "Thu, 08 Oct 2026 18:20:32 +0000",
-      "summary": "Ben Affleck is going viral for his deep knowledge of AI, from neural networks and transformers to open weights. The actor, who sold his AI filmmaking startup to Netflix earlier this year, is proving he's more than just a Hollywood star."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Popular AI leaderboard Arena nearly doubles valuation to $3.1B valuation in 10 months",
-      "link": "https://techcrunch.com/2026/10/08/popular-ai-leaderboard-arena-nearly-doubles-valuation-to-3-1b-valuation-in-10-months/",
-      "published": "Thu, 08 Oct 2026 18:19:45 +0000",
-      "summary": "The company behind the popular LMArena leaderboard has raised $200 million led by Lightspeed and Khosla, and is now measuring AI models on alignment issues such as lying."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI’s revenue is reportedly $20 billion less than previously projected",
-      "link": "https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/",
-      "published": "Thu, 08 Oct 2026 18:19:42 +0000",
-      "summary": "It had previously been reported that the AI lab's annualized revenue was some $70 billion, but a new report claims it's a whole lot less than that."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Google brings agentic AI to Gemini, starting with businesses",
-      "link": "https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/",
-      "published": "Thu, 08 Oct 2026 18:18:00 +0000",
-      "summary": "Google is turning Gemini into an AI agent that can plan, execute tasks, and work across business apps and systems. The agent can delegate work to subagents, use multiple AI models, and even gets its own workplace identity, complete with an…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Anthropic changes usage policy to ban model abuse and election interference",
-      "link": "https://techcrunch.com/2026/10/08/anthropic-changes-usage-policy-to-ban-model-abuse-and-election-interference/",
-      "published": "Thu, 08 Oct 2026 18:16:24 +0000",
-      "summary": "Anthropic's updated usage policy explicitly prohibits users from repeatedly abusing Claude in extreme cases, though ordinary frustration and criticism are still allowed. The new rules also address election interference, deceptive…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "OpenAI’s math solutions aren’t meeting the field’s standards yet",
-      "link": "https://techcrunch.com/2026/10/08/openais-math-solutions-arent-meeting-the-fields-standards-yet/",
-      "published": "Thu, 08 Oct 2026 18:10:55 +0000",
-      "summary": "OpenAI's flood of proofs deviated from the guidelines set by a group of mathematical researchers consulted by the frontier lab."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "A startup founder who served time in prison is looking to court an untapped market: ex-cons",
-      "link": "https://techcrunch.com/2026/10/08/a-startup-founder-who-served-time-in-prison-is-looking-to-court-an-untapped-market-ex-cons/",
-      "published": "Thu, 08 Oct 2026 16:45:00 +0000",
-      "summary": "Richard Bronson, a former Stratton Oakmont partner who served time in federal prison for securities violations, has launched Commissary Club, a startup that uses AI to help people leaving prison find jobs, housing, community, and even…"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Amazon's new Alexa Tablets drop the Fire branding but are more Android than ever",
-      "link": "https://arstechnica.com/gadgets/2026/10/amazons-new-alexa-tablets-drop-the-fire-branding-but-are-more-android-than-ever/",
-      "published": "Thu, 08 Oct 2026 16:32:46 +0000",
-      "summary": "Amazon killed its app store, so Google Play it is.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/assets.aboutamazon-1152x648.png"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Amazon builds 1,000th satellite, will launch space internet service by end of year",
-      "link": "https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/",
-      "published": "Thu, 08 Oct 2026 15:28:36 +0000",
-      "summary": "\"If this was easy, everybody else would be doing it.\"",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/Satellite-1000-1152x648.png"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Internal files add to evidence of an ExxonMobil climate deception campaign",
-      "link": "https://arstechnica.com/tech-policy/2026/10/exxonmobils-own-scientists-doubted-climate-fixes-the-company-hyped/",
-      "published": "Thu, 08 Oct 2026 14:04:42 +0000",
-      "summary": "Court filings reveal new details about Exxon's decades of internal climate deliberations.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/refinery-1152x648.jpg"
     }
   ]
 }
