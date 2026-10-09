@@ -6480,19 +6480,18 @@ main .grid {
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 4px !important;
+  gap: 0 !important;
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
+  overflow: hidden !important;
   white-space: nowrap !important;
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
   position: static !important;
-  scrollbar-width: thin;
+  scrollbar-width: none !important;
 }
 
 #topicBar .top-nav-section {
@@ -6500,27 +6499,34 @@ main .grid {
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 2px !important;
-  flex: 0 0 auto !important;
+  justify-content: space-between !important;
+  gap: clamp(2px, 0.7vw, 18px) !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
   margin: 0 !important;
+  overflow: hidden !important;
+  scrollbar-width: none !important;
 }
 
 #topicBar .top-nav-item,
 #topicBar .filter {
   display: inline-flex !important;
   align-items: center !important;
+  justify-content: center !important;
   flex: 0 0 auto !important;
-  gap: 6px !important;
+  gap: 0 !important;
   height: auto !important;
   min-height: 0 !important;
+  min-width: max-content !important;
   margin: 0 !important;
-  padding: 8px 12px !important;
+  padding: 8px 0 !important;
   background: transparent !important;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   color: var(--text-muted) !important;
-  font-size: 14px !important;
+  font-size: clamp(10px, 1.05vw, 14px) !important;
   font-weight: 500 !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
@@ -6785,29 +6791,19 @@ body.feed-compact #feed .card.follow-card {
     overflow: hidden !important;
   }
 
-  /* Categories scroll. Search, sort, and view stay on the same line. */
-  #topicBar .top-nav {
+  /* Every category stays on one line. No horizontal slider. */
+  #topicBar .top-nav,
+  #topicBar .top-nav-section {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     overflow: hidden !important;
-  }
-
-  #topicBar .top-nav-section {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    scrollbar-width: thin;
+    scrollbar-width: none !important;
   }
 
   #topicBar .top-nav-section::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  #topicBar .top-nav-section::-webkit-scrollbar-thumb {
-    background: #dadce0;
-    border-radius: 4px;
+    display: none !important;
+    height: 0 !important;
   }
 
   #filters {
@@ -6982,6 +6978,17 @@ body.feed-compact #feed .card.follow-card {
   color: #bdc1c6 !important;
 }
 
+@media (max-width: 880px) {
+  #topicBar .top-nav-section {
+    gap: 2px !important;
+  }
+
+  #topicBar .top-nav-item,
+  #topicBar .filter {
+    font-size: 9.5px !important;
+  }
+}
+
 @media (max-width: 800px) {
   #feed .lower-grid {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -6989,6 +6996,20 @@ body.feed-compact #feed .card.follow-card {
 
   #feed .lower-grid > .gn-col:only-child {
     grid-column: auto !important;
+  }
+
+  /* Phone width cannot show every label at once. Keep one swipeable line
+     and hide the scrollbar so it does not draw a slider. */
+  #topicBar .top-nav,
+  #topicBar .top-nav-section {
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+
+  #topicBar .top-nav::-webkit-scrollbar,
+  #topicBar .top-nav-section::-webkit-scrollbar {
+    display: none !important;
+    height: 0 !important;
   }
 }
 </style>
@@ -7035,17 +7056,17 @@ body.feed-compact #feed .card.follow-card {
   <div class="topic-bar" id="topicBar">
     <nav class="top-nav" id="topNav" aria-label="Topics">
       <div class="top-nav-section">
-        <button type="button" class="filter top-nav-item" data-cat="all" aria-pressed="true"><span class="nav-emoji" aria-hidden="true">✦</span>All News</button>
-        <button type="button" class="filter top-nav-item" data-cat="software" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⌘</span>Software &amp; Dev</button>
-        <button type="button" class="filter top-nav-item" data-cat="papers" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🔬</span>AI &amp; Research</button>
-        <button type="button" class="filter top-nav-item" data-cat="chips" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">▣</span>Chips &amp; Silicon</button>
-        <button type="button" class="filter top-nav-item" data-cat="gaming" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🎮</span>Gaming &amp; Consoles</button>
-        <button type="button" class="filter top-nav-item" data-cat="space" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🚀</span>Space &amp; Rockets</button>
-        <button type="button" class="filter top-nav-item" data-cat="security" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">🛡</span>Cybersecurity</button>
-        <button type="button" class="filter top-nav-item" data-cat="gadgets" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">📱</span>Gadgets &amp; Hardware</button>
-        <button type="button" class="filter top-nav-item" data-cat="news" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">📰</span>Technology</button>
-        <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⭐</span>Reviews</button>
-        <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">💬</span>Community</button>
+        <button type="button" class="filter top-nav-item" data-cat="all" aria-pressed="true">All News</button>
+        <button type="button" class="filter top-nav-item" data-cat="software" aria-pressed="false">Software &amp; Dev</button>
+        <button type="button" class="filter top-nav-item" data-cat="papers" aria-pressed="false">AI &amp; Research</button>
+        <button type="button" class="filter top-nav-item" data-cat="chips" aria-pressed="false">Chips &amp; Silicon</button>
+        <button type="button" class="filter top-nav-item" data-cat="gaming" aria-pressed="false">Gaming &amp; Consoles</button>
+        <button type="button" class="filter top-nav-item" data-cat="space" aria-pressed="false">Space &amp; Rockets</button>
+        <button type="button" class="filter top-nav-item" data-cat="security" aria-pressed="false">Cybersecurity</button>
+        <button type="button" class="filter top-nav-item" data-cat="gadgets" aria-pressed="false">Gadgets &amp; Hardware</button>
+        <button type="button" class="filter top-nav-item" data-cat="news" aria-pressed="false">Technology</button>
+        <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false">Reviews</button>
+        <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false">Community</button>
       </div>
     </nav>
   </div>
