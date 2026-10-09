@@ -2766,12 +2766,6 @@ main {
 .card.reddit .cat-label {
   color: #ea4335 !important;
 }
-/* HARDWARE ACCENT */
-
-.card.is-hardware {
-  border-left-color: #f9ab00 !important;
-}
-
 .hw-badge {
   display: inline-flex !important;
   align-items: center !important;
@@ -3070,23 +3064,19 @@ body.dark.search-scrolled .row2 .search-row {
 main {
   padding-top: 0 !important;
 }
-/* MODERN HARDWARE CARDS */
+/* Hardware cards share the story-card border. The amber left rail is gone.
+   box-shadow: none cancels an older inset hardware ring. */
 
 .card.is-hardware {
-  border-left: 0 !important;
   position: relative !important;
-  background: #fff !important;
+  box-shadow: none !important;
 }
 
 .card.is-hardware::before {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 16px !important;
-  bottom: 16px !important;
-  width: 3px !important;
-  border-radius: 3px !important;
-  background: #f9ab00 !important;
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  background: transparent !important;
 }
 
 .hw-badge {
@@ -3106,25 +3096,8 @@ main {
   border: 1px solid #f9d77a !important;
   border-radius: 999px !important;
 }
-/* REMOVE OLD HARDWARE BORDER */
-
-.card.is-hardware {
-  border: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
-  border-top: 0 !important;
-  border-bottom: 1px solid #dadce0 !important;
-  box-shadow: none !important;
-}
-
-.card.is-hardware::before {
-  left: 0 !important;
-  width: 3px !important;
-  border-radius: 3px !important;
-}
 html[data-theme="dark"] .card.is-hardware,
 body.dark .card.is-hardware {
-  border-bottom-color: #5f6368 !important;
   box-shadow: none !important;
 }
 /* Main filter bar */
@@ -7039,6 +7012,63 @@ body.feed-compact #feed .card.follow-card {
     display: none !important;
     height: 0 !important;
   }
+}
+</style>
+<style id="hardware-card-border">
+/* Hardware story cards keep the Hardware chip and drop the amber left rail.
+   Boxed cards use the same 1px #e5e7eb border as every other story card.
+   Rows inside a lower section keep that section's divider and a transparent
+   left edge. This block is last so it wins over the older accent rules. */
+#feed .card.is-hardware::before,
+.card.is-hardware::before {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  background: transparent !important;
+}
+
+#feed .card.follow-card.is-hardware,
+#feed .card.pick-card.is-hardware,
+#feed .card.feature-card.is-hardware {
+  border: 1px solid #e5e7eb !important;
+}
+
+#feed .card.hero-story.is-hardware {
+  border: 0 !important;
+}
+
+#feed .gn-col > .card.story-row.is-hardware,
+#feed .briefing-fill > .card.story-row.is-hardware {
+  border: 0 !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+}
+
+#feed .gn-col > .card.story-row.is-hardware:last-child,
+#feed .briefing-fill > .card.story-row.is-hardware:last-child {
+  border-bottom: 0 !important;
+}
+
+:root[data-theme="dark"] #feed .card.follow-card.is-hardware,
+:root[data-theme="dark"] #feed .card.pick-card.is-hardware,
+:root[data-theme="dark"] #feed .card.feature-card.is-hardware,
+:root[data-theme="dark"] #feed .card.story-row.is-hardware {
+  border-color: var(--line, #24393A) !important;
+}
+
+:root[data-theme="dark"] #feed .card.hero-story.is-hardware {
+  border: 0 !important;
+}
+
+:root[data-theme="dark"] #feed .gn-col > .card.story-row.is-hardware,
+:root[data-theme="dark"] #feed .briefing-fill > .card.story-row.is-hardware {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line, #24393A) !important;
+}
+
+:root[data-theme="dark"] #feed .gn-col > .card.story-row.is-hardware:last-child,
+:root[data-theme="dark"] #feed .briefing-fill > .card.story-row.is-hardware:last-child {
+  border-bottom: 0 !important;
 }
 </style>
 </head>
