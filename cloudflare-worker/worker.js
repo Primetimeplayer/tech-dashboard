@@ -1,3 +1,6 @@
+import { googleNewsUrl, normalizeLanguage, normalizeRegion } from "../scripts/lib/news-locale.js";
+import { parseGoogleNewsXml } from "../scripts/lib/parse-google-news.js";
+
 const SESSION_DAYS = 30;
 const OAUTH_STATE_MINUTES = 10;
 
@@ -677,6 +680,77 @@ async function handleSaved(request, env) {
   );
 }
 
+function newsCorsHeaders() {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Cache-Control": "no-store",
+  };
+}
+
+async function handleNewsFeed(request) {
+  if (request.method !== "GET") {
+    return new Response("Method not allowed", {
+      status: 405,
+      headers: newsCorsHeaders(),
+    });
+  }
+
+  const url = new URL(request.url);
+  const region = normalizeRegion(url.searchParams.get("region"));
+  const language = normalizeLanguage(url.searchParams.get("language"));
+  const feedUrl = googleNewsUrl(region, language);
+
+  try {
+    let response = null;
+    let lastStatus = 0;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      response = await fetch(feedUrl, {
+        redirect: "follow",
+        headers: {
+          "User-Agent": "signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)",
+          Accept: "application/rss+xml, application/xml, text/xml",
+        },
+      });
+      if (response.ok) break;
+      lastStatus = response.status;
+      await response.text();
+      response = null;
+      if (lastStatus !== 502 && lastStatus !== 503) break;
+    }
+    if (!response || !response.ok) {
+      throw new Error(`Google News ${lastStatus || "failed"}`);
+    }
+    const items = parseGoogleNewsXml(await response.text());
+    if (!items.length) {
+      throw new Error("Google News returned no items");
+    }
+    return new Response(JSON.stringify({
+      updated: new Date().toISOString(),
+      count: items.length,
+      region,
+      language,
+      feedUrl,
+      items,
+    }), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        ...newsCorsHeaders(),
+      },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message, feedUrl, region, language }), {
+      status: 502,
+      headers: {
+        "Content-Type": "application/json",
+        ...newsCorsHeaders(),
+      },
+    });
+  }
+}
+
 async function handleLegacySaved(request, env) {
   const token = request.headers.get("X-Sync-Token");
 
@@ -722,10 +796,18 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (request.method === "OPTIONS" && url.pathname === "/api/news") {
+      return new Response(null, { headers: newsCorsHeaders() });
+    }
+
     if (request.method === "OPTIONS") {
       return new Response(null, {
         headers: corsHeaders(request, env),
       });
+    }
+
+    if (url.pathname === "/api/news") {
+      return handleNewsFeed(request);
     }
 
     if (url.pathname === "/auth/google") {

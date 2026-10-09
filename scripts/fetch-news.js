@@ -8,6 +8,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { excerpt } from './lib/excerpt.js';
 import { storyImage } from './lib/story-image.js';
+import { applyLocaleParams, googleNewsUrl } from './lib/news-locale.js';
+import { splitGoogleTitle } from './lib/parse-google-news.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_PATH = path.join(__dirname, '..', 'public', 'data', 'news.json');
@@ -39,6 +41,18 @@ const FEEDS = [
   { name: 'Wired', category: 'news', url: 'https://www.wired.com/feed/rss' },
 ];
 
+export function buildNewsFeeds(region, language, baseFeeds = FEEDS) {
+  const localized = baseFeeds.map((feed) => ({
+    ...feed,
+    url: applyLocaleParams(feed.url, region, language),
+  }));
+  const googleUrl = googleNewsUrl(region, language);
+  if (!localized.some((feed) => feed.url === googleUrl)) {
+    localized.push({ name: 'Google News', category: 'news', url: googleUrl });
+  }
+  return localized;
+}
+
 const ITEMS_PER_FEED = 12;
 
 function cleanSummary(raw = '') {
@@ -48,15 +62,20 @@ function cleanSummary(raw = '') {
 async function fetchFeed(feed, parseFeed) {
   try {
     const parsed = await parseFeed(feed);
+    const google = feed.url.includes('news.google.com');
     return parsed.items.slice(0, ITEMS_PER_FEED).map((item) => {
       const image = storyImage(item);
+      const rawTitle = item.title?.trim() || '(untitled)';
+      const headline = google ? splitGoogleTitle(rawTitle) : { title: rawTitle, source: feed.name };
+      const rawSummary = item.contentSnippet ?? item.content ?? '';
+      const summary = google ? '' : cleanSummary(rawSummary);
       return {
-        source: feed.name,
+        source: headline.source,
         category: feed.category,
-        title: item.title?.trim() ?? '(untitled)',
+        title: headline.title,
         link: item.link,
         published: item.pubDate ?? item.isoDate ?? null,
-        summary: cleanSummary(item.contentSnippet ?? item.content ?? ''),
+        summary,
         ...(image ? { image } : {}),
       };
     });
@@ -77,13 +96,16 @@ function dedupe(items) {
 }
 
 export async function runNewsFetcher({
-  feeds = FEEDS,
+  feeds,
+  region = process.env.SIGNAL_REGION,
+  language = process.env.SIGNAL_LANGUAGE,
   parseFeed = (feed) => parser.parseURL(feed.url),
   outputPath = OUT_PATH,
   now = () => new Date(),
 } = {}) {
-  console.log(`[fetch-news] Fetching ${feeds.length} feeds...`);
-  const feedResults = await Promise.all(feeds.map((feed) => fetchFeed(feed, parseFeed)));
+  const list = feeds || buildNewsFeeds(region, language);
+  console.log(`[fetch-news] Fetching ${list.length} feeds...`);
+  const feedResults = await Promise.all(list.map((feed) => fetchFeed(feed, parseFeed)));
   const successfulFeeds = feedResults.filter((items) => items !== null);
   if (!successfulFeeds.length) {
     throw new Error('All news feeds failed; keeping existing data.');
