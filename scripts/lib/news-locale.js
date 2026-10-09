@@ -72,7 +72,8 @@ export function normalizeLanguage(value) {
   return LANGUAGES.some((language) => language.id === id) ? id : DEFAULT_LANGUAGE;
 }
 
-// Google News RSS: hl is the language, gl is the edition, ceid is region:language.
+// Google News RSS: https://news.google.com/rss?hl=${lang}&gl=${region}&ceid=${region}:${lang}
+// hl is the language, gl is the edition, ceid is region:language.
 // ceid uses the language tag Google actually serves (en, not en-US). Global /
 // International has no gl code, so it uses the world topic and a US edition.
 export function googleNewsUrl(region, language) {

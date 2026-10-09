@@ -15,24 +15,47 @@
       && now - entry.savedAt < TTL_MS);
   }
 
+  function drop(storage, memory, cacheKey) {
+    try {
+      if (storage) storage.removeItem(cacheKey);
+    } catch (e) {}
+    try {
+      if (memory) memory.delete(cacheKey);
+    } catch (e) {}
+  }
+
+  // Missing keys and invalid JSON must not throw. A thrown parse here used to
+  // stop the feed script before it could hide the skeleton.
   function read(storage, memory, region, language, now) {
     var cacheKey = key(region, language);
     var stamp = typeof now === 'number' ? now : Date.now();
-    var memoryEntry = memory && memory.get(cacheKey);
+    var memoryEntry = null;
+    try {
+      memoryEntry = memory && memory.get(cacheKey);
+    } catch (e) {
+      memoryEntry = null;
+    }
     if (fresh(memoryEntry, stamp)) return memoryEntry;
     if (!storage) return null;
+    var raw = null;
     try {
-      var raw = storage.getItem(cacheKey);
-      if (!raw) return null;
+      raw = storage.getItem(cacheKey);
+    } catch (e) {
+      return null;
+    }
+    if (raw == null || raw === '') return null;
+    try {
       var parsed = JSON.parse(raw);
       if (!fresh(parsed, stamp)) {
-        storage.removeItem(cacheKey);
-        if (memory) memory.delete(cacheKey);
+        drop(storage, memory, cacheKey);
         return null;
       }
-      if (memory) memory.set(cacheKey, parsed);
+      try {
+        if (memory) memory.set(cacheKey, parsed);
+      } catch (e) {}
       return parsed;
     } catch (e) {
+      drop(storage, memory, cacheKey);
       return null;
     }
   }

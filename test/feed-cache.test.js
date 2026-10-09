@@ -46,6 +46,48 @@ test('feed cache keys locale items and expires after five minutes', async () => 
   assert.equal(cache.read(storage, memory, 'JP', 'ja', savedAt), null);
 });
 
+test('missing or invalid localStorage cache entries do not throw', async () => {
+  const cache = await loadCache();
+  const store = new Map();
+  const removed = [];
+  const storage = {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => {
+      removed.push(key);
+      store.delete(key);
+    },
+  };
+  const memory = new Map();
+  const now = 5_000;
+
+  assert.equal(cache.read(storage, memory, 'US', 'en-US', now), null);
+  assert.equal(removed.length, 0);
+
+  store.set('feed_cache_US_en-US', '');
+  assert.equal(cache.read(storage, memory, 'US', 'en-US', now), null);
+
+  store.set('feed_cache_US_en-US', '{malformed json');
+  assert.equal(cache.read(storage, memory, 'US', 'en-US', now), null);
+  assert.equal(store.has('feed_cache_US_en-US'), false);
+  assert.deepEqual(removed, ['feed_cache_US_en-US']);
+
+  store.set('feed_cache_JP_ja', 'null');
+  assert.equal(cache.read(storage, memory, 'JP', 'ja', now), null);
+  assert.equal(store.has('feed_cache_JP_ja'), false);
+
+  const throwing = {
+    getItem: () => {
+      throw new Error('storage disabled');
+    },
+    removeItem: () => {
+      throw new Error('storage disabled');
+    },
+  };
+  assert.equal(cache.read(throwing, memory, 'DE', 'de', now), null);
+  assert.equal(cache.read(storage, null, 'US', 'en-US', now), null);
+});
+
 test('locale changes paint a fresh cache without the skeleton', async () => {
   const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(html, /src="feed-cache\.js"/);
@@ -53,4 +95,12 @@ test('locale changes paint a fresh cache without the skeleton', async () => {
   assert.match(html, /SignalFeedCache\.write/);
   assert.match(html, /if \(cached && staticBuckets\)/);
   assert.match(html, /cached \? cached\.items : null/);
+  assert.match(html, /const LOCALE_FETCH_MS = 5000/);
+  assert.match(html, /AbortSignal\.timeout\(remaining\)/);
+  assert.match(html, /signal: AbortSignal\.timeout\(LOCALE_FETCH_MS\)/);
+  assert.match(html, /loadJSON\('news\.json'/);
+  assert.match(html, /paintErrorBanner\(t\('errorFeed'\)\)/);
+  assert.match(html, /button\.id = 'retryFeed'/);
+  assert.match(html, /statusEl\.hidden = true/);
+  assert.match(await readFile(new URL('../public/feed-cache.js', import.meta.url), 'utf8'), /JSON\.parse\(raw\)/);
 });

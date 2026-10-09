@@ -705,14 +705,26 @@ async function handleNewsFeed(request) {
   try {
     let response = null;
     let lastStatus = 0;
+    // The page waits at most 5 seconds for this locale feed, then uses the
+    // statically built JSON. Stay inside that same budget, including retries.
+    const deadline = Date.now() + 5000;
     for (let attempt = 0; attempt < 3; attempt++) {
-      response = await fetch(feedUrl, {
-        redirect: "follow",
-        headers: {
-          "User-Agent": "signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)",
-          Accept: "application/rss+xml, application/xml, text/xml",
-        },
-      });
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) break;
+      try {
+        response = await fetch(feedUrl, {
+          redirect: "follow",
+          signal: AbortSignal.timeout(remaining),
+          headers: {
+            "User-Agent": "signal-personal-dashboard/1.0 (+https://github.com/Primetimeplayer/tech-dashboard)",
+            Accept: "application/rss+xml, application/xml, text/xml",
+          },
+        });
+      } catch (err) {
+        response = null;
+        lastStatus = 0;
+        break;
+      }
       if (response.ok) break;
       lastStatus = response.status;
       await response.text();
@@ -720,7 +732,7 @@ async function handleNewsFeed(request) {
       if (lastStatus !== 502 && lastStatus !== 503) break;
     }
     if (!response || !response.ok) {
-      throw new Error(`Google News ${lastStatus || "failed"}`);
+      throw new Error(`Google News ${lastStatus || "timed out"}`);
     }
     const items = parseGoogleNewsXml(await response.text());
     if (!items.length) {

@@ -7497,6 +7497,34 @@ footer,
   }
 }
 </style>
+<style id="feed-error-recovery">
+.error-banner.visible {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.error-banner .error-banner-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+.error-banner .retry-feed {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.95rem;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.error-banner .retry-feed:hover {
+  border-color: var(--news);
+}
+</style>
 </head>
 <body>
 
@@ -7814,6 +7842,7 @@ footer,
   let visibleCount = PAGE_SIZE;
   let searchTimer = null;
   let fetchErrors = [];
+  let feedFailed = false;
   let balanceQueue = [];
   let balancedShown = 0;
   let makeStoryRow = () => '';
@@ -7859,7 +7888,12 @@ const AUTH_TOKEN_KEY = 'signal-auth-token';
 
 let authState = { authenticated: false, user: null };
 let authReady = false;
-let authToken = localStorage.getItem(AUTH_TOKEN_KEY) || '';
+let authToken = '';
+try {
+  authToken = localStorage.getItem(AUTH_TOKEN_KEY) || '';
+} catch (e) {
+  authToken = '';
+}
 
 function loadSaved() {
   try {
@@ -8624,23 +8658,76 @@ initAuth();
     render();
   }
 
+  function paintErrorBanner(message) {
+    if (!errorBannerEl) return;
+    errorBannerEl.replaceChildren();
+    const text = document.createElement('span');
+    text.className = 'error-banner-text';
+    text.textContent = message;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'retry-feed';
+    button.id = 'retryFeed';
+    button.textContent = t('retryFeed');
+    button.addEventListener('click', () => refresh());
+    errorBannerEl.append(text, button);
+    errorBannerEl.classList.add('visible');
+  }
+
+  function clearErrorBanner() {
+    if (!errorBannerEl) return;
+    errorBannerEl.classList.remove('visible');
+    errorBannerEl.replaceChildren();
+  }
+
+  function renderErrorBanner() {
+    if (feedFailed && !allItems.length) {
+      paintErrorBanner(t('errorFeed'));
+      return;
+    }
+    if (fetchErrors.length) {
+      paintErrorBanner(t('errorPartial', { sources: fetchErrors.join(', ') }));
+      return;
+    }
+    clearErrorBanner();
+  }
+
+  function showFeedFailure(serial) {
+    if (serial !== refreshSerial) return;
+    feedFailed = true;
+    allItems = [];
+    paintedSignature = '';
+    if (statusEl) {
+      statusEl.textContent = '';
+      statusEl.hidden = true;
+    }
+    renderAll();
+  }
+
   function render() {
     const items = sortItems(getFilteredItems());
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
     resultCountEl.textContent = t('resultCount', { n: items.length, m: allItems.length });
 
-    // Show/hide error banner
-    if (fetchErrors.length) {
-      errorBannerEl.textContent = t('errorPartial', { sources: fetchErrors.join(', ') });
-      errorBannerEl.classList.add('visible');
-    } else {
-      errorBannerEl.classList.remove('visible');
-    }
+    renderErrorBanner();
 
     // The reset control only exists while something is actually narrowed down,
     // so the default, unfiltered view stays exactly what it was before.
     clearFiltersEl.hidden = !hasActiveFilters();
+
+    // A failed load is not an empty filter result. Drop the skeleton and the
+    // "loading feed…" line, and leave the retry banner as the status.
+    if (feedFailed && !allItems.length) {
+      feedEl.style.display = 'none';
+      skeletonEl.style.display = 'none';
+      loadMoreWrapEl.style.display = 'none';
+      if (statusEl) {
+        statusEl.textContent = '';
+        statusEl.hidden = true;
+      }
+      return;
+    }
 
     // No matching items: reuse the page's existing empty state instead of
     // leaving a blank grid. The message doubles as the answer to "did the app
@@ -8950,12 +9037,16 @@ initAuth();
 
   function applyFeed(items, serial, savedAt) {
     if (serial !== refreshSerial) return;
+    feedFailed = false;
+    if (statusEl) statusEl.hidden = false;
     const signature = feedSignature(items);
     if (signature !== paintedSignature || feedEl.style.display !== 'grid') {
       allItems = items;
       paintedSignature = signature;
       populateSources();
       renderAll();
+    } else {
+      renderErrorBanner();
     }
     statusClock = new Date(savedAt || Date.now()).toLocaleTimeString('en-US');
     statusEl.textContent = `${t('updated')} ${statusClock}`;
@@ -8997,11 +9088,22 @@ initAuth();
     return `${base}/api/news?${query}`;
   }
 
+  // Live Google News locale (`/api/news` → https://news.google.com/rss?hl=&gl=&ceid=).
+  // Both attempts share one 5 second budget. After that the static JSON files
+  // are the feed.
+  const LOCALE_FETCH_MS = 5000;
+
   async function loadLocalizedNews(region, language) {
+    const deadline = Date.now() + LOCALE_FETCH_MS;
     let lastError = null;
     for (let attempt = 0; attempt < 2; attempt++) {
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) break;
       try {
-        const res = await fetch(newsFeedEndpoint(region, language), { cache: 'no-store' });
+        const res = await fetch(newsFeedEndpoint(region, language), {
+          cache: 'no-store',
+          signal: AbortSignal.timeout(remaining),
+        });
         if (!res.ok) throw new Error(`google news ${res.status}`);
         const data = await res.json();
         if (!Array.isArray(data.items) || !data.items.length) throw new Error('google news empty');
@@ -9010,7 +9112,7 @@ initAuth();
         lastError = err;
       }
     }
-    throw lastError;
+    throw lastError || new Error('google news timed out');
   }
 
   function mergeNews(localized, publisher) {
@@ -9025,6 +9127,7 @@ initAuth();
       const res = await fetch(`data/${file}?_t=${Date.now()}`, {
         cache: 'no-store',
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
+        signal: AbortSignal.timeout(LOCALE_FETCH_MS),
       });
       if (!res.ok) throw new Error(`${file}: ${res.status}`);
       const data = await res.json();
@@ -9040,24 +9143,40 @@ initAuth();
     // The first load uses the skeleton. Later polls stay quiet so a
     // 5-minute refresh does not blank the feed the reader is already on.
     // A region or language change paints a fresh cached edition immediately
-    // and lets the Google News request finish behind that.
+    // and lets the Google News request finish behind that. Static JSON is
+    // painted as soon as it arrives so a locale request cannot hold the
+    // skeleton until its 5 second timeout.
     const quiet = options.quiet === true;
     const serial = ++refreshSerial;
     const locale = currentLocale();
     const cached = readFeedCache(locale.region, locale.language);
     fetchErrors = [];
+    feedFailed = false;
     if (cached && staticBuckets) {
       applyFeed(composeFeed(cached.items, staticBuckets), serial, cached.savedAt);
     } else if (!quiet) {
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.textContent = t('loading');
+      }
+      clearErrorBanner();
       skeletonEl.style.display = 'grid';
       feedEl.style.display = 'none';
       loadMoreWrapEl.style.display = 'none';
     }
-    try {
-      const localizedPromise = loadLocalizedNews(locale.region, locale.language).catch((err) => {
+    let localeSettled = false;
+    const localizedPromise = loadLocalizedNews(locale.region, locale.language).then(
+      (items) => {
+        localeSettled = true;
+        return items;
+      },
+      (err) => {
         console.error('Localized news feed failed', err);
+        localeSettled = true;
         return null;
-      });
+      }
+    );
+    try {
       const [staticNews, papers, reviews, reddit] = await Promise.all([
         loadJSON('news.json', 'news', (i) => i),
         loadJSON('papers.json', 'papers', (i) => ({
@@ -9067,25 +9186,48 @@ initAuth();
         loadJSON('reviews.json', 'reviews', (i) => i),
         loadJSON('reddit.json', 'reddit', (i) => i),
       ]);
-      if (serial === refreshSerial) {
-        staticBuckets = { news: staticNews, papers, reviews, reddit };
-        if (cached) applyFeed(composeFeed(cached.items, staticBuckets), serial, cached.savedAt);
+      if (serial !== refreshSerial) return;
+      const nextBuckets = { news: staticNews, papers, reviews, reddit };
+      const staticCount = staticNews.length + papers.length + reviews.length + reddit.length;
+      if (staticCount > 0 || !staticBuckets) staticBuckets = nextBuckets;
+
+      if (!localeSettled) {
+        const interimNews = cached ? cached.items : null;
+        const interim = composeFeed(interimNews, staticBuckets);
+        if (interim.length) applyFeed(interim, serial, cached ? cached.savedAt : Date.now());
       }
 
       const localized = await localizedPromise;
       if (localized) writeFeedCache(locale.region, locale.language, localized);
       if (serial !== refreshSerial) return;
-      staticBuckets = { news: staticNews, papers, reviews, reddit };
 
       const newsItems = localized || (cached ? cached.items : null);
       if (!newsItems && (locale.region !== 'US' || locale.language !== 'en-US')) {
         fetchErrors.push('google-news');
       }
+      const items = composeFeed(newsItems, staticBuckets);
+      if (!items.length) {
+        if (allItems.length) {
+          renderErrorBanner();
+          skeletonEl.style.display = 'none';
+          if (statusEl) {
+            statusEl.hidden = !statusClock;
+            statusEl.textContent = statusClock ? `${t('updated')} ${statusClock}` : '';
+          }
+          return;
+        }
+        showFeedFailure(serial);
+        return;
+      }
       applyFeed(
-        composeFeed(newsItems, staticBuckets),
+        items,
         serial,
         localized ? Date.now() : (cached ? cached.savedAt : Date.now())
       );
+    } catch (err) {
+      console.error('Feed refresh failed', err);
+      if (serial !== refreshSerial) return;
+      if (!allItems.length) showFeedFailure(serial);
     } finally {
       if (serial === refreshSerial) skeletonEl.style.display = 'none';
     }
