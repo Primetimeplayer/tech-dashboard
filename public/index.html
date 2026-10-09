@@ -6615,9 +6615,8 @@ main .grid {
 
 #feed .feed-top {
   display: grid !important;
-  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr) !important;
-  column-gap: 24px !important;
-  row-gap: 16px !important;
+  grid-template-columns: minmax(0, 1fr) 340px !important;
+  gap: 24px !important;
   align-items: start !important;
   width: 100% !important;
 }
@@ -6626,32 +6625,77 @@ main .grid {
   grid-template-columns: minmax(0, 1fr) !important;
 }
 
-#feed .featured-board {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 24px !important;
+#feed .briefing-col,
+#feed .picks-col {
+  display: flex !important;
+  flex-direction: column !important;
   width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
 }
 
-#feed .feature-group {
+#feed .briefing-card,
+#feed .briefing-col .card,
+#feed .follow-ups {
+  flex: 1 1 auto !important;
+}
+
+#feed .briefing-card,
+#feed .briefing-col .card,
+#feed .picks-col .card,
+#feed .briefing-col .story-copy,
+#feed .picks-list,
+#feed .follow-ups {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+#feed .card.hero-story {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+}
+
+#feed .lower-feed {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 28px;
+  width: 100%;
   min-width: 0;
 }
 
-#feed .feature-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-#feed .more-stories {
+#feed .lower-section {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
   min-width: 0;
+}
+
+#feed .lower-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+  align-items: stretch !important;
+}
+
+#feed .lower-grid > .card {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  box-sizing: border-box !important;
+}
+
+#feed .lower-grid > .card:only-child {
+  grid-column: 1 / -1 !important;
+}
+
+#feed .lower-grid .story-copy {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
 }
 
 #feed .card.feature-card {
@@ -6810,8 +6854,12 @@ body.feed-compact #feed .card.follow-card {
 
 @media (max-width: 800px) {
   #feed .feed-top,
-  #feed .featured-board {
+  #feed .lower-grid {
     grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #feed .lower-grid > .card:only-child {
+    grid-column: auto !important;
   }
 
   #topicBar .search-row {
@@ -8003,11 +8051,15 @@ initAuth();
         </div>
       </article>`;
     };
-    const featureGroup = (title, group) => {
-      if (!group.length) return '';
-      return `<section class="feature-group"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="feature-list">${group.map(featureCard).join('')}</div></section>`;
+    const lowerSection = (title, cardsHtml) => {
+      if (!cardsHtml) return '';
+      return `<section class="lower-section"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid">${cardsHtml}</div></section>`;
     };
-    const featured = featureGroup('Silicon & Hardware Spotlight', silicon) + featureGroup('Deep Space & Defense', spaceItems);
+    const lower = [
+      lowerSection('Silicon & Hardware Spotlight', silicon.map(featureCard).join('')),
+      lowerSection('Deep Space & Defense', spaceItems.map(featureCard).join('')),
+      lowerSection('More stories', rows),
+    ].join('');
 
     const pickCards = picks.map((item) => {
       const fields = storyFields(item);
@@ -8036,8 +8088,7 @@ initAuth();
         </section>
         ${pickCards ? `<aside class="picks-col" aria-label="Picks for you"><h2 class="feed-column-title">Picks for you</h2><div class="picks-list">${pickCards}</div></aside>` : ''}
       </div>
-      ${featured ? `<div class="featured-board">${featured}</div>` : ''}
-      ${rows ? `<section class="more-stories" aria-label="More stories">${rows}</section>` : ''}`;
+      ${lower ? `<div class="lower-feed">${lower}</div>` : ''}`;
 
     // Wire up per-item data for share/save buttons
     feedEl.querySelectorAll('.save-btn').forEach((btn) => {
