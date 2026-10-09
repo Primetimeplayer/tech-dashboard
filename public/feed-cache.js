@@ -7,12 +7,15 @@
     return 'feed_cache_' + region + '_' + language;
   }
 
-  function fresh(entry, now) {
+  function usable(entry) {
     return !!(entry
       && Array.isArray(entry.items)
       && entry.items.length
-      && typeof entry.savedAt === 'number'
-      && now - entry.savedAt < TTL_MS);
+      && typeof entry.savedAt === 'number');
+  }
+
+  function fresh(entry, now) {
+    return usable(entry) && now - entry.savedAt < TTL_MS;
   }
 
   function drop(storage, memory, cacheKey) {
@@ -26,7 +29,10 @@
 
   // Missing keys and invalid JSON must not throw. A thrown parse here used to
   // stop the feed script before it could hide the skeleton.
-  function read(storage, memory, region, language, now) {
+  // allowStale keeps an expired entry for a failed RSS fetch. A normal read
+  // still drops expired and invalid entries.
+  function read(storage, memory, region, language, now, options) {
+    var allowStale = !!(options && options.allowStale);
     var cacheKey = key(region, language);
     var stamp = typeof now === 'number' ? now : Date.now();
     var memoryEntry = null;
@@ -36,17 +42,27 @@
       memoryEntry = null;
     }
     if (fresh(memoryEntry, stamp)) return memoryEntry;
-    if (!storage) return null;
+    if (!storage) return allowStale && usable(memoryEntry) ? memoryEntry : null;
     var raw = null;
     try {
       raw = storage.getItem(cacheKey);
     } catch (e) {
-      return null;
+      return allowStale && usable(memoryEntry) ? memoryEntry : null;
     }
-    if (raw == null || raw === '') return null;
+    if (raw == null || raw === '') return allowStale && usable(memoryEntry) ? memoryEntry : null;
     try {
       var parsed = JSON.parse(raw);
+      if (!usable(parsed)) {
+        drop(storage, memory, cacheKey);
+        return null;
+      }
       if (!fresh(parsed, stamp)) {
+        if (allowStale) {
+          try {
+            if (memory) memory.set(cacheKey, parsed);
+          } catch (e) {}
+          return parsed;
+        }
         drop(storage, memory, cacheKey);
         return null;
       }

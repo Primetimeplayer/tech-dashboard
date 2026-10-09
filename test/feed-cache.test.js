@@ -46,6 +46,27 @@ test('feed cache keys locale items and expires after five minutes', async () => 
   assert.equal(cache.read(storage, memory, 'JP', 'ja', savedAt), null);
 });
 
+test('expired cache stays available when the caller allows a stale fallback', async () => {
+  const cache = await loadCache();
+  const store = new Map();
+  const storage = {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, value),
+    removeItem: (key) => store.delete(key),
+  };
+  const items = [{ title: 'Cached desk', link: 'https://example.com/cached', source: 'Wire' }];
+  const savedAt = 1_000_000;
+  cache.write(storage, new Map(), 'US', 'en-US', items, savedAt);
+  const later = savedAt + cache.TTL_MS + 1;
+
+  const stale = cache.read(storage, new Map(), 'US', 'en-US', later, { allowStale: true });
+  assert.equal(stale.items[0].title, 'Cached desk');
+  assert.equal(store.has('feed_cache_US_en-US'), true);
+
+  assert.equal(cache.read(storage, new Map(), 'US', 'en-US', later), null);
+  assert.equal(store.has('feed_cache_US_en-US'), false);
+});
+
 test('missing or invalid localStorage cache entries do not throw', async () => {
   const cache = await loadCache();
   const store = new Map();
@@ -95,7 +116,8 @@ test('locale changes paint a fresh cache without the skeleton', async () => {
   assert.match(html, /SignalFeedCache\.write/);
   assert.match(html, /if \(cached && staticBuckets\)/);
   assert.match(html, /cached \? cached\.items : null/);
-  assert.match(html, /const LOCALE_FETCH_MS = 5000/);
+  assert.match(html, /const LOCALE_FETCH_MS = 6000/);
+  assert.match(html, /allowStale: true/);
   assert.match(html, /AbortSignal\.timeout\(remaining\)/);
   assert.match(html, /signal: AbortSignal\.timeout\(LOCALE_FETCH_MS\)/);
   assert.match(html, /loadJSON\('news\.json'/);

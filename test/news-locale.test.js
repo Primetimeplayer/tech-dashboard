@@ -117,14 +117,15 @@ test('header region and language options match the feed locale list', async () =
   assert.match(html, /const LOCALE_LANGUAGE_KEY = 'language'/);
 });
 
-test('dynamic Google News fetch gives up after five seconds', async () => {
+test('dynamic Google News fetch gives up after six seconds', async () => {
   const worker = await readFile(new URL('../cloudflare-worker/worker.js', import.meta.url), 'utf8');
   const locale = await readFile(new URL('../scripts/lib/news-locale.js', import.meta.url), 'utf8');
   const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
   assert.match(worker, /googleNewsUrl\(region, language\)/);
-  assert.match(worker, /const deadline = Date\.now\(\) \+ 5000/);
+  assert.match(worker, /const deadline = Date\.now\(\) \+ 6000/);
   assert.match(worker, /AbortSignal\.timeout\(remaining\)/);
-  assert.match(html, /const LOCALE_FETCH_MS = 5000/);
+  assert.match(worker, /Google News returned invalid XML/);
+  assert.match(html, /const LOCALE_FETCH_MS = 6000/);
   assert.match(
     locale,
     /https:\/\/news\.google\.com\/rss\?hl=\$\{hl\}&gl=\$\{edition\}&ceid=\$\{edition\}:\$\{lang\}/

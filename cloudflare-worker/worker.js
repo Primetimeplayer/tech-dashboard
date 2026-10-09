@@ -705,9 +705,10 @@ async function handleNewsFeed(request) {
   try {
     let response = null;
     let lastStatus = 0;
-    // The page waits at most 5 seconds for this locale feed, then uses the
-    // statically built JSON. Stay inside that same budget, including retries.
-    const deadline = Date.now() + 5000;
+    // The page waits at most 6 seconds for this locale feed, then uses a
+    // stale localStorage copy or the statically built JSON. Stay inside that
+    // same budget, including retries.
+    const deadline = Date.now() + 6000;
     for (let attempt = 0; attempt < 3; attempt++) {
       const remaining = deadline - Date.now();
       if (remaining <= 0) break;
@@ -734,7 +735,16 @@ async function handleNewsFeed(request) {
     if (!response || !response.ok) {
       throw new Error(`Google News ${lastStatus || "timed out"}`);
     }
-    const items = parseGoogleNewsXml(await response.text());
+    const xml = await response.text();
+    if (!/<(rss|feed|item)\b/i.test(xml)) {
+      throw new Error("Google News returned invalid XML");
+    }
+    let items;
+    try {
+      items = parseGoogleNewsXml(xml);
+    } catch (err) {
+      throw new Error("Google News returned invalid XML");
+    }
     if (!items.length) {
       throw new Error("Google News returned no items");
     }

@@ -7525,6 +7525,118 @@ footer,
   border-color: var(--news);
 }
 </style>
+<style id="card-media-fallbacks">
+/* Card media keeps a fixed box so a missing or broken image cannot shift
+   the 3-column grid. The placeholder is a category icon on #f3f4f6. */
+#feed .hero-media {
+  display: block !important;
+  width: 100% !important;
+  height: 248px !important;
+  min-height: 248px !important;
+  max-height: 248px !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  object-fit: cover !important;
+  background: #f3f4f6 !important;
+  box-sizing: border-box !important;
+}
+
+#feed .hero-thumb,
+#feed .hero-media img {
+  display: block !important;
+  width: 100% !important;
+  height: 248px !important;
+  min-height: 248px !important;
+  max-height: 248px !important;
+  object-fit: cover !important;
+  background: #f3f4f6 !important;
+}
+
+#feed .hero-media .media-fallback {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 248px !important;
+  min-height: 248px !important;
+  background: #f3f4f6 !important;
+}
+
+#feed .card.story-row .story-thumb,
+#feed .card.story-row .story-media {
+  display: block !important;
+  width: 96px !important;
+  height: 96px !important;
+  min-width: 96px !important;
+  max-width: 96px !important;
+  min-height: 96px !important;
+  max-height: 96px !important;
+  flex: 0 0 96px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  align-self: flex-start !important;
+  overflow: hidden !important;
+  background: #f3f4f6 !important;
+  box-sizing: border-box !important;
+}
+
+#feed .pick-thumb,
+#feed .pick-card .pick-media {
+  display: block !important;
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  max-width: 72px !important;
+  min-height: 72px !important;
+  max-height: 72px !important;
+  flex: 0 0 72px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  align-self: flex-start !important;
+  overflow: hidden !important;
+  background: #f3f4f6 !important;
+  box-sizing: border-box !important;
+}
+
+#feed .story-media.media-fallback,
+#feed .pick-media.media-fallback {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#feed .media-fallback {
+  color: #4b5563;
+  background: #f3f4f6 !important;
+}
+
+#feed .media-fallback[data-category="news"] { color: #1d4ed8; }
+#feed .media-fallback[data-category="papers"] { color: #6d28d9; }
+#feed .media-fallback[data-category="reviews"] { color: #b45309; }
+#feed .media-fallback[data-category="reddit"] { color: #c2410c; }
+
+#feed .media-fallback svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+#feed .hero-media .media-fallback svg {
+  width: 48px;
+  height: 48px;
+}
+
+@media (max-width: 800px) {
+  #feed .hero-media,
+  #feed .hero-thumb,
+  #feed .hero-media img,
+  #feed .hero-media .media-fallback {
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -8337,10 +8449,52 @@ initAuth();
     return /^https?:\/\//i.test(url) ? url : '';
   }
 
-  function storyThumb(item, width = 120, height = 80) {
+  function storyCategory(item) {
+    const category = item && item.category;
+    if (category === 'papers' || category === 'reviews' || category === 'reddit') return category;
+    return 'news';
+  }
+
+  function categoryIconSvg(category) {
+    const icons = {
+      news: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/>',
+      papers: '<path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M8 13h8M8 17h5"/>',
+      reviews: '<path d="m12 3 2.2 4.6L19 8.2l-3.5 3.4.8 4.9L12 14.8 7.7 16.5l.8-4.9L5 8.2l4.8-.6L12 3z"/>',
+      reddit: '<path d="M5 6h14v9H8l-3 3V6z"/>',
+    };
+    const body = icons[category] || icons.news;
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+  }
+
+  function mediaPlaceholder(item, kind) {
+    const category = storyCategory(item);
+    return `<span class="card-media ${kind}-media media-fallback" data-category="${escapeAttr(category)}" aria-hidden="true">${categoryIconSvg(category)}</span>`;
+  }
+
+  // Broken card images (404s and other load errors) swap to the same
+  // category placeholder used when the RSS item has no image.
+  function signalImageFallback(img) {
+    if (!img || img.dataset.fallbackApplied === '1') return;
+    img.dataset.fallbackApplied = '1';
+    const category = storyCategory({ category: img.dataset.category });
+    const kind = img.classList.contains('hero-thumb') ? 'hero' : img.classList.contains('pick-thumb') ? 'pick' : 'story';
+    const holder = document.createElement('span');
+    holder.className = `card-media ${kind}-media media-fallback`;
+    holder.dataset.category = category;
+    holder.setAttribute('aria-hidden', 'true');
+    holder.innerHTML = categoryIconSvg(category);
+    if (img.parentNode) img.replaceWith(holder);
+  }
+
+  function cardImage(item, kind, width, height) {
     const url = storyImageUrl(item);
-    if (!url) return '';
-    return `<img class="story-thumb" src="${escapeAttr(url)}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async">`;
+    if (!url) return mediaPlaceholder(item, kind);
+    const cls = kind === 'hero' ? 'hero-thumb' : kind === 'pick' ? 'pick-thumb' : 'story-thumb';
+    return `<img class="${cls}" src="${escapeAttr(url)}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async" data-category="${escapeAttr(storyCategory(item))}" onerror="signalImageFallback(this)">`;
+  }
+
+  function storyThumb(item, width = 96, height = 96) {
+    return cardImage(item, 'story', width, height);
   }
 
   function storyByline(item) {
@@ -8403,9 +8557,7 @@ initAuth();
   }
 
   function pickThumb(item) {
-    const url = storyImageUrl(item);
-    if (!url) return '';
-    return `<img class="pick-thumb" src="${escapeAttr(url)}" alt="" width="72" height="72" loading="lazy" decoding="async">`;
+    return cardImage(item, 'pick', 72, 72);
   }
 
   function titleTokens(title) {
@@ -8692,11 +8844,18 @@ initAuth();
     clearErrorBanner();
   }
 
+  function hideSkeletons() {
+    document.querySelectorAll('.skeleton-grid').forEach((el) => {
+      el.style.display = 'none';
+    });
+  }
+
   function showFeedFailure(serial) {
     if (serial !== refreshSerial) return;
     feedFailed = true;
     allItems = [];
     paintedSignature = '';
+    hideSkeletons();
     if (statusEl) {
       statusEl.textContent = '';
       statusEl.hidden = true;
@@ -8788,10 +8947,9 @@ initAuth();
     };
 
     const leadFields = storyFields(lead);
-    const leadImage = storyImageUrl(lead);
     const hero = `
-      <article class="card hero-story ${lead.category}${leadFields.hw ? ' is-hardware' : ''}${leadImage ? '' : ' hero-story-text'}">
-        ${leadImage ? `<a class="hero-media" href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="hero-thumb" src="${escapeAttr(leadImage)}" alt=""></a>` : ''}
+      <article class="card hero-story ${lead.category}${leadFields.hw ? ' is-hardware' : ''}">
+        <a class="hero-media" href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">${cardImage(lead, 'hero', 640, 248)}</a>
         <div class="story-copy hero-copy">
           ${leadFields.hw ? `<div class="hw-badge">⚡ ${escapeHtml(t('hardwareBadge'))}</div>` : ''}
           ${sourceLine(lead)}
@@ -9006,12 +9164,17 @@ initAuth();
   let paintedSignature = '';
   const feedMemoryCache = new Map();
 
-  function readFeedCache(region, language) {
+  function readFeedCache(region, language, allowStale) {
     if (!window.SignalFeedCache) return null;
+    const options = allowStale ? { allowStale: true } : undefined;
     try {
-      return window.SignalFeedCache.read(localStorage, feedMemoryCache, region, language);
+      return window.SignalFeedCache.read(localStorage, feedMemoryCache, region, language, Date.now(), options);
     } catch (e) {
-      return window.SignalFeedCache.read(null, feedMemoryCache, region, language);
+      try {
+        return window.SignalFeedCache.read(null, feedMemoryCache, region, language, Date.now(), options);
+      } catch (err) {
+        return null;
+      }
     }
   }
 
@@ -9089,9 +9252,9 @@ initAuth();
   }
 
   // Live Google News locale (`/api/news` → https://news.google.com/rss?hl=&gl=&ceid=).
-  // Both attempts share one 5 second budget. After that the static JSON files
-  // are the feed.
-  const LOCALE_FETCH_MS = 5000;
+  // Both attempts share one 6 second budget. A timeout, a failed response, or
+  // invalid XML/JSON falls back to stale localStorage items, then static JSON.
+  const LOCALE_FETCH_MS = 6000;
 
   async function loadLocalizedNews(region, language) {
     const deadline = Date.now() + LOCALE_FETCH_MS;
@@ -9105,8 +9268,15 @@ initAuth();
           signal: AbortSignal.timeout(remaining),
         });
         if (!res.ok) throw new Error(`google news ${res.status}`);
-        const data = await res.json();
-        if (!Array.isArray(data.items) || !data.items.length) throw new Error('google news empty');
+        let data;
+        try {
+          data = await res.json();
+        } catch (parseErr) {
+          throw new Error('google news invalid JSON');
+        }
+        if (!data || typeof data !== 'object' || !Array.isArray(data.items) || !data.items.length) {
+          throw new Error('google news invalid JSON');
+        }
         return data.items.map((item) => ({ ...item, category: 'news' }));
       } catch (err) {
         lastError = err;
@@ -9130,7 +9300,15 @@ initAuth();
         signal: AbortSignal.timeout(LOCALE_FETCH_MS),
       });
       if (!res.ok) throw new Error(`${file}: ${res.status}`);
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (parseErr) {
+        throw new Error(`${file}: invalid JSON`);
+      }
+      if (!data || typeof data !== 'object' || Array.isArray(data) || (data.items != null && !Array.isArray(data.items))) {
+        throw new Error(`${file}: invalid JSON`);
+      }
       return (data.items || []).map((raw) => ({ ...mapFn(raw), category }));
     } catch (err) {
       console.error('Failed to load', file, err);
@@ -9145,11 +9323,15 @@ initAuth();
     // A region or language change paints a fresh cached edition immediately
     // and lets the Google News request finish behind that. Static JSON is
     // painted as soon as it arrives so a locale request cannot hold the
-    // skeleton until its 5 second timeout.
+    // skeleton until its 6 second timeout. Expired localStorage items stay
+    // available for the failure path below.
     const quiet = options.quiet === true;
     const serial = ++refreshSerial;
     const locale = currentLocale();
-    const cached = readFeedCache(locale.region, locale.language);
+    const staleCached = readFeedCache(locale.region, locale.language, true);
+    const cached = (staleCached && window.SignalFeedCache && (Date.now() - staleCached.savedAt < window.SignalFeedCache.TTL_MS))
+      ? staleCached
+      : null;
     fetchErrors = [];
     feedFailed = false;
     if (cached && staticBuckets) {
@@ -9201,7 +9383,7 @@ initAuth();
       if (localized) writeFeedCache(locale.region, locale.language, localized);
       if (serial !== refreshSerial) return;
 
-      const newsItems = localized || (cached ? cached.items : null);
+      const newsItems = localized || (staleCached ? staleCached.items : null);
       if (!newsItems && (locale.region !== 'US' || locale.language !== 'en-US')) {
         fetchErrors.push('google-news');
       }
@@ -9209,7 +9391,7 @@ initAuth();
       if (!items.length) {
         if (allItems.length) {
           renderErrorBanner();
-          skeletonEl.style.display = 'none';
+          hideSkeletons();
           if (statusEl) {
             statusEl.hidden = !statusClock;
             statusEl.textContent = statusClock ? `${t('updated')} ${statusClock}` : '';
@@ -9222,14 +9404,25 @@ initAuth();
       applyFeed(
         items,
         serial,
-        localized ? Date.now() : (cached ? cached.savedAt : Date.now())
+        localized ? Date.now() : (staleCached ? staleCached.savedAt : Date.now())
       );
     } catch (err) {
       console.error('Feed refresh failed', err);
       if (serial !== refreshSerial) return;
+      try {
+        const fallbackItems = staticBuckets
+          ? composeFeed(staleCached ? staleCached.items : null, staticBuckets)
+          : ((staleCached && staleCached.items) || []);
+        if (fallbackItems.length) {
+          applyFeed(fallbackItems, serial, staleCached ? staleCached.savedAt : Date.now());
+          return;
+        }
+      } catch (fallbackErr) {
+        console.error('Stale feed cache could not be shown', fallbackErr);
+      }
       if (!allItems.length) showFeedFailure(serial);
     } finally {
-      if (serial === refreshSerial) skeletonEl.style.display = 'none';
+      if (serial === refreshSerial) hideSkeletons();
     }
   }
 
