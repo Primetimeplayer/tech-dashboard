@@ -2054,6 +2054,47 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       assert.equal(thumb.radius, '8px', 'Feed thumbnail must use an 8px corner radius');
       assert.equal(thumb.rightOfText, true, 'Feed thumbnail must sit to the right of the story text');
     }
+    const picks = await driver.executeScript(`
+      return Array.from(document.querySelectorAll('#feed .pick-card')).map(card => {
+        const img = card.querySelector('.pick-thumb');
+        const copy = card.querySelector('.story-copy');
+        const copyBox = copy ? copy.getBoundingClientRect() : null;
+        const box = img ? img.getBoundingClientRect() : null;
+        const favicon = Array.from(card.querySelectorAll('.source-favicon')).find((el) => !el.hidden && getComputedStyle(el).display !== 'none');
+        const faviconBox = favicon ? favicon.getBoundingClientRect() : null;
+        const name = card.querySelector('.source-name');
+        const time = card.querySelector('.meta-time');
+        return {
+          hasImg: !!img,
+          src: img ? (img.getAttribute('src') || '') : '',
+          width: box ? Math.round(box.width) : 0,
+          height: box ? Math.round(box.height) : 0,
+          fit: img ? getComputedStyle(img).objectFit : '',
+          radius: img ? getComputedStyle(img).borderRadius : '',
+          rightOfText: !box || !copyBox || box.left >= copyBox.right - 2,
+          favicon: faviconBox ? Math.round(faviconBox.width) : 0,
+          name: name ? name.textContent.trim() : '',
+          nameSize: name ? parseFloat(getComputedStyle(name).fontSize) : 0,
+          nameWeight: name ? getComputedStyle(name).fontWeight : '',
+          time: time ? time.textContent.trim() : ''
+        };
+      });
+    `);
+    assert.ok(picks.length > 0, 'Picks for you must render compact cards');
+    for (const pick of picks) {
+      assert.equal(pick.favicon, 16, 'Pick cards must show a 16px publisher favicon');
+      assert.ok(pick.name.length > 0, 'Pick cards must show the publisher name');
+      assert.ok(pick.nameSize >= 12 && pick.nameSize <= 13, 'Pick publisher name must be 12–13px');
+      assert.ok(Number(pick.nameWeight) >= 600, 'Pick publisher name must be bold');
+      assert.ok(pick.time.length > 0, 'Pick cards must show a relative timestamp');
+      if (!pick.hasImg) continue;
+      assert.match(pick.src, /^https?:\/\//, 'Pick thumbnail src must be an http(s) image URL');
+      assert.equal(pick.width, 72, 'Pick thumbnail must be 72px wide');
+      assert.equal(pick.height, 72, 'Pick thumbnail must be 72px tall');
+      assert.equal(pick.fit, 'cover', 'Pick thumbnail must use object-fit: cover');
+      assert.equal(pick.radius, '8px', 'Pick thumbnail must use an 8px corner radius');
+      assert.equal(pick.rightOfText, true, 'Pick thumbnail must sit to the right of the story text');
+    }
     assert.equal(media.backgrounds, 0, 'Cards must not depend on remote background images');
     assert.equal(media.titles, media.cards, 'Every card must keep readable title text without an image');
   });

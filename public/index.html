@@ -6160,6 +6160,306 @@ main .grid {
   }
 }
 </style>
+<style id="picks-sidebar">
+/* Two-column Google News feed. Left is the briefing (hero plus nested
+   follow-up rows). Right is Picks for you. Latest Stories is unchanged. */
+#feed.grid,
+main .grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr) !important;
+  column-gap: 24px !important;
+  row-gap: 16px !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#feed.grid:not(:has(.picks-col)) {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#feed .briefing-col,
+#feed .picks-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+}
+
+#feed .feed-column-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+#feed .briefing-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 0;
+}
+
+#feed .card.hero-story {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 1.15fr) minmax(200px, 0.85fr) !important;
+  gap: 16px 20px !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#feed .card.hero-story.hero-story-text {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#feed .card > * {
+  max-width: none !important;
+}
+
+#feed .card.hero-story > .hero-media {
+  display: block;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0;
+  max-width: none !important;
+}
+
+#feed .card.hero-story > .hero-copy {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0;
+  max-width: none !important;
+}
+
+#feed .card .card-actions {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  justify-self: start !important;
+  max-width: none !important;
+}
+
+#feed .hero-thumb {
+  display: block;
+  width: 100% !important;
+  height: 248px !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 8px;
+  background: var(--skeleton, #eee);
+}
+
+#feed .hero-story h2 {
+  margin: 6px 0 0 !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#feed .follow-ups,
+#feed .picks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+#feed .follow-ups {
+  margin-top: 16px;
+}
+
+#feed .card.follow-card,
+#feed .card.pick-card,
+#feed .card.story-row {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+#feed .card.follow-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+#feed .card.pick-card,
+#feed .card.story-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+#feed .card:hover {
+  transform: none !important;
+}
+
+#feed .follow-card h2,
+#feed .pick-card h2,
+#feed .story-row h2 {
+  margin: 4px 0 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.01em !important;
+}
+
+#feed .source-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+#feed .source-name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#feed .source-favicon {
+  width: 16px !important;
+  height: 16px !important;
+  flex: 0 0 16px !important;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+#feed .card-meta {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 !important;
+  margin: 6px 0 0 !important;
+  color: #6b7280;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+
+#feed .card-meta .meta-time,
+#feed .card-meta .meta-author,
+#feed .card-meta .cat-label {
+  font-size: 12px !important;
+}
+
+#feed .card-meta .meta-time { order: 1; }
+#feed .card-meta .meta-author { order: 2; }
+#feed .card-meta .cat-label { order: 3; }
+
+#feed .card-meta .meta-time + .meta-author::before,
+#feed .card-meta.has-extra .cat-label::before {
+  content: "·";
+  margin: 0 6px;
+  color: inherit;
+  font-weight: 500;
+}
+
+:root:not([data-theme="dark"]) #feed .card-meta .meta-time,
+:root:not([data-theme="dark"]) #feed .card-meta .meta-author {
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+#feed .pick-thumb {
+  display: block;
+  width: 72px !important;
+  height: 72px !important;
+  flex: 0 0 72px !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  align-self: flex-start !important;
+  background: var(--skeleton, #eee);
+}
+
+#feed .card.story-row .story-thumb {
+  width: 80px !important;
+  height: 80px !important;
+  flex: 0 0 80px !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  align-self: flex-start !important;
+}
+
+#feed .story-row .story-copy > p,
+#feed .story-row .why,
+#feed .pick-card .why,
+#feed .follow-card .why {
+  display: none !important;
+}
+
+:root[data-theme="dark"] #feed .briefing-card,
+:root[data-theme="dark"] #feed .card.follow-card,
+:root[data-theme="dark"] #feed .card.pick-card,
+:root[data-theme="dark"] #feed .card.story-row {
+  background: var(--panel, #14252A) !important;
+  border-color: var(--line, #24393A) !important;
+}
+
+@media (max-width: 800px) {
+  #feed.grid,
+  main .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #feed .card.hero-story {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  #feed .card.hero-story > .hero-media {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  #feed .hero-thumb {
+    height: 200px !important;
+    max-height: 200px !important;
+  }
+
+  #feed .hero-story h2 {
+    font-size: 20px !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -6882,9 +7182,44 @@ initAuth();
     return `<img class="source-favicon" src="${escapeAttr(src)}" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false">${fallback}`;
   }
 
+  function storyAuthor(item) {
+    if (!item) return '';
+    if (Array.isArray(item.authors) && item.authors.length) return item.authors.slice(0, 2).join(', ');
+    return item.author || '';
+  }
+
+  function relativeDate(iso) {
+    if (!iso) return '';
+    const then = new Date(iso).getTime();
+    if (Number.isNaN(then)) return '';
+    const mins = Math.floor((Date.now() - then) / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins === 1 ? '1 minute ago' : `${mins} minutes ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs === 1 ? '1 hour ago' : `${hrs} hours ago`;
+    const days = Math.floor(hrs / 24);
+    if (days < 7) return days === 1 ? '1 day ago' : `${days} days ago`;
+    return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
   function sourceLine(item) {
-    const when = timeAgo(item.published);
-    return `<div class="source-line">${sourceMark(item)}${item.source ? `<span class="source-name">${escapeHtml(item.source)}</span>` : ''}${when ? `<span aria-hidden="true">·</span><span class="source-time">${escapeHtml(when)}</span>` : ''}</div>`;
+    const name = item && item.source ? `<span class="source-name">${escapeHtml(item.source)}</span>` : '';
+    return `<div class="source-line">${sourceMark(item)}${name}</div>`;
+  }
+
+  function cardMeta(item) {
+    const when = relativeDate(item.published);
+    const author = storyAuthor(item);
+    const cat = catLabel(item.category);
+    const source = (item && item.source) || '';
+    const hasExtra = Boolean(when || author);
+    return `<div class="card-meta${hasExtra ? ' has-extra' : ''}"><span class="cat-label">${escapeHtml(cat)}</span><span class="meta-source visually-hidden" aria-hidden="true">${escapeHtml(source)}</span>${when ? `<span class="meta-time">${escapeHtml(when)}</span>` : ''}${author ? `<span class="meta-author">${escapeHtml(author)}</span>` : ''}</div>`;
+  }
+
+  function pickThumb(item) {
+    const url = storyImageUrl(item);
+    if (!url) return '';
+    return `<img class="pick-thumb" src="${escapeAttr(url)}" alt="" width="72" height="72" loading="lazy" decoding="async">`;
   }
 
   function titleTokens(title) {
@@ -7173,56 +7508,97 @@ initAuth();
     const visible = items.slice(0, visibleCount);
     const lead = visible[0];
     const related = pickRelated(lead, visible.slice(1));
-    const relatedLinks = new Set(related.map((item) => item.link));
-    const rest = visible.slice(1).filter((item) => !relatedLinks.has(item.link));
+    const usedLinks = new Set([lead.link, ...related.map((item) => item.link)]);
+    const pool = visible.slice(1).filter((item) => !usedLinks.has(item.link));
+    const picks = pool.slice(0, 5);
+    picks.forEach((item) => usedLinks.add(item.link));
+    const rest = pool.filter((item) => !usedLinks.has(item.link));
 
-    const leadSaved = !!savedMap[lead.link];
-    const leadNote = leadSaved ? (savedMap[lead.link].note || '') : '';
+    const storyFields = (item) => {
+      const saved = !!savedMap[item.link];
+      return {
+        hw: isHardware(item),
+        saved,
+        note: saved ? (savedMap[item.link].note || '') : '',
+        chips: buildCardChips(item),
+      };
+    };
+
+    const leadFields = storyFields(lead);
     const leadImage = storyImageUrl(lead);
-    const leadChips = buildCardChips(lead);
-    const leadHardware = isHardware(lead);
     const hero = `
-      <article class="card hero-story ${lead.category}${leadHardware ? ' is-hardware' : ''}${leadImage ? '' : ' hero-story-text'}">
+      <article class="card hero-story ${lead.category}${leadFields.hw ? ' is-hardware' : ''}${leadImage ? '' : ' hero-story-text'}">
         ${leadImage ? `<a class="hero-media" href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="hero-thumb" src="${escapeAttr(leadImage)}" alt=""></a>` : ''}
         <div class="story-copy hero-copy">
-          ${leadHardware ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${leadFields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
           ${sourceLine(lead)}
           <h2><a href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(lead.title)}">${escapeHtml(lead.title)}</a></h2>
-          ${leadChips.length ? `<div class="card-chips">${leadChips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${cardMeta(lead)}
+          ${leadFields.chips.length ? `<div class="card-chips">${leadFields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
           ${lead.summary ? `<p class="hero-dek">${escapeHtml(lead.summary)}</p>` : ''}
           ${lead.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(lead.whyItMatters)}</div>` : ''}
-          ${related.length ? `<ul class="coverage">${related.map((item) => `
-            <li>
-              <a class="coverage-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
-                ${sourceLine(item)}
-                <span class="coverage-title">${escapeHtml(item.title)}</span>
-              </a>
-            </li>`).join('')}</ul>` : ''}
-          ${cardActions(lead, leadSaved, leadNote)}
+          ${cardActions(lead, leadFields.saved, leadFields.note)}
         </div>
       </article>`;
 
-    const rows = rest.map((item) => {
-      const hw = isHardware(item);
-      const saved = !!savedMap[item.link];
-      const note = saved ? (savedMap[item.link].note || '') : '';
-      const chips = buildCardChips(item);
+    const followUps = related.map((item) => {
+      const fields = storyFields(item);
       return `
-      <article class="card story-row ${item.category}${hw ? ' is-hardware' : ''}">
+      <article class="card follow-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
         <div class="story-copy">
-          ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
           ${sourceLine(item)}
           <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
-          ${chips.length ? `<div class="card-chips">${chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${cardMeta(item)}
+          ${fields.chips.length ? `<div class="card-chips">${fields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${cardActions(item, fields.saved, fields.note)}
+        </div>
+      </article>`;
+    }).join('');
+
+    const rows = rest.map((item) => {
+      const fields = storyFields(item);
+      return `
+      <article class="card story-row ${item.category}${fields.hw ? ' is-hardware' : ''}">
+        <div class="story-copy">
+          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${sourceLine(item)}
+          <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
+          ${cardMeta(item)}
+          ${fields.chips.length ? `<div class="card-chips">${fields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
           ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
-          ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
-          ${cardActions(item, saved, note)}
+          ${cardActions(item, fields.saved, fields.note)}
         </div>
         ${storyThumb(item, 80, 80)}
       </article>`;
     }).join('');
 
-    feedEl.innerHTML = hero + rows;
+    const pickCards = picks.map((item) => {
+      const fields = storyFields(item);
+      return `
+      <article class="card pick-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
+        <div class="story-copy">
+          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${sourceLine(item)}
+          <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
+          ${cardMeta(item)}
+          ${fields.chips.length ? `<div class="card-chips">${fields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${cardActions(item, fields.saved, fields.note)}
+        </div>
+        ${pickThumb(item)}
+      </article>`;
+    }).join('');
+
+    feedEl.innerHTML = `
+      <section class="briefing-col" aria-label="Your briefing">
+        <h2 class="feed-column-title">Your briefing</h2>
+        <div class="briefing-card">
+          ${hero}
+          ${followUps ? `<div class="follow-ups">${followUps}</div>` : ''}
+        </div>
+        ${rows}
+      </section>
+      ${pickCards ? `<aside class="picks-col" aria-label="Picks for you"><h2 class="feed-column-title">Picks for you</h2><div class="picks-list">${pickCards}</div></aside>` : ''}`;
 
     // Wire up per-item data for share/save buttons
     feedEl.querySelectorAll('.save-btn').forEach((btn) => {
