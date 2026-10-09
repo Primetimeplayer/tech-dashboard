@@ -7072,8 +7072,9 @@ body.feed-compact #feed .card.follow-card {
 }
 </style>
 <style id="locale-controls">
-/* Region and language sit in the mast, between search and the right-hand links.
-   Kept short so the 64px header stays one row. */
+/* Region and language are icon buttons in the far-right cluster, beside the
+   theme toggle. The closed control shows only the icon; the native menu
+   still lists the full names. */
 .locale-controls {
   display: flex !important;
   align-items: center !important;
@@ -7083,84 +7084,58 @@ body.feed-compact #feed .card.follow-card {
 }
 
 .locale-field {
+  position: relative !important;
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
-  min-width: 0 !important;
+  justify-content: center !important;
+  width: 34px !important;
+  height: 34px !important;
   margin: 0 !important;
+  color: var(--text, #202124) !important;
 }
 
-.locale-label {
-  color: var(--text-muted) !important;
-  font-family: var(--font-sans) !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
+.locale-icon {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 16px !important;
+  height: 16px !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
 }
 
 .locale-controls select {
+  width: 34px !important;
   height: 34px !important;
   min-height: 34px !important;
-  max-width: 168px !important;
+  max-width: 34px !important;
   margin: 0 !important;
-  padding: 0 28px 0 10px !important;
+  padding: 0 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
   background: var(--panel, #fff) !important;
-  color: var(--text, #202124) !important;
+  color: transparent !important;
   border: 1px solid #e5e7eb !important;
   border-radius: 8px !important;
   box-shadow: none !important;
-  font-family: var(--font-sans) !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
+  font-size: 16px !important;
   line-height: 34px !important;
   cursor: pointer !important;
 }
 
+.locale-controls select option {
+  color: #202124 !important;
+  background: #fff !important;
+  font-size: 14px !important;
+}
+
+:root[data-theme="dark"] .locale-field {
+  color: var(--text, #e8eaed) !important;
+}
+
 :root[data-theme="dark"] .locale-controls select {
   background: var(--panel, #14252A) !important;
-  color: var(--text, #e8eaed) !important;
   border-color: var(--line, #24393A) !important;
-}
-
-@media (max-width: 1100px) {
-  .mast,
-  .mast > .wrap,
-  .mast-row {
-    height: auto !important;
-    min-height: 64px !important;
-  }
-  .mast-row {
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    row-gap: 8px !important;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
-  }
-  .mast .wordmark { order: 1 !important; }
-  .mast .search-row {
-    order: 2 !important;
-    flex: 1 1 0 !important;
-    width: auto !important;
-    min-width: 96px !important;
-    max-width: none !important;
-  }
-  .mast-right { order: 3 !important; }
-  .locale-controls {
-    order: 4 !important;
-    flex: 1 1 100% !important;
-  }
-  .locale-field {
-    flex: 1 1 0 !important;
-  }
-  .locale-controls select {
-    width: 100% !important;
-    max-width: none !important;
-  }
-}
-
-@media (max-width: 800px) {
-  .locale-label { display: none !important; }
 }
 </style>
 </head>
@@ -7184,49 +7159,50 @@ body.feed-compact #feed .card.follow-card {
         <input id="search" type="search" placeholder="Search headlines" autocomplete="off">
         <span class="search-hint" id="searchHint">/</span>
       </div>
-      <div class="locale-controls" role="group" aria-label="News region and language">
-        <label class="locale-field">
-          <select id="regionSelect" aria-label="News region">
-            <option value="US">Worldwide / US</option>
-            <option value="GB">United Kingdom</option>
-            <option value="INT">Global / International</option>
-            <option value="DE">Germany</option>
-            <option value="FR">France</option>
-            <option value="JP">Japan</option>
-            <option value="IN">India</option>
-            <option value="ES">Spain</option>
-            <option value="BR">Brazil</option>
-            <option value="MX">Mexico</option>
-            <option value="CA">Canada</option>
-            <option value="AU">Australia</option>
-            <option value="KR">South Korea</option>
-            <option value="IT">Italy</option>
-            <option value="NL">Netherlands</option>
-          </select>
-        </label>
-        <label class="locale-field">
-          <span class="locale-label">Language</span>
-          <select id="languageSelect" aria-label="News language">
-            <option value="en-US">English</option>
-            <option value="es-419">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="ja">Japanese</option>
-            <option value="pt-BR">Portuguese</option>
-            <option value="hi">Hindi</option>
-            <option value="ko">Korean</option>
-            <option value="zh-CN">Chinese</option>
-            <option value="it">Italian</option>
-            <option value="nl">Dutch</option>
-          </select>
-        </label>
-      </div>
       <div class="mast-right">
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
         <a class="mast-link" href="digests.html">Digests</a> <a class="mast-link" href="app-react.html">React</a>
-        <div class="status" id="status"><span class="live-dot"></span>loading feed…</div>
+        <div class="status" id="status">loading feed…</div>
+        <div class="locale-controls" role="group" aria-label="News region and language">
+          <label class="locale-field">
+            <svg class="locale-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.8 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.8-3.9-9s1.3-6.3 3.9-9z"/></svg>
+            <select id="regionSelect" aria-label="News region" title="News region">
+              <option value="US">Worldwide / US</option>
+              <option value="GB">United Kingdom</option>
+              <option value="INT">Global / International</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="JP">Japan</option>
+              <option value="IN">India</option>
+              <option value="ES">Spain</option>
+              <option value="BR">Brazil</option>
+              <option value="MX">Mexico</option>
+              <option value="CA">Canada</option>
+              <option value="AU">Australia</option>
+              <option value="KR">South Korea</option>
+              <option value="IT">Italy</option>
+              <option value="NL">Netherlands</option>
+            </select>
+          </label>
+          <label class="locale-field">
+            <svg class="locale-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="1" y="16" fill="currentColor" font-size="13" font-family="sans-serif" font-weight="700">A</text><text x="11" y="17" fill="currentColor" font-size="12" font-family="sans-serif" font-weight="700">文</text></svg>
+            <select id="languageSelect" aria-label="News language" title="News language">
+              <option value="en-US">English</option>
+              <option value="es-419">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ja">Japanese</option>
+              <option value="pt-BR">Portuguese</option>
+              <option value="hi">Hindi</option>
+              <option value="ko">Korean</option>
+              <option value="zh-CN">Chinese</option>
+              <option value="it">Italian</option>
+              <option value="nl">Dutch</option>
+            </select>
+          </label>
+        </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme" title="Toggle theme">
           <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </button>
@@ -8644,10 +8620,7 @@ initAuth();
         .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
 
       populateSources();
-      const edition = regionSelectEl && languageSelectEl
-        ? `${regionSelectEl.selectedOptions[0].text} · ${languageSelectEl.selectedOptions[0].text}`
-        : '';
-      statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items${edition ? ` · ${edition}` : ''} · updated ${new Date().toLocaleTimeString()}`;
+      statusEl.textContent = `updated ${new Date().toLocaleTimeString('en-US')}`;
       renderAll();
     } finally {
       if (serial === refreshSerial) skeletonEl.style.display = 'none';

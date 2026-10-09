@@ -330,7 +330,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
   for (let i = 0; i < 50; i++) {
     const cardCount = await driver.executeScript('return document.querySelectorAll("#feed .card").length;');
     const statusText = await driver.executeScript('const el = document.getElementById("status"); return el ? el.textContent : "";');
-    if (cardCount > 0 || (statusText && statusText.includes('items'))) {
+    if (cardCount > 0 || (statusText && statusText.includes('updated'))) {
       feedLoaded = true;
       break;
     }
