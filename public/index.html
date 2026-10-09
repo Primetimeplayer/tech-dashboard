@@ -5407,8 +5407,11 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
    ========================================================= */
 
 .mast-row {
+  display: flex !important;
+  align-items: center !important;
   justify-content: flex-start !important;
-  gap: 14px !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
 }
 
 /* Keep the right-hand controls pinned to the far edge while the search
@@ -5453,14 +5456,14 @@ html[data-theme] #filters .sidebar-item[aria-pressed="true"]:hover {
 }
 
 @media (max-width: 800px) {
-  .mast-row { gap: 10px !important; }
+  .mast-row { gap: 16px !important; }
   /* Tablet/phone: let the field grow into the free space (capped, so it
      never becomes a full-width bar beside the icon buttons). */
   .mast .search-row { flex: 1 1 auto; width: auto; min-width: 160px; max-width: 420px; }
 }
 
 @media (max-width: 560px) {
-  .mast-row { gap: 8px !important; }
+  .mast-row { gap: 16px !important; }
   /* On a phone the field takes whatever room is left beside the wordmark
      and the two icon buttons, so it never pushes the header sideways. */
   .mast .search-row { flex: 1 1 auto; width: auto; min-width: 96px; max-width: none; }
@@ -6869,6 +6872,156 @@ body.feed-compact #feed .card.follow-card {
     max-width: 160px !important;
   }
 }
+
+/* Lower sections are one white panel with two vertical story columns.
+   Dividers run under each row. Dark mode replaces the forced white surface. */
+#feed .lower-section,
+#feed .briefing-fill {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  box-sizing: border-box !important;
+}
+
+#feed .lower-section {
+  padding: 20px !important;
+  gap: 0 !important;
+}
+
+#feed .lower-section > .feed-column-title {
+  margin: 0 0 4px !important;
+}
+
+#feed .briefing-fill {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  margin-top: 16px !important;
+  padding: 4px 20px !important;
+}
+
+#feed .lower-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 28px !important;
+  row-gap: 0 !important;
+  gap: 0 28px !important;
+  width: 100% !important;
+  align-items: start !important;
+}
+
+#feed .gn-col {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+#feed .lower-grid > .gn-col:only-child {
+  grid-column: 1 / -1 !important;
+}
+
+#feed .gn-col > .card.story-row,
+#feed .briefing-fill > .card.story-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 16px 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#feed .gn-col > .card.story-row:last-child,
+#feed .briefing-fill > .card.story-row:last-child {
+  border-bottom: 0 !important;
+}
+
+#feed .gn-col > .card.story-row:hover,
+#feed .briefing-fill > .card.story-row:hover {
+  background: rgba(127, 127, 127, 0.06) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+#feed .card.story-row .story-copy {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+  min-height: 96px;
+}
+
+#feed .card.story-row h2 {
+  margin: 4px 0 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+#feed .card.story-row .source-name {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+#feed .card.story-row .source-favicon {
+  width: 16px !important;
+  height: 16px !important;
+  flex: 0 0 16px !important;
+}
+
+#feed .card.story-row .card-meta {
+  margin-top: auto !important;
+}
+
+#feed .card.story-row .story-thumb {
+  width: 96px !important;
+  height: 96px !important;
+  flex: 0 0 96px !important;
+  max-width: 96px !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  align-self: flex-start !important;
+}
+
+:root[data-theme="dark"] #feed .lower-section,
+:root[data-theme="dark"] #feed .briefing-fill {
+  background: var(--panel, #14252A) !important;
+  border-color: var(--line, #24393A) !important;
+}
+
+:root[data-theme="dark"] #feed .gn-col > .card.story-row,
+:root[data-theme="dark"] #feed .briefing-fill > .card.story-row {
+  background: transparent !important;
+  border-bottom-color: var(--line, #24393A) !important;
+}
+
+:root[data-theme="dark"] #feed .card-meta,
+:root[data-theme="dark"] #feed .card-meta .meta-time,
+:root[data-theme="dark"] #feed .card-meta .meta-author,
+:root[data-theme="dark"] #feed .card-meta .cat-label {
+  color: #bdc1c6 !important;
+}
+
+@media (max-width: 800px) {
+  #feed .lower-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #feed .lower-grid > .gn-col:only-child {
+    grid-column: auto !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -6885,6 +7038,12 @@ body.feed-compact #feed .card.follow-card {
   <div class="wrap">
     <div class="mast-row">
       <h1 class="wordmark">Signal<span>.</span></h1>
+      <div class="search-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <label for="search" class="visually-hidden">Search headlines and summaries</label>
+        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
+        <span class="search-hint" id="searchHint">/</span>
+      </div>
       <div class="mast-right">
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -6918,12 +7077,6 @@ body.feed-compact #feed .card.follow-card {
         <button type="button" class="filter top-nav-item" data-cat="news" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">📰</span>Technology</button>
         <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⭐</span>Reviews</button>
         <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">💬</span>Community</button>
-      </div>
-      <div class="search-row">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <label for="search" class="visually-hidden">Search headlines and summaries</label>
-        <input id="search" type="search" placeholder="Search headlines and summaries… (press / to focus)" autocomplete="off">
-        <span class="search-hint" id="searchHint">/</span>
       </div>
       <label class="nav-select">
         <span class="visually-hidden">Sort stories</span>
@@ -7714,9 +7867,13 @@ initAuth();
           </div>` : ''}`;
   }
 
+  function isPromoItem(item) {
+    return /\b(coupons?|promo[\s-]*codes?|discounts?|lingerie)\b/i.test((item && item.title) || '');
+  }
+
   function renderLatest() {
     const latest = allItems
-      .filter((i) => i.published && !Number.isNaN(new Date(i.published).getTime()))
+      .filter((i) => i.published && !Number.isNaN(new Date(i.published).getTime()) && !isPromoItem(i))
       .slice(0, 10);
     const latestCountEl = document.getElementById('latestCount');
     if (!latest.length) {
@@ -7759,6 +7916,9 @@ initAuth();
   latestNextEl.addEventListener('click', () => scrollLatest(1));
   latestRowEl.addEventListener('scroll', syncLatestNav, { passive: true });
   window.addEventListener('resize', syncLatestNav);
+  window.addEventListener('resize', () => {
+    if (feedEl && feedEl.querySelector('.picks-col')) balanceColumns();
+  });
 
   function buildShareText(item) {
     const hook = item.whyItMatters || item.summary || '';
@@ -7868,6 +8028,7 @@ initAuth();
       : allItems;
 
     return baseItems.filter((i) => {
+      if (isPromoItem(i)) return false;
       const matchesCat = matchesVertical(i, activeFilter);
       const matchesSource = activeSource === 'all' || i.source === activeSource;
       const matchesDate = withinDateFilter(i.published, activeDate);
@@ -8017,7 +8178,7 @@ initAuth();
       </article>`;
     }).join('');
 
-    const rows = rest.map((item) => {
+    const storyRow = (item) => {
       const fields = storyFields(item);
       return `
       <article class="card story-row ${item.category}${fields.hw ? ' is-hardware' : ''}">
@@ -8030,35 +8191,23 @@ initAuth();
           ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
           ${cardActions(item, fields.saved, fields.note)}
         </div>
-        ${storyThumb(item, 80, 80)}
-      </article>`;
-    }).join('');
-
-    const featureCard = (item) => {
-      const fields = storyFields(item);
-      const image = storyImageUrl(item);
-      return `
-      <article class="card feature-card ${item.category}${fields.hw ? ' is-hardware' : ''}">
-        ${image ? `<a class="feature-media" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="feature-image" src="${escapeAttr(image)}" alt=""></a>` : ''}
-        <div class="story-copy">
-          ${fields.hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
-          ${sourceLine(item)}
-          <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
-          ${cardMeta(item)}
-          ${fields.chips.length ? `<div class="card-chips">${fields.chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
-          ${item.summary ? `<p class="feature-dek">${escapeHtml(item.summary)}</p>` : ''}
-          ${cardActions(item, fields.saved, fields.note)}
-        </div>
+        ${storyThumb(item, 96, 96)}
       </article>`;
     };
-    const lowerSection = (title, cardsHtml) => {
-      if (!cardsHtml) return '';
-      return `<section class="lower-section"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid">${cardsHtml}</div></section>`;
+    const lowerSection = (title, sectionItems) => {
+      if (!sectionItems.length) return '';
+      const left = [];
+      const right = [];
+      sectionItems.forEach((item, index) => {
+        (index % 2 === 0 ? left : right).push(storyRow(item));
+      });
+      const column = (parts) => (parts.length ? `<div class="gn-col">${parts.join('')}</div>` : '');
+      return `<section class="lower-section"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid">${column(left)}${column(right)}</div></section>`;
     };
     const lower = [
-      lowerSection('Silicon & Hardware Spotlight', silicon.map(featureCard).join('')),
-      lowerSection('Deep Space & Defense', spaceItems.map(featureCard).join('')),
-      lowerSection('More stories', rows),
+      lowerSection('Silicon & Hardware Spotlight', silicon),
+      lowerSection('Deep Space & Defense', spaceItems),
+      lowerSection('More stories', rest),
     ].join('');
 
     const pickCards = picks.map((item) => {
@@ -8105,6 +8254,8 @@ initAuth();
       ta.addEventListener('change', () => updateNote(ta.dataset.link, ta.value));
     });
 
+    balanceColumns();
+
     // Show/hide load more button
     if (items.length > visibleCount) {
       loadMoreWrapEl.style.display = 'block';
@@ -8117,6 +8268,66 @@ initAuth();
   function renderAll() {
     renderLatest();
     render();
+  }
+
+  // Pull lower-column story rows into the briefing column until it matches
+  // the Picks column. Stop when the next row would overshoot by more than
+  // the gap it would close. Cards move, they are not copied.
+  function balanceColumns() {
+    const briefing = feedEl.querySelector('.briefing-col');
+    const picks = feedEl.querySelector('.picks-col');
+    if (!briefing || !picks) return;
+    briefing.style.paddingBottom = '';
+    picks.style.paddingBottom = '';
+    if (window.matchMedia('(max-width: 800px)').matches) return;
+
+    let fill = briefing.querySelector('.briefing-fill');
+    const ensureFill = () => {
+      if (fill && fill.isConnected) return fill;
+      fill = document.createElement('div');
+      fill.className = 'briefing-fill';
+      briefing.appendChild(fill);
+      return fill;
+    };
+
+    let guard = 0;
+    while (guard < 20) {
+      guard += 1;
+      const remaining = picks.getBoundingClientRect().height - briefing.getBoundingClientRect().height;
+      if (remaining <= 16) break;
+
+      const donors = Array.from(feedEl.querySelectorAll('.lower-feed .gn-col'))
+        .map((col) => ({
+          col,
+          cards: Array.from(col.children).filter((el) => el.classList.contains('card')),
+        }))
+        .filter((donor) => donor.cards.length)
+        .sort((a, b) => b.cards.length - a.cards.length);
+      if (!donors.length) break;
+
+      const donor = donors[0];
+      const card = donor.cards[donor.cards.length - 1];
+      const cardHeight = card.getBoundingClientRect().height;
+      if (cardHeight - remaining > remaining) break;
+
+      ensureFill().appendChild(card);
+      if (!donor.col.querySelector('.card')) {
+        const grid = donor.col.parentElement;
+        donor.col.remove();
+        if (grid && !grid.querySelector('.card')) {
+          const section = grid.closest('.lower-section');
+          if (section) section.remove();
+        }
+      }
+    }
+
+    if (fill && !fill.querySelector('.card')) fill.remove();
+    const lower = feedEl.querySelector('.lower-feed');
+    if (lower && !lower.querySelector('.lower-section')) lower.remove();
+
+    const leftover = Math.round(picks.getBoundingClientRect().height - briefing.getBoundingClientRect().height);
+    if (leftover > 1) briefing.style.paddingBottom = `${leftover}px`;
+    else if (leftover < -1) picks.style.paddingBottom = `${-leftover}px`;
   }
 
   async function loadJSON(file, category, mapFn) {
@@ -8156,9 +8367,9 @@ initAuth();
         loadJSON('reddit.json', 'reddit', (i) => i),
       ]);
 
-      allItems = [...news, ...papers, ...reviews, ...reddit].sort(
-        (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
-      );
+      allItems = [...news, ...papers, ...reviews, ...reddit]
+        .filter((item) => !isPromoItem(item))
+        .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
 
       populateSources();
       statusEl.innerHTML = `<span class="live-dot"></span>${allItems.length} items · updated ${new Date().toLocaleTimeString()}`;

@@ -2048,10 +2048,10 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(media.images <= media.cards, 'A card must not render more than one thumbnail');
     for (const thumb of media.thumbs) {
       assert.match(thumb.src, /^https?:\/\//, 'Thumbnail src must be an http(s) image URL');
-      assert.equal(thumb.width, 80, 'Feed thumbnail must be 80px wide');
-      assert.equal(thumb.height, 80, 'Feed thumbnail must be 80px tall');
+      assert.equal(thumb.width, 96, 'Feed thumbnail must be 96px wide');
+      assert.equal(thumb.height, 96, 'Feed thumbnail must be 96px tall');
       assert.equal(thumb.fit, 'cover', 'Feed thumbnail must use object-fit: cover');
-      assert.equal(thumb.radius, '8px', 'Feed thumbnail must use an 8px corner radius');
+      assert.equal(thumb.radius, '12px', 'Feed thumbnail must use a 12px corner radius');
       assert.equal(thumb.rightOfText, true, 'Feed thumbnail must sit to the right of the story text');
     }
     const picks = await driver.executeScript(`

@@ -1425,6 +1425,9 @@ function matchesKeywords(item, words) {
     return new RegExp(`(?:^|[^a-z0-9])${body}(?:[^a-z0-9]|$)`).test(text);
   });
 }
+function isPromoTitle(title) {
+  return /\b(coupons?|promo[\s-]*codes?|discounts?|lingerie)\b/i.test(title || '');
+}
 function matchesVertical(item, filter) {
   if (!filter || filter === 'all') return true;
   if (filter === 'news' || filter === 'papers' || filter === 'reviews' || filter === 'reddit') return item.category === filter;
@@ -1502,7 +1505,7 @@ function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const latestItems = useMemo(
     () => items
-      .filter(i => i.published && !Number.isNaN(new Date(i.published).getTime()))
+      .filter(i => i.published && !Number.isNaN(new Date(i.published).getTime()) && !isPromoTitle(i.title))
       .slice(0, 10),
     [items]
   );
@@ -1548,9 +1551,9 @@ function App() {
         loadCategory('reddit.json', 'reddit', (i) => i),
       ]);
       if (cancelled) return;
-      const all = [...news, ...papers, ...reviews, ...reddit].sort(
-        (a, b) => new Date(b.published || 0) - new Date(a.published || 0)
-      );
+      const all = [...news, ...papers, ...reviews, ...reddit]
+        .filter((item) => !isPromoTitle(item.title))
+        .sort((a, b) => new Date(b.published || 0) - new Date(a.published || 0));
       setItems(all);
       setLastUpdated(new Date());
     };
@@ -1565,6 +1568,7 @@ function App() {
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
     const results = items.filter((i) => {
+      if (isPromoTitle(i.title)) return false;
       const matchesCat = matchesVertical(i, category);
       const matchesTerm = !term || (i.title || '').toLowerCase().includes(term) || (i.summary || '').toLowerCase().includes(term);
       return matchesCat && matchesTerm;
