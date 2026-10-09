@@ -2282,7 +2282,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         menuToggle: getComputedStyle(document.getElementById('menuToggle')).display,
         backdrop: getComputedStyle(document.getElementById('sidebarBackdrop')).display,
         drawerHead: getComputedStyle(document.querySelector('.sidebar-drawer-head')).display,
-        accountSection: !!document.querySelector('.sidebar-section.sidebar-account #syncSettingsBtn'),
+        accountSection: !!document.getElementById('syncSettingsBtn'),
         docOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth
       };
     `);
@@ -2293,12 +2293,11 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       sidebar.headings.includes('TOPICS') && sidebar.headings.includes('LIBRARY'),
       `Sidebar should keep its TOPICS and LIBRARY groups, found ${JSON.stringify(sidebar.headings)}`
     );
-    assert.ok(sidebar.headings.includes('ACCOUNT'), 'Log in should live in its own ACCOUNT group');
+    assert.equal(sidebar.accountSection, false, 'Log in is not part of the navigation');
     const ids = sidebar.items.map(i => i.id);
-    for (const expected of ['all', 'news', 'papers', 'reviews', 'reddit', 'hwToggle', 'savedToggle', 'digestsNav', 'syncSettingsBtn']) {
+    for (const expected of ['all', 'news', 'papers', 'reviews', 'reddit', 'hwToggle', 'savedToggle', 'digestsNav']) {
       assert.ok(ids.includes(expected), `Sidebar must expose navigation item "${expected}", found ${JSON.stringify(ids)}`);
     }
-    assert.ok(sidebar.accountSection, 'Log in button must be grouped under ACCOUNT, not mixed into the content filters');
     assert.equal(sidebar.menuToggle, 'none', 'Mobile menu control must stay hidden on desktop');
     assert.equal(sidebar.backdrop, 'none', 'Drawer backdrop must stay hidden on desktop');
     assert.equal(sidebar.drawerHead, 'none', 'Drawer header must stay hidden on desktop');
@@ -2476,7 +2475,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
         searchInert: document.querySelector('.row2').inert,
         navIds,
         digestsVisible: document.getElementById('digestsNav').getBoundingClientRect().width > 0,
-        accountVisible: document.getElementById('syncSettingsBtn').getBoundingClientRect().width > 0,
+        accountVisible: !!document.getElementById('syncSettingsBtn'),
         docOverflow: document.documentElement.scrollWidth > viewport
       };
     `);
@@ -2490,8 +2489,9 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(open.backdropLabel.length > 0, 'Backdrop must carry an accessible label');
     assert.ok(open.backdropCovers, 'Backdrop must cover the page behind the drawer');
     assert.ok(open.mainInert && open.footerInert && open.searchInert, 'Page content behind the drawer must be inert while open');
-    assert.ok(open.digestsVisible && open.accountVisible, 'Drawer must keep every navigation destination reachable');
-    assert.ok(open.navIds.includes('digestsNav') && open.navIds.includes('syncSettingsBtn'), 'Drawer must keep all existing nav links');
+    assert.ok(open.digestsVisible, 'Drawer must keep every navigation destination reachable');
+    assert.equal(open.accountVisible, false, 'Log in is not part of the drawer');
+    assert.ok(open.navIds.includes('digestsNav'), 'Drawer must keep the digests link');
     assert.equal(open.docOverflow, false, 'Open drawer must not cause horizontal page overflow');
 
     await driver.executeScript("document.getElementById('sidebarClose').click();");

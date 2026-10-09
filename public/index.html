@@ -6574,38 +6574,6 @@ main .grid {
   border-color: var(--focus) !important;
 }
 
-#topicBar .nav-select {
-  flex: 0 0 auto;
-  margin: 0;
-}
-
-#topicBar .nav-select select,
-#topicBar #sortOrder {
-  height: 36px !important;
-  min-height: 0 !important;
-  min-width: 0 !important;
-  width: auto !important;
-  margin: 0 !important;
-  padding: 0 22px 0 8px !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  color: var(--text-muted) !important;
-  font: 500 14px/1.2 var(--font-sans) !important;
-  white-space: nowrap !important;
-}
-
-#topicBar .nav-select select:hover,
-#topicBar .nav-select select:focus,
-#topicBar #sortOrder:hover,
-#topicBar #sortOrder:focus {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  color: var(--text) !important;
-}
-
 #feed.grid,
 main .grid {
   display: flex !important;
@@ -6933,8 +6901,9 @@ body.feed-compact #feed .card.follow-card {
   flex: 0 0 auto !important;
   width: 100% !important;
   max-width: none !important;
+  min-height: 168px !important;
   margin: 0 !important;
-  padding: 16px 0 !important;
+  padding: 28px 0 !important;
   background: transparent !important;
   border: 0 !important;
   border-bottom: 1px solid #f3f4f6 !important;
@@ -6958,7 +6927,7 @@ body.feed-compact #feed .card.follow-card {
   flex: 1 1 auto !important;
   min-width: 0 !important;
   width: auto !important;
-  min-height: 96px;
+  min-height: 140px;
 }
 
 #feed .card.story-row h2 {
@@ -7078,14 +7047,6 @@ body.feed-compact #feed .card.follow-card {
         <button type="button" class="filter top-nav-item" data-cat="reviews" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">⭐</span>Reviews</button>
         <button type="button" class="filter top-nav-item" data-cat="reddit" aria-pressed="false"><span class="nav-emoji" aria-hidden="true">💬</span>Community</button>
       </div>
-      <label class="nav-select">
-        <span class="visually-hidden">Sort stories</span>
-        <select id="sortOrder" aria-label="Sort stories">
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-        </select>
-      </label>
-      <button type="button" id="viewMode" class="top-nav-item" aria-pressed="false">View: Comfortable</button>
     </nav>
   </div>
   <div class="filters" id="filters">
@@ -7112,18 +7073,6 @@ body.feed-compact #feed .card.follow-card {
         <span class="nav-emoji" aria-hidden="true">🧵</span>
         Digests
       </a>
-    </div>
-
-    <div class="top-nav-divider"></div>
-
-    <div class="top-nav-section">
-      <span class="top-nav-label">ACCOUNT</span>
-      <button class="top-nav-item" id="syncSettingsBtn"
-              title="Optional: sync saved items across devices"
-              aria-label="Log in to sync saved stories">
-        <span class="nav-emoji" aria-hidden="true">👤</span>
-        <span class="account-label">Log in</span>
-      </button>
     </div>
 
     <div class="top-nav-divider"></div>
@@ -7230,8 +7179,7 @@ body.feed-compact #feed .card.follow-card {
   const loadMoreBtnEl = document.getElementById('loadMoreBtn');
   const searchHintEl = document.getElementById('searchHint');
   const clearFiltersEl = document.getElementById('clearFilters');
-  const sortOrderEl = document.getElementById('sortOrder');
-  const viewModeEl = document.getElementById('viewMode');
+
 
   const AUTO_REFRESH_MS = 300000;
   const LATEST_WINDOW_MS = 12 * 60 * 60 * 1000;
@@ -7265,8 +7213,7 @@ body.feed-compact #feed .card.follow-card {
   let hardwareOnly = false;
   let savedOnly = false;
   let searchTerm = '';
-  let sortOrder = 'newest';
-  let compactView = false;
+
   let allItems = [];
   let visibleCount = PAGE_SIZE;
   let searchTimer = null;
@@ -7551,7 +7498,7 @@ function setAccountLabel(label) {
   btn.setAttribute('aria-label', label === 'Log out' ? 'Log out of your account' : 'Log in to sync saved stories');
 }
 
-document.getElementById('syncSettingsBtn').addEventListener('click', () => {
+document.getElementById('syncSettingsBtn')?.addEventListener('click', () => {
   if (authState.authenticated) {
     logoutAccount();
   } else {
@@ -7691,7 +7638,7 @@ initAuth();
     return list.slice().sort((a, b) => {
       const da = new Date(a.published || 0).getTime() || 0;
       const db = new Date(b.published || 0).getTime() || 0;
-      return sortOrder === 'oldest' ? da - db : db - da;
+      return db - da;
     });
   }
 
@@ -8523,29 +8470,6 @@ initAuth();
     visibleCount += PAGE_SIZE;
     render();
   });
-
-  function applyViewMode() {
-    document.body.classList.toggle('feed-compact', compactView);
-    if (!viewModeEl) return;
-    viewModeEl.setAttribute('aria-pressed', compactView ? 'true' : 'false');
-    viewModeEl.textContent = compactView ? 'View: Compact' : 'View: Comfortable';
-  }
-  try { compactView = localStorage.getItem('signal-view') === 'compact'; } catch (e) {}
-  applyViewMode();
-  if (viewModeEl) {
-    viewModeEl.addEventListener('click', () => {
-      compactView = !compactView;
-      try { localStorage.setItem('signal-view', compactView ? 'compact' : 'comfortable'); } catch (e) {}
-      applyViewMode();
-    });
-  }
-  if (sortOrderEl) {
-    sortOrderEl.addEventListener('change', () => {
-      sortOrder = sortOrderEl.value === 'oldest' ? 'oldest' : 'newest';
-      visibleCount = PAGE_SIZE;
-      render();
-    });
-  }
 
   const HASH_FILTERS = {
     technology: 'news',

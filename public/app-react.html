@@ -1495,10 +1495,6 @@ function App() {
   const [items, setItems] = useState([]);
   const [category, setCategory] = useState('all');
   const [search, setSearch] = useState('');
-  const [sortOrder, setSortOrder] = useState("newest");
-  const [compactView, setCompactView] = useState(
-    () => localStorage.getItem("signal-view") === "compact"
-  );
   const [lightMode, setLightMode] = useState(
     () => document.documentElement.getAttribute("data-theme") === "light"
   );
@@ -1535,7 +1531,6 @@ function App() {
   const clearFilters = () => {
     setCategory("all");
     setSearch("");
-    setSortOrder("newest");
   };
 
   useEffect(() => {
@@ -1577,9 +1572,9 @@ function App() {
     return [...results].sort((a, b) => {
       const dateA = new Date(a.date || a.published || 0).getTime();
       const dateB = new Date(b.date || b.published || 0).getTime();
-      return sortOrder === "oldest" ? dateA - dateB : dateB - dateA;
+      return dateB - dateA;
     });
-  }, [items, category, search, sortOrder]);
+  }, [items, category, search]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', lightMode ? 'light' : 'dark');
@@ -1643,38 +1638,14 @@ function App() {
             </button>
           )}
         </div>
-        <select
-          className="sort-select"
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-          aria-label="Sort stories"
-        >
-          <option value="newest">Newest first</option>
-          <option value="oldest">Oldest first</option>
-        </select>
         <button
           type="button"
           className="jump-latest"
           onClick={() => {
-            setSortOrder("newest");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
           ↓ Latest
-        </button>
-        <button
-          type="button"
-          className="view-toggle"
-          onClick={() => {
-            setCompactView(v => {
-              const next = !v;
-              localStorage.setItem("signal-view", next ? "compact" : "comfortable");
-              return next;
-            });
-          }}
-          aria-pressed={compactView}
-        >
-          {compactView ? "Comfortable view" : "Compact view"}
         </button>
         <button
           type="button"
@@ -1741,7 +1712,7 @@ function App() {
   </button>
 </div>
       ) : (
-        <div className={`grid ${compactView ? "compact-view" : ""}`}>
+        <div className="grid">
           {filtered.map((item, idx) => <Card key={item.link + idx} item={item} />)}
         </div>
       )}
