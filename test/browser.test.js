@@ -2019,7 +2019,7 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     const media = await driver.executeScript(`
       const cards = Array.from(document.querySelectorAll('#feed .card'));
       const thumbs = cards.map(card => {
-        const img = card.querySelector('img');
+        const img = card.querySelector('.story-thumb');
         if (!img) return null;
         const cs = getComputedStyle(img);
         const box = img.getBoundingClientRect();
@@ -2048,8 +2048,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
     assert.ok(media.images <= media.cards, 'A card must not render more than one thumbnail');
     for (const thumb of media.thumbs) {
       assert.match(thumb.src, /^https?:\/\//, 'Thumbnail src must be an http(s) image URL');
-      assert.equal(thumb.width, 100, 'Feed thumbnail must be 100px wide');
-      assert.equal(thumb.height, 100, 'Feed thumbnail must be 100px tall');
+      assert.equal(thumb.width, 80, 'Feed thumbnail must be 80px wide');
+      assert.equal(thumb.height, 80, 'Feed thumbnail must be 80px tall');
       assert.equal(thumb.fit, 'cover', 'Feed thumbnail must use object-fit: cover');
       assert.equal(thumb.radius, '8px', 'Feed thumbnail must use an 8px corner radius');
       assert.equal(thumb.rightOfText, true, 'Feed thumbnail must sit to the right of the story text');

@@ -5916,6 +5916,250 @@ main .grid .card,
   align-self: flex-start !important;
 }
 </style>
+<style id="google-news-feed">
+/* Google News hierarchy for the main feed. The lead story is a hero with
+   the picture on the left and coverage on the right. Everything after it
+   is one full-width row: text on the left, an 80px thumbnail on the right.
+   Latest Stories is unchanged. */
+.section-heading h2 {
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+main {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+#feed.grid,
+main .grid {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  background: transparent !important;
+}
+
+#feed .card.hero-story {
+  display: grid !important;
+  grid-template-columns: minmax(260px, 1.15fr) minmax(280px, 0.85fr) !important;
+  grid-column: auto !important;
+  align-items: start !important;
+  gap: 8px 28px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 4px !important;
+  padding: 2px 0 14px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line, #e8eaed) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#feed .card.hero-story.hero-story-text {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#feed .card.hero-story > .hero-media {
+  display: block;
+  min-width: 0;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+#feed .card.hero-story > .hero-copy {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  max-width: none !important;
+  min-width: 0;
+  gap: 0 !important;
+}
+
+#feed .card.hero-story .card-actions,
+#feed .card.story-row .card-actions {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  justify-self: start !important;
+}
+
+#feed .hero-thumb {
+  display: block;
+  width: 100% !important;
+  height: 292px !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 8px;
+  background: var(--skeleton, #eee);
+}
+
+#feed .hero-story h2 {
+  margin: 8px 0 0 !important;
+  font-size: 28px !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#feed .hero-dek {
+  margin: 8px 0 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+}
+
+#feed .coverage {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+#feed .coverage-link {
+  display: block;
+  padding: 8px 0;
+  border-top: 1px solid var(--line, #e8eaed);
+  color: inherit;
+  text-decoration: none;
+}
+
+#feed .coverage-link:hover .coverage-title {
+  text-decoration: underline;
+}
+
+#feed .coverage-title {
+  display: block;
+  margin-top: 3px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+#feed .card.story-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 12px 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line, #e8eaed) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#feed .story-row .story-copy {
+  gap: 4px;
+}
+
+#feed .story-row h2 {
+  margin: 0 !important;
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.01em !important;
+}
+
+#feed .story-row .story-copy > p,
+#feed .story-row .why,
+#feed .story-row .card-chips {
+  display: none !important;
+}
+
+#feed .card.story-row .story-thumb {
+  width: 80px !important;
+  height: 80px !important;
+  flex: 0 0 80px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  align-self: flex-start !important;
+}
+
+#feed .source-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+#feed .source-name,
+#feed .source-time {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#feed .source-favicon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border-radius: 2px;
+  object-fit: contain;
+}
+
+#feed .source-favicon-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--skeleton, #eee);
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#feed .source-favicon-fallback[hidden] {
+  display: none !important;
+}
+
+#feed .card-actions {
+  margin-top: 8px !important;
+}
+
+@media (max-width: 800px) {
+  #feed .card.hero-story {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  #feed .card.hero-story > .hero-media {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  #feed .hero-thumb {
+    height: 200px !important;
+    max-height: 200px !important;
+  }
+
+  #feed .hero-story h2 {
+    font-size: 22px !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -6621,6 +6865,68 @@ initAuth();
     return [when, author].filter(Boolean).join(' · ');
   }
 
+  function publisherHost(link) {
+    try {
+      return new URL(link).hostname.replace(/^www\./, '');
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function sourceMark(item) {
+    const host = publisherHost(item && item.link);
+    const letter = escapeHtml(((item && item.source) || host || '?').trim().charAt(0).toUpperCase() || '?');
+    const fallback = `<span class="source-favicon source-favicon-fallback"${host ? ' hidden' : ''}>${letter}</span>`;
+    if (!host) return fallback;
+    const src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=32`;
+    return `<img class="source-favicon" src="${escapeAttr(src)}" alt="" width="16" height="16" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;var n=this.nextElementSibling;if(n)n.hidden=false">${fallback}`;
+  }
+
+  function sourceLine(item) {
+    const when = timeAgo(item.published);
+    return `<div class="source-line">${sourceMark(item)}${item.source ? `<span class="source-name">${escapeHtml(item.source)}</span>` : ''}${when ? `<span aria-hidden="true">·</span><span class="source-time">${escapeHtml(when)}</span>` : ''}</div>`;
+  }
+
+  function titleTokens(title) {
+    const stop = new Set(['the', 'a', 'an', 'of', 'to', 'and', 'in', 'on', 'for', 'with', 'from', 'its', 'is', 'are', 'at', 'by', 'as', 'after', 'new', 'over', 'into', 'that', 'this', 'than', 'will', 'have', 'been', 'says', 'said']);
+    return (title || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((word) => word.length > 3 && !stop.has(word));
+  }
+
+  function pickRelated(lead, pool, limit = 4) {
+    if (!lead) return [];
+    const leadTokens = new Set(titleTokens(lead.title));
+    const scored = pool
+      .filter((item) => item.link !== lead.link && item.source !== lead.source)
+      .map((item) => {
+        const overlap = titleTokens(item.title).reduce((count, token) => count + (leadTokens.has(token) ? 1 : 0), 0);
+        return { item, overlap };
+      })
+      .filter((row) => row.overlap > 0)
+      .sort((a, b) => b.overlap - a.overlap);
+    const related = [];
+    const seen = new Set();
+    for (const row of scored) {
+      if (related.length >= limit) break;
+      if (seen.has(row.item.source)) continue;
+      related.push(row.item);
+      seen.add(row.item.source);
+    }
+    return related;
+  }
+
+  function cardActions(item, saved, note) {
+    return `
+          <div class="card-actions">
+            <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
+            <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
+          </div>
+          ${saved ? `
+          <div class="note-box">
+            <p class="note-label">Your note</p>
+            <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
+          </div>` : ''}`;
+  }
+
   function renderLatest() {
     const latest = allItems
       .filter((i) => i.published && !Number.isNaN(new Date(i.published).getTime()))
@@ -6865,39 +7171,58 @@ initAuth();
     loadMoreWrapEl.style.display = 'none';
 
     const visible = items.slice(0, visibleCount);
+    const lead = visible[0];
+    const related = pickRelated(lead, visible.slice(1));
+    const relatedLinks = new Set(related.map((item) => item.link));
+    const rest = visible.slice(1).filter((item) => !relatedLinks.has(item.link));
 
-    feedEl.innerHTML = visible.map((item, idx) => {
+    const leadSaved = !!savedMap[lead.link];
+    const leadNote = leadSaved ? (savedMap[lead.link].note || '') : '';
+    const leadImage = storyImageUrl(lead);
+    const leadChips = buildCardChips(lead);
+    const leadHardware = isHardware(lead);
+    const hero = `
+      <article class="card hero-story ${lead.category}${leadHardware ? ' is-hardware' : ''}${leadImage ? '' : ' hero-story-text'}">
+        ${leadImage ? `<a class="hero-media" href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img class="hero-thumb" src="${escapeAttr(leadImage)}" alt=""></a>` : ''}
+        <div class="story-copy hero-copy">
+          ${leadHardware ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
+          ${sourceLine(lead)}
+          <h2><a href="${escapeAttr(lead.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(lead.title)}">${escapeHtml(lead.title)}</a></h2>
+          ${leadChips.length ? `<div class="card-chips">${leadChips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
+          ${lead.summary ? `<p class="hero-dek">${escapeHtml(lead.summary)}</p>` : ''}
+          ${lead.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(lead.whyItMatters)}</div>` : ''}
+          ${related.length ? `<ul class="coverage">${related.map((item) => `
+            <li>
+              <a class="coverage-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">
+                ${sourceLine(item)}
+                <span class="coverage-title">${escapeHtml(item.title)}</span>
+              </a>
+            </li>`).join('')}</ul>` : ''}
+          ${cardActions(lead, leadSaved, leadNote)}
+        </div>
+      </article>`;
+
+    const rows = rest.map((item) => {
       const hw = isHardware(item);
       const saved = !!savedMap[item.link];
       const note = saved ? (savedMap[item.link].note || '') : '';
       const chips = buildCardChips(item);
       return `
-      <article class="card story-row ${item.category}${hw ? ' is-hardware' : ''}" data-idx="${idx}">
+      <article class="card story-row ${item.category}${hw ? ' is-hardware' : ''}">
         <div class="story-copy">
           ${hw ? '<div class="hw-badge">⚡ Hardware</div>' : ''}
-          <div class="card-meta">
-            <span class="cat-label">${escapeHtml(catLabel(item.category) || '')}</span>
-            ${item.source ? `<span>·</span><span>${escapeHtml(item.source)}</span>` : ''}
-          </div>
+          ${sourceLine(item)}
           <h2><a href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer" data-recent-title="${escapeAttr(item.title)}">${escapeHtml(item.title)}</a></h2>
           ${chips.length ? `<div class="card-chips">${chips.map((chip) => `<span class="chip chip-${chip.kind}">${escapeHtml(chip.text)}</span>`).join('')}</div>` : ''}
           ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ''}
           ${item.whyItMatters ? `<div class="why"><b>Why it matters</b>${escapeHtml(item.whyItMatters)}</div>` : ''}
-          <div class="story-byline">${escapeHtml(storyByline(item))}</div>
-          <div class="card-actions">
-            <button class="icon-btn save-btn${saved ? ' active' : ''}" data-link="${escapeAttr(item.link)}" aria-pressed="${saved ? 'true' : 'false'}">${saved ? '★ Saved' : '☆ Save'}</button>
-            <button class="icon-btn share-btn" data-link="${escapeAttr(item.link)}">⇪ Share</button>
-          </div>
-          ${saved ? `
-          <div class="note-box">
-            <p class="note-label">Your note</p>
-            <textarea class="note-input" data-link="${escapeAttr(item.link)}" aria-label="Your note" placeholder="Why did this catch your eye? Project idea, follow-up, etc.">${escapeHtml(note)}</textarea>
-          </div>` : ''}
+          ${cardActions(item, saved, note)}
         </div>
-        ${storyThumb(item, 100, 100)}
-      </article>
-    `;
+        ${storyThumb(item, 80, 80)}
+      </article>`;
     }).join('');
+
+    feedEl.innerHTML = hero + rows;
 
     // Wire up per-item data for share/save buttons
     feedEl.querySelectorAll('.save-btn').forEach((btn) => {
