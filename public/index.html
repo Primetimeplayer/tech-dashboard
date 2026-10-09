@@ -6651,7 +6651,7 @@ main .grid {
 
 #feed .lower-grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 24px !important;
   width: 100% !important;
   align-items: stretch !important;
@@ -6837,8 +6837,9 @@ body.feed-compact #feed .card.follow-card {
   }
 }
 
-/* Lower sections are one white panel with two vertical story columns.
-   Dividers run under each row. Dark mode replaces the forced white surface. */
+/* Lower sections are one white panel with up to three vertical story columns.
+   Dividers run under each row. Dark mode replaces the forced white surface.
+   cols-* keeps a 1- or 2-column section from leaving an empty track. */
 #feed .lower-section,
 #feed .briefing-fill {
   background: #ffffff !important;
@@ -6866,14 +6867,29 @@ body.feed-compact #feed .card.follow-card {
   padding: 4px 20px !important;
 }
 
-#feed .lower-grid {
+#feed .briefing-col > .lower-feed {
+  margin-top: 24px;
+  width: 100%;
+  min-width: 0;
+}
+
+#feed .lower-grid,
+#feed .lower-grid.cols-3 {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  column-gap: 28px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  column-gap: 16px !important;
   row-gap: 0 !important;
-  gap: 0 28px !important;
+  gap: 0 16px !important;
   width: 100% !important;
   align-items: start !important;
+}
+
+#feed .lower-grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+#feed .lower-grid.cols-1 {
+  grid-template-columns: minmax(0, 1fr) !important;
 }
 
 #feed .gn-col {
@@ -6897,9 +6913,9 @@ body.feed-compact #feed .card.follow-card {
   flex: 0 0 auto !important;
   width: 100% !important;
   max-width: none !important;
-  min-height: 168px !important;
+  min-height: 0 !important;
   margin: 0 !important;
-  padding: 28px 0 !important;
+  padding: 14px 0 !important;
   background: transparent !important;
   border: 0 !important;
   border-bottom: 1px solid #f3f4f6 !important;
@@ -6923,7 +6939,16 @@ body.feed-compact #feed .card.follow-card {
   flex: 1 1 auto !important;
   min-width: 0 !important;
   width: auto !important;
-  min-height: 140px;
+  min-height: 0;
+}
+
+#feed .card.story-row .card-actions {
+  margin-top: 8px !important;
+}
+
+#feed .card.story-row .card-actions .icon-btn {
+  min-height: 0 !important;
+  padding: 2px 6px !important;
 }
 
 #feed .card.story-row h2 {
@@ -6990,7 +7015,10 @@ body.feed-compact #feed .card.follow-card {
 }
 
 @media (max-width: 800px) {
-  #feed .lower-grid {
+  #feed .lower-grid,
+  #feed .lower-grid.cols-1,
+  #feed .lower-grid.cols-2,
+  #feed .lower-grid.cols-3 {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
@@ -7239,6 +7267,9 @@ body.feed-compact #feed .card.follow-card {
   let visibleCount = PAGE_SIZE;
   let searchTimer = null;
   let fetchErrors = [];
+  let balanceQueue = [];
+  let balancedShown = 0;
+  let makeStoryRow = () => '';
 
   // --- Theme ---
   function applyTheme(theme) {
@@ -8102,7 +8133,16 @@ initAuth();
       else if (spaceItems.length < 2 && matchesKeywords(item, VERTICALS.space)) spaceItems.push(item);
       else rest.push(item);
     });
-    silicon.concat(spaceItems).forEach((item) => usedLinks.add(item.link));
+    const inLower = new Set(silicon.concat(spaceItems, rest).map((item) => item.link));
+    const tail = items.filter((item) => item && item.link && !usedLinks.has(item.link) && !inLower.has(item.link));
+    let extraPlaced = 0;
+    while (silicon.length + spaceItems.length + rest.length < 12 && tail.length) {
+      const item = tail.shift();
+      rest.push(item);
+      inLower.add(item.link);
+      extraPlaced += 1;
+    }
+    silicon.concat(spaceItems, rest).forEach((item) => usedLinks.add(item.link));
 
     const storyFields = (item) => {
       const saved = !!savedMap[item.link];
@@ -8162,20 +8202,22 @@ initAuth();
         ${storyThumb(item, 96, 96)}
       </article>`;
     };
-    const lowerSection = (title, sectionItems) => {
+    const lowerSection = (title, sectionItems, extraClass) => {
       if (!sectionItems.length) return '';
-      const left = [];
-      const right = [];
+      const buckets = [[], [], []];
       sectionItems.forEach((item, index) => {
-        (index % 2 === 0 ? left : right).push(storyRow(item));
+        buckets[index % 3].push(storyRow(item));
       });
-      const column = (parts) => (parts.length ? `<div class="gn-col">${parts.join('')}</div>` : '');
-      return `<section class="lower-section"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid">${column(left)}${column(right)}</div></section>`;
+      const filled = buckets.filter((parts) => parts.length);
+      const colClass = filled.length >= 3 ? 'cols-3' : filled.length === 2 ? 'cols-2' : 'cols-1';
+      const cols = filled.map((parts) => `<div class="gn-col">${parts.join('')}</div>`).join('');
+      const sectionClass = extraClass ? `lower-section ${extraClass}` : 'lower-section';
+      return `<section class="${sectionClass}"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid ${colClass}">${cols}</div></section>`;
     };
     const lower = [
       lowerSection('Silicon & Hardware Spotlight', silicon),
       lowerSection('Deep Space & Defense', spaceItems),
-      lowerSection('More stories', rest),
+      lowerSection('More stories', rest, 'more-stories'),
     ].join('');
 
     const pickCards = picks.map((item) => {
@@ -8207,27 +8249,16 @@ initAuth();
       </div>
       ${lower ? `<div class="lower-feed">${lower}</div>` : ''}`;
 
-    // Wire up per-item data for share/save buttons
-    feedEl.querySelectorAll('.save-btn').forEach((btn) => {
-      btn.addEventListener('click', () => toggleSave(btn.dataset.link));
-    });
-    feedEl.querySelectorAll('.share-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const item = allItems.find((i) => i.link === btn.dataset.link)
-          || getFilteredItems().find((i) => i.link === btn.dataset.link);
-        if (item) copyText(buildShareText(item), btn);
-      });
-    });
-    feedEl.querySelectorAll('.note-input').forEach((ta) => {
-      ta.addEventListener('change', () => updateNote(ta.dataset.link, ta.value));
-    });
-
+    wireFeed(feedEl);
+    balanceQueue = items.filter((item) => item && item.link && !usedLinks.has(item.link));
+    balancedShown = extraPlaced;
+    makeStoryRow = storyRow;
     balanceColumns();
 
-    // Show/hide load more button
-    if (items.length > visibleCount) {
+    const remaining = Math.max(0, items.length - visibleCount - balancedShown);
+    if (remaining > 0) {
       loadMoreWrapEl.style.display = 'block';
-      loadMoreBtnEl.textContent = `Show more (${items.length - visibleCount} remaining)`;
+      loadMoreBtnEl.textContent = `Show more (${remaining} remaining)`;
     } else {
       loadMoreWrapEl.style.display = 'none';
     }
@@ -8238,64 +8269,99 @@ initAuth();
     render();
   }
 
-  // Pull lower-column story rows into the briefing column until it matches
-  // the Picks column. Stop when the next row would overshoot by more than
-  // the gap it would close. Cards move, they are not copied.
+  function wireFeed(root) {
+    if (!root) return;
+    root.querySelectorAll('.save-btn').forEach((btn) => {
+      if (btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => toggleSave(btn.dataset.link));
+    });
+    root.querySelectorAll('.share-btn').forEach((btn) => {
+      if (btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const item = allItems.find((i) => i.link === btn.dataset.link)
+          || getFilteredItems().find((i) => i.link === btn.dataset.link);
+        if (item) copyText(buildShareText(item), btn);
+      });
+    });
+    root.querySelectorAll('.note-input').forEach((ta) => {
+      if (ta.dataset.bound === '1') return;
+      ta.dataset.bound = '1';
+      ta.addEventListener('change', () => updateNote(ta.dataset.link, ta.value));
+    });
+  }
+
+  // The 3-column sections stay full width. Extra story rows fill only the
+  // hole beside Picks, and a card that would overshoot by more than the gap
+  // is left for the next page instead of being kept.
   function balanceColumns() {
     const briefing = feedEl.querySelector('.briefing-col');
     const picks = feedEl.querySelector('.picks-col');
-    if (!briefing || !picks) return;
+    if (!briefing || !picks) return 0;
     briefing.style.paddingBottom = '';
     picks.style.paddingBottom = '';
-    if (window.matchMedia('(max-width: 800px)').matches) return;
+    if (window.matchMedia('(max-width: 800px)').matches) return 0;
 
     let fill = briefing.querySelector('.briefing-fill');
     const ensureFill = () => {
       if (fill && fill.isConnected) return fill;
       fill = document.createElement('div');
       fill.className = 'briefing-fill';
-      briefing.appendChild(fill);
+      const card = briefing.querySelector('.briefing-card');
+      if (card) card.insertAdjacentElement('afterend', fill);
+      else briefing.appendChild(fill);
       return fill;
     };
 
+    let added = 0;
     let guard = 0;
-    while (guard < 20) {
+    while (guard < 40 && balanceQueue.length) {
       guard += 1;
-      const remaining = picks.getBoundingClientRect().height - briefing.getBoundingClientRect().height;
+      const beforeBrief = briefing.getBoundingClientRect().height;
+      const remaining = picks.getBoundingClientRect().height - beforeBrief;
       if (remaining <= 16) break;
 
-      const donors = Array.from(feedEl.querySelectorAll('.lower-feed .gn-col'))
-        .map((col) => ({
-          col,
-          cards: Array.from(col.children).filter((el) => el.classList.contains('card')),
-        }))
-        .filter((donor) => donor.cards.length)
-        .sort((a, b) => b.cards.length - a.cards.length);
-      if (!donors.length) break;
-
-      const donor = donors[0];
-      const card = donor.cards[donor.cards.length - 1];
-      const cardHeight = card.getBoundingClientRect().height;
-      if (cardHeight - remaining > remaining) break;
-
+      const item = balanceQueue.shift();
+      const holder = document.createElement('div');
+      holder.innerHTML = String(makeStoryRow(item) || '').trim();
+      const card = holder.firstElementChild;
+      if (!card) break;
       ensureFill().appendChild(card);
-      if (!donor.col.querySelector('.card')) {
-        const grid = donor.col.parentElement;
-        donor.col.remove();
-        if (grid && !grid.querySelector('.card')) {
-          const section = grid.closest('.lower-section');
-          if (section) section.remove();
-        }
-      }
-    }
+      wireFeed(card);
 
+      const briefHeight = briefing.getBoundingClientRect().height;
+      const overshoot = briefHeight - picks.getBoundingClientRect().height;
+      if (briefHeight <= beforeBrief || overshoot > remaining) {
+        card.remove();
+        balanceQueue.unshift(item);
+        break;
+      }
+      added += 1;
+      balancedShown += 1;
+    }
     if (fill && !fill.querySelector('.card')) fill.remove();
-    const lower = feedEl.querySelector('.lower-feed');
-    if (lower && !lower.querySelector('.lower-section')) lower.remove();
 
     const leftover = Math.round(picks.getBoundingClientRect().height - briefing.getBoundingClientRect().height);
     if (leftover > 1) briefing.style.paddingBottom = `${leftover}px`;
     else if (leftover < -1) picks.style.paddingBottom = `${-leftover}px`;
+
+    const remaining = Math.max(0, getFilteredItems().length - visibleCount - balancedShown);
+    if (loadMoreWrapEl && loadMoreBtnEl) {
+      if (remaining > 0) {
+        loadMoreWrapEl.style.display = 'block';
+        loadMoreBtnEl.textContent = `Show more (${remaining} remaining)`;
+      } else {
+        loadMoreWrapEl.style.display = 'none';
+      }
+    }
+
+    feedEl.querySelectorAll('img').forEach((img) => {
+      if (img.dataset.balanceLoad === '1' || img.complete) return;
+      img.dataset.balanceLoad = '1';
+      img.addEventListener('load', () => balanceColumns(), { once: true });
+    });
+    return added;
   }
 
   async function loadJSON(file, category, mapFn) {
