@@ -1,7 +1,47 @@
 {
-  "updated": "2026-10-10T06:07:43.573Z",
+  "updated": "2026-10-10T12:07:04.122Z",
   "count": 20,
   "items": [
+    {
+      "source": "Engadget Reviews",
+      "title": "Engadget review recap: The best of 2026",
+      "link": "https://www.engadget.com/2282285/engadget-review-recap-the-best-of-2026/",
+      "published": "Sat, 10 Oct 2026 12:00:00 +0000",
+      "summary": "A roundup of recent reviews from Engadget.",
+      "image": "https://www.engadget.com/img/gallery/engadget-review-recap-the-best-of-2026/l-intro-1791560871.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "A grief-stricken road trip, The Traitors on the go and other new indie games worth checking out",
+      "link": "https://www.engadget.com/2282667/a-grief-stricken-road-trip-the-traitors-on-the-go-and-other-new-indie-games-worth-checking-out/",
+      "published": "Sat, 10 Oct 2026 11:30:00 +0000",
+      "summary": "Here's our weekly roundup of indie games to look forward to.",
+      "image": "https://www.engadget.com/img/gallery/a-grief-stricken-road-trip-the-traitors-on-the-go-and-other-new-indie-games-worth-checking-out/l-intro-1791571081.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Tesla's Full Self-Driving is now called Assisted Driving in Europe",
+      "link": "https://www.engadget.com/2283007/tesla-full-self-driving-assisted-driving-europe/",
+      "published": "Sat, 10 Oct 2026 11:12:55 +0000",
+      "summary": "Tesla has renamed Full Self-Driving in Europe, as it seeks to get it approved in more countries.",
+      "image": "https://www.engadget.com/img/gallery/tesla-full-self-driving-assisted-driving-europe/l-intro-1791630810.jpg"
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "The Telo MT1 is a big truck trapped in a tiny truck’s body",
+      "link": "https://www.theverge.com/transportation/1005502/telo-mt1-review-ev-tiny-truck",
+      "published": "2026-10-10T11:00:00.000Z",
+      "summary": "I'm bouncing down the road in San Carlos, California, zipping past behemoth tech companies like EA and Oracle, in America's smallest electric truck. The Telo MT1 (which stands for \"mini truck\") unquestionably turns heads because it looks…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/telo_lifestyle_07.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "My brief romance with an AI bird feeder",
+      "link": "https://www.theverge.com/gadgets/1007674/smart-bird-feeders-attact-pests-too",
+      "published": "2026-10-10T07:00:00.000Z",
+      "summary": "I miss my sweet tits. It started off promising enough. Dozens of tiny, colorful birds were drawn to my garden just a few weeks after I mounted a $350 $269 Kiwibit Bird Feeder 2 Pro. \"Looks like Great Tit!\" read the first AI-driven alert…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/IMG_5464.jpeg?quality=90&strip=all&crop=0,0,100,100"
+    },
     {
       "source": "Engadget Reviews",
       "title": "Google teases its new 'Fitbit Edge' wearable ahead of an October 12 reveal",
@@ -75,30 +115,6 @@
       "image": "https://www.engadget.com/img/gallery/webb-telescope-detects-galaxy-origin-of-the-farthest-fast-radio-burst-weve-seen-to-date/l-intro-1791548424.jpg"
     },
     {
-      "source": "Engadget Reviews",
-      "title": "What to expect at Apple's 'Welcome home' event next week",
-      "link": "https://www.engadget.com/2281840/what-to-expect-at-apples-welcome-home-event-next-week/",
-      "published": "Fri, 09 Oct 2026 12:00:00 +0000",
-      "summary": "The company is reportedly rebooting its smart home ambitions with a smart display and a whole bunch of other accessories.",
-      "image": "https://www.engadget.com/img/gallery/what-to-expect-at-apples-welcome-home-event-next-week/l-intro-1791500260.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Anthropic now offers a free vulnerability-finding service for open-source software",
-      "link": "https://www.engadget.com/2282005/anthropic-offers-open-source-software-free-ai-security-checks/",
-      "published": "Fri, 09 Oct 2026 11:24:27 +0000",
-      "summary": "Anthropic is offering open-source projects a new way to check for vulnerabilities with its OSS Scanner.",
-      "image": "https://www.engadget.com/img/gallery/anthropic-now-offers-a-free-vulnerability-finding-service-for-open-source-software/l-intro-1791544973.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Netflix releases trailer for its miniseries about Sam Bankman-Fried's scandal-ridden crypto exchange",
-      "link": "https://www.engadget.com/2281997/netflix-the-altruists-sam-bankman-fried-trailer/",
-      "published": "Fri, 09 Oct 2026 10:54:19 +0000",
-      "summary": "Watch the trailer for Netflix's The Altruists, a mini-series about the rise and fall of cryptocurrency exchange FTX.",
-      "image": "https://www.engadget.com/img/gallery/netflix-releases-trailer-for-its-miniseries-about-sam-bankman-frieds-scandal-ridden-crypto-exchange/l-intro-1791543220.jpg"
-    },
-    {
       "source": "The Verge Reviews",
       "title": "Microsoft’s new Windows Search is exactly what Windows 11 needs",
       "link": "https://www.theverge.com/news/1008320/microsoft-windows-search-overhaul-windows-11",
@@ -145,22 +161,6 @@
       "published": "2026-10-04T15:00:00.000Z",
       "summary": "The OhSnap Wallet 2. | Photo by Sean Hollister / The Verge This toolless modular lever-action wallet is the coolest I've stuck to my phone. Remember when I tested the ultra-thin and convenient OhSnap Snap Grip Stand and liked it so much I…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/ohsnap-wallet-2-01.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge Reviews",
-      "title": "OpenAI’s Dot agent is enterprise software that can also order your dinner",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent",
-      "published": "2026-10-02T18:00:00.000Z",
-      "summary": "New helpful little guy just dropped. | Photo: Allison Johnson / The Verge It's a tale as old as last week: OpenAI's new agent platform, called Dots, is full of cute little guys who can do your bidding. But unlike the ultra-approachable…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/DSC04281_processed.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge Reviews",
-      "title": "The Pocket Advance nearly perfects my favorite Nintendo handheld",
-      "link": "https://www.theverge.com/tech/993521/ayaneo-konkr-pocket-advance-nintendo-game-boy-advance-handheld",
-      "published": "2026-10-02T13:00:00.000Z",
-      "summary": "Although I count the original Game Boy as one of my first tech obsessions, I still consider Nintendo’s Game Boy Advance to be my favorite console of all time thanks to its more comfortable horizontal design (for my big hands) and its…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/ayaneo1b.jpg?quality=90&strip=all&crop=0,0,100,100"
     }
   ]
 }

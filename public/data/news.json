@@ -1,13 +1,142 @@
 {
-  "updated": "2026-10-10T06:07:42.847Z",
+  "updated": "2026-10-10T12:07:03.605Z",
   "count": 58,
   "items": [
     {
-      "source": "CBS News",
+      "source": "The Verge",
       "category": "news",
-      "title": "Newport Beach declares local emergency after coastal flooding on Balboa Peninsula",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxORVFuQkFHSWNRSUNwdzhoTHVEdUNlakJ1cE9qSlRwckVRazduRjBmZjBQTlJ1d3lySFl1ODkwc1Q3dm05TEhNdXVYVnB1Mmx0OGdvQy11S1h5Vkg4OHJ6bzZPMkJYS20yTS02VVdKWmRsR0R4Z1QwSWo1Skkzd21STk9VQ2xCdFU4QmxSdDdn?oc=5",
-      "published": "Sat, 10 Oct 2026 05:32:22 GMT",
+      "title": "The techlash has gone Hollywood",
+      "link": "https://www.theverge.com/tech/1008836/social-reckoning-cupertino-techlash-installer",
+      "published": "2026-10-10T12:00:00.000Z",
+      "summary": "Hi, friends! Welcome to Installer No. 147, your guide to the best and Verge-iest stuff in the world. (If you're new here, welcome, I missed you all, and also you can read all the old editions at the Installer homepage.) I'm back from…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/Installer-147.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "AI Is Getting Really Good at Messing With Cybercriminals",
+      "link": "https://www.wired.com/story/ai-is-getting-really-good-at-messing-with-cybercriminals/",
+      "published": "Sat, 10 Oct 2026 12:00:00 +0000",
+      "summary": "Anti-cybercrime initiatives are increasingly using AI to scam the scammers by tricking them into talking to lifelike bots that they think are real victims.",
+      "image": "https://media.wired.com/photos/6ac7e488d45774a31ff822a9/master/pass/Kernel-Panic-AI-Getting-Really-Good-Fucking-With-Cybercriminals-Security.jpg"
+    },
+    {
+      "source": "The Washington Post",
+      "category": "news",
+      "title": "Trump fumes at ‘stain’ on Norway after missing out on Nobel Peace Prize",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQTkZJbkNrSTEyWktRSldTXzliZDNtQmdzakNiazZnbmJEejdEQ2dwckZsUVFsUEFybkhqbXdCdlVld24xQXJnRmw0ci0yd0E5ZG1vU19GQjdjUXJvZzdodkk3UTc5REVuR3hlb0FUS1JkMmxZeVN5NmtYeDM3dUhFY1JaM1k2NnpNaWZIa2tJRnBvR0xCZXhyQ1JtWjlFRjN1MWdQVTZDZDRwNnBpdVFodFJSWnk2N1lGSGc?oc=5",
+      "published": "Sat, 10 Oct 2026 11:55:22 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Best Lego Gifts for Brick Builders (2026): Smart Bricks, Video Games, and More",
+      "link": "https://www.wired.com/gallery/gifts-for-lego-lovers/",
+      "published": "Sat, 10 Oct 2026 11:30:00 +0000",
+      "summary": "There's more to Lego than just another basic set. We tested tons of Lego-themed gifts to find the perfect ones for the brick builder in your life.",
+      "image": "https://media.wired.com/photos/6ac216c90afe89d0a5d9a6f6/master/pass/Best%20Gifts%20for%20Lego%20Lovers%20102026%20top%20art%20SOURCE%20Amazon.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "The Best Smart Scales for Tracking Weight and Body Composition (2026)",
+      "link": "https://www.wired.com/gallery/best-smart-scales/",
+      "published": "Sat, 10 Oct 2026 11:04:00 +0000",
+      "summary": "Whether you want a weight log on your phone or a bathroom gadget packed with sensors, I’ve found an option for you.",
+      "image": "https://media.wired.com/photos/6ac7fce2f7f3ea1155d46e62/master/pass/Update%20Best%20Smart%20Scales%20102026%20top%20art%20SOURCE%20Amazon.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The Telo MT1 is a big truck trapped in a tiny truck’s body",
+      "link": "https://www.theverge.com/transportation/1005502/telo-mt1-review-ev-tiny-truck",
+      "published": "2026-10-10T11:00:00.000Z",
+      "summary": "I'm bouncing down the road in San Carlos, California, zipping past behemoth tech companies like EA and Oracle, in America's smallest electric truck. The Telo MT1 (which stands for \"mini truck\") unquestionably turns heads because it looks…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/telo_lifestyle_07.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The director of Fjord takes the &#8216;risky position&#8217; of moderator",
+      "link": "https://www.theverge.com/entertainment/1008748/fjord-cristian-mungiu-interview",
+      "published": "2026-10-10T11:00:00.000Z",
+      "summary": "Renata Reinsve (top center) and Sebastian Stan (top right) play religious Romanians living in Norway. | FLC Press Cristian Mungiu's sixth feature, Fjord, concerns a family on trial. They seem like good people, God-fearing. They've just…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/6dcdc551-c3ac-483a-88b4-2ec76d2e9874.png?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "BBC",
+      "category": "news",
+      "title": "Rogue Anthropic AI agent gave police fake tip in unsolved murder case",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12Zjh2Z2tETEw5MzJ4VEZnV2wxUVFCY09JWTVhNEktZDZSR3ZPN1VVaWkzblc1WkJXeDJ4VmNvbUIxUFBMUGpIUkJzRVJSRGJHaWpTYk9LYklpenM?oc=5",
+      "published": "Sat, 10 Oct 2026 10:06:23 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Axios",
+      "category": "news",
+      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
+      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
+      "published": "Sat, 10 Oct 2026 10:00:26 GMT",
+      "summary": ""
+    },
+    {
+      "source": "FOX Weather",
+      "category": "news",
+      "title": "Live updates: Hurricane Isaias makes landfall as extreme winds, heavy rain blast the Gulf Coast",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPaV9MUTRVQzhKVjN5amtXNEgtcUtEMWI5T2ZNMFp1eV9FT1hLNTRBa2NCcEU2UGtPejVNMGx1Z1NmTWpneU1ZYUIxRWxnSXNTaFpZZDJNVHZsTmlJclN0ZThCOWg5ZjhNZUlPNWpDVHpYUnhlUGJBNE5yUU9wNE5RWWlEQTNHVG82TGxoTUVWazNSQWxMTGNaanlyUGtkLXJzNWdwMHFpcjFJQVFrNEkwcHJiSmd5WVJCOEI0ejRpa0hIMXBEeTZfMWxXWG4?oc=5",
+      "published": "Sat, 10 Oct 2026 09:31:06 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Humans Watched This Supernova Explode Nearly a Millennium Ago. Now You Can See It in High Definition",
+      "link": "https://www.wired.com/story/humans-watched-this-supernova-explode-nearly-a-millennium-ago-now-you-can-see-it-in-high-definition/",
+      "published": "Sat, 10 Oct 2026 09:30:00 +0000",
+      "summary": "The new image isn’t just stunning—it may also provide clues about how this star survived its own explosion.",
+      "image": "https://media.wired.com/photos/6ac6c81bf72dd8f6dfa1d410/master/pass/noirlab2624a.jpg"
+    },
+    {
+      "source": "The New York Times",
+      "category": "news",
+      "title": "A Vague, Redacted Execution Protocol in Tennessee Draws Scrutiny",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQQTIxMnVNNlVhOEhQMjRfTGpzQk9kZGRZZVR6amZzbUQ0SHhhcUlXSEdiMTdPN19PUWJNeU9laUMySzl1YUJwbm5rRFhYUmFyLW5Yb2NuSzF5QURtY0I4N0dBWmo3S1paVy1JZ0dQTmRlLVZlWE5Da1dtZGgxY3NsVlJ1SVNNejlKcUJESnBGaVBrNHRRYmNud2NrVTEzWFYxQnc?oc=5",
+      "published": "Sat, 10 Oct 2026 09:00:58 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "How This Tiny Startup Built the World’s Safest Bike Helmet",
+      "link": "https://www.wired.com/story/how-this-tiny-startup-pikio-built-the-worlds-safest-bike-helmet/",
+      "published": "Sat, 10 Oct 2026 09:00:00 +0000",
+      "summary": "Inspired by head-banging woodpeckers, Vancouver-based Pikio Labs has discovered a new approach to skull protection.",
+      "image": "https://media.wired.com/photos/6ac8bde343102e19d08d1480/master/pass/Pikio%20Helmut.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "My brief romance with an AI bird feeder",
+      "link": "https://www.theverge.com/gadgets/1007674/smart-bird-feeders-attact-pests-too",
+      "published": "2026-10-10T07:00:00.000Z",
+      "summary": "I miss my sweet tits. It started off promising enough. Dozens of tiny, colorful birds were drawn to my garden just a few weeks after I mounted a $350 $269 Kiwibit Bird Feeder 2 Pro. \"Looks like Great Tit!\" read the first AI-driven alert…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/IMG_5464.jpeg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Axios",
+      "category": "news",
+      "title": "Trump announces major diesel deal with Putin, infuriating Ukraine",
+      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE45R1VMR0FnSGE4WGFsYTRYOGpkSlRhXzByUjdPUklvbHUzeFBwcHFGLWhGb1lPWTBYZXpLZEpocXlfc0xTUU5qbVhoX1lhWEwwRmp3N3lkd2QwOFVhQWRxc2ZTTm11dmdNN01qVUVyc2xoU2ljOGlBUXF0cE9EUQ?oc=5",
+      "published": "Sat, 10 Oct 2026 06:34:32 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Reuters",
+      "category": "news",
+      "title": "French policing under scrutiny as student protest injuries mount",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHl6SHlJTVNheFJ6OFJldVVpYWxNRXJoVzRBX2hzN004MDc2YkpWelhPLUsxSkJRUmQtcm96Q19lVDNqZFViMzl0aVoxdU5SZDBSZDc2UTVydnVRMDBURzFBbFMwRmEwLS1HRk53M0ZoY2tpNU5NUGpSTUx4blUtWWI5R1ZIZVJoZlFaYS1RRGpmbHFnVHlUVFhrYTM2ektFM3BDN2V3?oc=5",
+      "published": "Sat, 10 Oct 2026 06:05:00 GMT",
       "summary": ""
     },
     {
@@ -65,6 +194,22 @@
       "image": "https://media.wired.com/photos/66ea03340e63ccab6b8add4b/master/pass/WIRED-Coupons-1.jpg"
     },
     {
+      "source": "CBS News",
+      "category": "news",
+      "title": "AG Blanche, other high-level DOJ appointees can take part in political campaigns, memo says",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNT01DVUhFX1Y1bnFnOW1PQlpKNkpyR1ZUdEtaVTBCay01NHBOc3RlSnBiWkgxd0EwSHYzaHUyWEFwbTE1bUYyRmt3bDN1cWJQSDJVU3VSamtJT1RUaXItYkd4MFVrTzVjdUlncS1yeDBIVXdTNkQ4UE5jTWc1aUZiN0hSMk93MXJwVF92bnRVQjVnX3c4d0diUXcxNTlqTHJ0VVZZdjBOZTJxZ3o2Ums3ZG01VXc?oc=5",
+      "published": "Sat, 10 Oct 2026 04:57:48 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Washington Post",
+      "category": "news",
+      "title": "Large waves pummel Southern California coast, flooding homes",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPWk5KZzhuT0dpSE80S0VPWERUaG5GdHhnQUk0b0JPSGxqNnc3VzRZVE1MWHYxMjJFRDZ4TmlNZ3F4MzdkVmdrRlR0LWRwek9SaGlwVW96dzFSUGRTZWpXdzhEWkk5SWxfWDZobXItUERsYVBITUpya0VRTXlBZGpwQVNJR0lGN2JWZjdJcHFtZWNKY01keTFxT1pjN0dvVE9vUGZkeUhUQ0QzbnZIbi16RFZXMFQ5U1NCMkgyVDBaVkw?oc=5",
+      "published": "Sat, 10 Oct 2026 03:40:24 GMT",
+      "summary": ""
+    },
+    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Elon Musk intensifies attack on Ambani over Starlink India launch delay",
@@ -81,35 +226,11 @@
       "summary": ""
     },
     {
-      "source": "Fox News",
+      "source": "WSTM",
       "category": "news",
-      "title": "Trump rallies New York crowd for Republican Bruce Blakeman's bid to replace Gov. Kathy Hochul",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNd2hNWkJMYXZ1dHE2Z2t0VEkwX1JWVjNLby13alI1TDYyNzdxaFBlWE5qaGRwbUlFSzN2Qy1QTWVuSUpKNnhBbzhCOUJSMUU4V2ZnN2Npdi05NENVMUYtMWtlUHZuZkV6UUZzZ1JfY2FtdV8ySEVmc1ktM19faDNzZnlDdHpFUXYxREpQM2ZPQjdWNzZQeDlDcWx0emVPOXFyVFc1U1hoT1RXOEx3c0JkQlVSem04WE9u0gG-AUFVX3lxTE5ueVNkMW1INkFfWEhYaVJKbTBFRkhLUW10QmFkNVA3ZTdJUVpzc1pRNXQxcXZobVlCSS1MeVlYeG1XZWVUWmFfc29mT3pyQllJWUgyM0ZvWTBxS2M0bzZCMXFqcGdsVmVOY0tSZEswVGF1VXJJZEZ4NmNZZ0ZpR0dMWHozUkE0T3pLWmY4T3hfQ3MwbmlLUmZfTnF4REkwdVZDVGJ0dnUwSlBsNW9PbndPU0pJeGxFUEt2X0FZalE?oc=5",
-      "published": "Sat, 10 Oct 2026 02:42:49 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Breaking News, Latest News and Videos",
-      "category": "news",
-      "title": "Hurricane Isaias updates: Storm makes landfall in Florida Panhandle - ABC News",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaUdYcFFrUnUtM3Z0cnJIN3ZnNEZpbmM1THIzblVmMTN6TXpXaE92Wl8zOEtRaFdYRHpIVjl4WmV6VWJmNG5rcWRoRTMwaGdrWE8talRzQ192djdQWk43Ynp6bGlldkx3SVVnWUtLdWR2NVBNTTlyWGpFZE5aMlpvcHMtR1ZCZVZWdXZpZHVzbkRwVlh4Q3NfSVVYeUJFLXk2Rzk3anBfRdIBrAFBVV95cUxNeGFSUzh5SldPSGNTdDdVczJnc2NETDU0aExmdE9qdHhYSjk1d2F1b243U0M4OHZiaGxUME90OERBMC1DbDJ1YmZmUkZmOHZXNzJMUmIxU09HWjI2UnhBaGFSTXJTM2lNY3R2ZW1xc1Q4N0xxQlFNSXNES2dMQVR0c2J1bENwaXNBSTc4MV9qbXVNNl9PamxISkFESFNIZWhLWnQxOUJMeTkyRlU0?oc=5",
-      "published": "Sat, 10 Oct 2026 02:29:00 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Bloomberg.com",
-      "category": "news",
-      "title": "Trump Warns Norway He Won’t Forget Nobel Peace Prize Snub",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObjd4M2hoaWRYUEhnc2F3VFUySnFHTmxFN3VRRlZwVkxobGlNZk9rSzB6dkpBVk1zVW9VYzZuV2REbjhzeGpadHFHSHhqdHl1Wmc3ZXo4ckJtSEpRaGFyc2FlZ29SZ2w4Q0VOdW1vWS1uV2NJOXFtR3pOZnR6d0gtQTc3cGJYWlE1cWc1ZG1pZ25fVkxJaENpdERYUEVIMm51MF9xdWRYOTBFMzJt?oc=5",
-      "published": "Sat, 10 Oct 2026 02:06:00 GMT",
-      "summary": ""
-    },
-    {
-      "source": "WSJ",
-      "category": "news",
-      "title": "Houthis Bombard Saudi Air Links in Effort to Cut Kingdom Off From Rest of World",
-      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNc1YzeWZ5ZnFYX3g5SEdnVVUwSjBhY3JqTFFQTy1TNUZBc016TFFGQ0thUWtTWEQ4RlpIM0c4YUJSRm9zVTlvTVlvQmtkeEZLeGJ1LXZBYTFpT3lmbFpnekQxZk91a0Z5U0pHMDdwVS1YaXIzYlFCM0N1VVpWNGFUOWtKRUhrVzlRRThsb1hVRE4yWVBibjJRWDMtaVlTTk5VTzRXTDVFT25UZHU2TDhlcFZBdjRiYXczdXNMckdXakdyOXln?oc=5",
-      "published": "Sat, 10 Oct 2026 02:00:00 GMT",
+      "title": "EXCLUSIVE: CNY Central's Matt Mulcahy interviews President Trump",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQWF9CYmprNjBJeHZmZ0ROM2U3OEFUdXo2eWxadldFU0ljSkhBSXdhaHhhNW85NlhhYy1RSm5KZm9XNkpSNk9RcFFzVkJNMGJXcVZiaURkX3FwRkF2cGJtNmcySTF5akFBWktkQXVBM3laM2FmOWVweDdwRG5aWXJPWjBPRy11MldEM0dYaTZKcDR6OEkwcVVTMjNsM1Q?oc=5",
+      "published": "Sat, 10 Oct 2026 02:05:08 GMT",
       "summary": ""
     },
     {
@@ -119,30 +240,6 @@
       "link": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/",
       "published": "Sat, 10 Oct 2026 00:18:32 +0000",
       "summary": "Anthropic said it \"turned off live internet access\" for \"all our internal evaluations\" until further notice."
-    },
-    {
-      "source": "CBS News",
-      "category": "news",
-      "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdnJnMWFyM09qblFLcTZVZE9DbldxZy1xNXRWUElqY0huc2h4MXpjWE9jUlRvVnE5TUNucXZzNzdDVDFNcTJfYklKQkhxOFJpQjR6NHdCRDlhM2ZySHEwckNLWlV6X3dyT0JJelRPY0lOYUYxdUpzaXNwcW9sUWlHXzk2SW1DcklZeHc?oc=5",
-      "published": "Sat, 10 Oct 2026 00:15:00 GMT",
-      "summary": ""
-    },
-    {
-      "source": "The Guardian",
-      "category": "news",
-      "title": "Zelenskyy furious as Trump announces deal to buy Russian diesel",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeG1xRUcxTGtHQXVIWkNWZXBJLXE5RkNVcUVjS0lmXzZCeDdxWjk0czFCWEpYZFY1Vl9oVTV1LTJEMkhxMXhBX2QzSlcwUHlQaGYyTlEwY0lsREU2NFROOGFVSTBRWV9hQ3hBSHVwNnNqSDhsSTdlOWhweTRtRXF3b1piYzRtam5sUXc?oc=5",
-      "published": "Sat, 10 Oct 2026 00:07:00 GMT",
-      "summary": ""
-    },
-    {
-      "source": "The New York Times",
-      "category": "news",
-      "title": "Donor Says Kimberly Guilfoyle Sought Money From Him to Cover Debt",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPRlJvY2Z2TGJBZGY3NWJmUEtzZmVPVnlTTlF0blZMM0pVLWNwTjNQUWFTbU9UWjk4cHgzWVVQWktzREdfa3VOeE96dXFERzA1RWlOVGNyZHQwNkFjc3l3TkVlVDE2QkdlQm52VERubTcyTldrRjhoNEwzWmJtU19DcUJaMjl5YjBBT0E?oc=5",
-      "published": "Fri, 09 Oct 2026 23:26:58 GMT",
-      "summary": ""
     },
     {
       "source": "Ars Technica",
@@ -171,11 +268,11 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/yandex-data-center_sasovo-ryazan-russia.jpg"
     },
     {
-      "source": "Axios",
+      "source": "Reuters",
       "category": "news",
-      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
-      "published": "Fri, 09 Oct 2026 22:00:23 GMT",
+      "title": "Trump selects Katie Zacharia as White House press secretary",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOOXZfSE5tdU1qaXV4LWl1Z2hYclJVU1dVSlFWQTZQV1J6RzQydkxoZjFqTTJxc3lLNTNoaHVPOTBzbHdBUFBkcHdEWGpldVJ1Vzk1NE9EUkJfMnFNOEQxVkZfUGZmVS00M01FMGFiOENBME4xbTlZWmRBVVNNbERDNkRFSjA4dDA4LUx1MTlpZnh1VU9lWUEweld4ZG96b0QzTF9uZGhyTkxjQQ?oc=5",
+      "published": "Fri, 09 Oct 2026 21:55:57 GMT",
       "summary": ""
     },
     {
@@ -212,14 +309,6 @@
       "published": "Fri, 09 Oct 2026 21:34:09 +0000",
       "summary": "\"We’ve made it clear that NASA will never give up its presence in low Earth orbit.\"",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662.jpg"
-    },
-    {
-      "source": "Courthouse News",
-      "category": "news",
-      "title": "NYC man shot by ICE still has bullet in body, lawyers say",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOems3ano2ZEg4M01yVEtwWDNmLXY3ZFFRY0EzQUkzdzRCN3ZQSWs5bkVRaFpIWUJWS3Q2Rk5WVmI3WTgzZmZMMjIwd29YS1RFUk9USW5rcTFOWmYydUE4cVIxc1V6ZkdqUm9JdVVENU9rbTcwYTV5ZmNPZkY4c3VfbGlVQVdIUm9JM3FPdTFQRFJhZw?oc=5",
-      "published": "Fri, 09 Oct 2026 21:27:04 GMT",
-      "summary": ""
     },
     {
       "source": "The Verge",
@@ -275,15 +364,6 @@
       "summary": "Anthropic did not discover this behavior until over two months after its AI submitted the false tip."
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "Book Publishers Are Quietly Using More AI. Staff Are Revolting",
-      "link": "https://www.wired.com/story/book-publishers-are-quietly-using-more-ai-staff-are-revolting/",
-      "published": "Fri, 09 Oct 2026 19:28:49 +0000",
-      "summary": "Workers at three major publishing houses tell WIRED that LLMs are being used for publicity, cover art, back cover copy, and emails, as some execs push junior staff to champion the tech.",
-      "image": "https://media.wired.com/photos/6ac81c8de30ca6995f7d2b30/master/pass/Publishers-Using-AI-Staff-Pissed-Culture-962637114.jpg"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Outrage grows as CDC reportedly poised to fund \"unethical\" vaccine trial",
@@ -327,14 +407,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2298480400-1024x648.jpg"
     },
     {
-      "source": "PBS",
-      "category": "news",
-      "title": "As Blanche hits the campaign trail, new DOJ memo relaxes rules around political conduct for Senate-approved appointees",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNdk0zb2VWTXNEazlWRHFEMFI5VVJXcFBVLVQ5X1A1dkNTS2dDdTJmSWhvWmdud01oNExVWWVvUzUzNWZCUERsYjlXeUc2ZjA1anRRSVA5QXJQdExobndOajNnTzdWZ21XckJVeFNqUjJJSUpZZktXZ2hCVWxmdDB6YXRvcER5RXhiZHhEYmNfQ1lkWXFlTzJqNmNMYjh3ME5ab3o1ZWdvemZ0ZnVzbG50cnpKUmxpQ09vcWZMeVd5UWRwcWZYdUxYa1JRZFNOX1NHVWlNd0ZGVXrSAd4BQVVfeXFMTzM3VVl4cV80UGpVc2ZuenotYUo2ZXRLTVFVaDVQenBSYkxmcGNBZmlwakdLVnB2UGVyRUt0elp4ZW9wSWJTSm5xcnNuQk1aenFlTDI1dVNjWVhJMDJSSVplb3VFOElIQnhvUlJ1eUZ5WEVpUEdDN2J2R1VZT2hGMWsxS1FnSXZZVnI2NjJveFJELXNVMHN4a0R6VWtDdThjd2p2TDZMa1dtdTBCbWdZNVZETmFQRHBBYzVwMWpQN01fOUg2VjdaMmFweXJzUGRrOXg2SnAtRVFwZldoZUZR?oc=5",
-      "published": "Fri, 09 Oct 2026 18:53:52 GMT",
-      "summary": ""
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "AI disqualification yields new Nikon Small World in Motion winner",
@@ -362,15 +434,6 @@
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25840497/STKP211_BRENDAN_CARR_B.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "NASA Just Made Nearly 1 TB of Artemis II Data Available to the Public",
-      "link": "https://www.wired.com/story/nasa-just-made-nearly-1-tb-of-artemis-ii-data-available-to-the-public/",
-      "published": "Fri, 09 Oct 2026 18:30:00 +0000",
-      "summary": "The data drop includes photographs, audio, video, and astronauts’ notes that will be used to study the moon and prepare for future human missions.",
-      "image": "https://media.wired.com/photos/6ac7fc75775a25ece8a94633/master/pass/art002e016252%20(1).jpg"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Starlink spectrum deal boosts Musk plan to beat AT&T, T-Mobile, and Verizon",
@@ -387,42 +450,6 @@
       "published": "2026-10-09T18:06:57.000Z",
       "summary": "The original first place video used AI in post-processing. | Image: Dr. Ning Xu Nikon says the video that originally won first place in its Small World in Motion contest \"did not comply with the competition rules regarding generative AI.\"…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/nikon-small-world-in-motion-ning-xu.png?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Google teases Fitbit Edge launch next week",
-      "link": "https://www.theverge.com/tech/1008918/google-fitbit-edge-launch-next-week",
-      "published": "2026-10-09T18:05:55.000Z",
-      "summary": "Google shared a closeup of its upcoming fitness tracker. | Image: Google It looks like Google is getting ready to take the wraps off its rumored Fitbit Edge next Monday. In a post on X, Google posted a picture of what appears to be the…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/fitbit-edge.jpeg?quality=90&strip=all&crop=0,0,71.318894733819,62.485080718084"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The Samsung Galaxy S26 Ultra is down to $950 after Prime Day",
-      "link": "https://www.theverge.com/gadgets/1008857/samsung-galaxy-s26-ultra-deal-sale",
-      "published": "2026-10-09T17:41:24.000Z",
-      "summary": "Amazon has the Samsung Galaxy S26 Ultra in black with 256GB of storage discounted to $949.99, a healthy discount from its usual price of $1,399.99. This phone’s standout feature is the adjustable privacy display, which can hide your entire…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/268399_Samsung_Galaxy_S26_Ultra_review_AJohnson_0011.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Amazon’s new Kindles appear to have a light leak problem",
-      "link": "https://www.theverge.com/tech/1008833/amazon-kindle-light-leak",
-      "published": "2026-10-09T17:25:39.000Z",
-      "summary": "Some users are reporting that the new Kindles have a light leak issue that is especially apparent when using dark mode. The latest base-model Kindles have a flush bezel that gives them a sleek appearance and looks great… as long as you…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/P1011582.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Microsoft tries to spark new life into Windows",
-      "link": "https://www.theverge.com/tech/1008801/microsoft-windows-surface-event-hybrid-ai-notepad",
-      "published": "2026-10-09T17:00:00.000Z",
-      "summary": "When Microsoft released Windows 11 five years ago, it felt like an operating system that was still being renovated, a work in progress. You'd think by now that those renovations would be complete, with Microsoft turning its attention to…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2299110674.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "TechCrunch",
@@ -457,30 +484,12 @@
       "summary": "\"When we are drawn into even the most primitive exchanges with a relational artifact, we believe it cares for us,\" Dr. Sherry Turkle writes. \"And we are wired to care for it in return.\""
     },
     {
-      "source": "Wired",
-      "category": "news",
-      "title": "The DOJ Is Weighing Perjury Charges Against Cassidy Hutchinson",
-      "link": "https://www.wired.com/story/the-doj-is-weighing-perjury-charges-against-cassidy-hutchinson/",
-      "published": "Fri, 09 Oct 2026 16:09:08 +0000",
-      "summary": "The Justice Department is considering a perjury and obstruction-of-justice case against Cassidy Hutchinson, a former White House aide who testified against Donald Trump to the January 6 committee.",
-      "image": "https://media.wired.com/photos/6ac8ddd09e3491cd7012831f/master/pass/Cassidy%20Hutchinson.jpg"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Tesla renames ‘Full Self-Driving’ to ‘Tesla Assisted Driving’ in Europe",
       "link": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
       "published": "Fri, 09 Oct 2026 16:07:26 +0000",
       "summary": "The name change is enough for Germany's transport minister to start advocating for Europe-wide adoption of the driver assistance software."
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "I’m Still Convinced the iPod Was the Perfect Gadget",
-      "link": "https://www.wired.com/story/im-still-convinced-the-ipod-was-the-perfect-gadget/",
-      "published": "Fri, 09 Oct 2026 15:00:00 +0000",
-      "summary": "Apple’s original music player got many things right. Chief among them: It didn’t connect to the internet.",
-      "image": "https://media.wired.com/photos/6abdb2233241c89b6aaeb7ab/master/pass/Backchannel-iPod-Anniversary-Business-678384.jpg"
     },
     {
       "source": "Ars Technica",
@@ -490,15 +499,6 @@
       "published": "Fri, 09 Oct 2026 13:14:33 +0000",
       "summary": "The US says Microsoft abused immigration rules; the company disputes the claim.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/microsoft-logo-lights-1152x648.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Dunking on Dating App Profiles Is Content Gold. People Are Getting Sick of It",
-      "link": "https://www.wired.com/story/dunking-on-dating-app-profiles-is-content-gold-people-are-getting-sick-of-it/",
-      "published": "Fri, 09 Oct 2026 11:00:00 +0000",
-      "summary": "Relationship coaches, TikTokers, and disgruntled singles alike frequently shame bad profiles, as more apps experiment with blocking screenshots.",
-      "image": "https://media.wired.com/photos/6abfeb50f31a481af95ad070/master/pass/culture_dating_app_shaming.jpg"
     }
   ]
 }
