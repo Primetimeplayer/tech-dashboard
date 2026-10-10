@@ -1,7 +1,317 @@
 {
-  "updated": "2026-10-09T18:07:55.040Z",
-  "count": 46,
+  "updated": "2026-10-10T00:09:26.174Z",
+  "count": 58,
   "items": [
+    {
+      "source": "The New York Times",
+      "category": "news",
+      "title": "Donor Says Kimberly Guilfoyle Sought Money From Him to Cover Debt",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPRlJvY2Z2TGJBZGY3NWJmUEtzZmVPVnlTTlF0blZMM0pVLWNwTjNQUWFTbU9UWjk4cHgzWVVQWktzREdfa3VOeE96dXFERzA1RWlOVGNyZHQwNkFjc3l3TkVlVDE2QkdlQm52VERubTcyTldrRjhoNEwzWmJtU19DcUJaMjl5YjBBT0E?oc=5",
+      "published": "Fri, 09 Oct 2026 23:26:58 GMT",
+      "summary": ""
+    },
+    {
+      "source": "NPR",
+      "category": "news",
+      "title": "'Life-threatening' Isaias, a major hurricane, starts to affect Gulf Coast",
+      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE80TFppc3pqQ0JhWERkcFhBby0tWWlPdjhiVklQNHZNSXowdkpsZEw2OXNWUm9iTElxNkNySWd5QmJoSDZoQUhOaGdONGkxNzVhdGQwU0xtZ3Q4SnVWUi05dHBfQTFVZF84RkRuckJFWjN4X0F5SXRERg?oc=5",
+      "published": "Fri, 09 Oct 2026 23:20:42 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Axios",
+      "category": "news",
+      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
+      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
+      "published": "Fri, 09 Oct 2026 22:59:59 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Reuters",
+      "category": "news",
+      "title": "Trump says Russia to supply diesel to US and global markets",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQU3RwVkZ4Mkg3Vy1fdGF2T2t4RmRLV3lQaU5LcXdnd3hKd21HRlZqR1dBTDlEbmNheE1MYVNjZldOLVlUd2lpMDdSaDd5c0tSUEpVRWJPLU1rTU9hSVhTYlF3Z2JPUlQydXgyb0VraVpvMUlwdHlFY2RoNEZ3WUE4Y0JjNnlHMV9VakFsdzMzOFFzUnQ3MlE?oc=5",
+      "published": "Fri, 09 Oct 2026 22:46:34 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Neanderthal wooden tools from Spain found preserved in stone",
+      "link": "https://arstechnica.com/science/2026/10/neanderthal-wooden-tools-from-spain-found-preserved-in-stone/",
+      "published": "Fri, 09 Oct 2026 22:34:03 +0000",
+      "summary": "Dissolved rock precipitated around the tools, which then decayed.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/image-1152x648.png"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Long live the mechanical keyboard",
+      "link": "https://techcrunch.com/2026/10/09/long-live-the-mechanical-keyboard/",
+      "published": "Fri, 09 Oct 2026 22:08:24 +0000",
+      "summary": "Keychron made a name for itself after launching on Kickstarter in 2017. Today, it offers the value K2 model as well as a variety of other versions, including one with an all-wood body."
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Ukraine’s drones knock out AI data center belonging to \"Russia’s Google\"",
+      "link": "https://arstechnica.com/gadgets/2026/10/ukraines-drones-knock-out-ai-data-center-belonging-to-russias-google/",
+      "published": "Fri, 09 Oct 2026 22:04:07 +0000",
+      "summary": "One damaged data center has supercomputers used for training Yandex’s AI model.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/yandex-data-center_sasovo-ryazan-russia.jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "A Cray-1 supercomputer replica from 30 \"obsolete\" Mac Minis",
+      "link": "https://arstechnica.com/gadgets/2026/10/a-cray-1-supercomputer-replica-from-30-obsolete-mac-minis/",
+      "published": "Fri, 09 Oct 2026 21:51:12 +0000",
+      "summary": "Stylish upcycling, with a retro flare, at Spain's Museo de Historia de la Computación.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/Cray-1_Vertical_Chassis-1-810x648.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Decade-old RAM is making a comeback",
+      "link": "https://www.theverge.com/games/1009140/ram-shortage-intel-amd-ddr4-comeback",
+      "published": "2026-10-09T21:50:00.000Z",
+      "summary": "CPU makers have noticed that the seemingly unending RAM price hikes are making it tough for a lot of us to upgrade our PCs. Their solution? A return to last-gen DDR4 RAM. Intel and AMD are making new CPUs that'll support the older, more…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/12/STKS523_RAM_SHORTAGE_B.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "The maker of non-text AI model Jev valued at $7.5B just weeks after launch",
+      "link": "https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/",
+      "published": "Fri, 09 Oct 2026 21:41:29 +0000",
+      "summary": "What has users and large corporations so excited about Jev is TypeSafe’s claim that it works significantly faster and uses far fewer tokens than LLMs."
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "NASA issues long-awaited call to industry for private space stations",
+      "link": "https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/",
+      "published": "Fri, 09 Oct 2026 21:34:09 +0000",
+      "summary": "\"We’ve made it clear that NASA will never give up its presence in low Earth orbit.\"",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662.jpg"
+    },
+    {
+      "source": "CBS News",
+      "category": "news",
+      "title": "NYPD body camera video shows aftermath of ICE agent shooting man in Marble Hill",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9RSmNGRTJHS0xYWElZdG11aGhmWEFNSlptaDlNWkwzX0FQV09MZDNhWkZiZTFORmJCZjJYdFBMd2pWSzVTSDl4QlpQZU40VmZzdnpaTDB5dV8tTlRCZTU1T1g1QzlocWxnM1JkSm40OA?oc=5",
+      "published": "Fri, 09 Oct 2026 21:32:04 GMT",
+      "summary": ""
+    },
+    {
+      "source": "AP News",
+      "category": "news",
+      "title": "Two powerful earthquakes and multiple aftershocks rock Panama",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVl9TaDlyMTA4emtwWlhyemdqTUY2ak9BUzU4TWlyT3d6dEtfWGs1RWVESTZ3YlhBcmx0S1dhajROOEJjY2NvbDlHc0h0Z2s2a1RFY3dRSDJTSlFrOTVWWk5PVjBlVGtUTEtPSEpMeS1nZFE1eTFmWWJzUGd4Ym5mOE1KZw?oc=5",
+      "published": "Fri, 09 Oct 2026 21:28:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Anthropic’s AI gave Philadelphia police a fake tip about an unsolved homicide",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1009090/anthropic-fake-homicide-information-philadelphia-pd-tip",
+      "published": "2026-10-09T21:15:38.000Z",
+      "summary": "An Anthropic AI model provided false information about an unsolved homicide to a Philadelphia Police Department (PPD) tipline, according to a report from 6abc. In a statement released on Friday, the PPD said the AI model sent the tip…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "NBC News",
+      "category": "news",
+      "title": "James Talarico back on the trail after an absence with the flu drew scrutiny",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQZ3hnUEw0WGhnR3hmYnFwc25NRUN4RTlicTFvTUtPTXVxWFdRMGRQNVFYSmY2cmFXLVVib1MxNl9QWjh2WU0tVGhNdGNabGpCMjBxUVVnOHFuWlk5MTJRLWo3RzBFWEtQcW9ILWZPYm1oMDEyRzFoanhtTWJRNlFiN2tBM1NrLU5PRjdYbG5SLVgyMUpvdDJtU3d5YlFDSXAzOFJJU2k0bw?oc=5",
+      "published": "Fri, 09 Oct 2026 21:09:54 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "What's been driving Hawaii's lava fountains?",
+      "link": "https://arstechnica.com/science/2026/10/whats-been-driving-hawaiis-lava-fountains/",
+      "published": "Fri, 09 Oct 2026 21:05:01 +0000",
+      "summary": "Before the lava fountains started, the ground was expanding by half a meter a day.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2243092854-1152x648.jpg"
+    },
+    {
+      "source": "NBC News",
+      "category": "news",
+      "title": "Second defendant in Cornell fraternity case seeks New York AG’s recusal",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQeTBvTlFEcFdBSVNtQ2stVlkwcWtvTUpmaXRZN0YwTXp4NVFzSENhN0xSOElqWUZsU2JFTklyckZxS29iWWlRR3kwOUNYNkRTTUdmWTlDX2Q5eTVQRnB3NzQwOFA4Y3I0eE5nSUwyY0dvLTE3WTlhcGNYdGx0aGNXbGZEQXNYdXgyU0xUdWpGbkhta25SUmIwT043Wk10X3ZmbHlmT0pmalhCS0QyNUpCS2Qwc3p0bVk?oc=5",
+      "published": "Fri, 09 Oct 2026 20:40:46 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Tesla’s ‘Full Self-Driving’ Becomes ‘Assisted Driving’ in Europe",
+      "link": "https://www.wired.com/story/tesla-full-self-driving-becomes-assisted-driving-in-europe/",
+      "published": "Fri, 09 Oct 2026 20:18:15 +0000",
+      "summary": "The automaker has been criticized for misleading drivers with the feature’s name. Now it’s renaming it for European regulators.",
+      "image": "https://media.wired.com/photos/6ac9386f3122e744c08a4121/master/pass/GettyImages-1228358583.jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "AI coding agents generate more code, but not more software",
+      "link": "https://arstechnica.com/ai/2026/10/ai-coding-agents-generate-more-code-but-not-more-software/",
+      "published": "Fri, 09 Oct 2026 19:43:50 +0000",
+      "summary": "Study finds coding efficiency gains get \"absorbed\" by human review \"bottleneck.\"",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2264559974-1152x648.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Ohio blogger found guilty of harassment for sending Shrek nude to senator",
+      "link": "https://www.theverge.com/policy/1008991/ohio-blogger-harassment-shrek-nude",
+      "published": "2026-10-09T19:41:11.000Z",
+      "summary": "A jury found an Ohio political blogger guilty of telecommunications harassment after he sent an explicit image of Shrek to a Republican state senator. On Friday, a judge ordered DJ Byrnes, owner of political commentary blog The Rooster, to…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2261816039.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "An Anthropic AI model sent a false homicide tip to Philadelphia police",
+      "link": "https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/",
+      "published": "Fri, 09 Oct 2026 19:36:56 +0000",
+      "summary": "Anthropic did not discover this behavior until over two months after its AI submitted the false tip."
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Book Publishers Are Quietly Using More AI. Staff Are Revolting",
+      "link": "https://www.wired.com/story/book-publishers-are-quietly-using-more-ai-staff-are-revolting/",
+      "published": "Fri, 09 Oct 2026 19:28:49 +0000",
+      "summary": "Workers at three major publishing houses tell WIRED that LLMs are being used for publicity, cover art, back cover copy, and emails, as some execs push junior staff to champion the tech.",
+      "image": "https://media.wired.com/photos/6ac81c8de30ca6995f7d2b30/master/pass/Publishers-Using-AI-Staff-Pissed-Culture-962637114.jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Outrage grows as CDC reportedly poised to fund \"unethical\" vaccine trial",
+      "link": "https://arstechnica.com/health/2026/10/rfk-jr-still-eager-to-fund-vaccine-trial-that-would-expose-babies-to-deadly-virus/",
+      "published": "Fri, 09 Oct 2026 19:27:27 +0000",
+      "summary": "CDC allocated $1.6M for study on alleged harms of hepatitis B vaccine.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2252095020-1152x648.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "&#8216;Pure insanity&#8217;: Mathematicians will need years to make sense of OpenAI&#8217;s latest drop",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1008726/openai-mathematics-solutions-chaos",
+      "published": "2026-10-09T19:09:44.000Z",
+      "summary": "\"Staggering.\" \"Overwhelming.\" \"Unprecedented.\" \"Surreal.\" \"Pure insanity.\" Those were among the descriptions more than three dozen mathematicians reached for in conversations with The Verge as they tried to make sense of the flood of…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/STKS537_AI_MATH_5.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Batteries are now cheaper than natural gas turbines used at many data centers",
+      "link": "https://techcrunch.com/2026/10/09/batteries-are-now-cheaper-than-natural-gas-turbines-used-at-many-data-centers/",
+      "published": "Fri, 09 Oct 2026 18:57:58 +0000",
+      "summary": "Batteries are now cheaper than natural gas turbines as the data center boom pushes prices up."
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "TechCrunch Disrupt 2026: Gamma’s Grant Lee, Engine’s Elia Wallen, and GV’s Crystal Huang on landing your first 1,000 customers",
+      "link": "https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-gammas-grant-lee-engines-elia-wallen-and-gvs-crystal-huang-on-landing-your-first-1000-customers/",
+      "published": "Fri, 09 Oct 2026 18:57:06 +0000",
+      "summary": "Leaders from Gamma, Engine, and Google Ventures join TechCrunch Disrupt 2026 to talk how to get your first customers. Register now to save up to $100. Grab a second pass at 50% off."
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "PC shipments fall 20.1 percent in “sharpest decline” since Q1 2023",
+      "link": "https://arstechnica.com/information-technology/2026/10/pc-shipments-fall-20-1-percent-in-sharpest-decline-since-q1-2023/",
+      "published": "Fri, 09 Oct 2026 18:54:52 +0000",
+      "summary": "\"The current decline may be just the beginning of a new downward cycle.\"",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2298480400-1024x648.jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "AI disqualification yields new Nikon Small World in Motion winner",
+      "link": "https://arstechnica.com/science/2026/10/winning-nikon-small-world-in-motion-video-disqualified-for-ai-use/",
+      "published": "Fri, 09 Oct 2026 18:44:06 +0000",
+      "summary": "New winner is Nguyen Nam Nhat of Vietnam for video of a roundworm and single-celled Dileptus.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/nikon1-1152x648.jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Your artwork could be featured in the next Debian release",
+      "link": "https://arstechnica.com/gadgets/2026/10/your-artwork-could-be-featured-in-the-next-debian-release/",
+      "published": "Fri, 09 Oct 2026 18:33:26 +0000",
+      "summary": "Debian Linux has put a call out for artist submissions for its next release: Forky.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/ceratopsian_wallpaper-1152x648.png"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Brendan Carr says he&#8217;ll let Pete Hegseth decide whether TV networks can air the public execution",
+      "link": "https://www.theverge.com/policy/1008950/fcc-brendan-carr-pete-hegseth-execution-tv-networks-air",
+      "published": "2026-10-09T18:30:48.000Z",
+      "summary": "FCC chairman Brendan Carr said he will defer to Secretary of Defense Pete Hegseth on whether TV networks can air the planned execution of convicted Fort Hood shooter Nidal Hasan by firing squad. The Pentagon has said the execution will be…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25840497/STKP211_BRENDAN_CARR_B.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "NASA Just Made Nearly 1 TB of Artemis II Data Available to the Public",
+      "link": "https://www.wired.com/story/nasa-just-made-nearly-1-tb-of-artemis-ii-data-available-to-the-public/",
+      "published": "Fri, 09 Oct 2026 18:30:00 +0000",
+      "summary": "The data drop includes photographs, audio, video, and astronauts’ notes that will be used to study the moon and prepare for future human missions.",
+      "image": "https://media.wired.com/photos/6ac7fc75775a25ece8a94633/master/pass/art002e016252%20(1).jpg"
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "Starlink spectrum deal boosts Musk plan to beat AT&T, T-Mobile, and Verizon",
+      "link": "https://arstechnica.com/tech-policy/2026/10/starlink-spectrum-deal-boosts-musk-plan-to-beat-att-t-mobile-and-verizon/",
+      "published": "Fri, 09 Oct 2026 18:24:39 +0000",
+      "summary": "Nationwide 800 MHz spectrum to help Starlink provide mobile coverage indoors.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2025/10/starlink-dominance-1152x648.jpg"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Nikon microscopic video competition winner disqualified for using generative AI",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1008930/nikon-small-world-in-motion-winner-ai",
+      "published": "2026-10-09T18:06:57.000Z",
+      "summary": "The original first place video used AI in post-processing. | Image: Dr. Ning Xu Nikon says the video that originally won first place in its Small World in Motion contest \"did not comply with the competition rules regarding generative AI.\"…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/nikon-small-world-in-motion-ning-xu.png?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Google teases Fitbit Edge launch next week",
+      "link": "https://www.theverge.com/tech/1008918/google-fitbit-edge-launch-next-week",
+      "published": "2026-10-09T18:05:55.000Z",
+      "summary": "Google shared a closeup of its upcoming fitness tracker. | Image: Google It looks like Google is getting ready to take the wraps off its rumored Fitbit Edge next Monday. In a post on X, Google posted a picture of what appears to be the…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/fitbit-edge.jpeg?quality=90&strip=all&crop=0,0,71.318894733819,62.485080718084"
+    },
+    {
+      "source": "KTLA",
+      "category": "news",
+      "title": "High surf floods Newport Beach as Tropical Storm Rachel-driven waves pound coast",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQSHdxZmdHYVMzSlNzQ0tQaUVCbmt4NzVCd3BiSThfVHkyRFN0N0JNQVdwRkZhekp6UURQaC1oUk5Rcm14ei1jSWFOdzJCLTRJVTlXZ1N5cWgwZG41N0tKb0pQWVNqYUxtSkhjWWwwZkUySWxYb0k3X2tVV0hnMnlzb21HQS1QM3E4S1Q3bGw5R2tqeGvSAZgBQVVfeXFMT3hhVFR1WUpmbGduakZ1UjhNNjlVamR1eXZrMEIyLXk0VU5ZSzhqemUxTU0zUmUtNEUzZGhwOTNrU1NFM0tUc3JuOUhCWWlnczhGTk9idHRMbjdmSXh1cl9GSjluSUY0Sk5HRlJZSWxTaDQ5YmJIelk4NkxKemVYd05FNEpXZGNUTzF5amp4Q3NJOUtJUGx4NVc?oc=5",
+      "published": "Fri, 09 Oct 2026 18:05:17 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "The Samsung Galaxy S26 Ultra is down to $950 after Prime Day",
+      "link": "https://www.theverge.com/gadgets/1008857/samsung-galaxy-s26-ultra-deal-sale",
+      "published": "2026-10-09T17:41:24.000Z",
+      "summary": "Amazon has the Samsung Galaxy S26 Ultra in black with 256GB of storage discounted to $949.99, a healthy discount from its usual price of $1,399.99. This phone’s standout feature is the adjustable privacy display, which can hide your entire…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/03/268399_Samsung_Galaxy_S26_Ultra_review_AJohnson_0011.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -37,22 +347,12 @@
       "summary": "Amazon says it will stop using NDAs when negotiating data center deals with local governments, following a similar move from Microsoft earlier this year. Secrecy has fueled community backlash against AI infrastructure, with opposition…"
     },
     {
-      "source": "The Verge",
+      "source": "Reuters",
       "category": "news",
-      "title": "Frances Haugen hopes The Social Reckoning will inspire more whistleblowers",
-      "link": "https://www.theverge.com/policy/1008806/frances-haugen-social-reckoning-facebook-whistleblower",
-      "published": "2026-10-09T16:50:40.000Z",
-      "summary": "NEW YORK, NEW YORK - OCTOBER 04: Frances Haugen attends the Social Reckoning world premiere at Regal Union Square on October 04, 2026 in New York City. (Photo by Sean Zanni/Getty Images for Sony Pictures Entertainment) | Getty Images for…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2298625475.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Apple and LG leak shows new &#8216;tap to control&#8217; HomeKit features",
-      "link": "https://www.theverge.com/tech/1008812/apple-lg-homekit-tap-to-control-rumor",
-      "published": "2026-10-09T16:45:31.000Z",
-      "summary": "A post on X from \"pdfu,\" who has previously posted leaks and renders of suspected Apple features and LG smart home gear, shows new details of rumored Apple Home accessories from LG. According to the new leak, they could include an…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STKS495_Smart_Home_CVIRGINIA_E.jpg?quality=90&strip=all&crop=0,0,100,100"
+      "title": "Former ICC judge Navi Pillay wins 2026 Nobel Peace Prize",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNlRoWmxDMW0yZ3V4UFd4OWhXaGZQOWJWWnY1QzRFdnRhU0tQalFJbE1ua3hpWFc3ZlAtbERMbl96cG5rUWt1WjJNMFlsUndsN3JsZ1RSUU9CWE9VUVRhdlhwVVZrQ2NLQXRmVWxEdWYwRDFDYkZ5RE9ZeXhOSlBJSkl6b183Q1dXUmJYTHlQcFpqOFM4VHM0?oc=5",
+      "published": "Fri, 09 Oct 2026 16:51:42 GMT",
+      "summary": ""
     },
     {
       "source": "TechCrunch",
@@ -104,32 +404,6 @@
       "summary": "Moore sees a huge opportunity in consumer AI, particularly if the industry can tap into revenue streams beyond just subscriptions and API charges."
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "YouTube, Meta, and Twitch won&#8217;t say if they&#8217;ll allow the US government to livestream an execution",
-      "link": "https://www.theverge.com/streaming/1008722/youtube-meta-twitch-government-execution-livestream",
-      "published": "2026-10-09T15:15:30.000Z",
-      "summary": "YouTube, Twitch, Meta, and X aren't saying whether they'll allow the US government to livestream an execution on their platforms. The four companies didn't respond to The Verge's requests for comment after an unnamed Pentagon official said…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2294930392.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "The AI is in the computer",
-      "link": "https://www.theverge.com/podcast/1008707/amazon-alexa-tablet-googlebooks-apple-vergecast",
-      "published": "2026-10-09T15:10:12.000Z",
-      "summary": "It's gadget season, and a lot of companies are launching a lot of new products. But whether it's Microsoft dropping a high-end laptop, Amazon shipping a fancy Android tablet, or Apple diving headlong into the smart home, the actual…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/VRG_VST_100926_Site.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Automattic loses its interim CFO just weeks after boardroom shakeup",
-      "link": "https://techcrunch.com/2026/10/09/automattic-loses-its-interim-cfo-just-weeks-after-boardroom-shakeup/",
-      "published": "Fri, 09 Oct 2026 15:02:30 +0000",
-      "summary": "Automattic's interim chief financial officer Jeremy Klaperman has left the company less than a month after taking the role, TechCrunch has learned. Sources say his departure followed a demotion back to his previous position, marking…"
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "I’m Still Convinced the iPod Was the Perfect Gadget",
@@ -139,63 +413,20 @@
       "image": "https://media.wired.com/photos/6abdb2233241c89b6aaeb7ab/master/pass/Backchannel-iPod-Anniversary-Business-678384.jpg"
     },
     {
-      "source": "TechCrunch",
+      "source": "The New York Times",
       "category": "news",
-      "title": "Beyond TechCrunch Disrupt 2026: The Side Events, Parties & Networking You Can’t Miss",
-      "link": "https://techcrunch.com/2026/10/09/beyond-techcrunch-disrupt-2026-the-side-events-parties-networking-you-cant-miss/",
-      "published": "Fri, 09 Oct 2026 14:42:34 +0000",
-      "summary": "TechCrunch Disrupt 2026 is just the beginning. From exclusive networking events and startup showcases to happy hours, dinners, and after-hours meetups, discover what’s happening across San Francisco during Disrupt Week, October 10–16. Find…"
+      "title": "Palestinian Authority Says Elections Are to Be Postponed",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZ0FpQjRRbEJnR0VoMHZkSUJOdlh3TUhvVnl2MWk3MGRKUUllQVJreUVBV1AxMU5QUXluY3BWX2Qya3UtZjR1N2dtRnVNcTdXOWo0V0hZV0llcnlvVkZPUjdFX0JpbVA1RzZzWm9CR3F0Z2M3WGxUc2hVa1hWZG1ZVUFFZG5MTU9GZEJaRkdlNlZMams3QnB3SkFQdTIxZ0hMVDhjRTQxMXl3eW51?oc=5",
+      "published": "Fri, 09 Oct 2026 14:58:45 GMT",
+      "summary": ""
     },
     {
-      "source": "TechCrunch",
+      "source": "The New York Times",
       "category": "news",
-      "title": "TechCrunch Disrupt 2026: Gamma’s Grant Lee, Engine’s Elia Wallen, and GV’s Crystal Huang on landing your first 1,000 customers",
-      "link": "https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-gammas-grant-lee-engines-elia-wallen-and-gvs-crystal-huang-on-landing-your-first-1000-customers/",
-      "published": "Fri, 09 Oct 2026 14:30:00 +0000",
-      "summary": "Leaders from Gamma, Engine, and Google Ventures join TechCrunch Disrupt 2026 to talk how to get your first customers. Register now to save up to $100. Grab a second pass at 50% off."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Trump’s attempt to rename AI is looking awfully artificial",
-      "link": "https://www.theverge.com/policy/1008677/trump-super-intelligence-ai-rebranding",
-      "published": "2026-10-09T14:25:43.000Z",
-      "summary": "President Donald Trump has a knack for turning words against his enemies. His first successful presidential run was built on monikers like \"Little Marco\" and \"Crooked Hillary\"; he changed \"fake news\" from a phrase describing scammy media…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/gettyimages-2297777001.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Instinct was the buzziest AI agent around — can it survive Muse?",
-      "link": "https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots",
-      "published": "2026-10-09T14:00:00.000Z",
-      "summary": "Instinct’s agent is always just a text away. Before there were cute little guys, there was Instinct. In August, the startup got its AI agent to market with an unusual playbook: invite-only, no marketing, and barely so much as a website…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/DSC04328_processed_1.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "TechCrunch Disrupt 2026 starts in 4 days — lock in your pass savings of up to $100 before prices rise",
-      "link": "https://techcrunch.com/2026/10/09/techcrunch-disrupt-2026-starts-in-4-days-lock-in-your-pass-savings-of-up-to-100-before-prices-rise/",
-      "published": "Fri, 09 Oct 2026 14:00:00 +0000",
-      "summary": "Four days until TechCrunch Disrupt 2026 starts, when 10,000 founders, investors, and tech leaders gather in San Francisco's Moscone West on October 13-15. Save up to $100 on your price. Plus, save 50% on a second pass of the same type."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Surveillance company Flock cuts staff as privacy backlash grows",
-      "link": "https://techcrunch.com/2026/10/09/surveillance-company-flock-cuts-staff-as-privacy-backlash-grows/",
-      "published": "Fri, 09 Oct 2026 13:40:36 +0000",
-      "summary": "Flock would not say if CEO Garrett Langley would take a pay cut following the reduction in workforce."
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "A week with Googlebooks: four notes from our testing so far",
-      "link": "https://www.theverge.com/tech/1008563/googlebook-software-impressions-thoughts-roundtable",
-      "published": "2026-10-09T13:36:02.000Z",
-      "summary": "Software, software, software. | Photo: Antonio G. Di Benedetto / The Verge Google's new operating system is off to a rocky start. The five newly launched Googlebook laptops have hardware that ranges from great to excellent, but the…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268755_Google_event_HP_Googlebook_14_ADiBenedetto_0003.jpg?quality=90&strip=all&crop=0,0,100,100"
+      "title": "Trump Announces White House Inquiry Into Fed Governor Lisa Cook",
+      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE00c05fZUF5M2NfeElKZDZPSWkxcHJpM21Qd29XV0xyZU1JNDItU1F6WjJ4czJ5ay11ZW5nY1dZTUU3SE5CS210bWNtSnR5VXVSdXdZMW95TTk3dTRrV29WN0ZwMkpMVXV5VTlCdVFwS0FhZFR2dHBz?oc=5",
+      "published": "Fri, 09 Oct 2026 14:34:04 GMT",
+      "summary": ""
     },
     {
       "source": "Ars Technica",
@@ -205,24 +436,6 @@
       "published": "Fri, 09 Oct 2026 13:14:33 +0000",
       "summary": "The US says Microsoft abused immigration rules; the company disputes the claim.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/microsoft-logo-lights-1152x648.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Meta is banning TikTok ads across its platforms",
-      "link": "https://www.theverge.com/tech/1008658/meta-tiktok-bytedance-ads-ban",
-      "published": "2026-10-09T13:12:45.000Z",
-      "summary": "Meta has banned ads from TikTok's Chinese parent company ByteDance across the US and several other countries as the rivalry between the major social media operators heats up, as reported earlier by Bloomberg. The ban, which went into…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/10/STK043_VRG_Illo_N_Barclay_1_Meta-1.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Rocket Report: A rare Falcon 9 scrub; is it just about Vulcan's time to shine?",
-      "link": "https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/",
-      "published": "Fri, 09 Oct 2026 11:00:57 +0000",
-      "summary": "\"I can say we’re weeks away from launching on Vulcan.\"",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/04/55092272338_83965929d0_o-1152x648-1776275319.jpg"
     },
     {
       "source": "Wired",
@@ -250,15 +463,6 @@
       "published": "Fri, 09 Oct 2026 10:10:00 +0000",
       "summary": "It’s finally time to ditch the gas canister—I tested these cordless leaf blowers on gravel, wood chips, and even a 5-pound concrete paver.",
       "image": "https://media.wired.com/photos/6ac69bd0cff4fa83959f96ee/master/pass/The%20Best%20Battery-Powered%20Leaf%20Blowers%20for%20Taking%20Back%20Your%20Weekend%20102026%20top%20art%20SOURCE%20Amazon.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Volkswagen's replacement for the ID.4 crossover is here",
-      "link": "https://arstechnica.com/cars/2026/10/volkswagens-replacement-for-the-id-4-crossover-is-here/",
-      "published": "Fri, 09 Oct 2026 10:00:59 +0000",
-      "summary": "The new EV’s digital cockpit can mimic instrument displays from VWs of old.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/DB2026AU00895-1152x648.jpg"
     },
     {
       "source": "Wired",
@@ -290,119 +494,11 @@
     {
       "source": "Wired",
       "category": "news",
-      "title": "Ulta Promo Codes: Up to 20% Off in October 2026",
-      "link": "https://www.wired.com/story/ulta-coupon/",
+      "title": "TurboTax Full Service Coupons This October 2026",
+      "link": "https://www.wired.com/story/turbotax-coupon/",
       "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Shop the latest beauty trends and save big using an Ulta promo code for beauty tech, makeup, and more.",
-      "image": "https://media.wired.com/photos/67b63b9283a9f95e0ab9b215/master/pass/WIRED-Coupons-R2_3.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Lowe’s Promo Codes and Deals: Up to $300 Off Appliances",
-      "link": "https://www.wired.com/story/lowes-promo-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Find the latest Lowe’s promo codes and offers, including up to $300 off select major appliances and $5 off $50 with sign-up, here at WIRED.",
-      "image": "https://media.wired.com/photos/67b63b995a505b018b67ed92/master/pass/WIRED-Coupons-R2_10.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Valvoline Coupons and Promo Codes for October 2026",
-      "link": "https://www.wired.com/story/valvoline-coupons/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "We've gathered all the top Valvoline coupons and promo codes for October 2026, including deals on full synthetic oil changes and other essential maintenance.",
-      "image": "https://media.wired.com/photos/67b63b93a01a8e23b64ce24a/master/pass/WIRED-Coupons-R2_4.png"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Lovehoney Coupon Offers: Toys, Lingerie, and Gift Set Discounts",
-      "link": "https://www.wired.com/story/lovehoney-discount-code/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Save on Lovehoney, including bestselling toys, lingerie, and popular gift sets for date nights, self-care, and couples’ play.",
-      "image": "https://media.wired.com/photos/67b63b919468ebbf8f0cbc7b/master/pass/WIRED-Coupons-R2_6.png"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "SpaceX calls for better coordination in orbit after near-misses with Starlink",
-      "link": "https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/",
-      "published": "Thu, 08 Oct 2026 21:37:32 +0000",
-      "summary": "\"These led to conjunctions of tens of meters to hundreds of meters. Way too close to comfort.\"",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/starshipflight14_deploy-1152x648-1791410362.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Judge weighs if Trump can charge $100K for early access to Truth Social posts",
-      "link": "https://arstechnica.com/tech-policy/2026/10/judge-weighs-if-trump-can-charge-100k-for-early-access-to-truth-social-posts/",
-      "published": "Thu, 08 Oct 2026 20:53:01 +0000",
-      "summary": "Judge questioned if Trump delaying access to Truth Social posts by a second harms the press.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2279085532-1024x648.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Trump Mobile hack and apparent lack of FCC authorization raise security alarms",
-      "link": "https://arstechnica.com/tech-policy/2026/10/trump-mobile-doesnt-seem-to-have-fcc-authorization-for-phone-service-senator-says/",
-      "published": "Thu, 08 Oct 2026 20:39:31 +0000",
-      "summary": "After hack and data breach, senator asks why Trump Mobile lacks some FCC filings.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/trump-mobile-1152x648-1791486838.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Feds get ready to rewrite car headlight rules",
-      "link": "https://arstechnica.com/cars/2026/10/feds-get-ready-to-rewrite-car-headlight-rules/",
-      "published": "Thu, 08 Oct 2026 20:26:13 +0000",
-      "summary": "Reducing glare and allowing modern light technologies will be two goals.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-1291667515-1152x648.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "RIP Margaret Hamilton, whose code saved the Apollo 11 Moon landing",
-      "link": "https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/",
-      "published": "Thu, 08 Oct 2026 20:15:53 +0000",
-      "summary": "Hamilton also coined the term \"software engineering\" and founded two successful software companies.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/hamilton2-1152x648-1791480892.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Let's Encrypt cuts certificate lifetimes to 64 days starting February 2027",
-      "link": "https://arstechnica.com/gadgets/2026/10/lets-encrypt-cuts-certificate-lifetimes-to-64-days-starting-february-2027/",
-      "published": "Thu, 08 Oct 2026 19:57:17 +0000",
-      "summary": "Free SSL/TLS certificate lifetimes reduce to 64 days in February.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2021/08/getty-security-privacy-1152x648-1736892649.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Driver wins $76 after ALPR led to bogus traffic stop, drug searches",
-      "link": "https://arstechnica.com/tech-policy/2026/10/driver-wins-76-after-alpr-led-to-bogus-traffic-stop-drug-searches/",
-      "published": "Thu, 08 Oct 2026 19:42:30 +0000",
-      "summary": "Mass surveillance gets stupider.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/texas-flag-1152x648.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "RFK Jr. unveils sweeping federal initiative to find evidence of vaccine injuries",
-      "link": "https://arstechnica.com/health/2026/10/rfk-jr-unveils-sweeping-federal-initiative-to-find-evidence-of-vaccine-injuries/",
-      "published": "Thu, 08 Oct 2026 19:26:32 +0000",
-      "summary": "\"[T]he Trump-RFK Jr. anti-vax agenda keeps getting more corrupt and dangerous.\"",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/09/GettyImages-2294068904-1152x648.jpg"
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "An experimental tour-de-force: Entanglement between glass bead and light",
-      "link": "https://arstechnica.com/science/2026/10/suspended-glass-bead-entangled-with-light-maybe-a-quantum-memory/",
-      "published": "Thu, 08 Oct 2026 18:45:23 +0000",
-      "summary": "Getting a glass bead to act like a quantum object by entangling it with light.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2258360221-1152x648.jpg"
+      "summary": "Tax season doesn’t have to be stressful. Score 10% off full service expert on federal tax filings and more exclusive TurboTax discount codes on WIRED.",
+      "image": "https://media.wired.com/photos/66ea076fca863bb4c1028b64/master/pass/WIRED-Coupons-11.jpg"
     }
   ]
 }
