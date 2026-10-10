@@ -1,7 +1,173 @@
 {
-  "updated": "2026-10-10T12:07:03.605Z",
+  "updated": "2026-10-10T18:06:08.763Z",
   "count": 58,
   "items": [
+    {
+      "source": "BBC",
+      "category": "news",
+      "title": "Hurricane Isaias: More than 850,000 households without power in Alabama, Florida and Georgia",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1PLWZWeUtka1ZvUnMweGlhV1hkU1NLTFpJdkxOWncwZ01sNFk1VWNabVRfYy1ZLUp3SkVTejVDOWxtWEZPS0VSd0c5V29laVJFS2ZTZENB?oc=5",
+      "published": "Sat, 10 Oct 2026 17:44:32 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Reuters",
+      "category": "news",
+      "title": "Multiple people wounded in blast at Riyadh airport, say eyewitnesses",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQbV9hVGtMSXpTVDJ3c05vRW9SQ2lRLTg3cUlOeWxDc2w4amF5V2N2Ul9YazdxcHJGNDRwd3hlQi15a2ZGWWZoZnc1dlA5UkY3cU9PclVCNkh6SVkzQ25waEVRRlN2TVdES3lKV1VuVXN6QnJycWxtdkNOdUIwMTdTRE9fbko3Umt5d0huNVY1dW9ZcFpLSF9yczRGRHJfSWZhM1AtTkVzbVR4TlRUdzhIb19JN3o?oc=5",
+      "published": "Sat, 10 Oct 2026 17:22:56 GMT",
+      "summary": ""
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Petra Power looks to modernize energy for data centers and defense vehicles",
+      "link": "https://techcrunch.com/2026/10/10/petra-power-looks-to-modernize-energy-for-data-centers-and-defense-vehicles/",
+      "published": "Sat, 10 Oct 2026 17:00:00 +0000",
+      "summary": "The startup says its fuel cells are super efficient and cut fuel costs during a time when the tech industry can’t get enough electricity."
+    },
+    {
+      "source": "The Washington Post",
+      "category": "news",
+      "title": "Trump fumes at ‘stain’ on Norway after missing out on Nobel Peace Prize",
+      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQTkZJbkNrSTEyWktRSldTXzliZDNtQmdzakNiazZnbmJEejdEQ2dwckZsUVFsUEFybkhqbXdCdlVld24xQXJnRmw0ci0yd0E5ZG1vU19GQjdjUXJvZzdodkk3UTc5REVuR3hlb0FUS1JkMmxZeVN5NmtYeDM3dUhFY1JaM1k2NnpNaWZIa2tJRnBvR0xCZXhyQ1JtWjlFRjN1MWdQVTZDZDRwNnBpdVFodFJSWnk2N1lGSGc?oc=5",
+      "published": "Sat, 10 Oct 2026 16:58:58 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Ledger wallet tampering suspected after reports of crypto thefts",
+      "link": "https://www.theverge.com/tech/1009294/ledger-wallet-tampering-suspected-after-reports-of-crypto-thefts",
+      "published": "2026-10-10T16:36:44.000Z",
+      "summary": "Reports have been mounting that users of the Ledger crypto wallet have seen their accounts drained, and it appears to be related to tampered hardware sold by CryptoBillis. Ledger has asked CryptoBillis to pause all sales of its wallets…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/STK428_CRYPTO_D.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Cloudflare acquires Deno to improve its Workers programming model",
+      "link": "https://techcrunch.com/2026/10/10/cloudflare-acquires-deno-to-improve-its-workers-programming-model/",
+      "published": "Sat, 10 Oct 2026 16:25:42 +0000",
+      "summary": "Cloudflare will use this acquisition to improve its Workers programming model and platform."
+    },
+    {
+      "source": "CBS News",
+      "category": "news",
+      "title": "9 people killed, including 2 children, in mass shooting in northern Pennsylvania",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNLVlQVmJCVGVoLWlfUWhWMk1BM0prajZwMlg2WTB6SEhWLVJjeXJ1UGZRc2prbm9xS0xLVmxnanBLMzQwbko3bTZ4eDJtWnVONmxZLXI5Slc3dGJQamVTS0tVaGFDeWdLbVFfUGpDLWFNWEFJdVc5YjJ2RE9PM0hBMVcyNzJjOV9uUnp3ay1n?oc=5",
+      "published": "Sat, 10 Oct 2026 15:42:27 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "K-pop star Sunmi loves Notion and ear cleaning videos",
+      "link": "https://www.theverge.com/entertainment/1008654/k-pop-sunmi-wonder-girls-interview",
+      "published": "2026-10-10T15:00:00.000Z",
+      "summary": "Sunmi is an undeniable force in K-pop. She first made her debut as a member of the Wonder Girls back in 2007, one of the first K-pop acts to really break through in the West. The English version of their single \"Nobody\" was the first K-pop…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/Photo-1.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "3 days to TechCrunch Disrupt 2026: Meet the startups before they hit mainstream",
+      "link": "https://techcrunch.com/2026/10/10/3-days-to-disrupt-2026-meet-the-startups-before-they-hit-mainstream/",
+      "published": "Sat, 10 Oct 2026 15:00:00 +0000",
+      "summary": "TechCrunch Disrupt 2026 takes place October 13-15 in San Francisco. Over 300 startups will show what they’ve built to 10,000 tech leaders. Plus, 250+ speakers are ready to share insights across 200+ sessions. Register before doors open to…"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Anthropic is cutting off its internal evaluations from the internet",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1009286/anthropic-is-cutting-off-its-internal-evaluations-from-the-internet",
+      "published": "2026-10-10T14:41:16.000Z",
+      "summary": "After a recent spate of high-profile incidents in which AI agents escaped containment, Anthropic is cutting off internet access for all internal evaluations. In a report Friday, the company detailed \"unintended model actions,\" including…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "BBC",
+      "category": "news",
+      "title": "Trump announces deal for Russian diesel as Zelensky calls it a 'gift to Putin'",
+      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBienVVTnRKNXU2d0JqVGJDU3ljYlpadlltOE1jc3pkb3pacGFpQXhXUzZ5OUJESU5mUmdXekZ3eFNMeF8xajBwdHlYLUJNcFJqOE9ldHNXYXhVVXc?oc=5",
+      "published": "Sat, 10 Oct 2026 14:24:14 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Politico",
+      "category": "news",
+      "title": "‘Ship has sailed’: New poll shows even an end to the war or lower gas prices may not save Republicans",
+      "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQzlxMWZWTDBvT19EN1BQT0FMTVNtVEJSRE5rU2FoeTZ3d1Jub05HRWVCT1FMU19yOFRET2xmNkhmaXYxMlRUdW50NEN4R2pNSVdxcXNZLWdwNVJrR21mbGJoMzExckFYX2daQ0h0aFlUQWFXX3hxWnRmZ1R6MDR4MFJpNmhVOEdvTFNlcXdCazRJbEdNQ2FKeW5LazdILVpPQlQ0bUJ6S01TY2RNaDBBVEhDWFloWmRZV2xKMDlpOF9oYTRpdG4tTTY4QmdPeUo4cmxkOGZEUE9OMzdYMHlsS3BB?oc=5",
+      "published": "Sat, 10 Oct 2026 14:01:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "Will Warner Bros. kill Skydance — or will David Ellison kill Warner Bros?",
+      "link": "https://www.theverge.com/podcast/1008733/warner-skydance-paramount-ellison-debt-failure",
+      "published": "2026-10-10T14:00:00.000Z",
+      "summary": "Today, I’m talking with Peter Kafka, chief correspondent at Business Insider and host of the Channels podcast, about the gigantic Warner Bros.-Paramount merger and the future of the company now simply called Skydance. Skydance is owned by…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/DCD_0319.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Here are the top AI agents that can live in your text messages",
+      "link": "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/",
+      "published": "Sat, 10 Oct 2026 14:00:00 +0000",
+      "summary": "We created a list of the most notable AI agents that can live in your text messages, from general assistants to agents designed for families, travel, and work."
+    },
+    {
+      "source": "Axios",
+      "category": "news",
+      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
+      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
+      "published": "Sat, 10 Oct 2026 13:03:05 GMT",
+      "summary": ""
+    },
+    {
+      "source": "AL.com",
+      "category": "news",
+      "title": "One dead, one rescued when tree hits Birmingham house as Isaias sweeps Alabama",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQYWg3YVR1eW5kb19ZajdNSFhvV2RuVlUzX2w0NEVWTlp4YVRsNm4tY1E2dnZadjhJczN4UEI2YzZkcmdic204U0Y1WlJhY2g3OXFGVFRLUHhfRE0xWXZjVFpzZTM1VHNJZ0VWNmJacEQxbUNhX3BWVzZMc1Z3Mk1Hb0t5SnFXa1hfRDFORnplXzVyUTZwVUFKS1JuYy10WjMtV2tYZlVyVzk0eXJQU040Vk9IS1_SAcgBQVVfeXFMTmVEMXB1ZzRQemEyeHdPQ3RNMW9HRnZ1X3pxd3Y5U1gyZVdaSlRYMGRCWWhtcGZVZVNoWlEyOWFrVEVVeE1laURGNkF0MEpRbjBpSXc5RkF6dllCaVdxbkpiQzEtTWlIc0Z6cTZ0clp1NEE4MWZSbFRhWlV2N05rcGJ4Nk03b0YwWGJlRjBLWlBPSDhpRG9fVU01Umx6X2o5SzNqbVlPaHRVeVUzNmZtVk1CQXdoNlVFWTY4X2tPSUpldnhFRkdfM2s?oc=5",
+      "published": "Sat, 10 Oct 2026 13:02:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Al Jazeera",
+      "category": "news",
+      "title": "India’s ‘Cockroach’ leaders detained; New Delhi in lockdown",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWGp5bTN6SWFLOFZzRUh1dW91ZFFvQUh6a0ZsVGJ0QXRrUzVabE1zeWc1VmJpSVhzR1hpdjR4cWhoVmxnNjMwZk9RM0J2YmtVcERyMk1PaFlQUi1DTnlqNk9hcFU3UUhzZllwLVJ5MW1WWDJnQm5yWnBNY1JOcFZ1U01RUFphSl9qWEVYSTZIOU9MNUdDSTZMSHJRR3FYUdIBowFBVV95cUxNaGdET2tqRll6Q2U3d3JaMTJRcmtadlI5aVp2MExsRWR1bm83b3FxWkFhYkh1VkxGRzhCNWQ0Z0VJS3QwLXhwYUh1YXRyVTJtX1k2TmRWUkY5UVJqaHcwSENzSTYzQzBRWXh6a0t0NEN1d3d2V0NQUWJKTXpFREc0alRVNDRZaTJPSDljY0tFMnJ3Vk5MV1hiUjlFWmtOSWluTDA0?oc=5",
+      "published": "Sat, 10 Oct 2026 13:00:09 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "LG’s RGB LED TV is good for certain situations, but an OLED is better",
+      "link": "https://www.theverge.com/tech/1008957/lg-mrgb95b-rgb-led-tv-review",
+      "published": "2026-10-10T13:00:00.000Z",
+      "summary": "The LG’s picture is bright and punchy, but its panel is very reflective. When it comes to TVs, the LG name has long been synonymous with OLEDs, continually leading Samsung and Sony as the top OLED manufacturer. But 2026 is all about RGB…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/268807_LG_MRGB95B_RGB_LED_TV_review_JHIGGINS_3.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "The Verge",
+      "category": "news",
+      "title": "AI agent makers are promising privacy — will they deliver?",
+      "link": "https://www.theverge.com/ai-artificial-intelligence/1009051/privacy-ai-agent-promises-openai-meta-muse-dots",
+      "published": "2026-10-10T13:00:00.000Z",
+      "summary": "At this year's OpenAI DevDay, CEO Sam Altman unveiled the company's new AI agent Dots - and told the crowd that the company wants to \"set a new standard for privacy in frontier AI.\" OpenAI would spend the day taking veiled shots at Meta's…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25299205/STK453_Privacy_D_CVirginia.jpg?quality=90&strip=all&crop=0,0,100,100"
+    },
+    {
+      "source": "WEAR-TV",
+      "category": "news",
+      "title": "Tree rips through roof of Crestview family home during Hurricane Isaias",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQU1g0Qjg3NnNtLUlBMDlQZWFndWRXMTljQS1tbklVX1pCanRzcjhXdEhRdHZFcHN0aHZXQ1MwSTFvWFRvdHRDYXh5OUp0Y2NNNFE0Z2JNR1Fvcy0wWXEtQW94VlB2WE1aVGh2SUVtVzltMkZTTGJzNUdJX09LcDZJb3gwdmh4LU4wNTZidzlBN2RKOC1JWFVzQUpHaENKeDM5X2Rr?oc=5",
+      "published": "Sat, 10 Oct 2026 12:58:28 GMT",
+      "summary": ""
+    },
     {
       "source": "The Verge",
       "category": "news",
@@ -21,14 +187,6 @@
       "image": "https://media.wired.com/photos/6ac7e488d45774a31ff822a9/master/pass/Kernel-Panic-AI-Getting-Really-Good-Fucking-With-Cybercriminals-Security.jpg"
     },
     {
-      "source": "The Washington Post",
-      "category": "news",
-      "title": "Trump fumes at ‘stain’ on Norway after missing out on Nobel Peace Prize",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQTkZJbkNrSTEyWktRSldTXzliZDNtQmdzakNiazZnbmJEejdEQ2dwckZsUVFsUEFybkhqbXdCdlVld24xQXJnRmw0ci0yd0E5ZG1vU19GQjdjUXJvZzdodkk3UTc5REVuR3hlb0FUS1JkMmxZeVN5NmtYeDM3dUhFY1JaM1k2NnpNaWZIa2tJRnBvR0xCZXhyQ1JtWjlFRjN1MWdQVTZDZDRwNnBpdVFodFJSWnk2N1lGSGc?oc=5",
-      "published": "Sat, 10 Oct 2026 11:55:22 GMT",
-      "summary": ""
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "Best Lego Gifts for Brick Builders (2026): Smart Bricks, Video Games, and More",
@@ -36,6 +194,23 @@
       "published": "Sat, 10 Oct 2026 11:30:00 +0000",
       "summary": "There's more to Lego than just another basic set. We tested tons of Lego-themed gifts to find the perfect ones for the brick builder in your life.",
       "image": "https://media.wired.com/photos/6ac216c90afe89d0a5d9a6f6/master/pass/Best%20Gifts%20for%20Lego%20Lovers%20102026%20top%20art%20SOURCE%20Amazon.jpg"
+    },
+    {
+      "source": "Business Insider",
+      "category": "news",
+      "title": "The staggering numbers are in on the USS Abraham Lincoln's 321-day deployment: 93,000 nautical miles",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPRG1YVUdaTmhCNkEtVW1hU0pLZ1JIX3RtU3dVT2hISWg2Q21qdF83VDlOUUZuSU9nNEptRWVwRlphRGJJcXNDV3hBaktTRUttaWNGa0NQLWhxWHdYZUJYcE9jYjVuY3BxMmUzV3h1UEFOTFBIaXBtQUN2QUs5Ym1Ib29ub1M3SHRBRFlqVzBuY2ZNbVM0aG9CV1l1XzUwOW1MTktQTlppNW13dmZLeUdB?oc=5",
+      "published": "Sat, 10 Oct 2026 11:17:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Ars Technica",
+      "category": "news",
+      "title": "One with the world? A new look at brains transformed by psychedelics.",
+      "link": "https://arstechnica.com/science/2026/10/the-psychedelic-brain-looks-like-chaos-underneath-theres-order/",
+      "published": "Sat, 10 Oct 2026 11:15:35 +0000",
+      "summary": "Participants meditated inside an MRI tube, with and without psilocybin.",
+      "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-1308927414-1152x648.jpg"
     },
     {
       "source": "Wired",
@@ -63,30 +238,6 @@
       "published": "2026-10-10T11:00:00.000Z",
       "summary": "Renata Reinsve (top center) and Sebastian Stan (top right) play religious Romanians living in Norway. | FLC Press Cristian Mungiu's sixth feature, Fjord, concerns a family on trial. They seem like good people, God-fearing. They've just…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/6dcdc551-c3ac-483a-88b4-2ec76d2e9874.png?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "BBC",
-      "category": "news",
-      "title": "Rogue Anthropic AI agent gave police fake tip in unsolved murder case",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE12Zjh2Z2tETEw5MzJ4VEZnV2wxUVFCY09JWTVhNEktZDZSR3ZPN1VVaWkzblc1WkJXeDJ4VmNvbUIxUFBMUGpIUkJzRVJSRGJHaWpTYk9LYklpenM?oc=5",
-      "published": "Sat, 10 Oct 2026 10:06:23 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Axios",
-      "category": "news",
-      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
-      "published": "Sat, 10 Oct 2026 10:00:26 GMT",
-      "summary": ""
-    },
-    {
-      "source": "FOX Weather",
-      "category": "news",
-      "title": "Live updates: Hurricane Isaias makes landfall as extreme winds, heavy rain blast the Gulf Coast",
-      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPaV9MUTRVQzhKVjN5amtXNEgtcUtEMWI5T2ZNMFp1eV9FT1hLNTRBa2NCcEU2UGtPejVNMGx1Z1NmTWpneU1ZYUIxRWxnSXNTaFpZZDJNVHZsTmlJclN0ZThCOWg5ZjhNZUlPNWpDVHpYUnhlUGJBNE5yUU9wNE5RWWlEQTNHVG82TGxoTUVWazNSQWxMTGNaanlyUGtkLXJzNWdwMHFpcjFJQVFrNEkwcHJiSmd5WVJCOEI0ejRpa0hIMXBEeTZfMWxXWG4?oc=5",
-      "published": "Sat, 10 Oct 2026 09:31:06 GMT",
-      "summary": ""
     },
     {
       "source": "Wired",
@@ -122,22 +273,6 @@
       "published": "2026-10-10T07:00:00.000Z",
       "summary": "I miss my sweet tits. It started off promising enough. Dozens of tiny, colorful birds were drawn to my garden just a few weeks after I mounted a $350 $269 Kiwibit Bird Feeder 2 Pro. \"Looks like Great Tit!\" read the first AI-driven alert…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/IMG_5464.jpeg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "Axios",
-      "category": "news",
-      "title": "Trump announces major diesel deal with Putin, infuriating Ukraine",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE45R1VMR0FnSGE4WGFsYTRYOGpkSlRhXzByUjdPUklvbHUzeFBwcHFGLWhGb1lPWTBYZXpLZEpocXlfc0xTUU5qbVhoX1lhWEwwRmp3N3lkd2QwOFVhQWRxc2ZTTm11dmdNN01qVUVyc2xoU2ljOGlBUXF0cE9EUQ?oc=5",
-      "published": "Sat, 10 Oct 2026 06:34:32 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Reuters",
-      "category": "news",
-      "title": "French policing under scrutiny as student protest injuries mount",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQNHl6SHlJTVNheFJ6OFJldVVpYWxNRXJoVzRBX2hzN004MDc2YkpWelhPLUsxSkJRUmQtcm96Q19lVDNqZFViMzl0aVoxdU5SZDBSZDc2UTVydnVRMDBURzFBbFMwRmEwLS1HRk53M0ZoY2tpNU5NUGpSTUx4blUtWWI5R1ZIZVJoZlFaYS1RRGpmbHFnVHlUVFhrYTM2ektFM3BDN2V3?oc=5",
-      "published": "Sat, 10 Oct 2026 06:05:00 GMT",
-      "summary": ""
     },
     {
       "source": "Wired",
@@ -194,44 +329,12 @@
       "image": "https://media.wired.com/photos/66ea03340e63ccab6b8add4b/master/pass/WIRED-Coupons-1.jpg"
     },
     {
-      "source": "CBS News",
-      "category": "news",
-      "title": "AG Blanche, other high-level DOJ appointees can take part in political campaigns, memo says",
-      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNT01DVUhFX1Y1bnFnOW1PQlpKNkpyR1ZUdEtaVTBCay01NHBOc3RlSnBiWkgxd0EwSHYzaHUyWEFwbTE1bUYyRmt3bDN1cWJQSDJVU3VSamtJT1RUaXItYkd4MFVrTzVjdUlncS1yeDBIVXdTNkQ4UE5jTWc1aUZiN0hSMk93MXJwVF92bnRVQjVnX3c4d0diUXcxNTlqTHJ0VVZZdjBOZTJxZ3o2Ums3ZG01VXc?oc=5",
-      "published": "Sat, 10 Oct 2026 04:57:48 GMT",
-      "summary": ""
-    },
-    {
-      "source": "The Washington Post",
-      "category": "news",
-      "title": "Large waves pummel Southern California coast, flooding homes",
-      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPWk5KZzhuT0dpSE80S0VPWERUaG5GdHhnQUk0b0JPSGxqNnc3VzRZVE1MWHYxMjJFRDZ4TmlNZ3F4MzdkVmdrRlR0LWRwek9SaGlwVW96dzFSUGRTZWpXdzhEWkk5SWxfWDZobXItUERsYVBITUpya0VRTXlBZGpwQVNJR0lGN2JWZjdJcHFtZWNKY01keTFxT1pjN0dvVE9vUGZkeUhUQ0QzbnZIbi16RFZXMFQ5U1NCMkgyVDBaVkw?oc=5",
-      "published": "Sat, 10 Oct 2026 03:40:24 GMT",
-      "summary": ""
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Elon Musk intensifies attack on Ambani over Starlink India launch delay",
       "link": "https://techcrunch.com/2026/10/09/elon-musk-intensifies-attack-on-ambani-over-starlink-india-launch-delay/",
       "published": "Sat, 10 Oct 2026 03:10:06 +0000",
       "summary": "Elon Musk has accused Indian billionaire Mukesh Ambani of blocking competition."
-    },
-    {
-      "source": "AP News",
-      "category": "news",
-      "title": "Panama rocked by 2 powerful earthquakes and multiple aftershocks, prompting evacuations",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVl9TaDlyMTA4emtwWlhyemdqTUY2ak9BUzU4TWlyT3d6dEtfWGs1RWVESTZ3YlhBcmx0S1dhajROOEJjY2NvbDlHc0h0Z2s2a1RFY3dRSDJTSlFrOTVWWk5PVjBlVGtUTEtPSEpMeS1nZFE1eTFmWWJzUGd4Ym5mOE1KZw?oc=5",
-      "published": "Sat, 10 Oct 2026 02:53:00 GMT",
-      "summary": ""
-    },
-    {
-      "source": "WSTM",
-      "category": "news",
-      "title": "EXCLUSIVE: CNY Central's Matt Mulcahy interviews President Trump",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQWF9CYmprNjBJeHZmZ0ROM2U3OEFUdXo2eWxadldFU0ljSkhBSXdhaHhhNW85NlhhYy1RSm5KZm9XNkpSNk9RcFFzVkJNMGJXcVZiaURkX3FwRkF2cGJtNmcySTF5akFBWktkQXVBM3laM2FmOWVweDdwRG5aWXJPWjBPRy11MldEM0dYaTZKcDR6OEkwcVVTMjNsM1Q?oc=5",
-      "published": "Sat, 10 Oct 2026 02:05:08 GMT",
-      "summary": ""
     },
     {
       "source": "TechCrunch",
@@ -268,30 +371,13 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/yandex-data-center_sasovo-ryazan-russia.jpg"
     },
     {
-      "source": "Reuters",
-      "category": "news",
-      "title": "Trump selects Katie Zacharia as White House press secretary",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOOXZfSE5tdU1qaXV4LWl1Z2hYclJVU1dVSlFWQTZQV1J6RzQydkxoZjFqTTJxc3lLNTNoaHVPOTBzbHdBUFBkcHdEWGpldVJ1Vzk1NE9EUkJfMnFNOEQxVkZfUGZmVS00M01FMGFiOENBME4xbTlZWmRBVVNNbERDNkRFSjA4dDA4LUx1MTlpZnh1VU9lWUEweld4ZG96b0QzTF9uZGhyTkxjQQ?oc=5",
-      "published": "Fri, 09 Oct 2026 21:55:57 GMT",
-      "summary": ""
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "A Cray-1 supercomputer replica from 30 \"obsolete\" Mac Minis",
       "link": "https://arstechnica.com/gadgets/2026/10/a-cray-1-supercomputer-replica-from-30-obsolete-mac-minis/",
       "published": "Fri, 09 Oct 2026 21:51:12 +0000",
-      "summary": "Stylish upcycling, with a retro flare, at Spain's Museo de Historia de la Computación.",
+      "summary": "Stylish upcycling, with a retro flair, at Spain's Museo de Historia de la Computación.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/Cray-1_Vertical_Chassis-1-810x648.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Decade-old RAM is making a comeback",
-      "link": "https://www.theverge.com/games/1009140/ram-shortage-intel-amd-ddr4-comeback",
-      "published": "2026-10-09T21:50:00.000Z",
-      "summary": "CPU makers have noticed that the seemingly unending RAM price hikes are making it tough for a lot of us to upgrade our PCs. Their solution? A return to last-gen DDR4 RAM. Intel and AMD are making new CPUs that'll support the older, more…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2025/12/STKS523_RAM_SHORTAGE_B.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "TechCrunch",
@@ -309,15 +395,6 @@
       "published": "Fri, 09 Oct 2026 21:34:09 +0000",
       "summary": "\"We’ve made it clear that NASA will never give up its presence in low Earth orbit.\"",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Anthropic’s AI gave Philadelphia police a fake tip about an unsolved homicide",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1009090/anthropic-fake-homicide-information-philadelphia-pd-tip",
-      "published": "2026-10-09T21:15:38.000Z",
-      "summary": "An Anthropic AI model provided false information about an unsolved homicide to a Philadelphia Police Department (PPD) tipline, according to a report from 6abc. In a statement released on Friday, the PPD said the AI model sent the tip…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "Ars Technica",
@@ -347,15 +424,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2264559974-1152x648.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Ohio blogger found guilty of harassment for sending Shrek nude to senator",
-      "link": "https://www.theverge.com/policy/1008991/ohio-blogger-harassment-shrek-nude",
-      "published": "2026-10-09T19:41:11.000Z",
-      "summary": "A jury found an Ohio political blogger guilty of telecommunications harassment after he sent an explicit image of Shrek to a Republican state senator. On Friday, a judge ordered DJ Byrnes, owner of political commentary blog The Rooster, to…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/gettyimages-2261816039.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "An Anthropic AI model sent a false homicide tip to Philadelphia police",
@@ -371,15 +439,6 @@
       "published": "Fri, 09 Oct 2026 19:27:27 +0000",
       "summary": "CDC allocated $1.6M for study on alleged harms of hepatitis B vaccine.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2252095020-1152x648.jpg"
-    },
-    {
-      "source": "The Verge",
-      "category": "news",
-      "title": "&#8216;Pure insanity&#8217;: Mathematicians will need years to make sense of OpenAI&#8217;s latest drop",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1008726/openai-mathematics-solutions-chaos",
-      "published": "2026-10-09T19:09:44.000Z",
-      "summary": "\"Staggering.\" \"Overwhelming.\" \"Unprecedented.\" \"Surreal.\" \"Pure insanity.\" Those were among the descriptions more than three dozen mathematicians reached for in conversations with The Verge as they tried to make sense of the flood of…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/STKS537_AI_MATH_5.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "TechCrunch",
@@ -425,15 +484,6 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/ceratopsian_wallpaper-1152x648.png"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Brendan Carr says he&#8217;ll let Pete Hegseth decide whether TV networks can air the public execution",
-      "link": "https://www.theverge.com/policy/1008950/fcc-brendan-carr-pete-hegseth-execution-tv-networks-air",
-      "published": "2026-10-09T18:30:48.000Z",
-      "summary": "FCC chairman Brendan Carr said he will defer to Secretary of Defense Pete Hegseth on whether TV networks can air the planned execution of convicted Fort Hood shooter Nidal Hasan by firing squad. The Pentagon has said the execution will be…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25840497/STKP211_BRENDAN_CARR_B.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "Starlink spectrum deal boosts Musk plan to beat AT&T, T-Mobile, and Verizon",
@@ -443,62 +493,12 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2025/10/starlink-dominance-1152x648.jpg"
     },
     {
-      "source": "The Verge",
-      "category": "news",
-      "title": "Nikon microscopic video competition winner disqualified for using generative AI",
-      "link": "https://www.theverge.com/ai-artificial-intelligence/1008930/nikon-small-world-in-motion-winner-ai",
-      "published": "2026-10-09T18:06:57.000Z",
-      "summary": "The original first place video used AI in post-processing. | Image: Dr. Ning Xu Nikon says the video that originally won first place in its Small World in Motion contest \"did not comply with the competition rules regarding generative AI.\"…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/nikon-small-world-in-motion-ning-xu.png?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "LumenUs helps automate tedious paperwork in times of grief",
       "link": "https://techcrunch.com/2026/10/09/lumenus-helps-automate-tedious-paperwork-in-times-of-grief/",
       "published": "Fri, 09 Oct 2026 17:00:00 +0000",
       "summary": "\"The day your loved one passes away, you also get this honorary badge of a project manager for a project you had no idea about,\" said founder Sara Tashakorinia."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Amazon and others are done keeping data center deals secret. Is it enough to build trust?",
-      "link": "https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/",
-      "published": "Fri, 09 Oct 2026 16:56:42 +0000",
-      "summary": "Amazon says it will stop using NDAs when negotiating data center deals with local governments, following a similar move from Microsoft earlier this year. Secrecy has fueled community backlash against AI infrastructure, with opposition…"
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Danu Robotics’ fight to build a better recycling robot",
-      "link": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/",
-      "published": "Fri, 09 Oct 2026 16:45:00 +0000",
-      "summary": "For six years, Danu founder Amy Ma has been working on a better way to sort recyclable waste."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "We can’t help treating AI like it’s human. But should we?",
-      "link": "https://techcrunch.com/2026/10/09/we-cant-help-treating-ai-like-its-human-but-should-we/",
-      "published": "Fri, 09 Oct 2026 16:40:14 +0000",
-      "summary": "\"When we are drawn into even the most primitive exchanges with a relational artifact, we believe it cares for us,\" Dr. Sherry Turkle writes. \"And we are wired to care for it in return.\""
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Tesla renames ‘Full Self-Driving’ to ‘Tesla Assisted Driving’ in Europe",
-      "link": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
-      "published": "Fri, 09 Oct 2026 16:07:26 +0000",
-      "summary": "The name change is enough for Germany's transport minister to start advocating for Europe-wide adoption of the driver assistance software."
-    },
-    {
-      "source": "Ars Technica",
-      "category": "news",
-      "title": "Microsoft barred from sponsoring foreign workers for US residency",
-      "link": "https://arstechnica.com/tech-policy/2026/10/trump-administration-targets-microsoft-in-new-immigration-crackdown/",
-      "published": "Fri, 09 Oct 2026 13:14:33 +0000",
-      "summary": "The US says Microsoft abused immigration rules; the company disputes the claim.",
-      "image": "https://cdn.arstechnica.net/wp-content/uploads/2019/04/microsoft-logo-lights-1152x648.jpg"
     }
   ]
 }

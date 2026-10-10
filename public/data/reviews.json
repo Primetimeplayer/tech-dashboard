@@ -1,30 +1,94 @@
 {
-  "updated": "2026-10-10T12:07:04.122Z",
+  "updated": "2026-10-10T18:06:09.414Z",
   "count": 20,
   "items": [
     {
       "source": "Engadget Reviews",
-      "title": "Engadget review recap: The best of 2026",
-      "link": "https://www.engadget.com/2282285/engadget-review-recap-the-best-of-2026/",
-      "published": "Sat, 10 Oct 2026 12:00:00 +0000",
-      "summary": "A roundup of recent reviews from Engadget.",
-      "image": "https://www.engadget.com/img/gallery/engadget-review-recap-the-best-of-2026/l-intro-1791560871.jpg"
+      "title": "What is ray tracing in gaming and does it really make a difference?",
+      "link": "https://www.engadget.com/2279929/what-is-ray-tracing-gaming-does-it-make-difference/",
+      "published": "Sat, 10 Oct 2026 18:00:00 +0000",
+      "summary": "Ray tracing makes light's behavior more realistic in supported games, but your PC has to use a lot of horsepower to make that happen.",
+      "image": "https://www.engadget.com/img/gallery/what-is-ray-tracing-in-gaming-and-does-it-really-make-a-difference/l-intro-1791383266.jpg"
     },
     {
       "source": "Engadget Reviews",
-      "title": "A grief-stricken road trip, The Traitors on the go and other new indie games worth checking out",
-      "link": "https://www.engadget.com/2282667/a-grief-stricken-road-trip-the-traitors-on-the-go-and-other-new-indie-games-worth-checking-out/",
-      "published": "Sat, 10 Oct 2026 11:30:00 +0000",
-      "summary": "Here's our weekly roundup of indie games to look forward to.",
-      "image": "https://www.engadget.com/img/gallery/a-grief-stricken-road-trip-the-traitors-on-the-go-and-other-new-indie-games-worth-checking-out/l-intro-1791571081.jpg"
+      "title": "Anthropic says its AI agents tried to break into government websites",
+      "link": "https://www.engadget.com/2283091/anthropic-says-its-ai-agents-tried-to-break-into-government-websites/",
+      "published": "Sat, 10 Oct 2026 17:49:49 +0000",
+      "summary": "In its latest report, Anthropic has revealed that its AI agents meddled with government websites during testing.",
+      "image": "https://www.engadget.com/img/gallery/anthropic-says-its-ai-agents-tried-to-break-into-government-websites/l-intro-1791654243.jpg"
     },
     {
       "source": "Engadget Reviews",
-      "title": "Tesla's Full Self-Driving is now called Assisted Driving in Europe",
-      "link": "https://www.engadget.com/2283007/tesla-full-self-driving-assisted-driving-europe/",
-      "published": "Sat, 10 Oct 2026 11:12:55 +0000",
-      "summary": "Tesla has renamed Full Self-Driving in Europe, as it seeks to get it approved in more countries.",
-      "image": "https://www.engadget.com/img/gallery/tesla-full-self-driving-assisted-driving-europe/l-intro-1791630810.jpg"
+      "title": "How to reset your Samsung TV",
+      "link": "https://www.engadget.com/2279855/how-to-reset-samsung-tv/",
+      "published": "Sat, 10 Oct 2026 16:30:00 +0000",
+      "summary": "If you have a Frame TV or one of the other Samsung models, you may occasionally need to reboot or factory reset it.",
+      "image": "https://www.engadget.com/img/gallery/how-to-reset-your-samsung-tv/l-intro-1791380081.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "GameStop is hoping PS5 Pro buyers are desperate enough to pay $500 over MSRP",
+      "link": "https://www.engadget.com/2283062/gamestop-selling-ps5-pro-500-dollars-over-msrp/",
+      "published": "Sat, 10 Oct 2026 16:00:00 +0000",
+      "summary": "A shortage has driven resale prices through the roof.",
+      "image": "https://www.engadget.com/img/gallery/gamestop-is-hoping-ps5-pro-buyers-are-desperate-enough-to-pay-500-over-msrp/l-intro-1791645464.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How Xiaomi, Oppo and other non-US brands are challenging the iPhone Duo",
+      "link": "https://www.engadget.com/2279277/how-xiaomi-oppo-other-non-us-brands-challenging-iphone-duo/",
+      "published": "Sat, 10 Oct 2026 15:30:00 +0000",
+      "summary": "Apple's foldable phone has everyone talking, but competitors have their own offerings in different ways.",
+      "image": "https://www.engadget.com/img/gallery/how-xiaomi-oppo-and-other-non-us-brands-are-challenging-the-iphone-duo/l-intro-1791313734.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "5 Samsung Galaxy features you should be using after updating to One UI 9",
+      "link": "https://www.engadget.com/2279220/samsung-galaxy-one-ui-9-features-you-should-use/",
+      "published": "Sat, 10 Oct 2026 15:00:00 +0000",
+      "summary": "Samsung Galaxy phones that have upgraded to Android 17 and One UI 9 have a slew of new features - some more helpful than others.",
+      "image": "https://www.engadget.com/img/gallery/5-samsung-galaxy-features-you-should-be-using-after-updating-to-one-ui-9/l-intro-1791310035.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Why your smart speaker keeps misunderstanding you (and how to fix it)",
+      "link": "https://www.engadget.com/2279051/smart-speaker-misunderstands-you-how-to-fix/",
+      "published": "Sat, 10 Oct 2026 14:30:00 +0000",
+      "summary": "Smart speakers should recognize your voice to run commands, but you can help them out with a few tricks.",
+      "image": "https://www.engadget.com/img/gallery/why-your-smart-speaker-keeps-misunderstanding-you-and-how-to-fix-it/l-intro-1791307742.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How to change your home address on Google Maps",
+      "link": "https://www.engadget.com/2278953/how-to-change-home-address-google-maps/",
+      "published": "Sat, 10 Oct 2026 14:00:00 +0000",
+      "summary": "Set it to a nearby place instead, if you're concerned about the potential dangers if someone accesses your phone.",
+      "image": "https://www.engadget.com/img/gallery/how-to-change-your-home-address-on-google-maps/l-intro-1791304492.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "How to take care of your foldable phone's hinge",
+      "link": "https://www.engadget.com/2278858/how-to-take-care-of-foldable-phone-hinges/",
+      "published": "Sat, 10 Oct 2026 13:45:00 +0000",
+      "summary": "Foldable phones require a little more care than standard ones, but the hinge will do its job as long as you don't make that difficult.",
+      "image": "https://www.engadget.com/img/gallery/how-to-take-care-of-your-foldable-phones-hinge/l-intro-1791301669.jpg"
+    },
+    {
+      "source": "Engadget Reviews",
+      "title": "Can you use a screen protector with your foldable phone?",
+      "link": "https://www.engadget.com/2278720/foldable-phone-screen-protector-can-you-use/",
+      "published": "Sat, 10 Oct 2026 13:30:00 +0000",
+      "summary": "Screen protectors seem like an easy win for keeping your phone in good condition, but there's more to consider with a foldable phone.",
+      "image": "https://www.engadget.com/img/gallery/can-you-use-a-screen-protector-with-your-foldable-phone/l-intro-1791297034.jpg"
+    },
+    {
+      "source": "The Verge Reviews",
+      "title": "LG’s RGB LED TV is good for certain situations, but an OLED is better",
+      "link": "https://www.theverge.com/tech/1008957/lg-mrgb95b-rgb-led-tv-review",
+      "published": "2026-10-10T13:00:00.000Z",
+      "summary": "The LG’s picture is bright and punchy, but its panel is very reflective. When it comes to TVs, the LG name has long been synonymous with OLEDs, continually leading Samsung and Sony as the top OLED manufacturer. But 2026 is all about RGB…",
+      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/268807_LG_MRGB95B_RGB_LED_TV_review_JHIGGINS_3.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
       "source": "The Verge Reviews",
@@ -43,54 +107,6 @@
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/IMG_5464.jpeg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
-      "source": "Engadget Reviews",
-      "title": "Google teases its new 'Fitbit Edge' wearable ahead of an October 12 reveal",
-      "link": "https://www.engadget.com/2282887/google-teases-its-new-fitbit-edge-wearable-ahead-of-an-october-12-reveal/",
-      "published": "Fri, 09 Oct 2026 22:28:43 +0000",
-      "summary": "Google has seemingly confirmed the rumored \"Fitbit Edge\" with social media posts teasing a new wearable coming October 12.",
-      "image": "https://www.engadget.com/img/gallery/google-teases-its-new-fitbit-edge-wearable-ahead-of-an-october-12-reveal/l-intro-1791584869.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Flock Safety is reportedly planning major layoffs now that everyone hates it",
-      "link": "https://www.engadget.com/2282823/flock-safety-reportedly-planning-major-layoffs/",
-      "published": "Fri, 09 Oct 2026 21:16:48 +0000",
-      "summary": "Morale at one of the most reviled companies in America appears to be at an all time low.",
-      "image": "https://www.engadget.com/img/gallery/flock-safety-is-reportedly-planning-major-layoffs-now-that-everyone-hates-it/l-intro-1791580360.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "An Anthropic model submitted a false homicide tip to Philadelphia police",
-      "link": "https://www.engadget.com/2282713/an-anthropic-model-submitted-a-false-homicide-tip-to-philadelphia-police/",
-      "published": "Fri, 09 Oct 2026 20:00:30 +0000",
-      "summary": "Thankfully, it does not seem to have diverted police resources.",
-      "image": "https://www.engadget.com/img/gallery/an-anthropic-model-submitted-a-false-homicide-tip-to-philadelphia-police/l-intro-1791575932.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Bose Lifestyle Ultra Soundbar review: A great home theater option all by itself",
-      "link": "https://www.engadget.com/2282487/bose-lifestyle-ultra-soundbar-review/",
-      "published": "Fri, 09 Oct 2026 18:00:00 +0000",
-      "summary": "Bose's latest soundbar pulls double duty as both a TV and music speaker. Plus, it doesn't need a separate subwoofer for adequate bass.",
-      "image": "https://www.engadget.com/img/gallery/bose-lifestyle-ultra-soundbar-review-a-great-home-theater-option-all-by-itself/l-intro-1791567301.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Intel is reportedly launching new CPUs on old sockets that support DDR4 memory",
-      "link": "https://www.engadget.com/2282431/intel-is-reportedly-launching-new-cpus-on-old-sockets-that-support-ddr4-memory/",
-      "published": "Fri, 09 Oct 2026 17:01:36 +0000",
-      "summary": "If you guessed the RAMpocalypse is involved...",
-      "image": "https://www.engadget.com/img/gallery/intel-is-reportedly-launching-new-cpus-on-old-sockets-that-support-ddr4-memory/l-intro-1791565172.jpg"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "What it's like to spend a night in a Pebble Flow EV RV",
-      "link": "https://www.engadget.com/2282389/pebble-flow-ev-rv-review/",
-      "published": "Fri, 09 Oct 2026 17:00:00 +0000",
-      "summary": "Staying in the tech-infused trailer can kind of feel like being in a spaceship - in a good way.",
-      "image": "https://www.engadget.com/img/gallery/pebble-flow-ev-rv-review/l-intro-1791573544.jpg"
-    },
-    {
       "source": "The Verge Reviews",
       "title": "Instinct was the buzziest AI agent around — can it survive Muse?",
       "link": "https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots",
@@ -105,14 +121,6 @@
       "published": "2026-10-09T13:36:02.000Z",
       "summary": "Software, software, software. | Photo: Antonio G. Di Benedetto / The Verge Google's new operating system is off to a rocky start. The five newly launched Googlebook laptops have hardware that ranges from great to excellent, but the…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268755_Google_event_HP_Googlebook_14_ADiBenedetto_0003.jpg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "Engadget Reviews",
-      "title": "Webb telescope detects galaxy origin of the farthest fast radio burst we've seen to date",
-      "link": "https://www.engadget.com/2282035/webb-telescope-detects-galaxy-origin-of-the-farthest-fast-radio-burst-weve-seen-to-date/",
-      "published": "Fri, 09 Oct 2026 12:28:24 +0000",
-      "summary": "Astronomers used the Webb telescope to see where the farthest fast radio burst we've ever seen had come from.",
-      "image": "https://www.engadget.com/img/gallery/webb-telescope-detects-galaxy-origin-of-the-farthest-fast-radio-burst-weve-seen-to-date/l-intro-1791548424.jpg"
     },
     {
       "source": "The Verge Reviews",
@@ -153,14 +161,6 @@
       "published": "2026-10-06T08:00:00.000Z",
       "summary": "Confession: When BougeRV told me about its remote-controlled wagon with animated lighting, I called it in for a laugh, expecting to eviscerate it in a review. It's ridiculous, to be sure. But the DuneRover also proved very capable, with…",
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/IMG_5043.jpeg?quality=90&strip=all&crop=0,0,100,100"
-    },
-    {
-      "source": "The Verge Reviews",
-      "title": "This toolless modular lever-action wallet is the coolest I’ve stuck to my phone",
-      "link": "https://www.theverge.com/gadgets/1004360/this-toolless-modular-lever-action-wallet-is-the-coolest-ive-stuck-to-my-phone",
-      "published": "2026-10-04T15:00:00.000Z",
-      "summary": "The OhSnap Wallet 2. | Photo by Sean Hollister / The Verge This toolless modular lever-action wallet is the coolest I've stuck to my phone. Remember when I tested the ultra-thin and convenient OhSnap Snap Grip Stand and liked it so much I…",
-      "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/ohsnap-wallet-2-01.jpg?quality=90&strip=all&crop=0,0,100,100"
     }
   ]
 }
