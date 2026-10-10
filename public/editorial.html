@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Editorial policy — Signal Tech</title>
+<meta name="description" content="Content guidelines, source attribution, and the correction policy for The Daily Signal.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://primetimeplayer.github.io/signal-tech/editorial.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f8f9fa; color: #202124; font-family: Inter, ui-sans-serif, system-ui, sans-serif; line-height: 1.6; }
+  a { color: #185abc; }
+  .mast { background: #ffffff; border-bottom: 1px solid #e5e7eb; }
+  .wrap { width: min(800px, calc(100% - 32px)); margin: 0 auto; }
+  .mast-row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; }
+  .wordmark { color: #202124; font-size: 22px; font-weight: 650; letter-spacing: -0.04em; text-decoration: none; }
+  .wordmark span { color: #1a73e8; }
+  .back { color: #5f6368; font-size: 13px; text-decoration: none; }
+  .back:hover { color: #1a73e8; }
+  article { padding: 28px 0 48px; }
+  h1 { margin: 8px 0 4px; font-size: 32px; letter-spacing: -0.03em; line-height: 1.15; }
+  .updated { margin: 0 0 24px; color: #5f6368; font-size: 13px; }
+  h2 { margin: 28px 0 8px; font-size: 18px; letter-spacing: -0.02em; }
+  p, li { font-size: 15px; }
+  ul { padding-left: 1.2rem; }
+  footer { margin-top: 12px; padding: 16px 0 28px; border-top: 1px solid #e5e7eb; color: #5f6368; font-size: 13px; }
+  .footer-legal { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .footer-legal a { color: #5f6368; font-weight: 600; text-decoration: none; }
+  .footer-legal a:hover { color: #1a73e8; }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap mast-row">
+    <a class="wordmark" href="index.html">Signal<span>.</span> Tech</a>
+    <a class="back" href="index.html">← Back to Signal Tech</a>
+  </div>
+</header>
+<article class="wrap">
+  <h1>Editorial policy</h1>
+  <p class="updated">Last updated 10 October 2026</p>
+  <p>The Daily Signal is an aggregation desk. These rules cover what appears on the page, how it is credited, and how a mistake gets fixed.</p>
+
+  <h2>What we run</h2>
+  <ul>
+    <li>Items must come from a configured RSS feed, the arXiv API, or a public Reddit listing. The source list is in the repository, not chosen per reader.</li>
+    <li>The desk favors AI engineering, chips and silicon, and developer tools. Other technology coverage stays available through the topic bar.</li>
+    <li>Promotional posts that match coupon, discount, or similar sales language are dropped before render.</li>
+    <li>A headline is not rewritten to change its meaning. Titles are taken from the source, with a publisher suffix removed when a feed appends one.</li>
+    <li>Excerpts are shortened for the card. The link is the article.</li>
+  </ul>
+
+  <h2>Attribution</h2>
+  <p>Every story card shows the publisher or author string supplied by the feed, then the headline, then the link. Images stay attached to that story and fall back to a category mark when the source has none. Signal Tech does not put its name on a publisher’s reporting.</p>
+  <p>Weekly digests group those same items. They cite the underlying stories and are meant to be read next to the archive on <a href="digests.html">digests</a>, not instead of the originals.</p>
+  <p>When an optional summary model adds a “why it matters” note, that note is labeled as the publication’s line. It is not quoted as the publisher’s words.</p>
+
+  <h2>Corrections</h2>
+  <p>A wrong headline, a broken link, a story that should not have been included, or a missing credit can be reported on the <a href="contact.html">contact page</a>. Choose “Correction.” Include the URL on Signal Tech, the original URL, and what is wrong.</p>
+  <p>Fixes land in the next data refresh or in the page itself, whichever the error requires. The collected JSON is regenerated on a schedule, so a story that disappears from a publisher feed can also leave this page on the following fetch. Signal Tech does not keep a separate corrections log on the site. The change is the correction.</p>
+  <p>Legal requests about a specific article should go to the publisher who holds the rights, and may also be sent here so the link can be removed from the desk.</p>
+</article>
+<footer>
+  <div class="wrap">
+    <nav class="footer-legal" aria-label="Publication">
+      <a href="about.html">About</a>
+      <a href="editorial.html">Editorial</a>
+      <a href="advertise.html">Advertise</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

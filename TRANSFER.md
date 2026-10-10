@@ -26,7 +26,7 @@ The repository is [Primetimeplayer/signal-tech](https://github.com/Primetimeplay
    - the same class of tags in `public/privacy.html` and `public/terms.html`
    - `public/sitemap.xml`
    - the `Sitemap:` line in `public/robots.txt`
-   - `twitter:site` if `@SignalTech` is not the buyer’s handle
+   - `twitter:site` once the buyer has a real X handle. The tag is omitted until then.
 
 GitHub transfers issues, pull requests, stars, watchers, Actions workflows, and repository secrets with the repository. Verify each of those after acceptance. The previous owner loses access unless the buyer adds them back.
 

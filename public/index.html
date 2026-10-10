@@ -22,8 +22,8 @@
     if (localStorage.getItem('signal_tech_cookie_consent') === 'all') window.loadSignalAnalytics();
   } catch (e) {}
 </script>
-<title>Signal Tech — a personal tech dashboard</title>
-<meta name="description" content="Tech news, AI papers, device reviews, and Reddit discussion — pulled on a schedule, no algorithm. A personal tech dashboard by Signal Tech.">
+<title>The Daily Signal — Signal Tech</title>
+<meta name="description" content="The Daily Signal — Curated briefing on AI engineering, chips, and dev tools for tech leaders. Updated through the day.">
 <meta name="author" content="Signal Tech">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://primetimeplayer.github.io/signal-tech/">
@@ -32,22 +32,21 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Signal Tech">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Signal Tech — a personal tech dashboard">
-<meta property="og:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.">
+<meta property="og:title" content="The Daily Signal — Signal Tech">
+<meta property="og:description" content="The Daily Signal — Curated briefing on AI engineering, chips, and dev tools for tech leaders. Updated through the day.">
 <meta property="og:url" content="https://primetimeplayer.github.io/signal-tech/">
 <meta property="og:image" content="https://primetimeplayer.github.io/signal-tech/assets/og-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Signal Tech, a personal tech dashboard">
+<meta property="og:image:alt" content="The Daily Signal by Signal Tech">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@SignalTech">
-<meta name="twitter:title" content="Signal Tech — a personal tech dashboard">
-<meta name="twitter:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.">
+<meta name="twitter:title" content="The Daily Signal — Signal Tech">
+<meta name="twitter:description" content="The Daily Signal — Curated briefing on AI engineering, chips, and dev tools for tech leaders. Updated through the day.">
 <meta name="twitter:url" content="https://primetimeplayer.github.io/signal-tech/">
 <meta name="twitter:image" content="https://primetimeplayer.github.io/signal-tech/assets/og-preview.png">
-<meta name="twitter:image:alt" content="Signal Tech, a personal tech dashboard">
+<meta name="twitter:image:alt" content="The Daily Signal by Signal Tech">
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -64,7 +63,7 @@
       "@type": "WebSite",
       "@id": "https://primetimeplayer.github.io/signal-tech/#website",
       "name": "Signal Tech",
-      "description": "A personal tech dashboard aggregating tech news, AI papers, device reviews, and Reddit discussion.",
+      "description": "The Daily Signal, a curated briefing on AI engineering, chips, and dev tools for tech leaders.",
       "url": "https://primetimeplayer.github.io/signal-tech/",
       "publisher": {
         "@id": "https://primetimeplayer.github.io/signal-tech/#organization"
@@ -7823,6 +7822,13 @@ footer,
   background: rgba(255, 255, 255, 0.04);
 }
 
+#feed .in-feed-ad:has([data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"]),
+#feed .in-feed-ad:has([data-ad-slot="0000000000"]),
+#feed .sponsor-slot:has([data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"]),
+#feed .sponsor-slot:has([data-ad-slot="0000000001"]) {
+  display: none !important;
+}
+
 @media (max-width: 767px) {
   #feed .sponsor-slot {
     display: none !important;
@@ -7839,8 +7845,8 @@ footer,
 <noscript>
   <div class="mast"><div class="wrap">
     <h1 class="wordmark">Signal<span>.</span></h1>
-    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.</p>
-    <p data-i18n="noscript" style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
+    <p class="tagline" data-i18n="tagline">The Daily Signal — Curated briefing on AI engineering, chips, and dev tools for tech leaders. Updated through the day.</p>
+    <p data-i18n="noscript" style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This publication requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
   </div></div>
 </noscript>
 
@@ -7911,7 +7917,7 @@ footer,
         </button>
       </div>
     </div>
-    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.</p>
+    <p class="tagline" data-i18n="tagline">The Daily Signal — Curated briefing on AI engineering, chips, and dev tools for tech leaders. Updated through the day.</p>
   </div>
 </div>
 
@@ -8039,32 +8045,36 @@ footer,
       <div class="skeleton-card"><div class="skeleton-line short"></div><div class="skeleton-line full"></div><div class="skeleton-line full"></div><div class="skeleton-line medium"></div></div>
     </div>
     <div class="grid" id="feed" style="display:none;"></div>
+    <section class="newsletter-card" id="newsletterCard" aria-labelledby="newsletterTitle">
+      <h2 id="newsletterTitle">Get the Monday Signal Briefing — 5 key tech moves delivered every week.</h2>
+      <form id="newsletterForm" method="post" action="#" novalidate data-substack-action="https://YOUR_SUBSTACK.substack.com/subscribe" data-beehiiv-action="https://YOUR_PUBLICATION.beehiiv.com/subscribe" data-convertkit-action="https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe" data-webhook="">
+        <div class="newsletter-fields">
+          <label class="visually-hidden" for="newsletterEmail">Email address</label>
+          <div class="newsletter-row">
+            <input id="newsletterEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+            <button type="submit">Subscribe</button>
+          </div>
+          <p class="newsletter-trust">No spam. Unsubscribe anytime.</p>
+          <p class="newsletter-error" role="alert" hidden></p>
+        </div>
+        <p class="newsletter-success" role="status" hidden>You're subscribed to the Monday Signal Briefing!</p>
+      </form>
+      <p class="newsletter-archive"><a href="digests.html">View past digest archives</a></p>
+    </section>
     <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
       <button class="load-more" id="loadMoreBtn" data-i18n="showMore">Show more</button>
     </div>
   </main>
 
-  <section class="newsletter-card" aria-labelledby="newsletterTitle">
-    <h2 id="newsletterTitle">Get the Daily Signal Digest</h2>
-    <form id="newsletterForm" method="post" action="#" novalidate data-substack-action="https://YOUR_SUBSTACK.substack.com/subscribe" data-beehiiv-action="https://YOUR_PUBLICATION.beehiiv.com/subscribe" data-convertkit-action="https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe" data-webhook="">
-      <div class="newsletter-fields">
-        <label class="visually-hidden" for="newsletterEmail">Email address</label>
-        <div class="newsletter-row">
-          <input id="newsletterEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
-          <button type="submit">Subscribe</button>
-        </div>
-        <p class="newsletter-trust">No spam. Unsubscribe anytime.</p>
-        <p class="newsletter-error" role="alert" hidden></p>
-      </div>
-      <p class="newsletter-success" role="status" hidden>You're subscribed to the Daily Signal!</p>
-    </form>
-  </section>
-
   <footer>
     <p data-i18n="footer" data-i18n-html>
       Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Optional cross-device sync for saved items lives in <code>cloudflare-worker/</code>.
     </p>
-    <nav class="footer-legal" aria-label="Legal">
+    <nav class="footer-legal" aria-label="Publication">
+      <a href="about.html">About</a>
+      <a href="editorial.html">Editorial</a>
+      <a href="advertise.html">Advertise</a>
+      <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Service</a>
     </nav>
@@ -8093,6 +8103,7 @@ footer,
 <script src="feed-cache.js"></script>
 <script>
   const feedEl = document.getElementById('feed');
+  const newsletterCardEl = document.getElementById('newsletterCard');
   let statusClock = '';
   function t(key, vars) {
     const select = document.getElementById('languageSelect');
@@ -9112,7 +9123,15 @@ initAuth();
     renderAll();
   }
 
+  function placeNewsletterCard() {
+    if (!newsletterCardEl || !feedEl) return;
+    const top = feedEl.querySelector('.feed-top');
+    if (top) top.insertAdjacentElement('afterend', newsletterCardEl);
+    else feedEl.insertAdjacentElement('afterend', newsletterCardEl);
+  }
+
   function render() {
+    if (newsletterCardEl && feedEl.contains(newsletterCardEl)) newsletterCardEl.remove();
     const items = sortItems(getFilteredItems());
     visibleCount = Math.min(visibleCount, items.length || PAGE_SIZE);
 
@@ -9134,6 +9153,7 @@ initAuth();
         statusEl.textContent = '';
         statusEl.hidden = true;
       }
+      placeNewsletterCard();
       return;
     }
 
@@ -9146,6 +9166,7 @@ initAuth();
       loadMoreWrapEl.style.display = 'none';
       feedEl.innerHTML = `<div class="empty">${escapeHtml(t('empty'))}</div>`;
       feedEl.style.display = 'block';
+      placeNewsletterCard();
       return;
     }
 
@@ -9306,6 +9327,7 @@ initAuth();
       </div>
       ${lower ? `<div class="lower-feed">${lower}</div>` : ''}`;
 
+    placeNewsletterCard();
     wireFeed(feedEl);
     paintCardImages(feedEl);
     balanceQueue = items.filter((item) => item && item.link && !usedLinks.has(item.link));
@@ -9520,8 +9542,11 @@ initAuth();
   }
 
   // Live Google News locale (`/api/news` → https://news.google.com/rss?hl=&gl=&ceid=).
-  // Both attempts share one 6 second budget. A timeout, a failed response, or
-  // invalid XML/JSON falls back to stale localStorage items, then static JSON.
+  // Both attempts share one 6 second budget. A timeout, a failed response,
+  // invalid JSON, or a disconnected Cloudflare worker returns null. The feed
+  // then stays on the static files in public/data/ (news.json, papers.json,
+  // reviews.json, reddit.json). Digests never call the worker: digests.html
+  // reads public/digests/*.json on its own.
   const LOCALE_FETCH_MS = 6000;
 
   async function loadLocalizedNews(region, language) {
@@ -9550,7 +9575,21 @@ initAuth();
         lastError = err;
       }
     }
-    throw lastError || new Error('google news timed out');
+    console.error('Localized news feed failed; using static JSON', lastError);
+    return null;
+  }
+
+  async function loadStaticBuckets() {
+    const [staticNews, papers, reviews, reddit] = await Promise.all([
+      loadJSON('news.json', 'news', (i) => i),
+      loadJSON('papers.json', 'papers', (i) => ({
+        ...i,
+        source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ` ${t('etAl')}` : ''),
+      })),
+      loadJSON('reviews.json', 'reviews', (i) => i),
+      loadJSON('reddit.json', 'reddit', (i) => i),
+    ]);
+    return { news: staticNews, papers, reviews, reddit };
   }
 
   function mergeNews(localized, publisher) {
@@ -9618,29 +9657,17 @@ initAuth();
       loadMoreWrapEl.style.display = 'none';
     }
     let localeSettled = false;
-    const localizedPromise = loadLocalizedNews(locale.region, locale.language).then(
-      (items) => {
-        localeSettled = true;
-        return items;
-      },
-      (err) => {
-        console.error('Localized news feed failed', err);
-        localeSettled = true;
-        return null;
-      }
-    );
+    const localizedPromise = loadLocalizedNews(locale.region, locale.language).then((items) => {
+      localeSettled = true;
+      return items;
+    });
     try {
-      const [staticNews, papers, reviews, reddit] = await Promise.all([
-        loadJSON('news.json', 'news', (i) => i),
-        loadJSON('papers.json', 'papers', (i) => ({
-          ...i,
-          source: (i.authors || []).slice(0, 2).join(', ') + ((i.authors || []).length > 2 ? ` ${t('etAl')}` : ''),
-        })),
-        loadJSON('reviews.json', 'reviews', (i) => i),
-        loadJSON('reddit.json', 'reddit', (i) => i),
-      ]);
+      const nextBuckets = await loadStaticBuckets();
       if (serial !== refreshSerial) return;
-      const nextBuckets = { news: staticNews, papers, reviews, reddit };
+      const staticNews = nextBuckets.news;
+      const papers = nextBuckets.papers;
+      const reviews = nextBuckets.reviews;
+      const reddit = nextBuckets.reddit;
       const staticCount = staticNews.length + papers.length + reviews.length + reddit.length;
       if (staticCount > 0 || !staticBuckets) staticBuckets = nextBuckets;
 
@@ -9681,6 +9708,12 @@ initAuth();
       console.error('Feed refresh failed', err);
       if (serial !== refreshSerial) return;
       try {
+        if (!staticBuckets) {
+          const recovered = await loadStaticBuckets();
+          if (serial !== refreshSerial) return;
+          const recoveredCount = recovered.news.length + recovered.papers.length + recovered.reviews.length + recovered.reddit.length;
+          if (recoveredCount) staticBuckets = recovered;
+        }
         const fallbackItems = staticBuckets
           ? composeFeed(staleCached ? staleCached.items : null, staticBuckets)
           : ((staleCached && staleCached.items) || []);
@@ -10218,6 +10251,9 @@ initAuth();
   outline: 2px solid #1a73e8;
   outline-offset: 2px;
 }
+.newsletter-archive { margin: 12px 0 0; font-size: 13px; }
+.newsletter-archive a { color: #185abc; font-weight: 600; }
+:root[data-theme="dark"] .newsletter-archive a { color: #8ab4f8; }
 .newsletter-trust,
 .newsletter-error { margin: 8px 0 0; font-size: 12px; }
 .newsletter-trust { color: var(--text-muted, #5f6368); }

@@ -1,7 +1,7 @@
 {
   "name": "Signal Tech",
   "short_name": "Signal",
-  "description": "A personal tech dashboard for news, AI papers, reviews, and community.",
+  "description": "The Daily Signal — a curated briefing on AI engineering, chips, and dev tools.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

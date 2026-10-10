@@ -36,14 +36,13 @@
 <meta property="og:image" content="https://primetimeplayer.github.io/signal-tech/assets/og-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Signal Tech, a personal tech dashboard">
+<meta property="og:image:alt" content="The Daily Signal by Signal Tech">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@SignalTech">
 <meta name="twitter:title" content="Digests — Signal Tech">
 <meta name="twitter:description" content="Weekly auto-generated digests from Signal Tech.">
 <meta name="twitter:url" content="https://primetimeplayer.github.io/signal-tech/digests.html">
 <meta name="twitter:image" content="https://primetimeplayer.github.io/signal-tech/assets/og-preview.png">
-<meta name="twitter:image:alt" content="Signal Tech, a personal tech dashboard">
+<meta name="twitter:image:alt" content="The Daily Signal by Signal Tech">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -58,7 +57,7 @@
       "@type": "WebSite",
       "@id": "https://primetimeplayer.github.io/signal-tech/#website",
       "name": "Signal Tech",
-      "description": "A personal tech dashboard aggregating tech news, AI papers, device reviews, and Reddit discussion.",
+      "description": "The Daily Signal, a curated briefing on AI engineering, chips, and dev tools for tech leaders.",
       "url": "https://primetimeplayer.github.io/signal-tech/",
       "publisher": {
         "@id": "https://primetimeplayer.github.io/signal-tech/#organization"
@@ -75,7 +74,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link rel="preconnect" href="https://news.google.com">
-<link rel="preconnect" href="https://signal-sync.primetimeplayer-signal-sync.workers.dev">
+
 <link rel="preconnect" href="https://platform.theverge.com">
 <link rel="preconnect" href="https://media.wired.com">
 <link rel="preconnect" href="https://cdn.arstechnica.net">
@@ -793,7 +792,7 @@ a:focus-visible {
       });
       loadDigest(entries[0].id, entries);
     } catch (err) {
-      listEl.innerHTML = '<div class="empty">No digests yet.</div>';
+      listEl.innerHTML = '<div class="empty">The digest archive could not be loaded from this site.</div>';
     }
   }
 
@@ -801,7 +800,11 @@ a:focus-visible {
 </script>
 
 <footer>
-  <nav class="footer-legal" aria-label="Legal">
+  <nav class="footer-legal" aria-label="Publication">
+    <a href="about.html">About</a>
+    <a href="editorial.html">Editorial</a>
+    <a href="advertise.html">Advertise</a>
+    <a href="contact.html">Contact</a>
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
   </nav>
@@ -1550,6 +1553,11 @@ html[data-theme="dark"] .digest-ad {
 
 html[data-theme="dark"] .digest-ad .adsbygoogle {
   background: #202124;
+}
+
+.digest-ad:has([data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"]),
+.digest-ad:has([data-ad-slot="0000000002"]) {
+  display: none !important;
 }
 </style>
 <script src="recent-items.js"></script>

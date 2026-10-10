@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Contact — Signal Tech</title>
+<meta name="description" content="Contact Signal Tech and send a news tip, correction, or sponsorship pitch.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://primetimeplayer.github.io/signal-tech/contact.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f8f9fa; color: #202124; font-family: Inter, ui-sans-serif, system-ui, sans-serif; line-height: 1.6; }
+  a { color: #185abc; }
+  .mast { background: #ffffff; border-bottom: 1px solid #e5e7eb; }
+  .wrap { width: min(800px, calc(100% - 32px)); margin: 0 auto; }
+  .mast-row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; }
+  .wordmark { color: #202124; font-size: 22px; font-weight: 650; letter-spacing: -0.04em; text-decoration: none; }
+  .wordmark span { color: #1a73e8; }
+  .back { color: #5f6368; font-size: 13px; text-decoration: none; }
+  .back:hover { color: #1a73e8; }
+  article { padding: 28px 0 48px; }
+  h1 { margin: 8px 0 4px; font-size: 32px; letter-spacing: -0.03em; line-height: 1.15; }
+  .updated { margin: 0 0 24px; color: #5f6368; font-size: 13px; }
+  h2 { margin: 28px 0 8px; font-size: 18px; letter-spacing: -0.02em; }
+  p, li, label { font-size: 15px; }
+  form { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+  label { font-weight: 600; }
+  input, select, textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #202124;
+    font: 400 15px/1.5 Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+  textarea { min-height: 140px; resize: vertical; }
+  button {
+    align-self: flex-start;
+    height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 999px;
+    background: #185abc;
+    color: #ffffff;
+    font: 600 14px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+    cursor: pointer;
+  }
+  button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
+  }
+  .form-error { margin: 0; color: #d93025; font-size: 13px; }
+  .form-note { margin: 0; color: #5f6368; font-size: 13px; }
+  footer { margin-top: 12px; padding: 16px 0 28px; border-top: 1px solid #e5e7eb; color: #5f6368; font-size: 13px; }
+  .footer-legal { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .footer-legal a { color: #5f6368; font-weight: 600; text-decoration: none; }
+  .footer-legal a:hover { color: #1a73e8; }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap mast-row">
+    <a class="wordmark" href="index.html">Signal<span>.</span> Tech</a>
+    <a class="back" href="index.html">← Back to Signal Tech</a>
+  </div>
+</header>
+<article class="wrap">
+  <h1>Contact</h1>
+  <p class="updated">Last updated 10 October 2026</p>
+  <p>Use this form for a general note, a news tip, a correction, or a sponsorship pitch. Sending it opens a GitHub issue on the Signal Tech repository with your message filled in. The Pages site does not store the form.</p>
+
+  <form id="contactForm" method="post" action="https://github.com/Primetimeplayer/signal-tech/issues/new" novalidate>
+    <div>
+      <label for="contactName">Name</label>
+      <input id="contactName" name="name" type="text" autocomplete="name" required>
+    </div>
+    <div>
+      <label for="contactEmail">Email</label>
+      <input id="contactEmail" name="email" type="email" autocomplete="email" inputmode="email" required>
+    </div>
+    <div>
+      <label for="contactTopic">Topic</label>
+      <select id="contactTopic" name="topic" required>
+        <option value="General">General</option>
+        <option value="News tip">News tip</option>
+        <option value="Correction">Correction</option>
+        <option value="Sponsorship">Sponsorship pitch</option>
+        <option value="Privacy">Privacy request</option>
+      </select>
+    </div>
+    <div>
+      <label for="contactMessage">Message</label>
+      <textarea id="contactMessage" name="message" required></textarea>
+    </div>
+    <p class="form-error" id="contactError" role="alert" hidden></p>
+    <button type="submit">Send</button>
+    <p class="form-note">You will review the issue on GitHub before it is filed. For a correction, include the Signal Tech URL and the original story URL.</p>
+  </form>
+</article>
+<footer>
+  <div class="wrap">
+    <nav class="footer-legal" aria-label="Publication">
+      <a href="about.html">About</a>
+      <a href="editorial.html">Editorial</a>
+      <a href="advertise.html">Advertise</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</footer>
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  var error = document.getElementById('contactError');
+  function validEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+  }
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var name = document.getElementById('contactName').value.trim();
+    var email = document.getElementById('contactEmail').value.trim();
+    var topic = document.getElementById('contactTopic').value;
+    var message = document.getElementById('contactMessage').value.trim();
+    if (!name || !validEmail(email) || !message) {
+      error.hidden = false;
+      error.textContent = 'Enter your name, a valid email, and a message.';
+      return;
+    }
+    error.hidden = true;
+    var title = 'Signal Tech — ' + topic;
+    var body = 'Name: ' + name + '\nEmail: ' + email + '\nTopic: ' + topic + '\n\n' + message;
+    var url = 'https://github.com/Primetimeplayer/signal-tech/issues/new?title='
+      + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    window.location.assign(url);
+  });
+})();
+</script>
+</body>
+</html>

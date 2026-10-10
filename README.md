@@ -100,7 +100,7 @@ Three slots ship as `ins.adsbygoogle` elements with client `ca-pub-xxxxxxxxxxxxx
 ### SEO, sharing, and install metadata
 
 - Self-referencing canonicals on the dashboard and the digest page.
-- Open Graph and Twitter Card tags. The Twitter card is `summary_large_image`. `twitter:site` is `@SignalTech`, a placeholder handle.
+- Open Graph and Twitter Card tags. The Twitter card is `summary_large_image`. There is no `twitter:site` handle until a real account is added.
 - Preview image: `public/assets/og-preview.png` (1200×630).
 - JSON-LD `WebSite` and `NewsMediaOrganization` named Signal Tech.
 - `public/robots.txt` allows all agents and points at the sitemap.
