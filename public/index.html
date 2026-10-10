@@ -7866,6 +7866,70 @@ footer,
   .mast .search-row { min-width: 64px !important; }
 }
 </style>
+<style id="page-align">
+/* One column. The mast, topic bar, Latest strip, headings, and story
+   cards share this left edge. Nested blocks must not add a second inset. */
+.mast > .wrap,
+body > .wrap {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  box-sizing: border-box !important;
+}
+
+.wrap.latest-wrap,
+.latest,
+.latest-row,
+.controls,
+.result-meta,
+.result-count,
+.section-heading,
+.error-banner,
+main,
+#topicBar,
+#topicBar .top-nav,
+#filters .top-nav,
+footer {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.latest-label {
+  padding-left: 0 !important;
+}
+
+main .grid,
+#feed.grid {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 800px) {
+  .mast > .wrap,
+  body > .wrap {
+    max-width: none !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+</style>
 </head>
 <body>
 

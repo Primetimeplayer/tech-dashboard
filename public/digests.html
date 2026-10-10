@@ -565,6 +565,36 @@ a:focus-visible {
 }
 
 </style>
+<style id="page-align">
+/* The digest mast, title, archive list, and newsletter share one left edge.
+   The article card keeps its own inner padding. */
+.main-content > .mast > .wrap,
+.main-content > .wrap {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+  box-sizing: border-box !important;
+}
+
+.page-title,
+.sub,
+.layout,
+.newsletter-card {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 800px) {
+  .main-content > .mast > .wrap,
+  .main-content > .wrap {
+    max-width: none !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+</style>
 </head>
 <body>
 <button type="button" class="sidebar-backdrop" id="sidebarBackdrop" tabindex="-1" aria-label="Close navigation menu"></button>
