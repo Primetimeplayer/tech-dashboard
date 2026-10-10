@@ -4,13 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X1DTQNYD9T"></script>
+<!-- Google tag (gtag.js). Loaded only after Accept All, including on later visits. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X1DTQNYD9T');
+  window.loadSignalAnalytics = function () {
+    if (window.__signalGaLoaded) return;
+    window.__signalGaLoaded = true;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-X1DTQNYD9T';
+    document.head.appendChild(script);
+    gtag('js', new Date());
+    gtag('config', 'G-X1DTQNYD9T');
+  };
+  try {
+    if (localStorage.getItem('signal_tech_cookie_consent') === 'all') window.loadSignalAnalytics();
+  } catch (e) {}
 </script>
 <title>Signal Tech — a personal tech dashboard</title>
 <meta name="description" content="Tech news, AI papers, device reviews, and Reddit discussion — pulled on a schedule, no algorithm. A personal tech dashboard by Signal Tech.">
@@ -8034,8 +8044,14 @@ footer,
     </div>
   </main>
 
-  <footer data-i18n="footer" data-i18n-html>
-    Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Optional cross-device sync for saved items lives in <code>cloudflare-worker/</code>.
+  <footer>
+    <p data-i18n="footer" data-i18n-html>
+      Data refreshes on a schedule via GitHub Actions; this page also quietly re-checks for new data every 5 minutes. Saved items and notes stay in this browser, and follow you to another device after you log in. Sources live in <code>scripts/fetch-*.js</code>; summaries and "why it matters" notes are optionally written by an LLM in <code>scripts/summarize.js</code>. Optional cross-device sync for saved items lives in <code>cloudflare-worker/</code>.
+    </p>
+    <nav class="footer-legal" aria-label="Legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
   </footer>
 </div>
 
@@ -10056,7 +10072,120 @@ initAuth();
 </script>
 <script src="recent-items.js"></script>
 
-
+<style id="cookie-consent">
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+}
+.footer-legal a {
+  font-weight: 600;
+}
+.cookie-banner {
+  position: fixed;
+  z-index: 800;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 20px;
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 16px 18px;
+  box-sizing: border-box;
+  background: var(--panel, #ffffff);
+  color: var(--text, #202124);
+  border: 1px solid var(--line, #e5e7eb);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(23, 33, 43, 0.14);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+.cookie-banner[hidden] { display: none !important; }
+.cookie-banner p { margin: 0; }
+.cookie-banner-title {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.cookie-banner-copy {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted, #5f6368);
+}
+.cookie-banner-copy a { color: #1a73e8; }
+.cookie-banner-actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+.cookie-banner button {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font: 600 13px/1 Inter, ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+}
+.cookie-banner .cookie-essential {
+  background: transparent;
+  color: inherit;
+  border: 1px solid var(--line, #dadce0);
+}
+.cookie-banner .cookie-accept {
+  background: #185abc;
+  color: #ffffff;
+  border: 1px solid #185abc;
+}
+.cookie-banner button:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .cookie-banner { flex-direction: column; align-items: stretch; }
+  .cookie-banner-actions { width: 100%; }
+  .cookie-banner-actions button { flex: 1; }
+}
+</style>
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-labelledby="cookieBannerTitle" aria-describedby="cookieBannerText" hidden>
+  <div>
+    <p class="cookie-banner-title" id="cookieBannerTitle">Cookies on Signal Tech</p>
+    <p class="cookie-banner-copy" id="cookieBannerText">Essential storage remembers your settings on this device. Analytics runs only if you allow it. Read the <a href="privacy.html">Privacy Policy</a>.</p>
+  </div>
+  <div class="cookie-banner-actions">
+    <button type="button" class="cookie-essential" id="cookieEssential">Essential Only</button>
+    <button type="button" class="cookie-accept" id="cookieAccept">Accept All</button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'signal_tech_cookie_consent';
+  var banner = document.getElementById('cookieBanner');
+  function read() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function write(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+  function hide() { if (banner) banner.hidden = true; }
+  var choice = read();
+  if (choice === 'all' || choice === 'essential') { hide(); return; }
+  if (banner) banner.hidden = false;
+  var accept = document.getElementById('cookieAccept');
+  var essential = document.getElementById('cookieEssential');
+  if (accept) accept.addEventListener('click', function () {
+    write('all');
+    if (window.loadSignalAnalytics) window.loadSignalAnalytics();
+    hide();
+  });
+  if (essential) essential.addEventListener('click', function () {
+    write('essential');
+    hide();
+  });
+})();
+</script>
 
 </body>
 </html>

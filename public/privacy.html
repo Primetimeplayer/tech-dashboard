@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Privacy Policy — Signal Tech</title>
+<meta name="description" content="How Signal Tech handles Google Analytics, cookies, RSS aggregation, local storage, and GDPR and CCPA rights.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://primetimeplayer.github.io/signal-tech/privacy.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f8f9fa;
+    color: #202124;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  a { color: #185abc; }
+  .mast {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .wrap { width: min(800px, calc(100% - 32px)); margin: 0 auto; }
+  .mast-row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 16px; }
+  .wordmark { color: #202124; font-size: 22px; font-weight: 650; letter-spacing: -0.04em; text-decoration: none; }
+  .wordmark span { color: #1a73e8; }
+  .back { color: #5f6368; font-size: 13px; text-decoration: none; }
+  .back:hover { color: #1a73e8; }
+  article { padding: 28px 0 48px; }
+  h1 { margin: 8px 0 4px; font-size: 32px; letter-spacing: -0.03em; line-height: 1.15; }
+  .updated { margin: 0 0 24px; color: #5f6368; font-size: 13px; }
+  h2 { margin: 28px 0 8px; font-size: 18px; letter-spacing: -0.02em; }
+  p, li { font-size: 15px; }
+  ul { padding-left: 1.2rem; }
+  code { font-size: 0.92em; }
+  footer { margin-top: 12px; padding: 16px 0 28px; border-top: 1px solid #e5e7eb; color: #5f6368; font-size: 13px; }
+  .footer-legal { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .footer-legal a { color: #5f6368; font-weight: 600; text-decoration: none; }
+  .footer-legal a:hover { color: #1a73e8; }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap mast-row">
+    <a class="wordmark" href="index.html">Signal<span>.</span> Tech</a>
+    <a class="back" href="index.html">← Back to dashboard</a>
+  </div>
+</header>
+<article class="wrap">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated 10 October 2026</p>
+  <p>Signal Tech is a personal tech dashboard at <a href="https://primetimeplayer.github.io/signal-tech/">https://primetimeplayer.github.io/signal-tech/</a>. It is operated by the maintainer of the <a href="https://github.com/Primetimeplayer/signal-tech">Signal Tech repository</a>. This policy explains what the site stores on your device, when Google Analytics runs, and the choices you have under the GDPR and the CCPA.</p>
+
+  <h2>What the site does</h2>
+  <p>Signal Tech aggregates publicly available tech news, AI papers, device reviews, and community discussion from publisher RSS feeds and APIs. A scheduled job saves titles, links, excerpts, and image addresses into static files on this site. Your browser then reads those files. Opening a story takes you to the publisher’s own site, which has its own privacy policy.</p>
+  <p>The dashboard does not require an account. An optional sign-in can sync saved stories to another device. That sync is separate from analytics and is described below.</p>
+
+  <h2>Google Analytics 4</h2>
+  <p>Analytics uses Google Analytics 4, measurement ID <code>G-X1DTQNYD9T</code>. The analytics script is <code>https://www.googletagmanager.com/gtag/js?id=G-X1DTQNYD9T</code>.</p>
+  <p>The script does not load, and Google does not receive an analytics hit, until you choose <strong>Accept All</strong> on the cookie banner. That choice is stored in this browser under <code>signal_tech_cookie_consent</code> with the value <code>all</code>. On later visits the script loads again without asking. <strong>Essential Only</strong> stores the value <code>essential</code> and leaves analytics off.</p>
+  <p>When analytics is on, Google may receive the page address, referrer, a coarse location derived from your IP address, browser and device details, language, and how you interact with the page. Google states that GA4 does not store the full IP address. Google may set cookies such as <code>_ga</code> and <code>_ga_X1DTQNYD9T</code>, which can last up to two years. Google’s own terms are at <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> and <a href="https://policies.google.com/technologies/cookies">policies.google.com/technologies/cookies</a>.</p>
+  <p>You can withdraw analytics consent by clearing this site’s data in your browser, including <code>signal_tech_cookie_consent</code> and the Google cookies above. The banner will appear again on the next visit.</p>
+
+  <h2>Cookies</h2>
+  <p>Signal Tech itself does not set advertising cookies. The sponsor boxes on the dashboard and digest pages are placeholders. They do not contact Google AdSense and do not set an advertising cookie.</p>
+  <ul>
+    <li><strong>Essential.</strong> Preferences and the consent choice live in <code>localStorage</code>, not in a tracking cookie. The site needs these to remember theme, language, saved stories, and whether you already answered the banner.</li>
+    <li><strong>Analytics.</strong> Google Analytics cookies are set only after Accept All, as described above.</li>
+  </ul>
+
+  <h2>Local storage</h2>
+  <p>These keys stay in your browser until you clear them:</p>
+  <ul>
+    <li><code>signal_tech_cookie_consent</code> — <code>all</code> or <code>essential</code>.</li>
+    <li><code>signal-theme</code> — light or dark theme.</li>
+    <li><code>region</code> and <code>language</code> — the news region and language you picked.</li>
+    <li><code>feed_cache_</code> followed by region and language — a short-lived copy of the feed so a region change can paint immediately.</li>
+    <li><code>signal-saved</code> — stories you save and the notes you attach.</li>
+    <li><code>signal-auth-token</code> — present only after you sign in for saved-item sync.</li>
+    <li><code>techDashboardRecents</code> — the last few stories you opened from this browser.</li>
+  </ul>
+
+  <h2>RSS aggregation and other requests</h2>
+  <p>Loading the dashboard fetches its own pages and data files from GitHub Pages. A live news request may also go to the Signal sync worker, which proxies a Google News feed. Story images load from the publishers that supplied them, and the typeface loads from Google Fonts. Those requests include your IP address as part of ordinary web traffic. The site does not sell that information and does not add it to an advertising profile.</p>
+  <p>Optional sign-in uses Google and stores a token in <code>signal-auth-token</code>. Saved stories and notes can then be sent to the Cloudflare worker at <code>signal-sync.primetimeplayer-signal-sync.workers.dev</code> so they follow you to another browser. You can stop that by signing out, which removes the token from this browser.</p>
+
+  <h2>How long data is kept</h2>
+  <p>Browser storage stays until you clear it or the feed cache expires (about five minutes for a fresh copy). Analytics retention is controlled by the Google Analytics property. Synced saved items remain on the worker until you remove them or sign out and they are deleted there.</p>
+
+  <h2>GDPR rights</h2>
+  <p>If the GDPR applies to you, you can ask to access, correct, delete, or restrict personal data the operator holds, and you can object to processing or ask for a portable copy. You can withdraw analytics consent at any time, as described above. You can also lodge a complaint with your local supervisory authority. Browser-stored data is under your control: clearing site data for this host removes it from the device.</p>
+  <p>The legal bases are consent for analytics, and legitimate interests plus the steps needed to provide the dashboard for essential storage, feed display, and optional sync that you start yourself.</p>
+
+  <h2>CCPA rights</h2>
+  <p>Signal Tech does not sell personal information and does not share it for cross-context behavioral advertising. If the CCPA applies to you, you may request to know, delete, or correct personal information the operator holds, and you will not be discriminated against for exercising those rights. Choosing Essential Only is an opt-out of analytics. The site does not offer a financial incentive tied to personal information.</p>
+
+  <h2>Children</h2>
+  <p>Signal Tech is not directed at children under 16, and it does not knowingly collect personal information from them.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the updated date at the top will change with it. Continued use of the site after that date means you have the new policy available on this page.</p>
+
+  <h2>Contact</h2>
+  <p>Privacy requests can be opened on the <a href="https://github.com/Primetimeplayer/signal-tech">GitHub repository</a>. For data that never leaves your browser, clearing site data for this host is the direct way to delete it.</p>
+</article>
+<footer>
+  <div class="wrap">
+    <nav class="footer-legal" aria-label="Legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="index.html">Dashboard</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
