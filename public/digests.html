@@ -17,6 +17,14 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://lh3.googleusercontent.com">
+<link rel="preconnect" href="https://news.google.com">
+<link rel="preconnect" href="https://signal-sync.primetimeplayer-signal-sync.workers.dev">
+<link rel="preconnect" href="https://platform.theverge.com">
+<link rel="preconnect" href="https://media.wired.com">
+<link rel="preconnect" href="https://cdn.arstechnica.net">
+<link rel="preconnect" href="https://www.engadget.com">
+<link rel="preconnect" href="https://www.google.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -451,26 +459,12 @@ a:focus-visible {
 }
 
 @media (max-width: 680px) {
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 10px 14px;
-    border-right: 0;
-    border-bottom: 1px solid #DADCE0;
-  }
-
   .sidebar-home {
     margin-bottom: 5px;
   }
 
   .sidebar-label {
     margin-top: 12px;
-  }
-
-  .main-content {
-    margin-left: 0;
-    width: 100%;
   }
 
   .wrap {
@@ -518,18 +512,31 @@ a:focus-visible {
 </style>
 </head>
 <body>
-<aside class="sidebar">
+<button type="button" class="sidebar-backdrop" id="sidebarBackdrop" tabindex="-1" aria-label="Close navigation menu"></button>
+<aside class="sidebar" id="filters">
+  <div class="sidebar-drawer-head">
+    <div class="sidebar-label sidebar-drawer-title">Navigation</div>
+    <button type="button" class="sidebar-drawer-close" id="sidebarClose" aria-label="Close navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
   <a class="sidebar-home" href="index.html">Home</a>
   <div class="sidebar-label">TOPICS</div>
-  <a class="sidebar-item" href="index.html#technology">Technology</a>
+  <a class="sidebar-item" href="index.html#all">All News</a>
+  <a class="sidebar-item" href="index.html#software">Software &amp; Dev</a>
   <a class="sidebar-item" href="index.html#ai">AI &amp; Research</a>
+  <a class="sidebar-item" href="index.html#chips">Chips &amp; Silicon</a>
+  <a class="sidebar-item" href="index.html#gaming">Gaming &amp; Consoles</a>
+  <a class="sidebar-item" href="index.html#space">Space &amp; Rockets</a>
+  <a class="sidebar-item" href="index.html#security">Cybersecurity</a>
+  <a class="sidebar-item" href="index.html#gadgets">Gadgets &amp; Hardware</a>
+  <a class="sidebar-item" href="index.html#technology">Technology</a>
   <a class="sidebar-item" href="index.html#reviews">Reviews</a>
   <a class="sidebar-item" href="index.html#community">Community</a>
   <div class="sidebar-label">LIBRARY</div>
-  <a class="sidebar-item" href="index.html#hardware">Hardware</a>
-  <a class="sidebar-item" href="index.html#saved">Saved</a>
-  <a class="sidebar-item active" href="digests.html">Digests</a>
-  <a class="sidebar-item" href="index.html#settings">Settings</a>
+  <a class="sidebar-item" href="index.html#hardware"><span class="nav-emoji" aria-hidden="true">💻</span>Hardware</a>
+  <a class="sidebar-item" href="index.html#saved"><span class="nav-emoji" aria-hidden="true">🔖</span>Saved</a>
+  <a class="sidebar-item active" href="digests.html"><span class="nav-emoji" aria-hidden="true">🧵</span>Digests</a>
   <div class="sidebar-recents"><div class="sidebar-label">RECENTS</div><div id="recentArticles"></div></div>
 </aside>
 <main class="main-content">
@@ -539,6 +546,9 @@ a:focus-visible {
     <div class="mast-row">
       <a class="wordmark" href="index.html">Signal<span>.</span> Digests</a>
       <div class="mast-right">
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-controls="filters" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
         <a class="back-link" href="index.html">← Back to dashboard</a>
         <button class="theme-toggle" id="digestThemeToggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1250,6 +1260,219 @@ html[data-theme="dark"] .digest-body hr {
   border-color: #3c4043 !important;
 }
 </style>
+<style id="mobile-drawer-overlay">
+/* Same off-canvas drawer as the dashboard. Desktop keeps the fixed column. */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #202124;
+  cursor: pointer;
+  flex: none;
+}
+
+.menu-toggle svg,
+.sidebar-drawer-close svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.sidebar-drawer-head {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #dadce0;
+}
+
+.sidebar-drawer-title {
+  margin: 0 !important;
+  padding: 0;
+  color: #5f6368;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+.sidebar-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #202124;
+  cursor: pointer;
+  flex: none;
+}
+
+.nav-emoji {
+  margin-right: 8px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.sidebar-recents .recent-item {
+  display: block;
+  padding: 8px 13px;
+  color: #5f6368;
+  font-size: 13px;
+  line-height: 1.35;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 8px;
+}
+
+.sidebar-recents .recent-item:hover {
+  background: #f1f3f4;
+  color: #1a73e8;
+}
+
+@media (max-width: 800px) {
+  .menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    width: min(240px, 66vw) !important;
+    z-index: 1000 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease !important;
+    visibility: hidden !important;
+    border-right: 1px solid #dadce0 !important;
+    border-bottom: 0 !important;
+  }
+
+  body.sidebar-open .sidebar {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  .sidebar-home,
+  .sidebar-item {
+    min-height: 44px;
+  }
+
+  body.sidebar-open {
+    overflow: hidden !important;
+  }
+
+  body.sidebar-open .sidebar-backdrop {
+    display: block !important;
+  }
+
+  .sidebar-drawer-head {
+    display: flex !important;
+  }
+}
+
+html[data-theme="dark"] .menu-toggle,
+html[data-theme="dark"] .sidebar-drawer-close {
+  background: #292a2d !important;
+  border-color: #3c4043 !important;
+  color: #e8eaed !important;
+}
+
+html[data-theme="dark"] .sidebar-drawer-head {
+  border-bottom-color: #3c4043 !important;
+}
+
+html[data-theme="dark"] .sidebar-drawer-title,
+html[data-theme="dark"] .sidebar-recents .recent-item {
+  color: #bdc1c6 !important;
+}
+
+html[data-theme="dark"] .sidebar-recents .recent-item:hover {
+  background: #3c4043 !important;
+  color: #8ab4f8 !important;
+}
+</style>
+<script src="recent-items.js"></script>
+<script>
+  const menuToggleEl = document.getElementById('menuToggle');
+  const sidebarEl = document.getElementById('filters');
+  const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
+  const sidebarCloseEl = document.getElementById('sidebarClose');
+  const digestMainEl = document.querySelector('.main-content');
+
+  function setSidebarOpen(open) {
+    document.body.classList.toggle('sidebar-open', open);
+    if (menuToggleEl) menuToggleEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (digestMainEl) digestMainEl.inert = open;
+    if (!open && menuToggleEl && sidebarEl && sidebarEl.contains(document.activeElement)) menuToggleEl.focus();
+  }
+
+  if (menuToggleEl) {
+    menuToggleEl.addEventListener('click', () => {
+      setSidebarOpen(!document.body.classList.contains('sidebar-open'));
+    });
+  }
+  [sidebarBackdropEl, sidebarCloseEl].forEach((el) => {
+    if (el) el.addEventListener('click', () => setSidebarOpen(false));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 800 && document.body.classList.contains('sidebar-open')) setSidebarOpen(false);
+  });
+
+  let swipeStart = null;
+  if (sidebarEl) {
+    sidebarEl.addEventListener('touchstart', (e) => {
+      swipeStart = null;
+      if (!document.body.classList.contains('sidebar-open') || e.touches.length !== 1) return;
+      swipeStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }, { passive: true });
+    sidebarEl.addEventListener('touchend', (e) => {
+      if (!swipeStart) return;
+      const end = e.changedTouches[0];
+      const dx = end.clientX - swipeStart.x;
+      const dy = end.clientY - swipeStart.y;
+      swipeStart = null;
+      if (dx <= -50 && Math.abs(dy) <= Math.abs(dx)) setSidebarOpen(false);
+    }, { passive: true });
+    sidebarEl.addEventListener('touchcancel', () => { swipeStart = null; }, { passive: true });
+    sidebarEl.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setSidebarOpen(false);
+    });
+  }
+</script>
 
 </body>
 </html>

@@ -2716,8 +2716,8 @@ test('browser regression suite (headless Firefox + direct WebDriver)', { timeout
       `Feed must stay visible beside the open drawer (${compact.visibleBeside}px uncovered)`
     );
     assert.ok(
-      compact.scrimAlpha > 0 && compact.scrimAlpha <= 0.4,
-      `Backdrop must stay light enough to read the page through (alpha ${compact.scrimAlpha})`
+      compact.scrimAlpha >= 0.45 && compact.scrimAlpha <= 0.55,
+      `Backdrop must dim the page behind the drawer (alpha ${compact.scrimAlpha})`
     );
     assert.ok(
       compact.closeWidth >= 40 && compact.closeHeight >= 40,
