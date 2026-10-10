@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://primetimeplayer.github.io/signal-tech/sitemap.xml
