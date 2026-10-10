@@ -1,37 +1,147 @@
 {
-  "updated": "2026-10-10T00:09:26.174Z",
+  "updated": "2026-10-10T06:07:42.847Z",
   "count": 58,
   "items": [
+    {
+      "source": "CBS News",
+      "category": "news",
+      "title": "Newport Beach declares local emergency after coastal flooding on Balboa Peninsula",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxORVFuQkFHSWNRSUNwdzhoTHVEdUNlakJ1cE9qSlRwckVRazduRjBmZjBQTlJ1d3lySFl1ODkwc1Q3dm05TEhNdXVYVnB1Mmx0OGdvQy11S1h5Vkg4OHJ6bzZPMkJYS20yTS02VVdKWmRsR0R4Z1QwSWo1Skkzd21STk9VQ2xCdFU4QmxSdDdn?oc=5",
+      "published": "Sat, 10 Oct 2026 05:32:22 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "LG Promo Codes and Coupons for October 2026",
+      "link": "https://www.wired.com/story/lg-promo-code/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Save 20% with an LG promo code today, plus up to $1,000 off appliances, 40% off bestselling TVs and monitors.",
+      "image": "https://media.wired.com/photos/67b63b985a505b018b67ed90/master/pass/WIRED-Coupons-R2_17.png"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "30% Off Canon Promo Codes | October 2026",
+      "link": "https://www.wired.com/story/canon-promo-code/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Save an extra 10% or 30% with Canon coupon codes, plus up to $1,600 on cameras, printers, and more this October 2026.",
+      "image": "https://media.wired.com/photos/66ea077251891e6d3cb5d5cf/master/pass/WIRED-Coupons-3.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Disney Plus Discount Codes: 52% Off October 2026",
+      "link": "https://www.wired.com/story/disney-plus-discounts/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Cut your subscription costs with the latest active Disney+ bundle deals, verified student offers, and partner promotions.",
+      "image": "https://media.wired.com/photos/66ea076e56fd4954a7f91e0c/master/pass/WIRED-Coupons-17.jpg"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Home Depot Promo Codes: 30% Off in October 2026",
+      "link": "https://www.wired.com/story/home-depot-promo-code/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Save up to 50% today with the latest Home Depot promo codes for appliances, power tools, and more this October.",
+      "image": "https://media.wired.com/photos/67b63b9c2c751893c256c1e8/master/pass/WIRED-Coupons-R2_13.png"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "Altra Running Promo Codes: 10% Off October 2026",
+      "link": "https://www.wired.com/story/altra-promo-code/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Score big savings on Altra Running shoes with up to 50% off sale styles, 20% off select models, 10% off your first order when you sign up, plus free standard delivery on every purchase.",
+      "image": "https://media.wired.com/photos/67b63b9a4816461befb48207/master/pass/WIRED-Coupons-R2_12.png"
+    },
+    {
+      "source": "Wired",
+      "category": "news",
+      "title": "eBay Coupons: 20% Off in October 2026",
+      "link": "https://www.wired.com/story/ebay-coupon-code/",
+      "published": "Sat, 10 Oct 2026 05:00:00 +0000",
+      "summary": "Save up to 60% on a selection of items at eBay, including electronics, home products, card games, car parts and more.",
+      "image": "https://media.wired.com/photos/66ea03340e63ccab6b8add4b/master/pass/WIRED-Coupons-1.jpg"
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Elon Musk intensifies attack on Ambani over Starlink India launch delay",
+      "link": "https://techcrunch.com/2026/10/09/elon-musk-intensifies-attack-on-ambani-over-starlink-india-launch-delay/",
+      "published": "Sat, 10 Oct 2026 03:10:06 +0000",
+      "summary": "Elon Musk has accused Indian billionaire Mukesh Ambani of blocking competition."
+    },
+    {
+      "source": "AP News",
+      "category": "news",
+      "title": "Panama rocked by 2 powerful earthquakes and multiple aftershocks, prompting evacuations",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVl9TaDlyMTA4emtwWlhyemdqTUY2ak9BUzU4TWlyT3d6dEtfWGs1RWVESTZ3YlhBcmx0S1dhajROOEJjY2NvbDlHc0h0Z2s2a1RFY3dRSDJTSlFrOTVWWk5PVjBlVGtUTEtPSEpMeS1nZFE1eTFmWWJzUGd4Ym5mOE1KZw?oc=5",
+      "published": "Sat, 10 Oct 2026 02:53:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Fox News",
+      "category": "news",
+      "title": "Trump rallies New York crowd for Republican Bruce Blakeman's bid to replace Gov. Kathy Hochul",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNd2hNWkJMYXZ1dHE2Z2t0VEkwX1JWVjNLby13alI1TDYyNzdxaFBlWE5qaGRwbUlFSzN2Qy1QTWVuSUpKNnhBbzhCOUJSMUU4V2ZnN2Npdi05NENVMUYtMWtlUHZuZkV6UUZzZ1JfY2FtdV8ySEVmc1ktM19faDNzZnlDdHpFUXYxREpQM2ZPQjdWNzZQeDlDcWx0emVPOXFyVFc1U1hoT1RXOEx3c0JkQlVSem04WE9u0gG-AUFVX3lxTE5ueVNkMW1INkFfWEhYaVJKbTBFRkhLUW10QmFkNVA3ZTdJUVpzc1pRNXQxcXZobVlCSS1MeVlYeG1XZWVUWmFfc29mT3pyQllJWUgyM0ZvWTBxS2M0bzZCMXFqcGdsVmVOY0tSZEswVGF1VXJJZEZ4NmNZZ0ZpR0dMWHozUkE0T3pLWmY4T3hfQ3MwbmlLUmZfTnF4REkwdVZDVGJ0dnUwSlBsNW9PbndPU0pJeGxFUEt2X0FZalE?oc=5",
+      "published": "Sat, 10 Oct 2026 02:42:49 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Breaking News, Latest News and Videos",
+      "category": "news",
+      "title": "Hurricane Isaias updates: Storm makes landfall in Florida Panhandle - ABC News",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaUdYcFFrUnUtM3Z0cnJIN3ZnNEZpbmM1THIzblVmMTN6TXpXaE92Wl8zOEtRaFdYRHpIVjl4WmV6VWJmNG5rcWRoRTMwaGdrWE8talRzQ192djdQWk43Ynp6bGlldkx3SVVnWUtLdWR2NVBNTTlyWGpFZE5aMlpvcHMtR1ZCZVZWdXZpZHVzbkRwVlh4Q3NfSVVYeUJFLXk2Rzk3anBfRdIBrAFBVV95cUxNeGFSUzh5SldPSGNTdDdVczJnc2NETDU0aExmdE9qdHhYSjk1d2F1b243U0M4OHZiaGxUME90OERBMC1DbDJ1YmZmUkZmOHZXNzJMUmIxU09HWjI2UnhBaGFSTXJTM2lNY3R2ZW1xc1Q4N0xxQlFNSXNES2dMQVR0c2J1bENwaXNBSTc4MV9qbXVNNl9PamxISkFESFNIZWhLWnQxOUJMeTkyRlU0?oc=5",
+      "published": "Sat, 10 Oct 2026 02:29:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "Bloomberg.com",
+      "category": "news",
+      "title": "Trump Warns Norway He Won’t Forget Nobel Peace Prize Snub",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxObjd4M2hoaWRYUEhnc2F3VFUySnFHTmxFN3VRRlZwVkxobGlNZk9rSzB6dkpBVk1zVW9VYzZuV2REbjhzeGpadHFHSHhqdHl1Wmc3ZXo4ckJtSEpRaGFyc2FlZ29SZ2w4Q0VOdW1vWS1uV2NJOXFtR3pOZnR6d0gtQTc3cGJYWlE1cWc1ZG1pZ25fVkxJaENpdERYUEVIMm51MF9xdWRYOTBFMzJt?oc=5",
+      "published": "Sat, 10 Oct 2026 02:06:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "WSJ",
+      "category": "news",
+      "title": "Houthis Bombard Saudi Air Links in Effort to Cut Kingdom Off From Rest of World",
+      "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNc1YzeWZ5ZnFYX3g5SEdnVVUwSjBhY3JqTFFQTy1TNUZBc016TFFGQ0thUWtTWEQ4RlpIM0c4YUJSRm9zVTlvTVlvQmtkeEZLeGJ1LXZBYTFpT3lmbFpnekQxZk91a0Z5U0pHMDdwVS1YaXIzYlFCM0N1VVpWNGFUOWtKRUhrVzlRRThsb1hVRE4yWVBibjJRWDMtaVlTTk5VTzRXTDVFT25UZHU2TDhlcFZBdjRiYXczdXNMckdXakdyOXln?oc=5",
+      "published": "Sat, 10 Oct 2026 02:00:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "TechCrunch",
+      "category": "news",
+      "title": "Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead",
+      "link": "https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/",
+      "published": "Sat, 10 Oct 2026 00:18:32 +0000",
+      "summary": "Anthropic said it \"turned off live internet access\" for \"all our internal evaluations\" until further notice."
+    },
+    {
+      "source": "CBS News",
+      "category": "news",
+      "title": "3 men found guilty of killing American and Australian brothers on surfing trip in Mexico",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdnJnMWFyM09qblFLcTZVZE9DbldxZy1xNXRWUElqY0huc2h4MXpjWE9jUlRvVnE5TUNucXZzNzdDVDFNcTJfYklKQkhxOFJpQjR6NHdCRDlhM2ZySHEwckNLWlV6X3dyT0JJelRPY0lOYUYxdUpzaXNwcW9sUWlHXzk2SW1DcklZeHc?oc=5",
+      "published": "Sat, 10 Oct 2026 00:15:00 GMT",
+      "summary": ""
+    },
+    {
+      "source": "The Guardian",
+      "category": "news",
+      "title": "Zelenskyy furious as Trump announces deal to buy Russian diesel",
+      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeG1xRUcxTGtHQXVIWkNWZXBJLXE5RkNVcUVjS0lmXzZCeDdxWjk0czFCWEpYZFY1Vl9oVTV1LTJEMkhxMXhBX2QzSlcwUHlQaGYyTlEwY0lsREU2NFROOGFVSTBRWV9hQ3hBSHVwNnNqSDhsSTdlOWhweTRtRXF3b1piYzRtam5sUXc?oc=5",
+      "published": "Sat, 10 Oct 2026 00:07:00 GMT",
+      "summary": ""
+    },
     {
       "source": "The New York Times",
       "category": "news",
       "title": "Donor Says Kimberly Guilfoyle Sought Money From Him to Cover Debt",
       "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPRlJvY2Z2TGJBZGY3NWJmUEtzZmVPVnlTTlF0blZMM0pVLWNwTjNQUWFTbU9UWjk4cHgzWVVQWktzREdfa3VOeE96dXFERzA1RWlOVGNyZHQwNkFjc3l3TkVlVDE2QkdlQm52VERubTcyTldrRjhoNEwzWmJtU19DcUJaMjl5YjBBT0E?oc=5",
       "published": "Fri, 09 Oct 2026 23:26:58 GMT",
-      "summary": ""
-    },
-    {
-      "source": "NPR",
-      "category": "news",
-      "title": "'Life-threatening' Isaias, a major hurricane, starts to affect Gulf Coast",
-      "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE80TFppc3pqQ0JhWERkcFhBby0tWWlPdjhiVklQNHZNSXowdkpsZEw2OXNWUm9iTElxNkNySWd5QmJoSDZoQUhOaGdONGkxNzVhdGQwU0xtZ3Q4SnVWUi05dHBfQTFVZF84RkRuckJFWjN4X0F5SXRERg?oc=5",
-      "published": "Fri, 09 Oct 2026 23:20:42 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Axios",
-      "category": "news",
-      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
-      "published": "Fri, 09 Oct 2026 22:59:59 GMT",
-      "summary": ""
-    },
-    {
-      "source": "Reuters",
-      "category": "news",
-      "title": "Trump says Russia to supply diesel to US and global markets",
-      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQU3RwVkZ4Mkg3Vy1fdGF2T2t4RmRLV3lQaU5LcXdnd3hKd21HRlZqR1dBTDlEbmNheE1MYVNjZldOLVlUd2lpMDdSaDd5c0tSUEpVRWJPLU1rTU9hSVhTYlF3Z2JPUlQydXgyb0VraVpvMUlwdHlFY2RoNEZ3WUE4Y0JjNnlHMV9VakFsdzMzOFFzUnQ3MlE?oc=5",
-      "published": "Fri, 09 Oct 2026 22:46:34 GMT",
       "summary": ""
     },
     {
@@ -59,6 +169,14 @@
       "published": "Fri, 09 Oct 2026 22:04:07 +0000",
       "summary": "One damaged data center has supercomputers used for training Yandex’s AI model.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/yandex-data-center_sasovo-ryazan-russia.jpg"
+    },
+    {
+      "source": "Axios",
+      "category": "news",
+      "title": "JD Vance says he won't watch livestream execution of Fort Hood shooter",
+      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQU29GaWlaWjVIek81VDNFancwa2ZzeFBmRzl3UGtIWmRVUXVxS1dUdUdVanJaR2Z2WDZRWk1YbWNOTWV2NHdVMEVzNlFSMGhHZ01sc1hyMDQ1eU9uaG9zTjZGaGpkbWIzbmoyUC1SWlBIbDNEcUM0YmlvYlFUb25mT2N5cmhQd1U?oc=5",
+      "published": "Fri, 09 Oct 2026 22:00:23 GMT",
+      "summary": ""
     },
     {
       "source": "Ars Technica",
@@ -96,19 +214,11 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662.jpg"
     },
     {
-      "source": "CBS News",
+      "source": "Courthouse News",
       "category": "news",
-      "title": "NYPD body camera video shows aftermath of ICE agent shooting man in Marble Hill",
-      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9RSmNGRTJHS0xYWElZdG11aGhmWEFNSlptaDlNWkwzX0FQV09MZDNhWkZiZTFORmJCZjJYdFBMd2pWSzVTSDl4QlpQZU40VmZzdnpaTDB5dV8tTlRCZTU1T1g1QzlocWxnM1JkSm40OA?oc=5",
-      "published": "Fri, 09 Oct 2026 21:32:04 GMT",
-      "summary": ""
-    },
-    {
-      "source": "AP News",
-      "category": "news",
-      "title": "Two powerful earthquakes and multiple aftershocks rock Panama",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVl9TaDlyMTA4emtwWlhyemdqTUY2ak9BUzU4TWlyT3d6dEtfWGs1RWVESTZ3YlhBcmx0S1dhajROOEJjY2NvbDlHc0h0Z2s2a1RFY3dRSDJTSlFrOTVWWk5PVjBlVGtUTEtPSEpMeS1nZFE1eTFmWWJzUGd4Ym5mOE1KZw?oc=5",
-      "published": "Fri, 09 Oct 2026 21:28:00 GMT",
+      "title": "NYC man shot by ICE still has bullet in body, lawyers say",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOems3ano2ZEg4M01yVEtwWDNmLXY3ZFFRY0EzQUkzdzRCN3ZQSWs5bkVRaFpIWUJWS3Q2Rk5WVmI3WTgzZmZMMjIwd29YS1RFUk9USW5rcTFOWmYydUE4cVIxc1V6ZkdqUm9JdVVENU9rbTcwYTV5ZmNPZkY4c3VfbGlVQVdIUm9JM3FPdTFQRFJhZw?oc=5",
+      "published": "Fri, 09 Oct 2026 21:27:04 GMT",
       "summary": ""
     },
     {
@@ -121,14 +231,6 @@
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/STK269_ANTHROPIC_2_A.jpg?quality=90&strip=all&crop=0,0,100,100"
     },
     {
-      "source": "NBC News",
-      "category": "news",
-      "title": "James Talarico back on the trail after an absence with the flu drew scrutiny",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQZ3hnUEw0WGhnR3hmYnFwc25NRUN4RTlicTFvTUtPTXVxWFdRMGRQNVFYSmY2cmFXLVVib1MxNl9QWjh2WU0tVGhNdGNabGpCMjBxUVVnOHFuWlk5MTJRLWo3RzBFWEtQcW9ILWZPYm1oMDEyRzFoanhtTWJRNlFiN2tBM1NrLU5PRjdYbG5SLVgyMUpvdDJtU3d5YlFDSXAzOFJJU2k0bw?oc=5",
-      "published": "Fri, 09 Oct 2026 21:09:54 GMT",
-      "summary": ""
-    },
-    {
       "source": "Ars Technica",
       "category": "news",
       "title": "What's been driving Hawaii's lava fountains?",
@@ -136,14 +238,6 @@
       "published": "Fri, 09 Oct 2026 21:05:01 +0000",
       "summary": "Before the lava fountains started, the ground was expanding by half a meter a day.",
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2243092854-1152x648.jpg"
-    },
-    {
-      "source": "NBC News",
-      "category": "news",
-      "title": "Second defendant in Cornell fraternity case seeks New York AG’s recusal",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQeTBvTlFEcFdBSVNtQ2stVlkwcWtvTUpmaXRZN0YwTXp4NVFzSENhN0xSOElqWUZsU2JFTklyckZxS29iWWlRR3kwOUNYNkRTTUdmWTlDX2Q5eTVQRnB3NzQwOFA4Y3I0eE5nSUwyY0dvLTE3WTlhcGNYdGx0aGNXbGZEQXNYdXgyU0xUdWpGbkhta25SUmIwT043Wk10X3ZmbHlmT0pmalhCS0QyNUpCS2Qwc3p0bVk?oc=5",
-      "published": "Fri, 09 Oct 2026 20:40:46 GMT",
-      "summary": ""
     },
     {
       "source": "Wired",
@@ -233,6 +327,14 @@
       "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/GettyImages-2298480400-1024x648.jpg"
     },
     {
+      "source": "PBS",
+      "category": "news",
+      "title": "As Blanche hits the campaign trail, new DOJ memo relaxes rules around political conduct for Senate-approved appointees",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNdk0zb2VWTXNEazlWRHFEMFI5VVJXcFBVLVQ5X1A1dkNTS2dDdTJmSWhvWmdud01oNExVWWVvUzUzNWZCUERsYjlXeUc2ZjA1anRRSVA5QXJQdExobndOajNnTzdWZ21XckJVeFNqUjJJSUpZZktXZ2hCVWxmdDB6YXRvcER5RXhiZHhEYmNfQ1lkWXFlTzJqNmNMYjh3ME5ab3o1ZWdvemZ0ZnVzbG50cnpKUmxpQ09vcWZMeVd5UWRwcWZYdUxYa1JRZFNOX1NHVWlNd0ZGVXrSAd4BQVVfeXFMTzM3VVl4cV80UGpVc2ZuenotYUo2ZXRLTVFVaDVQenBSYkxmcGNBZmlwakdLVnB2UGVyRUt0elp4ZW9wSWJTSm5xcnNuQk1aenFlTDI1dVNjWVhJMDJSSVplb3VFOElIQnhvUlJ1eUZ5WEVpUEdDN2J2R1VZT2hGMWsxS1FnSXZZVnI2NjJveFJELXNVMHN4a0R6VWtDdThjd2p2TDZMa1dtdTBCbWdZNVZETmFQRHBBYzVwMWpQN01fOUg2VjdaMmFweXJzUGRrOXg2SnAtRVFwZldoZUZR?oc=5",
+      "published": "Fri, 09 Oct 2026 18:53:52 GMT",
+      "summary": ""
+    },
+    {
       "source": "Ars Technica",
       "category": "news",
       "title": "AI disqualification yields new Nikon Small World in Motion winner",
@@ -296,14 +398,6 @@
       "image": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/fitbit-edge.jpeg?quality=90&strip=all&crop=0,0,71.318894733819,62.485080718084"
     },
     {
-      "source": "KTLA",
-      "category": "news",
-      "title": "High surf floods Newport Beach as Tropical Storm Rachel-driven waves pound coast",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQSHdxZmdHYVMzSlNzQ0tQaUVCbmt4NzVCd3BiSThfVHkyRFN0N0JNQVdwRkZhekp6UURQaC1oUk5Rcm14ei1jSWFOdzJCLTRJVTlXZ1N5cWgwZG41N0tKb0pQWVNqYUxtSkhjWWwwZkUySWxYb0k3X2tVV0hnMnlzb21HQS1QM3E4S1Q3bGw5R2tqeGvSAZgBQVVfeXFMT3hhVFR1WUpmbGduakZ1UjhNNjlVamR1eXZrMEIyLXk0VU5ZSzhqemUxTU0zUmUtNEUzZGhwOTNrU1NFM0tUc3JuOUhCWWlnczhGTk9idHRMbjdmSXh1cl9GSjluSUY0Sk5HRlJZSWxTaDQ5YmJIelk4NkxKemVYd05FNEpXZGNUTzF5amp4Q3NJOUtJUGx4NVc?oc=5",
-      "published": "Fri, 09 Oct 2026 18:05:17 GMT",
-      "summary": ""
-    },
-    {
       "source": "The Verge",
       "category": "news",
       "title": "The Samsung Galaxy S26 Ultra is down to $950 after Prime Day",
@@ -347,14 +441,6 @@
       "summary": "Amazon says it will stop using NDAs when negotiating data center deals with local governments, following a similar move from Microsoft earlier this year. Secrecy has fueled community backlash against AI infrastructure, with opposition…"
     },
     {
-      "source": "Reuters",
-      "category": "news",
-      "title": "Former ICC judge Navi Pillay wins 2026 Nobel Peace Prize",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQNlRoWmxDMW0yZ3V4UFd4OWhXaGZQOWJWWnY1QzRFdnRhU0tQalFJbE1ua3hpWFc3ZlAtbERMbl96cG5rUWt1WjJNMFlsUndsN3JsZ1RSUU9CWE9VUVRhdlhwVVZrQ2NLQXRmVWxEdWYwRDFDYkZ5RE9ZeXhOSlBJSkl6b183Q1dXUmJYTHlQcFpqOFM4VHM0?oc=5",
-      "published": "Fri, 09 Oct 2026 16:51:42 GMT",
-      "summary": ""
-    },
-    {
       "source": "TechCrunch",
       "category": "news",
       "title": "Danu Robotics’ fight to build a better recycling robot",
@@ -388,22 +474,6 @@
       "summary": "The name change is enough for Germany's transport minister to start advocating for Europe-wide adoption of the driver assistance software."
     },
     {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "Remember Orkut? Its founder wants to bring it back",
-      "link": "https://techcrunch.com/2026/10/09/remember-orkut-its-founder-wants-to-bring-it-back/",
-      "published": "Fri, 09 Oct 2026 15:56:15 +0000",
-      "summary": "Orkut's founder is now taking aim at algorithms and AI-generated content."
-    },
-    {
-      "source": "TechCrunch",
-      "category": "news",
-      "title": "a16z’s Olivia Moore on the state of consumer AI",
-      "link": "https://techcrunch.com/2026/10/09/a16zs-olivia-moore-on-the-state-of-consumer-ai/",
-      "published": "Fri, 09 Oct 2026 15:43:33 +0000",
-      "summary": "Moore sees a huge opportunity in consumer AI, particularly if the industry can tap into revenue streams beyond just subscriptions and API charges."
-    },
-    {
       "source": "Wired",
       "category": "news",
       "title": "I’m Still Convinced the iPod Was the Perfect Gadget",
@@ -411,22 +481,6 @@
       "published": "Fri, 09 Oct 2026 15:00:00 +0000",
       "summary": "Apple’s original music player got many things right. Chief among them: It didn’t connect to the internet.",
       "image": "https://media.wired.com/photos/6abdb2233241c89b6aaeb7ab/master/pass/Backchannel-iPod-Anniversary-Business-678384.jpg"
-    },
-    {
-      "source": "The New York Times",
-      "category": "news",
-      "title": "Palestinian Authority Says Elections Are to Be Postponed",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZ0FpQjRRbEJnR0VoMHZkSUJOdlh3TUhvVnl2MWk3MGRKUUllQVJreUVBV1AxMU5QUXluY3BWX2Qya3UtZjR1N2dtRnVNcTdXOWo0V0hZV0llcnlvVkZPUjdFX0JpbVA1RzZzWm9CR3F0Z2M3WGxUc2hVa1hWZG1ZVUFFZG5MTU9GZEJaRkdlNlZMams3QnB3SkFQdTIxZ0hMVDhjRTQxMXl3eW51?oc=5",
-      "published": "Fri, 09 Oct 2026 14:58:45 GMT",
-      "summary": ""
-    },
-    {
-      "source": "The New York Times",
-      "category": "news",
-      "title": "Trump Announces White House Inquiry Into Fed Governor Lisa Cook",
-      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE00c05fZUF5M2NfeElKZDZPSWkxcHJpM21Qd29XV0xyZU1JNDItU1F6WjJ4czJ5ay11ZW5nY1dZTUU3SE5CS210bWNtSnR5VXVSdXdZMW95TTk3dTRrV29WN0ZwMkpMVXV5VTlCdVFwS0FhZFR2dHBz?oc=5",
-      "published": "Fri, 09 Oct 2026 14:34:04 GMT",
-      "summary": ""
     },
     {
       "source": "Ars Technica",
@@ -445,60 +499,6 @@
       "published": "Fri, 09 Oct 2026 11:00:00 +0000",
       "summary": "Relationship coaches, TikTokers, and disgruntled singles alike frequently shame bad profiles, as more apps experiment with blocking screenshots.",
       "image": "https://media.wired.com/photos/6abfeb50f31a481af95ad070/master/pass/culture_dating_app_shaming.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "The Best Mac Desktop to Buy (2026): Mac Mini, Mac Studio, or iMac?",
-      "link": "https://www.wired.com/story/best-mac-desktop/",
-      "published": "Fri, 09 Oct 2026 11:00:00 +0000",
-      "summary": "Apple’s Mac desktops have become some of the most sought-after computers this year, driven by surging interest in agentic AI. Here’s which model to buy depending on your use case.",
-      "image": "https://media.wired.com/photos/6ac201081f48c9ec501c8cc7/master/pass/Update%20best%20mac%20desktops%20102026%20top%20art%20SOURCE%20Amazon.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Best Battery-Powered Leaf Blowers (2026): Tested for Power, Battery Life, and Noise",
-      "link": "https://www.wired.com/story/best-battery-powered-leaf-blowers/",
-      "published": "Fri, 09 Oct 2026 10:10:00 +0000",
-      "summary": "It’s finally time to ditch the gas canister—I tested these cordless leaf blowers on gravel, wood chips, and even a 5-pound concrete paver.",
-      "image": "https://media.wired.com/photos/6ac69bd0cff4fa83959f96ee/master/pass/The%20Best%20Battery-Powered%20Leaf%20Blowers%20for%20Taking%20Back%20Your%20Weekend%20102026%20top%20art%20SOURCE%20Amazon.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "Even ‘Law & Order’ Is Terrified of AI",
-      "link": "https://www.wired.com/story/even-law-and-order-is-terrified-of-ai/",
-      "published": "Fri, 09 Oct 2026 10:00:00 +0000",
-      "summary": "In its 26th season premiere, the procedural legal drama paints a damning picture of power-mad AI CEOs.",
-      "image": "https://media.wired.com/photos/6ac6842a2962a868125e6095/master/pass/Law-and-Order-Anti-AI-Culture-NUP_210197_00214.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "A New Mexico Community Was a Place to Build a Life. Then a Hypersonic Missile Factory Showed Up",
-      "link": "https://www.wired.com/story/a-new-mexico-community-was-a-place-to-build-a-life-then-a-hypersonic-missile-factory-showed-up/",
-      "published": "Fri, 09 Oct 2026 09:30:00 +0000",
-      "summary": "Castelion—a next-generation defense tech company—is building a facility in Rio Rancho Estates that documents show could pose a major fire and chemical hazard to neighboring communities.",
-      "image": "https://media.wired.com/photos/6abd1e80dae3985b8f0ee44b/master/pass/093926-New%20Mexico%20Missle.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "America’s Hybrid Hype Has Hit the Used Market",
-      "link": "https://www.wired.com/story/america-hybrid-hype-has-hit-the-used-market/",
-      "published": "Fri, 09 Oct 2026 09:00:00 +0000",
-      "summary": "Demand is so high that some used cars are selling for more than new ones.",
-      "image": "https://media.wired.com/photos/6ac761317178fc1562f277f4/master/pass/2026_Toyota-RAV4-HEV-Limited_0001H.jpg"
-    },
-    {
-      "source": "Wired",
-      "category": "news",
-      "title": "TurboTax Full Service Coupons This October 2026",
-      "link": "https://www.wired.com/story/turbotax-coupon/",
-      "published": "Fri, 09 Oct 2026 05:00:00 +0000",
-      "summary": "Tax season doesn’t have to be stressful. Score 10% off full service expert on federal tax filings and more exclusive TurboTax discount codes on WIRED.",
-      "image": "https://media.wired.com/photos/66ea076fca863bb4c1028b64/master/pass/WIRED-Coupons-11.jpg"
     }
   ]
 }
