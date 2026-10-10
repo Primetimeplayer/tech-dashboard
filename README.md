@@ -1,176 +1,213 @@
-# Signal — a personal tech dashboard
+# Signal Tech — Commercial Asset Overview
 
-A static dashboard that pulls tech news (RSS), AI papers (arXiv API), and
-device reviews (RSS) on a schedule and displays them in one feed. No server,
-no database — scheduled scripts write JSON, a static page reads it.
+Signal Tech is a turn-key news aggregation dashboard for technology, AI research, device reviews, and community discussion. The published site is static HTML, CSS, and vanilla JavaScript. Scheduled Node scripts write JSON into the repository, GitHub Actions deploys the `public/` directory, and the pages read that JSON in the browser. There is no application server and no database in the Pages site.
+
+Live site: [https://primetimeplayer.github.io/signal-tech/](https://primetimeplayer.github.io/signal-tech/)
+
+Repository: [https://github.com/Primetimeplayer/signal-tech](https://github.com/Primetimeplayer/signal-tech)
+
+License: MIT (`package.json`). Publisher stories remain the property of their original outlets. The dashboard code is what the MIT license covers.
+
+Handover steps are in [TRANSFER.md](TRANSFER.md). Marketplace copy is in [LISTING_TEMPLATE.md](LISTING_TEMPLATE.md).
+
+## What a buyer receives
+
+- A deployed dashboard (`public/index.html`) and a weekly digest browser (`public/digests.html`).
+- A refresh pipeline that refetches sources every 6 hours and writes a weekly digest every Monday at 14:00 UTC.
+- Search, topic filters, region and language selection, bookmarks with notes, share-to-clipboard, and a light/dark theme.
+- SEO files, a web app manifest, favicons, and a 1200×630 social preview.
+- Google Analytics 4 measurement ID `G-X1DTQNYD9T`, loaded only after the visitor chooses Accept All.
+- A Privacy Policy, Terms of Service, and a GDPR-style cookie banner.
+- An email capture card, “Get the Daily Signal Digest,” ready for a webhook.
+- Three AdSense / sponsorship placeholders. The AdSense script is not loaded, and the client and slot IDs are placeholders.
+- An optional Cloudflare Worker for live Google News proxying and saved-item sync. That worker lives in a separate Cloudflare account and does not move when the GitHub repository is transferred.
+
+## Product features
+
+### RSS and live feeds
+
+`npm run fetch:all` pulls tech news, arXiv papers, device reviews, and Reddit posts into `public/data/`. Sources are RSS, Atom, or public APIs. GitHub Actions runs that job every 6 hours and commits the JSON.
+
+On the dashboard, a live Google News request also runs through `https://signal-sync.primetimeplayer-signal-sync.workers.dev/api/news`, using the visitor’s region and language. The request budget is 6 seconds. If it times out or fails, the page keeps the committed `news.json` and may use a stale browser cache. Successful live results are cached for 5 minutes under `feed_cache_${region}_${language}`.
+
+The page refetches the committed JSON about every 5 minutes without a full reload.
+
+### Client-side bookmarking
+
+“Save” stores the story and an optional note in `localStorage` under `signal-saved`. That data stays in the browser that created it. Clearing site data removes it.
+
+The page also contains a Google sign-in path that syncs saved items through the Cloudflare Worker. The worker account is separate from this repository. See [TRANSFER.md](TRANSFER.md).
+
+### Custom topic configuration via localStorage
+
+The topic bar filters the feed into verticals: All News, Software & Dev, AI & Research, Chips & Silicon, Gaming & Consoles, Space & Rockets, Cybersecurity, Gadgets & Hardware, Technology, Reviews, and Community. Library filters cover hardware-only and saved items. Hash routes such as `#papers` and `#saved` open the matching filter.
+
+Two preferences that change the live news edition are stored in `localStorage`:
+
+| Key | What it stores |
+| --- | --- |
+| `region` | Edition, for example `US` |
+| `language` | UI and feed language, for example `en-US` |
+
+The interface is translated for en-US, es-419, fr, de, ja, pt-BR, hi, ko, zh-CN, it, and nl. Headlines stay in the language of the source.
+
+Operators change which feeds exist by editing the fetch scripts (see [Customize sources](#customize-sources)). That configuration lives in the repository, not in a visitor’s browser.
+
+Other browser keys:
+
+| Key | What it stores |
+| --- | --- |
+| `signal-theme` | Light or dark theme |
+| `signal-saved` | Bookmarks and notes |
+| `feed_cache_${region}_${language}` | Live news cache, 5 minutes |
+| `techDashboardRecents` | Up to five recently opened items |
+| `signal_tech_cookie_consent` | `all` or `essential` |
+| `signal_tech_newsletter` | `{ email, consent, subscribedAt }` for the digest form |
+| `signal-auth-token` | Worker session, only after sign-in |
+
+### Skeleton screen loading
+
+While the first feed is loading, the dashboard shows a pulsing skeleton grid (`.skeleton-grid`). The skeleton is removed when stories arrive. If nothing can be shown, the status line clears and an error banner offers Retry Connection.
+
+### GA4 analytics
+
+`public/index.html` and `public/digests.html` define `gtag` and `loadSignalAnalytics`. The function injects `https://www.googletagmanager.com/gtag/js?id=G-X1DTQNYD9T` and calls `gtag('config', 'G-X1DTQNYD9T')` only when `signal_tech_cookie_consent` is `all`, including on later visits. Essential Only stores `essential` and leaves the script unloaded. `privacy.html` and `terms.html` do not load Analytics.
+
+### GDPR cookie banner
+
+`#cookieBanner` is fixed to the bottom of the dashboard and the digest page. It stays hidden until the script confirms there is no stored choice. Accept All writes `all` and loads Analytics. Essential Only writes `essential`. The choice is shared by both pages, so the banner does not return in that browser. Footer links point to `privacy.html` and `terms.html`.
+
+### Email subscriber widget
+
+Both pages include a card titled “Get the Daily Signal Digest,” an email field, a Subscribe button, and the line “No spam. Unsubscribe anytime.” `public/newsletter.js` checks the address in the browser. A valid address is stored as `signal_tech_newsletter` and the card shows “You're subscribed to the Daily Signal!”.
+
+If `data-webhook` is an `https://` URL and does not contain `YOUR_`, the same submit also POSTs JSON `{ email, consent: true, source: "signal-tech" }`. The form’s Substack, Beehiiv, and ConvertKit `data-*-action` values are placeholders. The current script does not submit to those attributes. Connecting a provider is covered in [TRANSFER.md](TRANSFER.md).
+
+Signups are not collected in a server-side list.
+
+### Monetization layout
+
+Three slots ship as `ins.adsbygoogle` elements with client `ca-pub-xxxxxxxxxxxxxxxx`:
+
+| Location | Slot | Format |
+| --- | --- | --- |
+| `public/index.html` in-feed | `0000000000` | fluid |
+| `public/index.html` sidebar, hidden below 768px | `0000000001` | auto |
+| `public/digests.html` between editorial headings | `0000000002` | auto |
+
+`adsbygoogle.js` is not included. The slots set no ad cookies until a real publisher ID, real slot IDs, and the AdSense script are added.
+
+### SEO, sharing, and install metadata
+
+- Self-referencing canonicals on the dashboard and the digest page.
+- Open Graph and Twitter Card tags. The Twitter card is `summary_large_image`. `twitter:site` is `@SignalTech`, a placeholder handle.
+- Preview image: `public/assets/og-preview.png` (1200×630).
+- JSON-LD `WebSite` and `NewsMediaOrganization` named Signal Tech.
+- `public/robots.txt` allows all agents and points at the sitemap.
+- `public/sitemap.xml` lists the homepage and `digests.html`.
+- `public/site.webmanifest` (`Signal Tech` / `Signal`, standalone, theme `#ffffff`) plus SVG, 32, 180, 192, and 512 icons.
+
+These tags are implemented in the repository. A numeric SEO audit score is not stored here. Attach a fresh audit before using a score in a sales listing.
+
+## File structure
 
 ```
-tech-dashboard/
+signal-tech/
+├── public/                     GitHub Pages publish directory
+│   ├── index.html              Dashboard
+│   ├── digests.html            Weekly digest browser
+│   ├── privacy.html            Privacy Policy
+│   ├── terms.html              Terms of Service
+│   ├── newsletter.js           Digest form handler
+│   ├── feed-cache.js           5-minute live-feed cache
+│   ├── recent-items.js         Recent-item list
+│   ├── ui-i18n.js              Interface translations
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   ├── site.webmanifest
+│   ├── assets/                 Social preview, favicon, PWA icons
+│   ├── data/                   news.json, papers.json, reviews.json, reddit.json
+│   └── digests/                Generated weekly digest JSON
 ├── scripts/
-│   ├── fetch-news.js       RSS: tech news
-│   ├── fetch-papers.js     arXiv API: AI/ML papers
-│   ├── fetch-reviews.js    RSS: device reviews
-│   ├── fetch-reddit.js     Reddit's public .json endpoints
-│   └── summarize.js        optional: rewrites summaries with an LLM
-├── public/
-│   ├── index.html          the dashboard itself (search + theme toggle built in)
-│   └── data/                news.json, papers.json, reviews.json, reddit.json (generated)
-└── .github/workflows/
-    ├── update-data.yml     refetches data every 6h and commits it
-    └── deploy-pages.yml    deploys public/ to GitHub Pages on push
+│   ├── fetch-all.js            Runs the fetchers, then summarize
+│   ├── fetch-news.js           News RSS, including Google News editions
+│   ├── fetch-papers.js         arXiv API
+│   ├── fetch-reviews.js        Review RSS
+│   ├── fetch-reddit.js         Reddit public JSON
+│   ├── summarize.js            Optional “why it matters” notes
+│   ├── generate-digest.js      Weekly digest and thread version
+│   └── lib/                    Excerpt, image, and locale helpers
+├── cloudflare-worker/          Optional sync and news proxy (separate account)
+├── .github/workflows/
+│   ├── deploy-pages.yml        Publishes public/ on every push to main
+│   ├── update-data.yml         cron: 0 */6 * * *  (every 6 hours UTC)
+│   └── generate-digest.yml     cron: 0 14 * * 1   (Monday 14:00 UTC)
+├── test/                       Node tests. Browser suite needs Firefox.
+├── package.json
+├── TRANSFER.md
+└── LISTING_TEMPLATE.md
 ```
 
-The dashboard now has: a **card grid** layout, a **Latest** strip (items from
-the last few hours), filters for **category, source, date range, and
-hardware-only**, a **search box**, **save/bookmark with personal notes**, a
-**share** button that copies a ready-to-post blurb, a **☐ theme toggle**, and
-it quietly **re-checks for new data every 5 minutes** without a full page
-reload.
+`npm run fetch:all` exits with an error only when the news fetch fails, so a later source error does not block the data commit. `fetch-papers.js` calls arXiv at `http://export.arxiv.org`.
 
-- **Hardware highlighting** — any item whose title/summary mentions chips,
-  GPUs, specific device categories, robotics, etc. gets a `⚡ Hardware`
-  badge and can be isolated with the "⚡ Hardware" filter pill. The keyword
-  list lives in `HARDWARE_KEYWORDS` near the top of the `<script>` block in
-  `public/index.html` — edit it freely to match what you actually care
-  about.
-- **Saved items + notes** — click "☆ Save" on any card to bookmark it (button
-  becomes "★ Saved") and a small notes box appears where you can jot down
-  why it caught your eye. Click "★ Saved" in the filter row to see only your
-  saved items. This is stored in your browser's `localStorage`, tied to that
-  one browser — it won't sync across devices, and clearing browser data will
-  clear it too.
-- **Share** — click "⇪ Share" on any card to copy a ready-to-paste blurb
-  (title, the why-it-matters note if there is one, and the link) to your
-  clipboard, ready to drop into a tweet, Slack message, or newsletter.
+## Local setup
 
-## Weekly digest (content engine)
-
-`scripts/generate-digest.js` turns the past 7 days of dashboard items into a
-proper digest: an intro, highlights grouped by category with a one-line note
-each, a closing line, and a parallel **thread version** (5-8 short numbered
-posts) for X/Twitter or similar. A separate workflow
-(`.github/workflows/generate-digest.yml`) runs this every **Monday at 14:00
-UTC**, and you can also trigger it manually any time from the Actions tab.
-
-Browse digests at `public/digests.html` on your deployed site (linked from
-the main dashboard's "📰 Digests" button) — pick a week from the list, then
-**Copy as Markdown** to paste straight into Substack, Buttondown, a blog
-post, or a repo file, or **Show thread version** to copy something
-tweet-shaped.
-
-Like the summarizer, this uses Groq (free) by default, falling back to
-Anthropic if that key is set instead, and falls back further to a
-rule-based digest (using existing summaries, no new writing) if neither key
-is set — it never fails to produce *something*, it just gets better prose
-with a key. Same secrets as the summarizer (`GROQ_API_KEY` /
-`ANTHROPIC_API_KEY`) — no extra setup needed if you already added one for
-the "why it matters" notes.
-
-To try it locally: `npm run digest` (writes into `public/digests/`). To
-force a fresh one on GitHub right now: Actions tab → **Generate Weekly
-Digest** → **Run workflow**.
-
-Sample placeholder data ships in `public/data/` so the page renders
-immediately — run the fetch scripts (below) to replace it with live data.
-
-## 1. Run it locally
+Requirements: Node.js 20 (the version used in GitHub Actions) and npm.
 
 ```bash
 npm install
-npm run fetch:all      # pulls live news, papers, and reviews into public/data/
-npm run serve          # serves public/ at http://localhost:8080
+npm run fetch:all    # writes live JSON into public/data/
+npm run serve        # http://localhost:8080
 ```
 
-(`npm run serve` uses `http-server` via `npx` — no need to install it globally.)
+`npm run serve` uses `npx http-server` and does not need a global install. Sample JSON in `public/data/` lets the page render before the first fetch.
 
-## 2. Customize your sources
+Other commands:
 
-- **News / reviews**: edit the `FEEDS` array in `scripts/fetch-news.js` and
-  `scripts/fetch-reviews.js`. Any RSS/Atom feed URL works — most sites expose
-  one at `/feed`, `/rss`, or `/rss.xml` even if it's not linked in the nav.
-- **AI papers**: edit the `CATEGORIES` array in `scripts/fetch-papers.js`.
-  See the [arXiv category taxonomy](https://arxiv.org/category_taxonomy) for
-  the full list (e.g. `cs.CV` for computer vision, `stat.ML` for stats/ML).
-- **Reddit**: edit the `SUBREDDITS` array in `scripts/fetch-reddit.js`. Also
-  change the `USER_AGENT` string to include your actual Reddit username —
-  Reddit rate-limits generic/default user agents more aggressively.
-- **Look and feel**: all styling is in the `<style>` block of
-  `public/index.html` — colors are defined once as CSS variables at the top
-  (a second set under `:root[data-theme="light"]` covers light mode).
+| Command | Purpose |
+| --- | --- |
+| `npm run fetch:news` | News only |
+| `npm run fetch:papers` | arXiv only |
+| `npm run fetch:reviews` | Reviews only |
+| `npm run fetch:reddit` | Reddit only |
+| `npm run summarize` | Optional LLM notes on existing JSON |
+| `npm run digest` | Write a digest into `public/digests/` |
+| `npm test` | Node tests. Skips `test/browser.test.js` when Firefox and geckodriver are absent |
 
-## AI summaries + "why this matters" notes (optional)
+On localhost, the live news request goes to the same origin’s `/api/news`. The production page uses the Cloudflare Worker.
 
-By default, summaries are the raw excerpt from each RSS feed or API, and
-there's no "why it matters" note. `scripts/summarize.js` can generate both
-using an LLM — it tries providers in this order, using whichever key is set:
+## Customize sources
 
-**Option A — Groq (free, recommended)**
+- News and reviews: `FEEDS` in `scripts/fetch-news.js` and `scripts/fetch-reviews.js`. Any RSS or Atom URL works.
+- Papers: `CATEGORIES` in `scripts/fetch-papers.js`. The [arXiv taxonomy](https://arxiv.org/category_taxonomy) lists the codes.
+- Reddit: `SUBREDDITS` in `scripts/fetch-reddit.js`. Change `USER_AGENT` so it identifies the new operator. Reddit rate-limits generic agents.
+- Hardware badge: `HARDWARE_KEYWORDS` in the script block of `public/index.html`.
+- Visual design: CSS variables and later `<style>` blocks in `public/index.html`. Later blocks override earlier ones. Desktop layout starts at `min-width: 801px`. The mobile drawer is `max-width: 800px`.
 
-1. Go to [console.groq.com/keys](https://console.groq.com/keys), sign up
-   (no credit card required), and create an API key.
-2. **Locally**: `export GROQ_API_KEY=gsk_...` before running
-   `npm run fetch:all` (or `npm run summarize` alone, to re-process existing
-   data).
-3. **On GitHub Actions**: repo → **Settings → Secrets and variables →
-   Actions → New repository secret**, name it `GROQ_API_KEY`, paste the key.
-   The workflow already passes it through.
+### Optional summaries and digests
 
-Groq's free tier (roughly 30 requests/minute at the time of writing) is
-comfortably enough for a personal dashboard refreshing every few hours.
+`scripts/summarize.js` and `scripts/generate-digest.js` try Groq when `GROQ_API_KEY` is set, then Anthropic when `ANTHROPIC_API_KEY` is set. With neither key, summaries stay as the source excerpts and the digest falls back to a rule-based write-up. The workflows already pass both secrets through. Add them under Settings → Secrets and variables → Actions. Rotate them when ownership changes.
 
-**Option B — Anthropic (paid, used only if no Groq key is set)**
+## Deployment
 
-Same steps as above but with an `ANTHROPIC_API_KEY` from the
-[Anthropic Console](https://console.anthropic.com/settings/keys) — this uses
-paid API credits, usually a fraction of a cent per article with the small
-model this script uses.
+### GitHub Pages
 
-If neither key is set, `scripts/summarize.js` detects that and skips itself
-— everything else keeps working with the raw excerpts and no "why it
-matters" notes.
+The repository is already configured this way.
 
-## 3. Deploy for free
+1. Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+2. `.github/workflows/deploy-pages.yml` uploads `public/` and deploys it on every push to `main`, and when someone runs the workflow by hand.
+3. `.github/workflows/update-data.yml` refreshes `public/data/` every 6 hours. That commit triggers a new Pages deploy.
+4. `.github/workflows/generate-digest.yml` refreshes `public/digests/` on Mondays at 14:00 UTC.
+5. Either data workflow can be run from the Actions tab (`workflow_dispatch`).
 
-**Option A — GitHub Pages (recommended)**
+The project URL is `https://<owner>.github.io/<repo>/`. It is currently `https://primetimeplayer.github.io/signal-tech/`. Renaming the repository or transferring it to another owner changes that URL. A custom domain is not configured. Mapping one is in [TRANSFER.md](TRANSFER.md).
 
-1. Push this project to a new GitHub repo.
-2. In the repo, go to **Settings → Pages → Build and deployment → Source**,
-   and select **GitHub Actions**.
-3. The included `deploy-pages.yml` workflow will publish `public/` on every
-   push to `main`.
-4. The included `update-data.yml` workflow refetches your sources every 6
-   hours and commits the new JSON, which triggers a redeploy automatically.
-5. You can also trigger either workflow manually from the repo's **Actions**
-   tab (`workflow_dispatch`).
+### Netlify, Vercel, or Cloudflare Pages
 
-**Option B — Netlify / Vercel / Cloudflare Pages**
+Connect the repository and set the publish directory to `public`. There is no frontend build command. Keep `update-data.yml` so fresh JSON is committed and the host redeploys.
 
-Connect the repo, set the publish directory to `public`, and it will deploy
-on every push. Add the `update-data.yml` workflow as-is — it commits fresh
-JSON to the repo, and your host's own auto-deploy picks it up.
+## Operating notes
 
-## 4. Extend it
+Every bundled source uses RSS or a public API. Feeds are the stable way to aggregate these sites. Before adding a source that has no feed, read its `robots.txt` and terms, and keep the fetch interval on the order of hours.
 
-Ideas, roughly in order of effort:
-
-- **LLM summaries** — in a fetch script, pipe each `summary` through an LLM
-  API call to get a tighter 1–2 sentence summary instead of the raw RSS
-  excerpt.
-- **More categories** — add a fourth fetch script (e.g. `fetch-reddit.js`
-  using Reddit's public `.json` endpoints) and a matching filter pill in
-  `index.html`.
-- **Read/unread state** — store seen article links in `localStorage` and
-  dim items you've already opened.
-- **Search** — add a text input that filters `allItems` by title/summary in
-  the existing `render()` function.
-- **History / database** — once you want to search across weeks of
-  articles rather than just the latest fetch, move from flat JSON files to
-  SQLite and a small server (e.g. Express) that serves query results.
-
-## Notes on scraping vs. APIs
-
-Every source here uses RSS or a public API — not HTML scraping — because
-feeds are explicitly meant for this, are far more stable, and avoid ToS gray
-areas. If you add a source with no feed or API, check its `robots.txt` and
-terms of service before scraping its HTML, and keep your fetch frequency low
-(every few hours is plenty for a news dashboard).
+After a custom domain or a repository rename, update the absolute URLs in the canonical tags, `public/sitemap.xml`, `public/robots.txt`, Open Graph image tags, and the JSON-LD blocks. They currently use `https://primetimeplayer.github.io/signal-tech/`.
