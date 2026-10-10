@@ -639,6 +639,16 @@ a:focus-visible {
     if (inList) html += '</ul>';
     return html;
   }
+  function insertDigestAd(body) {
+    const slot = document.createElement('aside');
+    slot.className = 'digest-ad';
+    slot.setAttribute('aria-label', 'Advertisement');
+    slot.innerHTML = '<span class="digest-ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="0000000002"></ins>';
+    const sections = body.querySelectorAll('h2');
+    if (sections.length >= 2) body.insertBefore(slot, sections[1]);
+    else body.appendChild(slot);
+  }
+
   function escapeHtml(text = '') {
     return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
@@ -684,6 +694,8 @@ a:focus-visible {
         </div>
         <div class="digest-body">${renderMarkdown(data.markdown)}</div>
       `;
+      const digestBody = contentEl.querySelector('.digest-body');
+      if (digestBody) insertDigestAd(digestBody);
 
       document.getElementById('copyMd').addEventListener('click', (e) => copyText(data.markdown, e.target));
       document.getElementById('copyThread').addEventListener('click', (e) => copyText(threadText, e.target));
@@ -1420,6 +1432,45 @@ html[data-theme="dark"] .sidebar-recents .recent-item {
 html[data-theme="dark"] .sidebar-recents .recent-item:hover {
   background: #3c4043 !important;
   color: #8ab4f8 !important;
+}
+</style>
+<style id="digest-ad-slot">
+.digest-ad {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 28px 0;
+  padding: 16px 18px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.digest-ad-label {
+  display: block;
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #9ca3af;
+}
+
+.digest-ad .adsbygoogle {
+  display: block;
+  width: 100%;
+  min-height: 90px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+html[data-theme="dark"] .digest-ad {
+  background: #292a2d;
+  border-color: #3c4043;
+}
+
+html[data-theme="dark"] .digest-ad .adsbygoogle {
+  background: #202124;
 }
 </style>
 <script src="recent-items.js"></script>

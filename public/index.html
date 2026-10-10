@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Signal — a personal tech dashboard</title>
-<meta name="description" content="Tech news, AI papers, device reviews, and Reddit discussion — pulled on a schedule, no algorithm, no ads. A personal tech dashboard by Signal.">
+<meta name="description" content="Tech news, AI papers, device reviews, and Reddit discussion — pulled on a schedule, no algorithm. A personal tech dashboard by Signal.">
 <meta name="author" content="Signal">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://primetimeplayer.github.io/tech-dashboard/">
@@ -12,14 +12,14 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Signal — a personal tech dashboard">
-<meta property="og:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.">
+<meta property="og:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.">
 <meta property="og:url" content="https://primetimeplayer.github.io/tech-dashboard/">
 <meta property="og:site_name" content="Signal">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Signal — a personal tech dashboard">
-<meta name="twitter:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.">
+<meta name="twitter:description" content="Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.">
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -7695,13 +7695,106 @@ footer,
   }
 }
 </style>
+<style id="ad-slots">
+/* In-feed and sidebar placeholders. Real AdSense ids replace the
+   ca-pub and slot values. The slots are not .card nodes, so feed
+   counts stay tied to stories. */
+#feed .in-feed-ad,
+#feed .sponsor-slot {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+#feed .in-feed-ad {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+#feed .sponsor-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+#feed .sponsor-slot-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#feed .sponsor-title {
+  margin: 0;
+  color: var(--text, #202124);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+#feed .ad-label {
+  flex: none;
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #9ca3af;
+}
+
+#feed .in-feed-ad > .ad-label {
+  align-self: flex-end;
+}
+
+#feed .in-feed-ad .adsbygoogle,
+#feed .sponsor-slot .adsbygoogle {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+:root[data-theme="dark"] #feed .in-feed-ad,
+:root[data-theme="dark"] #feed .sponsor-slot {
+  background: var(--panel, #292a2d);
+  border-color: var(--line, #3c4043);
+}
+
+:root[data-theme="dark"] #feed .sponsor-title {
+  color: var(--text, #e8eaed);
+}
+
+:root[data-theme="dark"] #feed .in-feed-ad .adsbygoogle,
+:root[data-theme="dark"] #feed .sponsor-slot .adsbygoogle {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 767px) {
+  #feed .sponsor-slot {
+    display: none !important;
+  }
+
+  #feed .picks-col:not(:has(.picks-list)) {
+    display: none !important;
+  }
+}
+</style>
 </head>
 <body>
 
 <noscript>
   <div class="mast"><div class="wrap">
     <h1 class="wordmark">Signal<span>.</span></h1>
-    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.</p>
     <p data-i18n="noscript" style="color: var(--text-muted); font-family: 'Space Grotesk', sans-serif; margin-top: 2rem;">This dashboard requires JavaScript to load and display articles. Please enable JavaScript to continue.</p>
   </div></div>
 </noscript>
@@ -7773,7 +7866,7 @@ footer,
         </button>
       </div>
     </div>
-    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, no ads, just your sources.</p>
+    <p class="tagline" data-i18n="tagline">Tech news, AI papers, device reviews, and Reddit discussion, pulled on a schedule — no algorithm, just your sources.</p>
   </div>
 </div>
 
@@ -9094,11 +9187,28 @@ initAuth();
       const sectionClass = extraClass ? `lower-section ${extraClass}` : 'lower-section';
       return `<section class="${sectionClass}"><h2 class="feed-column-title">${escapeHtml(title)}</h2><div class="lower-grid ${colClass}">${cols}</div></section>`;
     };
-    const lower = [
+    const storySections = [
       lowerSection(t('silicon'), silicon),
       lowerSection(t('deepSpace'), spaceItems),
       lowerSection(t('moreStories'), rest, 'more-stories'),
-    ].join('');
+    ].filter(Boolean);
+    const inFeedAd = `
+      <aside class="in-feed-ad" aria-label="${escapeAttr(t('sponsored'))}">
+        <span class="ad-label">${escapeHtml(t('sponsored'))}</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="placeholder" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="0000000000"></ins>
+      </aside>`;
+    const lowerParts = storySections.length
+      ? [storySections[0], inFeedAd, ...storySections.slice(1)]
+      : [inFeedAd];
+    const lower = lowerParts.join('');
+    const sponsorSlot = `
+      <section class="sponsor-slot" aria-label="${escapeAttr(t('featuredSponsor'))}">
+        <div class="sponsor-slot-head">
+          <h2 class="sponsor-title">${escapeHtml(t('featuredSponsor'))}</h2>
+          <span class="ad-label">${escapeHtml(t('sponsored'))}</span>
+        </div>
+        <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="0000000001"></ins>
+      </section>`;
 
     const pickCards = picks.map((item) => {
       const fields = storyFields(item);
@@ -9125,7 +9235,7 @@ initAuth();
             ${followUps ? `<div class="follow-ups">${followUps}</div>` : ''}
           </div>
         </section>
-        ${pickCards ? `<aside class="picks-col" aria-label="${escapeAttr(t('picks'))}"><h2 class="feed-column-title">${escapeHtml(t('picks'))}</h2><div class="picks-list">${pickCards}</div></aside>` : ''}
+        <aside class="picks-col" aria-label="${escapeAttr(t('picks'))}">${sponsorSlot}${pickCards ? `<h2 class="feed-column-title">${escapeHtml(t('picks'))}</h2><div class="picks-list">${pickCards}</div>` : ''}</aside>
       </div>
       ${lower ? `<div class="lower-feed">${lower}</div>` : ''}`;
 
